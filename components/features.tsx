@@ -92,7 +92,7 @@ export function Features() {
                 This month
               </p>
               <div className="space-y-2 text-xs text-slate-200">
-                <p>\"Can I afford a new phone this month?\"</p>
+                <p>Can I afford a new phone this month?</p>
                 <p className="rounded-xl bg-slate-900/90 px-3 py-2">
                   Based on your patterns, you can spend up to{" "}
                   <span className="text-accent font-medium">₹8,500</span> safely

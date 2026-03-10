@@ -8,12 +8,17 @@
 }
 
 .dark {
-  --background: #0f172a;
+  --background: #020617;
   --foreground: #e5e7eb;
 }
 
 body {
-  @apply bg-[var(--background)] text-[var(--foreground)];
+  @apply text-[var(--foreground)];
+  background: radial-gradient(140% 140% at 0% 0%, #e0ecff 0, #f8fafc 40%, #f8fafc 60%, #fce7f3 85%, #fdf2ff 100%);
+}
+
+.dark body {
+  background: radial-gradient(140% 140% at 0% 0%, #111827 0, #020617 45%, #020617 65%, #111827 90%, #020617 100%);
 }
 
 .glass-panel {
@@ -38,6 +43,21 @@ body {
 
 .animate-float-soft {
   animation: float-soft 7s ease-in-out infinite;
+}
+
+@keyframes fade-up-soft {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up-soft {
+  animation: fade-up-soft 0.8s ease-out both;
 }
 
 .btn-primary {

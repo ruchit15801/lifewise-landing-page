@@ -121,7 +121,7 @@ export default function HomePage() {
                 AI Decision Preview
               </p>
               <p className="text-sm">
-                \"Should I renew this ₹799 OTT subscription?\"{" "}
+                Should I renew this ₹799 OTT subscription?{" "}
               </p>
               <p className="text-xs text-slate-300">
                 You used it 3 days last month. Renew only if entertainment

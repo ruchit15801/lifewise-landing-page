@@ -6,11 +6,11 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden border-b border-white/5 dark:border-slate-900/80 bg-backgroundLight dark:bg-backgroundDark"
+      className="relative overflow-hidden border-b border-white/10 dark:border-slate-900/80"
     >
-      <div className="pointer-events-none absolute inset-0 bg-radial-faded opacity-90" />
+      <div className="pointer-events-none absolute inset-0 bg-radial-faded opacity-80" />
       <div className="section-max relative flex flex-col lg:flex-row items-center gap-12 py-16 lg:py-24">
-        <div className="max-w-xl space-y-6 transition-transform duration-700 ease-out">
+        <div className="max-w-xl space-y-6 transition-transform duration-700 ease-out animate-fade-up-soft">
           <span className="inline-flex items-center gap-2 rounded-full bg-slate-100/80 dark:bg-slate-900/70 px-3 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 border border-slate-200/70 dark:border-slate-800/80">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             Your Smart AI Life Assistant
