@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const whatCards = [
   {
     title: "Bill reminders",
@@ -47,14 +43,10 @@ export function Features() {
             </p>
           </div>
           <div className="grid sm:grid-cols-3 gap-4">
-            {whatCards.map((card, index) => (
-              <motion.div
+            {whatCards.map((card) => (
+              <div
                 key={card.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="glass-panel bg-white/60 dark:bg-slate-900/70 p-4 flex flex-col gap-2"
+                className="glass-panel bg-white/60 dark:bg-slate-900/70 p-4 flex flex-col gap-2 transition-transform duration-300 hover:-translate-y-1"
               >
                 <span className="text-2xl">{card.icon}</span>
                 <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-50">
@@ -63,7 +55,7 @@ export function Features() {
                 <p className="text-xs text-slate-600 dark:text-slate-300">
                   {card.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -95,13 +87,7 @@ export function Features() {
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.45 }}
-              className="glass-panel bg-slate-950 p-4 space-y-3"
-            >
+            <div className="glass-panel bg-slate-950 p-4 space-y-3 transition-transform duration-300 hover:-translate-y-1">
               <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">
                 This month
               </p>
@@ -113,14 +99,8 @@ export function Features() {
                   without impacting bills or savings.
                 </p>
               </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.45, delay: 0.08 }}
-              className="glass-panel bg-white/80 dark:bg-slate-900/80 p-4 space-y-3"
-            >
+            </div>
+            <div className="glass-panel bg-white/80 dark:bg-slate-900/80 p-4 space-y-3 transition-transform duration-300 hover:-translate-y-1">
               <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
                 Subtle automations
               </p>
@@ -145,7 +125,7 @@ export function Features() {
                   </span>
                 </li>
               </ul>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

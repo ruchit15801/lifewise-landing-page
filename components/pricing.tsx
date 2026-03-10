@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 const plans = [
   {
     name: "Free",
@@ -52,18 +50,14 @@ export function Pricing() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           {plans.map((plan, index) => (
-            <motion.div
+            <div
               key={plan.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.4, delay: index * 0.06 }}
-              className={`glass-panel p-5 flex flex-col justify-between ${
+              className={`glass-panel p-6 flex flex-col justify-between ${
                 plan.highlight
-                  ? "bg-slate-900 text-slate-50 border-primary/60 shadow-soft-glow"
-                  : "bg-white/80 dark:bg-slate-900/80"
+                  ? "bg-slate-900 text-slate-50 border-primary/60 shadow-soft-glow scale-[1.03]"
+                  : "bg-white/80 dark:bg-slate-900/80 hover:-translate-y-1 transition-transform duration-300"
               }`}
             >
               <div className="space-y-3">
@@ -104,7 +98,7 @@ export function Pricing() {
               >
                 Choose {plan.name}
               </button>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

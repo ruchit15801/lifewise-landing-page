@@ -24,3 +24,27 @@ body {
   @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
+@keyframes float-soft {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/40 hover:bg-primary/90 hover:shadow-primary/60 transition-all active:scale-[0.98];
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center rounded-full border border-slate-300/80 dark:border-slate-700/80 bg-white/70 dark:bg-slate-900/70 px-5 py-2.5 text-sm font-medium text-slate-800 dark:text-slate-100 shadow-sm hover:border-primary/70 hover:text-primary dark:hover:text-primary transition-all active:scale-[0.98];
+}
+

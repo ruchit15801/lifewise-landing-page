@@ -31,6 +31,29 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.tailwind = window.tailwind || {};
+              window.tailwind.config = {
+                darkMode: "class",
+                theme: {
+                  extend: {
+                    colors: {
+                      primary: "#6D5DF6",
+                      accent: "#22C55E",
+                      backgroundDark: "#0F172A",
+                      backgroundLight: "#F8FAFC"
+                    }
+                  }
+                }
+              };
+            `
+          }}
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
       <body className={inter.className}>
         <ThemeProvider>
           <Navbar />

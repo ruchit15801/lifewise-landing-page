@@ -144,7 +144,7 @@ export default function PrivacyPolicyPage() {
               privacy, you can reach us at:
             </p>
             <p className="text-sm font-medium text-slate-800 dark:text-slate-100">
-              privacy@lifewise.app
+              support@lifewiseee.com
             </p>
           </section>
         </div>

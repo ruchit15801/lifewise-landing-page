@@ -62,10 +62,7 @@ export function Navbar() {
             </span>
           </button>
 
-          <Link
-            href="#download"
-            className="hidden sm:inline-flex items-center rounded-full bg-primary px-4 py-2 text-xs font-medium text-white shadow-lg shadow-primary/40 hover:bg-primary/90 transition-colors"
-          >
+          <Link href="#download" className="hidden sm:inline-flex btn-primary text-xs">
             Download App
           </Link>
         </div>

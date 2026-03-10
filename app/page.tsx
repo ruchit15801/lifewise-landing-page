@@ -1,7 +1,6 @@
 import { Hero } from "@/components/hero";
 import { Features } from "@/components/features";
 import { Pricing } from "@/components/pricing";
-import { motion } from "framer-motion";
 
 const smartReminderCards = [
   {
@@ -40,14 +39,10 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-5">
-            {smartReminderCards.map((card, index) => (
-              <motion.div
+            {smartReminderCards.map((card) => (
+              <div
                 key={card.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.4, delay: index * 0.06 }}
-                className="glass-panel bg-slate-900/80 border-slate-700/80 p-5 space-y-3"
+                className="glass-panel bg-slate-900/80 border-slate-700/80 p-5 space-y-3 transition-transform duration-300 hover:-translate-y-1"
               >
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{card.icon}</span>
@@ -58,7 +53,7 @@ export default function HomePage() {
                   LifeWise automatically creates the right reminder with time,
                   context, and follow-ups.
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -88,13 +83,9 @@ export default function HomePage() {
                 { name: "Mummy", desc: "Health reminders" },
                 { name: "Child", desc: "School fee alerts" }
               ].map((member) => (
-                <motion.div
+                <div
                   key={member.name}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.4 }}
-                  className="glass-panel bg-white/80 dark:bg-slate-900/80 p-4 space-y-1"
+                  className="glass-panel bg-white/80 dark:bg-slate-900/80 p-4 space-y-1 transition-transform duration-300 hover:-translate-y-1"
                 >
                   <p className="text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
                     {member.name}
@@ -105,7 +96,7 @@ export default function HomePage() {
                   <p className="text-[11px] text-slate-500 dark:text-slate-400">
                     Managed by you from anywhere in the world.
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -125,13 +116,7 @@ export default function HomePage() {
                 <p>When should I travel?</p>
               </div>
             </div>
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.4 }}
-              className="glass-panel bg-slate-950 text-slate-50 p-5 space-y-3"
-            >
+            <div className="glass-panel bg-slate-950 text-slate-50 p-5 space-y-3 transition-transform duration-300 hover:-translate-y-1">
               <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">
                 AI Decision Preview
               </p>
@@ -145,7 +130,7 @@ export default function HomePage() {
                 current buffer is{" "}
                 <span className="text-accent font-medium">₹640</span>.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -168,13 +153,7 @@ export default function HomePage() {
               </ul>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.4 }}
-              className="glass-panel bg-slate-900/90 border-slate-700/80 p-6 flex flex-col md:flex-row items-center gap-8"
-            >
+            <div className="glass-panel bg-slate-900/90 border-slate-700/80 p-6 flex flex-col md:flex-row items-center gap-8 transition-transform duration-300 hover:-translate-y-1">
               <div className="relative h-40 w-40">
                 <div className="absolute inset-0 rounded-full border-2 border-slate-700" />
                 <div className="absolute inset-1.5 rounded-full border-[6px] border-primary/80 border-t-accent/80 border-r-accent/60 border-b-slate-700/80" />
@@ -191,7 +170,7 @@ export default function HomePage() {
                   Share Life Score
                 </button>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
