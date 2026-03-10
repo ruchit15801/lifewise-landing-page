@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8fafc;
+  --foreground: #020617;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #e5e7eb;
+}
+
+body {
+  @apply bg-[var(--background)] text-[var(--foreground)];
+}
+
+.glass-panel {
+  @apply bg-white/10 dark:bg-slate-900/40 backdrop-blur-xl border border-white/10 dark:border-slate-700/60 rounded-3xl shadow-soft-glow;
+}
+
+.section-max {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
