@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — LifeWise",
+  title: "LifeWise Privacy Policy",
   description:
-    "LifeWise privacy policy — what we collect, why we collect it, how we secure it, and how SMS bill detection works."
+    "LifeWise privacy policy — what we collect, why we collect it, how we secure it, and how SMS bill detection works.",
+  alternates: {
+    canonical: "https://www.lifewiseee.com/privacy-policy"
+  }
 };
 
 export default function PrivacyPolicyPage() {
