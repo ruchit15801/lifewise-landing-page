@@ -105,6 +105,24 @@ export default function RootLayout({
         }}
       />
       <Script
+        id="gtag-src"
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-HKH8RSGWT1"
+        strategy="afterInteractive"
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-HKH8RSGWT1');
+          `
+        }}
+      />
+      <Script
         id="adsense-script"
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5431367793480852"
