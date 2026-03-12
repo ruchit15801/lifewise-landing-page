@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -63,8 +64,15 @@ export function Navbar() {
           className="inline-flex items-center gap-2 font-semibold tracking-tight"
           aria-label="LifeWise home"
         >
-          <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
-            LW
+          <span className="relative grid h-9 w-9 place-items-center rounded-2xl shadow-premium overflow-hidden">
+            <Image
+              src="/logo.png"
+              alt="LifeWise"
+              width={36}
+              height={36}
+              priority
+              className="h-9 w-9 rounded-2xl object-cover"
+            />
           </span>
           <span className="text-slate-950 dark:text-white">LifeWise</span>
         </Link>
