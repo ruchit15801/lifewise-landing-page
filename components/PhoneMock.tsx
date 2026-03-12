@@ -6,9 +6,21 @@ import {
   useMotionValue,
   useReducedMotion,
   useSpring,
-  useTransform
+  useTransform,
+  type Variants
 } from "framer-motion";
 import { cn } from "@/components/cn";
+
+const EASE_OUT = [0.16, 1, 0.3, 1] as const;
+
+const shimmer: Variants = {
+  initial: { opacity: 0, y: 6 },
+  animate: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.1 + i * 0.06, duration: 0.6, ease: EASE_OUT }
+  })
+};
 
 export function PhoneMock({ className }: { className?: string }) {
   const reduceMotion = useReducedMotion();
@@ -61,11 +73,16 @@ export function PhoneMock({ className }: { className?: string }) {
         }}
       >
         {/* iPhone 17 Pro Max style frame */}
-        <div className="relative aspect-[9/19.5] rounded-[3.2rem] p-[1px] bg-[linear-gradient(135deg,rgba(255,255,255,0.75),rgba(255,255,255,0.12),rgba(255,255,255,0.65))] dark:bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.05),rgba(255,255,255,0.14))] shadow-lift">
+        <div className="relative aspect-[9/19.5] rounded-[3.2rem] p-[1px] bg-[conic-gradient(from_200deg_at_50%_50%,rgba(255,255,255,0.80),rgba(255,255,255,0.18),rgba(255,255,255,0.70),rgba(255,255,255,0.12),rgba(255,255,255,0.80))] dark:bg-[conic-gradient(from_200deg_at_50%_50%,rgba(255,255,255,0.22),rgba(255,255,255,0.05),rgba(255,255,255,0.18),rgba(255,255,255,0.04),rgba(255,255,255,0.22))] shadow-lift">
           <div className="relative h-full rounded-[3.15rem] bg-[linear-gradient(180deg,rgba(2,6,23,0.18),rgba(2,6,23,0.06))] dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-3">
             <div className="relative h-full rounded-[2.65rem] bg-black/90 dark:bg-black/80 p-[10px]">
               {/* Titanium rim highlight */}
               <div className="pointer-events-none absolute inset-0 rounded-[2.65rem] shadow-[0_1px_0_rgba(255,255,255,0.10)_inset,0_-1px_0_rgba(255,255,255,0.06)_inset]" />
+              {/* Camera bump hint */}
+              <div
+                aria-hidden
+                className="absolute left-4 top-4 h-10 w-10 rounded-2xl bg-white/5 shadow-[0_1px_0_rgba(255,255,255,0.08)_inset] border border-white/10"
+              />
 
               {/* Side buttons (visual only) */}
               <div
@@ -124,27 +141,43 @@ export function PhoneMock({ className }: { className?: string }) {
                         value: "6",
                         tone: "from-accent/25"
                       }
-                    ].map((c) => (
-                      <div
+                    ].map((c, i) => (
+                      <motion.div
                         key={c.label}
                         className={cn(
                           "rounded-2xl border border-white/10 bg-white/5 p-3",
                           "shadow-[0_1px_0_rgba(255,255,255,0.08)_inset]"
                         )}
+                        variants={shimmer}
+                        initial="initial"
+                        animate={reduceMotion ? undefined : "animate"}
+                        custom={i}
                       >
                         <div className="text-[11px] text-white/60">{c.label}</div>
                         <div className="mt-1 text-lg font-semibold text-white">
                           {c.value}
                         </div>
                         <div className="mt-3 h-2 rounded-full bg-white/10 overflow-hidden">
-                          <div
+                          <motion.div
                             className={cn(
                               "h-full w-2/3 rounded-full bg-gradient-to-r to-indigo-500",
                               c.tone
                             )}
+                            initial={{ x: "-30%" }}
+                            animate={
+                              reduceMotion
+                                ? undefined
+                                : { x: ["-30%", "0%", "-30%"] }
+                            }
+                            transition={{
+                              duration: 4.2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: i * 0.15
+                            }}
                           />
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
 
@@ -190,13 +223,27 @@ export function PhoneMock({ className }: { className?: string }) {
                   </div>
 
                   <div className="mt-auto grid grid-cols-3 gap-3 pt-4">
-                    {["Money", "Health", "Family"].map((t) => (
-                      <div
+                    {["Money", "Health", "Family"].map((t, i) => (
+                      <motion.div
                         key={t}
                         className="rounded-2xl border border-white/10 bg-white/5 p-3 text-center text-[12px] font-semibold text-white/85"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={
+                          reduceMotion
+                            ? undefined
+                            : {
+                                opacity: 1,
+                                y: 0,
+                                transition: {
+                                  delay: 0.22 + i * 0.06,
+                                  duration: 0.55,
+                                  ease: [0.16, 1, 0.3, 1]
+                                }
+                              }
+                        }
                       >
                         {t}
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>

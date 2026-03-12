@@ -20,9 +20,11 @@ export function FamilyHub() {
       title="Care that feels effortless"
       subtitle="A stacked, premium dashboard for your loved ones — reminders, health routines, and peace of mind."
     >
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
         <Reveal>
-          <div className="glass p-6 sm:p-8">
+          <div className="glass p-6 sm:p-8 relative overflow-hidden">
+            <div className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-primary/12 blur-3xl" />
+            <div className="pointer-events-none absolute -left-24 -bottom-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
             <div className="text-sm font-semibold">Family overview</div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
               Everything that matters, surfaced at the right time.
@@ -34,7 +36,15 @@ export function FamilyHub() {
                 return (
                   <motion.div
                     key={c.name}
-                    whileHover={{ y: -6, rotate: 0, scale: 1.01 }}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{
+                      duration: 0.8,
+                      delay: i * 0.06,
+                      ease: [0.16, 1, 0.3, 1]
+                    }}
+                    whileHover={{ y: -8, rotate: 0, scale: 1.015 }}
                     className={cn(
                       "absolute left-0 right-0 mx-auto max-w-md",
                       "rounded-2xl border border-slate-200/70 bg-white/60 backdrop-blur-xl shadow-premium dark:border-white/10 dark:bg-white/5"
@@ -81,7 +91,7 @@ export function FamilyHub() {
               ].map((r, i) => (
                 <motion.div
                   key={r.k}
-                  whileHover={{ y: -4 }}
+                  whileHover={{ y: -6 }}
                   className="rounded-2xl border border-slate-200/70 bg-white/50 p-5 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
                 >
                   <div className="flex items-center justify-between gap-4">

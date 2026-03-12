@@ -27,7 +27,7 @@ function Bubble({
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
       className={cn("flex", isUser ? "justify-end" : "justify-start")}
     >
       <div
@@ -53,9 +53,11 @@ export function AISection() {
       subtitle="A calm, premium chat UI that turns everyday questions into clear decisions — spending, bills, subscriptions, and habits."
       className="relative"
     >
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
         <Reveal>
-          <div className="glass p-6 sm:p-8">
+          <div className="glass p-6 sm:p-8 relative overflow-hidden">
+            <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-primary/15 blur-3xl" />
+            <div className="pointer-events-none absolute -left-20 -bottom-20 h-56 w-56 rounded-full bg-accent/12 blur-3xl" />
             <div className="flex items-center gap-3">
               <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
                 <Bot className="h-6 w-6" />
@@ -110,6 +112,7 @@ export function AISection() {
                   key={p}
                   type="button"
                   whileHover={{ y: -3 }}
+                  whileTap={{ scale: 0.99 }}
                   className={cn(
                     "text-left rounded-2xl border border-slate-200/70 bg-white/50 px-4 py-4 text-sm font-semibold text-slate-900 shadow-premium backdrop-blur-xl transition",
                     "dark:border-white/10 dark:bg-white/5 dark:text-white"

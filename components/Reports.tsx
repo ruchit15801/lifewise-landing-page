@@ -51,9 +51,10 @@ export function Reports() {
       title="Understand Your Life at a Glance"
       subtitle="Beautiful summaries of your month: spending trends, category breakdown, and savings momentum."
     >
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
         <Reveal>
-          <div className="glass p-6 sm:p-8">
+          <div className="glass p-6 sm:p-8 relative overflow-hidden">
+            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/12 blur-3xl" />
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-3">
                 <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
@@ -79,9 +80,9 @@ export function Reports() {
                   whileInView={{ height: `${h}%`, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{
-                    duration: 0.9,
-                    delay: i * 0.03,
-                    ease: [0.22, 1, 0.36, 1]
+                    duration: 1.05,
+                    delay: i * 0.035,
+                    ease: [0.16, 1, 0.3, 1]
                   }}
                   className="col-span-1 rounded-full bg-gradient-to-t from-primary/25 to-primary"
                 />
@@ -97,7 +98,8 @@ export function Reports() {
         </Reveal>
 
         <Reveal delay={0.06}>
-          <div className="glass p-6 sm:p-8">
+          <div className="glass p-6 sm:p-8 relative overflow-hidden">
+            <div className="pointer-events-none absolute -left-24 -bottom-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
             <div className="flex items-center gap-3">
               <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-accent to-emerald-500 text-white shadow-premium">
                 <PieChart className="h-6 w-6" />
@@ -119,7 +121,7 @@ export function Reports() {
               ].map((x, i) => (
                 <motion.div
                   key={x.t}
-                  whileHover={{ y: -4 }}
+                  whileHover={{ y: -6 }}
                   className="rounded-2xl border border-slate-200/70 bg-white/55 p-5 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
                 >
                   <div className="flex items-center justify-between gap-4">
@@ -134,9 +136,9 @@ export function Reports() {
                       whileInView={{ width: x.p }}
                       viewport={{ once: true }}
                       transition={{
-                        duration: 0.9,
-                        delay: 0.05 + i * 0.05,
-                        ease: [0.22, 1, 0.36, 1]
+                        duration: 1.05,
+                        delay: 0.08 + i * 0.06,
+                        ease: [0.16, 1, 0.3, 1]
                       }}
                       className={cn("h-full rounded-full bg-gradient-to-r", x.c)}
                     />
