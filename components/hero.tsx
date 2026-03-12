@@ -29,15 +29,19 @@ export function Hero() {
 
           <Reveal delay={0.05}>
             <h1 className="mt-6 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl dark:text-slate-50">
-              Live Smarter with{" "}
-              <span className="gradient-text">LifeWise</span>
+              AI Life Assistant for{" "}
+              <span className="gradient-text">
+                Smart Reminders &amp; Daily Life
+              </span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.1}>
             <p className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-200/90">
-              LifeWise is your AI-powered life assistant that remembers what you
-              forget — bills, medicines, family tasks, and daily life reminders.
+              LifeWise is a powerful AI life assistant designed to help you
+              manage reminders, bills, medicines, family tasks and daily life
+              effortlessly with smart voice reminders, UPI bill alerts and
+              AI-powered life insights.
             </p>
           </Reveal>
 
