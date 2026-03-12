@@ -36,7 +36,10 @@ export function PhoneMock({ className }: { className?: string }) {
 
   return (
     <motion.div
-      className={cn("relative mx-auto w-full max-w-[22rem] sm:max-w-[24rem]", className)}
+      className={cn(
+        "relative mx-auto w-full max-w-[24rem] sm:max-w-[26rem] lg:max-w-[28rem]",
+        className
+      )}
       onPointerMove={(e) => {
         const r = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width - 0.5;
@@ -72,39 +75,16 @@ export function PhoneMock({ className }: { className?: string }) {
           transformStyle: "preserve-3d"
         }}
       >
-        {/* iPhone 17 Pro Max style frame */}
-        <div className="relative aspect-[9/19.5] rounded-[3.2rem] p-[1px] bg-[conic-gradient(from_200deg_at_50%_50%,rgba(255,255,255,0.80),rgba(255,255,255,0.18),rgba(255,255,255,0.70),rgba(255,255,255,0.12),rgba(255,255,255,0.80))] dark:bg-[conic-gradient(from_200deg_at_50%_50%,rgba(255,255,255,0.22),rgba(255,255,255,0.05),rgba(255,255,255,0.18),rgba(255,255,255,0.04),rgba(255,255,255,0.22))] shadow-lift">
-          <div className="relative h-full rounded-[3.15rem] bg-[linear-gradient(180deg,rgba(2,6,23,0.18),rgba(2,6,23,0.06))] dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-3">
-            <div className="relative h-full rounded-[2.65rem] bg-black/90 dark:bg-black/80 p-[10px]">
-              {/* Titanium rim highlight */}
-              <div className="pointer-events-none absolute inset-0 rounded-[2.65rem] shadow-[0_1px_0_rgba(255,255,255,0.10)_inset,0_-1px_0_rgba(255,255,255,0.06)_inset]" />
-              {/* Camera bump hint */}
-              <div
-                aria-hidden
-                className="absolute left-4 top-4 h-10 w-10 rounded-2xl bg-white/5 shadow-[0_1px_0_rgba(255,255,255,0.08)_inset] border border-white/10"
-              />
-
-              {/* Side buttons (visual only) */}
-              <div
-                aria-hidden
-                className="absolute -left-[8px] top-[92px] h-10 w-[3px] rounded-full bg-slate-200/60 dark:bg-white/10"
-              />
-              <div
-                aria-hidden
-                className="absolute -left-[8px] top-[140px] h-16 w-[3px] rounded-full bg-slate-200/60 dark:bg-white/10"
-              />
-              <div
-                aria-hidden
-                className="absolute -right-[8px] top-[120px] h-20 w-[3px] rounded-full bg-slate-200/60 dark:bg-white/10"
-              />
-
-              {/* Screen */}
-              <div className="relative h-full overflow-hidden rounded-[2.25rem] bg-gradient-to-br from-slate-950 to-slate-900">
+        {/* iPhone 17 Pro Max proportions (78mm x 163.4mm) with minimal black border */}
+        <div className="relative aspect-[78/163.4] rounded-[3.05rem] bg-black p-[2px] shadow-lift">
+          <div className="relative h-full rounded-[2.92rem] bg-black p-[6px]">
+            {/* Screen (ultra reduced bezel) */}
+            <div className="relative h-full overflow-hidden rounded-[2.45rem] bg-gradient-to-br from-slate-950 to-slate-900">
                 <div className="absolute inset-0 opacity-75 [background:radial-gradient(820px_420px_at_18%_8%,rgba(109,93,246,0.50),transparent_60%),radial-gradient(700px_360px_at_82%_26%,rgba(34,197,94,0.26),transparent_60%)]" />
 
                 {/* Dynamic Island */}
                 <div className="pointer-events-none absolute left-1/2 top-3 z-20 -translate-x-1/2">
-                  <div className="h-7 w-32 rounded-full bg-black/70 shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset]">
+                  <div className="h-7 w-32 rounded-full bg-black/85 shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset]">
                     <div className="absolute right-3 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-indigo-400/40 blur-[1px]" />
                   </div>
                 </div>
@@ -252,7 +232,6 @@ export function PhoneMock({ className }: { className?: string }) {
               </div>
             </div>
           </div>
-        </div>
       </motion.div>
 
       <div className="pointer-events-none absolute -bottom-8 left-1/2 h-16 w-72 -translate-x-1/2 rounded-full bg-slate-900/10 blur-2xl dark:bg-black/35" />

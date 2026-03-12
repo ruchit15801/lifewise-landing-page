@@ -70,7 +70,7 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden md:block">
-          <div className="relative rounded-full border border-slate-200/70 bg-white/60 p-1 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
+          <div className="relative rounded-full border border-slate-200/70 bg-white/60 p-1 shadow-[0_1px_0_rgba(255,255,255,0.35)_inset,0_18px_60px_rgba(2,6,23,0.10)] backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:shadow-[0_1px_0_rgba(255,255,255,0.08)_inset,0_24px_90px_rgba(0,0,0,0.45)]">
             <div className="flex items-center">
               {navItems.map((item) => {
                 const isActive = active === item.href;

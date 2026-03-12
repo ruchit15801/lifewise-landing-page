@@ -15,7 +15,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 bg-grid opacity-[0.35] dark:opacity-[0.22]"
       />
 
-      <div className="section-max relative grid min-h-[calc(84vh-4rem)] grid-cols-1 items-center gap-8 py-12 lg:min-h-[calc(90vh-4rem)] lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:py-14">
+      <div className="section-max relative grid min-h-[calc(82vh-4rem)] grid-cols-1 items-center gap-7 py-12 lg:min-h-[calc(88vh-4rem)] lg:grid-cols-[1.08fr_0.92fr] lg:gap-6 lg:py-14">
         <div className="max-w-[42rem]">
           <Reveal>
             <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/60 px-3 py-1 text-xs font-semibold text-slate-700 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
@@ -79,9 +79,9 @@ export function Hero() {
           </Reveal>
         </div>
 
-        <div className="relative noise lg:justify-self-end lg:translate-x-2">
+        <div className="relative noise lg:justify-self-end lg:translate-x-1">
           <div className="pointer-events-none absolute -inset-10 rounded-[3rem] bg-white/30 blur-3xl dark:bg-white/5" />
-          <PhoneMock className="max-w-[20rem] sm:max-w-[22rem] lg:max-w-[24rem]" />
+          <PhoneMock className="max-w-[22rem] sm:max-w-[24rem] lg:max-w-[26rem]" />
         </div>
       </div>
     </section>
