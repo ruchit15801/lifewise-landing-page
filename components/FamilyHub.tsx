@@ -30,29 +30,25 @@ export function FamilyHub() {
               Everything that matters, surfaced at the right time.
             </p>
 
-            <div className="mt-7 relative h-[320px]">
+            <div className="mt-7 grid gap-3">
               {cards.map((c, i) => {
                 const Icon = c.icon;
                 return (
                   <motion.div
                     key={c.name}
-                    initial={{ opacity: 0, y: 14 }}
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{
-                      duration: 0.8,
+                      duration: 0.85,
                       delay: i * 0.06,
                       ease: [0.16, 1, 0.3, 1]
                     }}
-                    whileHover={{ y: -8, rotate: 0, scale: 1.015 }}
+                    whileHover={{ y: -8, scale: 1.01 }}
                     className={cn(
-                      "absolute left-0 right-0 mx-auto max-w-md",
-                      "rounded-2xl border border-slate-200/70 bg-white/60 backdrop-blur-xl shadow-premium dark:border-white/10 dark:bg-white/5"
+                      "rounded-2xl border border-slate-200/70 bg-white/60 backdrop-blur-xl shadow-premium dark:border-white/10 dark:bg-white/5",
+                      "hover:shadow-lift transition-shadow"
                     )}
-                    style={{
-                      top: 22 * i,
-                      transform: `rotate(${(-2 + i) * 2}deg)`
-                    }}
                   >
                     <div className="p-5 flex items-center gap-4">
                       <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
@@ -60,7 +56,7 @@ export function FamilyHub() {
                       </div>
                       <div className="min-w-0">
                         <div className="font-semibold">{c.name}</div>
-                        <div className="text-sm text-slate-700 dark:text-slate-300 truncate">
+                        <div className="text-sm text-slate-700 dark:text-slate-300">
                           {c.label}
                         </div>
                       </div>
@@ -71,7 +67,6 @@ export function FamilyHub() {
                   </motion.div>
                 );
               })}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-lightBg to-transparent dark:from-darkBg" />
             </div>
           </div>
         </Reveal>
