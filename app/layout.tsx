@@ -105,6 +105,13 @@ export default function RootLayout({
         }}
       />
       <Script
+        id="adsense-script"
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5431367793480852"
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+      />
+      <Script
         id="lifewise-ld-json"
         strategy="afterInteractive"
         type="application/ld+json"
