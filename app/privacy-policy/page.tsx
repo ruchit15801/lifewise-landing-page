@@ -1,154 +1,94 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy – LifeWise",
+  title: "Privacy Policy — LifeWise",
   description:
-    "Understand how LifeWise handles your data, SMS permissions, notifications, and privacy."
+    "LifeWise privacy policy — what we collect, why we collect it, how we secure it, and how SMS bill detection works."
 };
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="bg-backgroundLight dark:bg-backgroundDark min-h-screen">
-      <section className="section-max py-16 space-y-8">
-        <div className="space-y-3">
-          <h1 className="text-3xl font-semibold text-slate-900 dark:text-slate-50">
-            Privacy Policy
-          </h1>
-          <p className="text-sm text-slate-600 dark:text-slate-300 max-w-2xl">
-            Your life is personal. LifeWise is designed to protect your data
-            while helping you live more calmly and confidently.
-          </p>
-        </div>
+    <main className="section-max py-16 sm:py-20">
+      <div className="max-w-3xl">
+        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+          Privacy Policy
+        </h1>
+        <p className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+          LifeWise is built to be privacy-first. This page explains what data we
+          collect, what permissions we request, how we use data, and how we keep
+          it secure.
+        </p>
 
-        <div className="glass-panel bg-white/80 dark:bg-slate-950/80 p-6 space-y-6">
-          <section className="space-y-2">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
-              Data Collection
-            </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              LifeWise collects only the information required to power reminders,
-              insights, and family care features. This may include:
-            </p>
-            <ul className="list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-1">
-              <li>Basic account information (such as name and email).</li>
+        <div className="mt-10 space-y-10">
+          <section className="glass p-6 sm:p-8">
+            <h2 className="text-xl font-semibold">Data Collection</h2>
+            <ul className="mt-4 space-y-2 text-slate-700 dark:text-slate-300">
               <li>
-                Reminder content you create (text, voice, photos, and
-                schedules).
+                - Account data (optional): name, email/phone if you create an
+                account.
               </li>
               <li>
-                Family member profiles you choose to add for shared reminders.
+                - Reminder data: reminders you create, schedules, and completion
+                status.
               </li>
               <li>
-                Transactional SMS metadata required to detect bills and
-                payments.
+                - Usage analytics (optional): app performance and feature usage
+                to improve reliability.
               </li>
             </ul>
           </section>
 
-          <section className="space-y-2">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
-              Permissions (SMS, Notifications)
-            </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              LifeWise requests specific permissions on your device to work
-              correctly:
+          <section className="glass p-6 sm:p-8">
+            <h2 className="text-xl font-semibold">Permissions (SMS detection)</h2>
+            <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+              LifeWise may request access to read SMS only to detect bill and
+              financial reminder messages (for example: electricity, mobile
+              recharge, subscriptions, and bank alerts). This helps us identify
+              due dates and amounts so you don’t miss critical payments.
             </p>
-            <ul className="list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-1">
-              <li>
-                <span className="font-semibold">SMS (optional)</span> – LifeWise
-                reads SMS only to detect financial transactions, bill due dates,
-                and relevant reminders. Promotional or personal messages are
-                ignored.
-              </li>
-              <li>
-                <span className="font-semibold">Notifications</span> – Used to
-                deliver reminders for bills, medicines, family tasks, and life
-                events.
-              </li>
-              <li>
-                <span className="font-semibold">Storage / Photos (optional)</span>{" "}
-                – Only used when you attach images for photo-based reminders.
-              </li>
-              <li>
-                <span className="font-semibold">Microphone (optional)</span> –
-                Used for voice reminders and commands, processed securely.
-              </li>
-            </ul>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              You can change or revoke these permissions anytime in your device
-              settings.
+            <p className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+              We do not use SMS data for advertising, profiling, or selling to
+              third parties.
             </p>
           </section>
 
-          <section className="space-y-2">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
-              Data Usage
-            </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              LifeWise uses your data to:
-            </p>
-            <ul className="list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-1">
-              <li>Create and manage reminders for bills, medicines, and tasks.</li>
-              <li>
-                Generate Life Score and insights about your spending and
-                routines.
-              </li>
-              <li>
-                Power family care features, shared reminders, and senior-friendly
-                modes.
-              </li>
-              <li>
-                Recommend helpful actions like paying on time or avoiding
-                overspending.
-              </li>
+          <section className="glass p-6 sm:p-8">
+            <h2 className="text-xl font-semibold">Data Usage</h2>
+            <ul className="mt-4 space-y-2 text-slate-700 dark:text-slate-300">
+              <li>- To create reminders and send notifications.</li>
+              <li>- To generate insights like life score and reports.</li>
+              <li>- To support Family Hub features you enable.</li>
             </ul>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              LifeWise reads SMS only to detect financial transactions and
-              reminders. User data is <span className="font-semibold">
-                never sold
-              </span>{" "}
-              to advertisers or data brokers.
+            <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+              User data is never sold.
             </p>
           </section>
 
-          <section className="space-y-2">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
-              Data Protection
-            </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              We use modern security practices to safeguard your information,
-              including:
-            </p>
-            <ul className="list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-1">
-              <li>Encryption in transit for all network communication.</li>
-              <li>
-                Restricted access to sensitive systems and production data.
-              </li>
-              <li>
-                Regular monitoring to detect unusual access or misuse patterns.
-              </li>
-            </ul>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              While no system can be perfectly secure, LifeWise is built with a
-              privacy-first mindset and continually improved to protect your
-              information.
+          <section className="glass p-6 sm:p-8">
+            <h2 className="text-xl font-semibold">Security</h2>
+            <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+              We apply industry-standard security practices (encryption in
+              transit, access controls, and least-privilege). If we store data,
+              we aim to minimize what’s collected and retain it only as long as
+              needed to provide the service.
             </p>
           </section>
 
-          <section className="space-y-2">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
-              Contact Email
-            </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              If you have questions, requests, or concerns about your data or
-              privacy, you can reach us at:
-            </p>
-            <p className="text-sm font-medium text-slate-800 dark:text-slate-100">
-              support@lifewiseee.com
+          <section className="glass p-6 sm:p-8">
+            <h2 className="text-xl font-semibold">Contact</h2>
+            <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+              Questions? Email{" "}
+              <a
+                className="font-semibold text-primary hover:underline"
+                href="mailto:privacy@lifewise.app"
+              >
+                privacy@lifewise.app
+              </a>
+              .
             </p>
           </section>
         </div>
-      </section>
+      </div>
     </main>
   );
 }

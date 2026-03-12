@@ -1,28 +1,36 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}"
-  ],
+  darkMode: ["class"],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
         primary: "#6D5DF6",
         accent: "#22C55E",
-        backgroundDark: "#0F172A",
-        backgroundLight: "#F8FAFC"
+        darkBg: "#0F172A",
+        lightBg: "#F8FAFC"
       },
       boxShadow: {
-        "soft-glow":
-          "0 18px 45px rgba(15, 23, 42, 0.55), 0 0 0 1px rgba(148, 163, 184, 0.2)"
+        premium:
+          "0 1px 0 rgba(255,255,255,0.25) inset, 0 10px 30px rgba(2,6,23,0.12)",
+        lift: "0 20px 60px rgba(2,6,23,0.18)"
       },
       borderRadius: {
-        "3xl": "1.75rem"
+        xl2: "1.25rem"
       },
-      backgroundImage: {
-        "radial-faded":
-          "radial-gradient(circle at top, rgba(109,93,246,0.3), transparent 60%), radial-gradient(circle at bottom, rgba(34,197,94,0.18), transparent 55%)"
+      keyframes: {
+        floaty: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" }
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "100% 50%" }
+        }
+      },
+      animation: {
+        floaty: "floaty 6s ease-in-out infinite",
+        shimmer: "shimmer 10s ease-in-out infinite"
       }
     }
   },

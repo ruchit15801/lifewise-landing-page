@@ -1,108 +1,111 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Check } from "lucide-react";
+import { SectionShell } from "@/components/SectionShell";
+import { Reveal } from "@/components/Reveal";
+import { cn } from "@/components/cn";
+
 const plans = [
   {
     name: "Free",
     price: "₹0",
-    badge: "Get started",
+    period: "",
+    desc: "Start simple with essentials.",
     features: ["Basic reminders", "Life score", "1 family member"],
     highlight: false
   },
   {
-    name: "Basic",
+    name: "Pro",
     price: "₹29",
-    badge: "Most popular",
+    period: "/ month",
+    desc: "Best for daily life automation.",
     features: ["Unlimited reminders", "Voice reminders", "AI insights"],
     highlight: true
   },
   {
-    name: "Family",
+    name: "Family+",
     price: "₹99",
-    badge: "For families",
+    period: "/ month",
+    desc: "For families who share care.",
     features: ["Family dashboard", "Medicine tracking", "Shared reminders"],
     highlight: false
   },
   {
-    name: "Sponsor Plan",
+    name: "Sponsor",
     price: "₹199",
-    badge: "For children & parents",
-    features: [
-      "Monitor parents' health",
-      "Remote reminder tracking",
-      "Priority support"
-    ],
+    period: "/ month",
+    desc: "Sponsor plan for parents.",
+    features: ["Parent support", "Priority alerts", "Shared schedules"],
     highlight: false
   }
 ];
 
 export function Pricing() {
   return (
-    <section
+    <SectionShell
       id="pricing"
-      className="bg-backgroundLight dark:bg-slate-950 border-y border-slate-200/40 dark:border-slate-900"
+      eyebrow="Pricing"
+      title="Luxury pricing that feels fair"
+      subtitle="Choose a plan that matches your life. Upgrade any time."
     >
-      <div className="section-max py-16 space-y-8">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900 dark:text-slate-50">
-            Simple Pricing
-          </h2>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300">
-            Start free, upgrade only when your life and family need more. No
-            hidden fees, no complex tiers.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-          {plans.map((plan, index) => (
-            <div
-              key={plan.name}
-              className={`glass-panel p-6 flex flex-col justify-between ${
-                plan.highlight
-                  ? "bg-slate-900 text-slate-50 border-primary/60 shadow-soft-glow scale-[1.03]"
-                  : "bg-white/80 dark:bg-slate-900/80 hover:-translate-y-1 transition-transform duration-300"
-              }`}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+        {plans.map((p, i) => (
+          <Reveal key={p.name} delay={i * 0.05}>
+            <motion.div
+              whileHover={{ y: -8 }}
+              className={cn(
+                "glass p-6 sm:p-7 relative overflow-hidden",
+                p.highlight && "ring-glow"
+              )}
             >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-base font-semibold">{plan.name}</h3>
-                  <span
-                    className={`rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] ${
-                      plan.highlight
-                        ? "bg-primary/20 text-primary border border-primary/40"
-                        : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700"
-                    }`}
-                  >
-                    {plan.badge}
-                  </span>
+              {p.highlight ? (
+                <div className="absolute right-5 top-5 rounded-full bg-accent/15 px-3 py-1 text-xs font-semibold text-accent border border-accent/20">
+                  Recommended
                 </div>
-                <p className="text-2xl font-semibold">
-                  {plan.price}
-                  <span className="text-xs font-normal text-slate-500 dark:text-slate-400 ml-1">
-                    / month
-                  </span>
-                </p>
-                <ul className="mt-3 space-y-2 text-xs text-slate-700 dark:text-slate-200">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2">
-                      <span className="mt-[3px] h-1.5 w-1.5 rounded-full bg-accent" />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
+              ) : null}
+
+              <div className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                {p.name}
+              </div>
+              <div className="mt-3 flex items-end gap-1">
+                <div className="text-3xl font-semibold tracking-tight">
+                  {p.price}
+                </div>
+                <div className="pb-1 text-sm font-semibold text-slate-600 dark:text-slate-400">
+                  {p.period}
+                </div>
+              </div>
+              <div className="mt-2 text-sm text-slate-700 dark:text-slate-300">
+                {p.desc}
               </div>
 
-              <button
-                className={`mt-5 w-full rounded-full px-4 py-2.5 text-sm font-medium transition-all ${
-                  plan.highlight
-                    ? "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/40"
-                    : "bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white"
-                }`}
+              <div className="mt-6 h-px w-full bg-gradient-to-r from-primary/40 via-transparent to-accent/40 opacity-70" />
+
+              <ul className="mt-6 space-y-3">
+                {p.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-sm">
+                    <span className="mt-0.5 grid h-5 w-5 place-items-center rounded-full bg-primary/10 text-primary border border-primary/20">
+                      <Check className="h-3.5 w-3.5" />
+                    </span>
+                    <span className="text-slate-700 dark:text-slate-300">{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <motion.a
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+                href="#download"
+                className={cn("mt-8 w-full", p.highlight ? "btn-primary" : "btn-secondary")}
               >
-                Choose {plan.name}
-              </button>
-            </div>
-          ))}
-        </div>
+                Get started
+              </motion.a>
+            </motion.div>
+          </Reveal>
+        ))}
       </div>
-    </section>
+    </SectionShell>
   );
 }
 

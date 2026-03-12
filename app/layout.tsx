@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-context";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
+import { ThemeProvider } from "@/components/ThemeContext";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,49 +12,50 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "LifeWise – Your Smart AI Life Assistant",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
+  title: "LifeWise — Your Smart AI Life Assistant",
   description:
-    "LifeWise is an AI-powered life assistant for bills, medicines, family care, and life memories. Live smarter with automatic reminders and insights.",
+    "LifeWise is your AI-powered life assistant that remembers what you forget — bills, medicines, family tasks, and daily life reminders.",
   openGraph: {
-    title: "LifeWise – Your Smart AI Life Assistant",
+    title: "LifeWise — Your Smart AI Life Assistant",
     description:
-      "AI-powered reminders, family care, bill alerts, and smart life memory.",
+      "AI-powered reminders, family care, bill alerts, and smart life insights — in a premium, privacy-first assistant.",
     url: "https://lifewise.app",
     siteName: "LifeWise",
     type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LifeWise — Your Smart AI Life Assistant",
+    description:
+      "AI-powered reminders, family care, bill alerts, and smart life insights."
   }
 };
 
 export default function RootLayout({
   children
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.tailwind = window.tailwind || {};
-              window.tailwind.config = {
-                darkMode: "class",
-                theme: {
-                  extend: {
-                    colors: {
-                      primary: "#6D5DF6",
-                      accent: "#22C55E",
-                      backgroundDark: "#0F172A",
-                      backgroundLight: "#F8FAFC"
-                    }
-                  }
-                }
-              };
-            `
-          }}
-        />
-        <script src="https://cdn.tailwindcss.com"></script>
-      </head>
+      <Script
+        id="lifewise-theme-init"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function () {
+              try {
+                var t = localStorage.getItem('lifewise-theme');
+                var theme = t ? t : 'light';
+                document.documentElement.classList.toggle('dark', theme === 'dark');
+              } catch (e) {}
+            })();
+          `
+        }}
+      />
       <body className={inter.className}>
         <ThemeProvider>
           <Navbar />
@@ -64,4 +66,3 @@ export default function RootLayout({
     </html>
   );
 }
-

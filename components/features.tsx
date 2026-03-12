@@ -1,135 +1,81 @@
-const whatCards = [
-  {
-    title: "Bill reminders",
-    icon: "💡",
-    description: "Never miss an electricity, water, or subscription payment again."
-  },
-  {
-    title: "Medicine reminders",
-    icon: "💊",
-    description: "Timely nudges for you and your family to take medicines on time."
-  },
-  {
-    title: "Family safety",
-    icon: "👨‍👩‍👧",
-    description: "Stay in sync with the people who matter the most."
-  }
-];
+"use client";
 
-const aiMemoryItems = [
-  "Doctor preferences",
-  "Monthly expense patterns",
-  "Festival habits",
-  "Regular food orders",
-  "Mood and lifestyle patterns"
+import { BadgeCheck, CalendarClock, HeartHandshake } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { SectionShell } from "@/components/SectionShell";
+import { Reveal } from "@/components/Reveal";
+import { cn } from "@/components/cn";
+
+const items = [
+  {
+    icon: CalendarClock,
+    title: "Bill Reminders",
+    desc: "Never miss electricity or subscription payments."
+  },
+  {
+    icon: BadgeCheck,
+    title: "Medicine Alerts",
+    desc: "AI-powered health reminders for you and your family."
+  },
+  {
+    icon: HeartHandshake,
+    title: "Family Hub",
+    desc: "Manage reminders and health tracking for loved ones."
+  }
 ];
 
 export function Features() {
   return (
-    <section
+    <SectionShell
       id="features"
-      className="bg-backgroundLight dark:bg-slate-950 border-b border-slate-200/40 dark:border-slate-900"
+      eyebrow="Features"
+      title="Your Personal AI Life Assistant"
+      subtitle="Premium, minimal, and built for everyday reliability — with automation that feels invisible."
     >
-      <div className="section-max py-16 space-y-16">
-        <div className="grid lg:grid-cols-[1.1fr,1.1fr] gap-10 items-start">
-          <div className="space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900 dark:text-slate-50">
-              Your Personal Life Assistant
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl">
-              LifeWise remembers the important things in your life so you never
-              miss them — from bills and medicines to the tiny routines that
-              quietly shape your day.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-4">
-            {whatCards.map((card) => (
-              <div
-                key={card.title}
-                className="glass-panel bg-white/60 dark:bg-slate-900/70 p-4 flex flex-col gap-2 transition-transform duration-300 hover:-translate-y-1"
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        {items.map((it, idx) => {
+          const Icon = it.icon;
+          return (
+            <Reveal key={it.title} delay={idx * 0.06}>
+              <motion.div
+                whileHover={{ y: -6 }}
+                className={cn(
+                  "glass group p-6 sm:p-7 relative overflow-hidden"
+                )}
               >
-                <span className="text-2xl">{card.icon}</span>
-                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-50">
-                  {card.title}
-                </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-300">
-                  {card.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+                <div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-primary/20 blur-3xl transition-opacity group-hover:opacity-90" />
+                <div className="absolute -left-20 -bottom-20 h-52 w-52 rounded-full bg-accent/15 blur-3xl transition-opacity group-hover:opacity-90" />
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="absolute inset-0 [background:radial-gradient(500px_220px_at_20%_15%,rgba(109,93,246,0.18),transparent_60%),radial-gradient(420px_200px_at_80%_40%,rgba(34,197,94,0.12),transparent_55%)]" />
+                </div>
 
-        <div
-          id="how-it-works"
-          className="grid lg:grid-cols-[1.2fr,1.1fr] gap-10 items-center"
-        >
-          <div className="space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900 dark:text-slate-50">
-              AI Memory That Understands Your Life
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl">
-              LifeWise quietly learns from your routines, spending, and habits —
-              then organizes your life in the background so you never have to
-              think about it.
-            </p>
-            <ul className="grid sm:grid-cols-2 gap-2 text-sm text-slate-700 dark:text-slate-200">
-              {aiMemoryItems.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-2 rounded-xl bg-slate-100/80 dark:bg-slate-900/80 px-3 py-2 border border-slate-200/70 dark:border-slate-800/80"
-                >
-                  <span className="mt-[2px] h-1.5 w-1.5 rounded-full bg-primary" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+                <div className="relative">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold tracking-tight">
+                    {it.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                    {it.desc}
+                  </p>
 
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div className="glass-panel bg-slate-950 p-4 space-y-3 transition-transform duration-300 hover:-translate-y-1">
-              <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">
-                This month
-              </p>
-              <div className="space-y-2 text-xs text-slate-200">
-                <p>Can I afford a new phone this month?</p>
-                <p className="rounded-xl bg-slate-900/90 px-3 py-2">
-                  Based on your patterns, you can spend up to{" "}
-                  <span className="text-accent font-medium">₹8,500</span> safely
-                  without impacting bills or savings.
-                </p>
-              </div>
-            </div>
-            <div className="glass-panel bg-white/80 dark:bg-slate-900/80 p-4 space-y-3 transition-transform duration-300 hover:-translate-y-1">
-              <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                Subtle automations
-              </p>
-              <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-200">
-                <li className="flex items-start gap-2">
-                  <span className="mt-[3px] text-primary">●</span>
-                  <span>
-                    Detects recurring bills from SMS and quietly prepares
-                    reminders.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-[3px] text-primary">●</span>
-                  <span>
-                    Notices festive months and adjusts budgets and reminders.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-[3px] text-primary">●</span>
-                  <span>
-                    Understands the food, doctors, and routines you rely on.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+                  <div className="mt-6 h-px w-full bg-gradient-to-r from-slate-200/70 via-slate-200/30 to-transparent dark:from-white/10 dark:via-white/5" />
+                  <div className="mt-4 flex items-center justify-between">
+                    <div className="h-1.5 w-24 rounded-full bg-gradient-to-r from-primary/60 via-indigo-500/40 to-accent/50 opacity-75 transition-opacity group-hover:opacity-100" />
+                    <div className="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                      Explore
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </Reveal>
+          );
+        })}
       </div>
-    </section>
+    </SectionShell>
   );
 }
 
