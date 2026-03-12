@@ -35,7 +35,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-300">
+            <p className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-200/90">
               LifeWise is your AI-powered life assistant that remembers what you
               forget — bills, medicines, family tasks, and daily life reminders.
             </p>
@@ -47,7 +47,7 @@ export function Hero() {
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
                 href="#download"
-                className="btn-primary"
+                className="btn-primary w-full sm:w-auto"
               >
                 Download on Google Play
                 <ArrowRight className="h-4 w-4" />
@@ -56,7 +56,7 @@ export function Hero() {
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
                 href="#features"
-                className="btn-secondary"
+                className="btn-secondary w-full sm:w-auto"
               >
                 Explore Features
               </motion.a>
@@ -79,9 +79,9 @@ export function Hero() {
           </Reveal>
         </div>
 
-        <div className="relative noise lg:justify-self-end lg:translate-x-1">
+        <div className="relative noise justify-self-center lg:justify-self-end lg:translate-x-1">
           <div className="pointer-events-none absolute -inset-10 rounded-[3rem] bg-white/30 blur-3xl dark:bg-white/5" />
-          <PhoneMock className="max-w-[22rem] sm:max-w-[24rem] lg:max-w-[26rem]" />
+          <PhoneMock className="max-w-[min(92vw,22rem)] sm:max-w-[24rem] lg:max-w-[26rem]" />
         </div>
       </div>
     </section>

@@ -57,11 +57,17 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/75 to-transparent dark:from-slate-950/55" />
+      {/* Always-readable sticky backdrop */}
+      <div className="pointer-events-none absolute inset-0 border-b border-slate-200/60 bg-white/55 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/35" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/55 to-transparent dark:from-slate-950/45" />
       <div className="section-max relative flex h-16 items-center justify-between">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 font-semibold tracking-tight"
+          className={cn(
+            "inline-flex items-center gap-2 font-semibold tracking-tight",
+            "rounded-full border border-slate-200/70 bg-white/70 px-2 py-1 shadow-premium backdrop-blur-xl",
+            "dark:border-white/10 dark:bg-white/5"
+          )}
           aria-label="LifeWise home"
         >
           <span className="relative grid h-9 w-9 place-items-center rounded-2xl shadow-premium overflow-hidden">
@@ -74,7 +80,9 @@ export function Navbar() {
               className="h-9 w-9 rounded-2xl object-cover"
             />
           </span>
-          <span className="text-slate-950 dark:text-white">LifeWise</span>
+          <span className="text-slate-950 dark:text-white whitespace-nowrap">
+            LifeWise
+          </span>
         </Link>
 
         <nav className="hidden md:block">

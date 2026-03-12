@@ -28,7 +28,7 @@ export function SectionShell({
             {title}
           </h2>
           {subtitle ? (
-            <p className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+            <p className="mt-3 text-slate-700 dark:text-slate-200/90 leading-relaxed">
               {subtitle}
             </p>
           ) : null}
