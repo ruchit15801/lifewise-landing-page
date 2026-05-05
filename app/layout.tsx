@@ -89,6 +89,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5431367793480852"
+          crossOrigin="anonymous"
+        />
+      </head>
       <Script
         id="lifewise-theme-init"
         strategy="beforeInteractive"
@@ -121,13 +128,6 @@ export default function RootLayout({
             gtag('config', 'G-HKH8RSGWT1');
           `
         }}
-      />
-      <Script
-        id="adsense-script"
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5431367793480852"
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
       />
       <Script
         id="lifewise-ld-json"
