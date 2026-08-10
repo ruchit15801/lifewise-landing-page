@@ -1,15 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Pill, Users } from "lucide-react";
+import { Heart, Pill, Users, FileText, Shield } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/components/cn";
+import { FAMILY_HUB_MODULES } from "@/lib/landing-data";
 
 const cards = [
   { name: "Papa", label: "Medicine reminder — 8 AM", icon: Pill },
-  { name: "Partner", label: "Health reminder — weekly", icon: Heart },
-  { name: "Child", label: "School fee reminder", icon: Users }
+  { name: "Mummy", label: "Doctor appointment — Friday", icon: Heart },
+  { name: "Child", label: "School fee due — 15th", icon: Users }
 ];
 
 export function FamilyHub() {
@@ -17,8 +18,10 @@ export function FamilyHub() {
     <SectionShell
       id="family"
       eyebrow="Family Hub"
-      title="Care that feels effortless"
-      subtitle="A stacked, premium dashboard for your loved ones — reminders, health routines, and peace of mind."
+      badge="Hero Feature"
+      highlight
+      title="The Heart of LifeWise"
+      subtitle="Every family member gets their own profile card. Every module — medicine, bills, insurance, documents, SOS — is attached to a member. Caregivers manage loved ones in real time."
     >
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
         <Reveal>
@@ -27,7 +30,7 @@ export function FamilyHub() {
             <div className="pointer-events-none absolute -left-24 -bottom-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
             <div className="text-sm font-semibold">Family overview</div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-              Everything that matters, surfaced at the right time.
+              Add Papa, Mummy, children — each with selected modules and connected caregivers.
             </p>
 
             <div className="mt-7 grid gap-3">
@@ -73,33 +76,38 @@ export function FamilyHub() {
 
         <Reveal delay={0.06}>
           <div className="glass p-6 sm:p-8">
-            <div className="text-sm font-semibold">Smart routines</div>
+            <div className="flex items-center gap-2">
+              <FileText className="h-5 w-5 text-primary" />
+              <div className="text-sm font-semibold">All 20 Modules</div>
+            </div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-              LifeWise nudges gently — and escalates only when needed.
+              Select modules per member during setup. Each generates its own reminders and data.
             </p>
 
-            <div className="mt-6 grid gap-3">
-              {[
-                { k: "Morning", v: "Papa medicine reminder + confirmation" },
-                { k: "Weekly", v: "Partner health check-in + summary" },
-                { k: "Fees", v: "School fee due date + auto-follow ups" }
-              ].map((r, i) => (
-                <motion.div
-                  key={r.k}
-                  whileHover={{ y: -6 }}
-                  className="rounded-2xl border border-slate-200/70 bg-white/50 p-5 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
+            <div className="mt-5 flex flex-wrap gap-2">
+              {FAMILY_HUB_MODULES.map((m) => (
+                <span
+                  key={m}
+                  className="rounded-full border border-slate-200/70 bg-white/55 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
                 >
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="text-sm font-semibold">{r.k}</div>
-                    <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                      #{i + 1}
-                    </div>
-                  </div>
-                  <div className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                    {r.v}
-                  </div>
-                </motion.div>
+                  {m}
+                </span>
               ))}
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-slate-200/70 bg-white/50 p-5 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
+              <div className="flex items-start gap-3">
+                <div className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
+                  <Shield className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="text-sm font-semibold">Connected Caregivers</div>
+                  <div className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                    Spouse, siblings, or relatives can view, edit, or get full access.
+                    Mark reminders done — everyone syncs instantly via WebSocket.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </Reveal>
@@ -107,4 +115,3 @@ export function FamilyHub() {
     </SectionShell>
   );
 }
-

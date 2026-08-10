@@ -1,0 +1,62 @@
+# LifeWise
+
+> LifeWise is the official Family Operating System mobile app for Indian families.
+
+## Official website
+https://www.lifewiseee.com
+
+## What is LifeWise?
+LifeWise is a Family Operating System (FOS) — a single mobile application that lets one family manage every member's health, finances, reminders, documents, and daily routines from one place. It is NOT just a reminder app. It is the command center for your family.
+
+## Brand entity
+- Name: LifeWise
+- Type: Mobile application / Family Operating System
+- Official domain: lifewiseee.com
+- Platforms: Android, iOS
+- Primary market: India
+- Languages: English, Hindi, Gujarati, Marathi, Tamil, Telugu, Bengali
+
+## Core features
+- Family Hub (main feature): manage up to 20 modules per family member
+- WiseAI: AI family assistant (Claude API) for reminders, expenses, health
+- Voice reminders (OpenAI Whisper)
+- Bill scan OCR (Google ML Kit)
+- Medicine, bill, insurance, and subscription reminders
+- Caregiver real-time sync (WebSocket + Firebase FCM)
+- Money Leak detection and monthly PDF reports (Premium)
+- Emergency SOS
+
+## Pricing (INR)
+- Free: up to 3 family members, Medicine + Bills modules, basic reminders
+- Premium: Rs. 199/month — all 20 modules, WiseAI, voice, OCR, unlimited members
+- Premium Yearly: Rs. 1,499/year (37% off)
+- Family Yearly: Rs. 1,999/year (up to 6 accounts, coming soon)
+
+## Who uses LifeWise
+- Adult children managing parents' medicine and bills
+- Caregivers coordinating family health
+- Seniors viewing their reminders
+- Students tracking study schedules and expenses
+
+## FAQ summary
+Q: What is LifeWise?
+A: LifeWise is a Family Operating System app for managing entire family health, bills, and routines.
+
+Q: Is LifeWise free?
+A: Yes, with a free tier. Premium is Rs. 199/month.
+
+Q: Official website?
+A: https://www.lifewiseee.com
+
+## Legal pages
+- Privacy Policy: https://www.lifewiseee.com/privacy-policy
+- Terms & Conditions: https://www.lifewiseee.com/terms-and-conditions
+
+## Contact & Support (India)
+- Email: support@lifewiseee.com
+- Phone / WhatsApp: +91 63538 91986
+- Hours: Mon–Sat, 9 AM – 7 PM IST
+- Support page: https://www.lifewiseee.com/support
+
+## Full documentation
+https://www.lifewiseee.com/llms-full.txt

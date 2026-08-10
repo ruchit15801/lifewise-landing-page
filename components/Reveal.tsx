@@ -2,17 +2,20 @@
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef, type ReactNode } from "react";
+import { cn } from "@/components/cn";
 
 export function Reveal({
   children,
   delay = 0,
   y = 18,
-  blur = true
+  blur = true,
+  className
 }: {
   children: ReactNode;
   delay?: number;
   y?: number;
   blur?: boolean;
+  className?: string;
 }) {
   const ref = useRef(null);
   const reduceMotion = useReducedMotion();
@@ -21,6 +24,7 @@ export function Reveal({
   return (
     <motion.div
       ref={ref}
+      className={cn(className)}
       initial={
         reduceMotion
           ? { opacity: 0 }

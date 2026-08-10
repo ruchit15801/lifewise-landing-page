@@ -1,26 +1,25 @@
 "use client";
 
-import { Mic, MessageSquare, Image as ImageIcon } from "lucide-react";
+import { Mic, Camera, Bot } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
-import { cn } from "@/components/cn";
 
 const cards = [
   {
     icon: Mic,
     title: "Voice Reminder",
-    example: "“Remind me to take medicine at 8 PM”"
+    example: "\"Papa ko kal subah 8 baje medicine leni hai\""
   },
   {
-    icon: ImageIcon,
-    title: "Photo Reminder",
-    example: "“Pay electricity bill tomorrow”"
+    icon: Camera,
+    title: "Scan Bill",
+    example: "OCR extracts bill name, amount & due date"
   },
   {
-    icon: MessageSquare,
-    title: "Chat Reminder",
-    example: "“Book doctor appointment on Friday”"
+    icon: Bot,
+    title: "WiseAI Chat",
+    example: "\"What reminders does Papa have this week?\""
   }
 ];
 
@@ -28,19 +27,16 @@ export function ReminderSection() {
   return (
     <SectionShell
       id="reminders"
-      eyebrow="Smart Reminder System"
-      title="Reminders Made Effortless"
-      subtitle="Create reminders in the way that feels natural — voice, photo, or chat — and let LifeWise handle follow-through."
+      eyebrow="Reminders Tab"
+      title="Your Reminder Command Center"
+      subtitle="All reminders across all family members in one unified view — filter by Today, Upcoming, Overdue, or per member."
     >
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {cards.map((c, idx) => {
           const Icon = c.icon;
           return (
             <Reveal key={c.title} delay={idx * 0.06}>
-              <motion.div
-                whileHover={{ y: -6 }}
-                className="glass p-6 sm:p-7"
-              >
+              <motion.div whileHover={{ y: -6 }} className="glass p-6 sm:p-7">
                 <div className="flex items-center gap-3">
                   <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
                     <Icon className="h-6 w-6" />
@@ -53,11 +49,9 @@ export function ReminderSection() {
                 </div>
 
                 <div className="mt-5 flex items-center justify-between text-xs font-semibold text-slate-600 dark:text-slate-400">
-                  <span>Natural language</span>
+                  <span>Home screen shortcut</span>
                   <span className="text-primary">Instant</span>
                 </div>
-
-                <div className="mt-4 h-px w-full bg-gradient-to-r from-primary/40 via-transparent to-accent/40 opacity-70" />
               </motion.div>
             </Reveal>
           );
@@ -66,18 +60,18 @@ export function ReminderSection() {
 
       <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Reveal>
-          <div className={cn("glass p-6 sm:p-8", "relative overflow-hidden")}>
+          <div className="glass p-6 sm:p-8 relative overflow-hidden">
             <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/20 blur-3xl" />
             <div className="relative">
-              <div className="text-sm font-semibold">Example commands</div>
+              <div className="text-sm font-semibold">Reminder lifecycle</div>
               <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                Fast to create. Hard to forget.
+                FCM push at scheduled time → Mark Done / Snooze / Skip → caregivers sync in real time.
               </p>
               <div className="mt-6 space-y-3">
                 {[
-                  "Remind me to take medicine at 8 PM",
-                  "Pay electricity bill tomorrow",
-                  "Renew subscription on the 1st"
+                  "Papa ki BP Tablet — 8:00 PM. Tap to mark as taken.",
+                  "Electricity bill due in 3 days. Amount approx Rs. 2,400",
+                  "MISSED — Papa ki medicine nahi li abhi tak. 30 min ho gaye."
                 ].map((t) => (
                   <div
                     key={t}
@@ -93,16 +87,15 @@ export function ReminderSection() {
 
         <Reveal delay={0.06}>
           <div className="glass p-6 sm:p-8">
-            <div className="text-sm font-semibold">Quiet automation</div>
+            <div className="text-sm font-semibold">Filter & manage</div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-              LifeWise adapts reminders based on your behavior—gentle nudges,
-              smarter timing, and fewer interruptions.
+              All • Today • Upcoming • Overdue • Completed — plus per-member filters for Papa, Mummy, and more.
             </p>
             <div className="mt-6 grid gap-3">
               {[
-                { t: "Snooze-aware", d: "Learns your patterns, suggests better times." },
-                { t: "Escalation", d: "If important, it follows up thoughtfully." },
-                { t: "Summaries", d: "A clean daily/weekly recap—no noise." }
+                { t: "Mark Done", d: "First-write wins — all caregivers see COMPLETED." },
+                { t: "Snooze", d: "Reschedule notification in X minutes." },
+                { t: "Missed alerts", d: "Red badge on Home + alert to caregivers after 30 min." }
               ].map((x) => (
                 <motion.div
                   key={x.t}
@@ -122,4 +115,3 @@ export function ReminderSection() {
     </SectionShell>
   );
 }
-

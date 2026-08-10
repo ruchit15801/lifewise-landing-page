@@ -9,20 +9,59 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/components/cn";
 
 const navItems = [
-  { href: "#features", label: "Features" },
-  { href: "#ai", label: "AI Assistant" },
   { href: "#family", label: "Family Hub" },
-  { href: "#pricing", label: "Pricing" }
+  { href: "#features", label: "Features" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#faq", label: "FAQ" },
+  { href: "/support", label: "Support", isPage: true }
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("#features");
+  const [active, setActive] = useState<string>("#family");
 
   const sections = useMemo(
     () => navItems.map((i) => i.href).filter((h) => h.startsWith("#")),
     []
   );
+
+  const NavLink = ({
+    item,
+    onClick,
+    className
+  }: {
+    item: (typeof navItems)[number];
+    onClick?: () => void;
+    className: string;
+  }) => {
+    const isActive = !item.isPage && active === item.href;
+    const inner = (
+      <>
+        {isActive ? (
+          <motion.span
+            layoutId="nav-pill"
+            className="absolute inset-0 rounded-full bg-slate-900/5 dark:bg-white/10"
+            transition={{ type: "spring", stiffness: 520, damping: 40 }}
+          />
+        ) : null}
+        <span className="relative">{item.label}</span>
+      </>
+    );
+
+    if (item.isPage) {
+      return (
+        <Link href={item.href} onClick={onClick} className={className}>
+          {inner}
+        </Link>
+      );
+    }
+
+    return (
+      <a href={item.href} onClick={onClick} className={className}>
+        {inner}
+      </a>
+    );
+  };
 
   useEffect(() => {
     const onHash = () => {
@@ -88,29 +127,17 @@ export function Navbar() {
         <nav className="hidden md:block">
           <div className="relative rounded-full border border-slate-200/70 bg-white/60 p-1 shadow-[0_1px_0_rgba(255,255,255,0.35)_inset,0_18px_60px_rgba(2,6,23,0.10)] backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:shadow-[0_1px_0_rgba(255,255,255,0.08)_inset,0_24px_90px_rgba(0,0,0,0.45)]">
             <div className="flex items-center">
-              {navItems.map((item) => {
-                const isActive = active === item.href;
-                return (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setActive(item.href)}
-                    className={cn(
-                      "relative rounded-full px-4 py-2 text-sm font-semibold transition",
-                      "text-slate-700 hover:text-slate-950 dark:text-slate-200 dark:hover:text-white"
-                    )}
-                  >
-                    {isActive ? (
-                      <motion.span
-                        layoutId="nav-pill"
-                        className="absolute inset-0 rounded-full bg-slate-900/5 dark:bg-white/10"
-                        transition={{ type: "spring", stiffness: 520, damping: 40 }}
-                      />
-                    ) : null}
-                    <span className="relative">{item.label}</span>
-                  </a>
-                );
-              })}
+              {navItems.map((item) => (
+                <NavLink
+                  key={item.href}
+                  item={item}
+                  onClick={() => !item.isPage && setActive(item.href)}
+                  className={cn(
+                    "relative rounded-full px-3 py-2 text-sm font-semibold transition",
+                    "text-slate-700 hover:text-slate-950 dark:text-slate-200 dark:hover:text-white"
+                  )}
+                />
+              ))}
             </div>
           </div>
         </nav>
@@ -162,22 +189,36 @@ export function Navbar() {
           >
             <div className="section-max py-3">
               <div className="grid gap-2">
-                {navItems.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => {
-                      setActive(item.href);
-                      setOpen(false);
-                    }}
-                    className={cn(
-                      "rounded-2xl border border-slate-200/70 bg-white/60 px-4 py-3 text-sm font-semibold shadow-premium backdrop-blur-xl",
-                      "text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
-                    )}
-                  >
-                    {item.label}
-                  </a>
-                ))}
+                {navItems.map((item) =>
+                  item.isPage ? (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        "rounded-2xl border border-slate-200/70 bg-white/60 px-4 py-3 text-sm font-semibold shadow-premium backdrop-blur-xl",
+                        "text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => {
+                        setActive(item.href);
+                        setOpen(false);
+                      }}
+                      className={cn(
+                        "rounded-2xl border border-slate-200/70 bg-white/60 px-4 py-3 text-sm font-semibold shadow-premium backdrop-blur-xl",
+                        "text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                      )}
+                    >
+                      {item.label}
+                    </a>
+                  )
+                )}
                 <a
                   href="#download"
                   onClick={() => setOpen(false)}

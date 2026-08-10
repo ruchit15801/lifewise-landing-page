@@ -1,22 +1,13 @@
 import type { MetadataRoute } from "next";
+import { INDEXABLE_ROUTES, absoluteUrl } from "@/lib/sitemap-routes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://www.lifewiseee.com";
   const lastModified = new Date();
 
-  return [
-    {
-      url: `${base}/`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 1
-    },
-    {
-      url: `${base}/privacy-policy`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8
-    }
-  ];
+  return INDEXABLE_ROUTES.map((route) => ({
+    url: absoluteUrl(route.path),
+    lastModified,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority
+  }));
 }
-

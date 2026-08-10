@@ -26,11 +26,16 @@ module.exports = {
         shimmer: {
           "0%": { backgroundPosition: "0% 50%" },
           "100%": { backgroundPosition: "100% 50%" }
+        },
+        "shimmer-bg": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "100% 50%" }
         }
       },
       animation: {
         floaty: "floaty 6s ease-in-out infinite",
-        shimmer: "shimmer 10s ease-in-out infinite"
+        shimmer: "shimmer 10s ease-in-out infinite",
+        "shimmer-bg": "shimmer-bg 12s ease-in-out infinite alternate"
       }
     }
   },

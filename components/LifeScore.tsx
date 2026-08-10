@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, HeartPulse, ReceiptIndianRupee } from "lucide-react";
+import { HeartPulse, Pill, ReceiptIndianRupee } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/components/cn";
+import { FAMILY_HEALTH_EXAMPLE } from "@/lib/landing-data";
 
 function ProgressRing({ value }: { value: number }) {
   const r = 54;
@@ -56,9 +57,9 @@ function ProgressRing({ value }: { value: number }) {
       </svg>
       <div className="absolute text-center">
         <div className="text-xs font-semibold text-slate-600 dark:text-slate-400">
-          Life Score
+          Compliance
         </div>
-        <div className="mt-1 text-3xl font-semibold tracking-tight">{pct}</div>
+        <div className="mt-1 text-3xl font-semibold tracking-tight">{pct}%</div>
       </div>
     </div>
   );
@@ -67,24 +68,39 @@ function ProgressRing({ value }: { value: number }) {
 export function LifeScore() {
   return (
     <SectionShell
-      id="life-score"
-      eyebrow="Life Score"
-      title="Your Daily Life Score"
-      subtitle="A simple signal that improves when your life runs smoothly: bills paid on time, medicines taken, spending controlled."
+      id="health"
+      eyebrow="Home Screen"
+      title="Family Health Summary"
+      subtitle="Horizontal scroll of member cards on Home — health compliance %, upcoming bills, and today's reminders across the whole family."
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Reveal>
           <div className="glass p-6 sm:p-8 flex flex-col sm:flex-row gap-8 items-center sm:items-start">
             <div className="ring-glow rounded-3xl p-5 bg-white/50 dark:bg-white/5">
-              <ProgressRing value={78} />
+              <ProgressRing value={80} />
             </div>
             <div className="flex-1">
-              <div className="text-sm font-semibold">What improves your score</div>
+              <div className="text-sm font-semibold">
+                {FAMILY_HEALTH_EXAMPLE.name} — {FAMILY_HEALTH_EXAMPLE.compliance}{" "}
+                {FAMILY_HEALTH_EXAMPLE.label}
+              </div>
               <div className="mt-5 grid gap-3">
                 {[
-                  { icon: ReceiptIndianRupee, t: "Bills paid on time", d: "No late fees, no stress." },
-                  { icon: HeartPulse, t: "Medicines taken", d: "Consistency = better outcomes." },
-                  { icon: CheckCircle2, t: "Spending controlled", d: "Stay within your plan effortlessly." }
+                  {
+                    icon: Pill,
+                    t: "Medicine compliance",
+                    d: "Track daily medicine taken vs missed per member."
+                  },
+                  {
+                    icon: HeartPulse,
+                    t: "Health readings",
+                    d: "BP, sugar, weight — trends over last 30 days."
+                  },
+                  {
+                    icon: ReceiptIndianRupee,
+                    t: "Upcoming bills",
+                    d: "Next 3–5 due within 7 days — green, orange, red coded."
+                  }
                 ].map((x) => {
                   const Icon = x.icon;
                   return (
@@ -117,15 +133,15 @@ export function LifeScore() {
 
         <Reveal delay={0.06}>
           <div className="glass p-6 sm:p-8">
-            <div className="text-sm font-semibold">Daily summary</div>
+            <div className="text-sm font-semibold">Today&apos;s reminders</div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-              The assistant focuses on high-impact actions — and keeps everything else quiet.
+              All reminders due today across ALL family members — with MISSED badges and green checkmarks for completed.
             </p>
             <div className="mt-6 grid gap-3">
               {[
-                { k: "Bills", v: "2 paid • 0 overdue" },
-                { k: "Medicines", v: "1 taken • 1 scheduled" },
-                { k: "Spending", v: "₹420 today • on track" }
+                { k: "Papa", v: "BP Tablet — 8:00 PM • Pending" },
+                { k: "Mummy", v: "Doctor appointment — 10:00 AM • Done" },
+                { k: "Electricity", v: "Bill due in 2 days • Rs. 2,400" }
               ].map((x) => (
                 <motion.div
                   key={x.k}
@@ -136,7 +152,6 @@ export function LifeScore() {
                     <div className="text-sm font-semibold">{x.k}</div>
                     <div className="text-sm text-slate-700 dark:text-slate-300">{x.v}</div>
                   </div>
-                  <div className="mt-3 h-px w-full bg-gradient-to-r from-primary/40 via-transparent to-accent/40 opacity-70" />
                 </motion.div>
               ))}
             </div>
@@ -146,4 +161,3 @@ export function LifeScore() {
     </SectionShell>
   );
 }
-

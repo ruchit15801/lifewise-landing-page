@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PieChart, TrendingUp } from "lucide-react";
+import { AlertTriangle, PieChart, TrendingUp } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/components/cn";
+import { MONEY_LEAK_EXAMPLE, PRD_EXAMPLE_DATE } from "@/lib/landing-data";
 
 function Bar({
   label,
@@ -46,11 +47,33 @@ function Bar({
 export function Reports() {
   return (
     <SectionShell
-      id="reports"
-      eyebrow="Life Reports"
-      title="Understand Your Life at a Glance"
-      subtitle="Beautiful summaries of your month: spending trends, category breakdown, and savings momentum."
+      id="insights"
+      eyebrow="Insights Tab"
+      title="Analytics, Reports & Money Leak Detection"
+      subtitle="Spending overview, bills tracker, health summary, family activity feed, and AI-driven savings alerts — all in one Insights tab."
     >
+      <Reveal>
+        <motion.div
+          whileHover={{ y: -4 }}
+          className="mb-6 glass p-5 sm:p-6 border border-amber-200/60 bg-amber-50/50 dark:border-amber-500/20 dark:bg-amber-500/5"
+        >
+          <div className="flex items-start gap-3">
+            <div className="grid h-10 w-10 place-items-center rounded-2xl bg-amber-500/15 text-amber-700 dark:text-amber-400">
+              <AlertTriangle className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="text-sm font-semibold">Money Leak Alert</div>
+              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                {MONEY_LEAK_EXAMPLE}
+              </p>
+              <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">
+                Example: Netflix, Prime & Hotstar — potential saving Rs. 3,600/year if you cancel one.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </Reveal>
+
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
         <Reveal>
           <div className="glass p-6 sm:p-8 relative overflow-hidden">
@@ -61,37 +84,18 @@ export function Reports() {
                   <TrendingUp className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">Monthly spending</div>
+                  <div className="text-sm font-semibold">Spending overview</div>
                   <div className="text-xs text-slate-600 dark:text-slate-400">
-                    March • Last 30 days
+                    {PRD_EXAMPLE_DATE} • Last 30 days
                   </div>
                 </div>
               </div>
-              <div className="rounded-full bg-accent/15 px-3 py-1 text-xs font-semibold text-accent border border-accent/20">
-                +12% savings
-              </div>
             </div>
 
-            <div className="mt-7 grid grid-cols-12 gap-2 items-end h-40">
-              {[30, 40, 32, 52, 45, 62, 55, 48, 66, 60, 72, 64].map((h, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ height: 0, opacity: 0.6 }}
-                  whileInView={{ height: `${h}%`, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 1.05,
-                    delay: i * 0.035,
-                    ease: [0.16, 1, 0.3, 1]
-                  }}
-                  className="col-span-1 rounded-full bg-gradient-to-t from-primary/25 to-primary"
-                />
-              ))}
-            </div>
-
-            <div className="mt-6 grid gap-3">
+            <div className="mt-7 grid gap-3">
+              <Bar label="Food" value="₹8,450" pct={62} tone="accent" />
               <Bar label="Bills" value="₹4,200" pct={66} tone="primary" />
-              <Bar label="Food" value="₹3,150" pct={52} tone="accent" />
+              <Bar label="Medical" value="₹2,100" pct={40} tone="accent" />
               <Bar label="Subscriptions" value="₹799" pct={30} tone="primary" />
             </div>
           </div>
@@ -105,43 +109,28 @@ export function Reports() {
                 <PieChart className="h-6 w-6" />
               </div>
               <div>
-                <div className="text-sm font-semibold">Category breakdown</div>
+                <div className="text-sm font-semibold">Monthly PDF report</div>
                 <div className="text-xs text-slate-600 dark:text-slate-400">
-                  Premium visualization • privacy-first
+                  Premium • Auto-generated
                 </div>
               </div>
             </div>
 
-            <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="mt-7 grid gap-3">
               {[
-                { t: "Essentials", p: "42%", c: "from-primary to-indigo-600" },
-                { t: "Health", p: "18%", c: "from-accent to-emerald-500" },
-                { t: "Family", p: "24%", c: "from-primary/70 to-indigo-400" },
-                { t: "Lifestyle", p: "16%", c: "from-accent/70 to-emerald-400" }
-              ].map((x, i) => (
+                { t: "Spending by category", d: "Pie chart + month-over-month comparison" },
+                { t: "Bills tracker", d: "Paid, upcoming, overdue — full payment history" },
+                { t: "Health summary", d: "Medicine compliance %, BP/sugar trends, appointments" },
+                { t: "Family activity", d: "Son marked Papa's medicine as taken at 8:05 PM" }
+              ].map((x) => (
                 <motion.div
                   key={x.t}
-                  whileHover={{ y: -6 }}
+                  whileHover={{ y: -4 }}
                   className="rounded-2xl border border-slate-200/70 bg-white/55 p-5 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
                 >
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="text-sm font-semibold">{x.t}</div>
-                    <div className="text-xs font-semibold text-slate-600 dark:text-slate-400">
-                      {x.p}
-                    </div>
-                  </div>
-                  <div className="mt-3 h-2 rounded-full bg-slate-900/5 dark:bg-white/10 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: x.p }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 1.05,
-                        delay: 0.08 + i * 0.06,
-                        ease: [0.16, 1, 0.3, 1]
-                      }}
-                      className={cn("h-full rounded-full bg-gradient-to-r", x.c)}
-                    />
+                  <div className="text-sm font-semibold">{x.t}</div>
+                  <div className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                    {x.d}
                   </div>
                 </motion.div>
               ))}
@@ -152,4 +141,3 @@ export function Reports() {
     </SectionShell>
   );
 }
-

@@ -5,12 +5,7 @@ import { Bot, Sparkles } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/components/cn";
-
-const prompts = [
-  "Can I afford a new phone this month?",
-  "How much did I spend on food?",
-  "Should I cancel this subscription?"
-];
+import { WISEAI_PROMPTS } from "@/lib/landing-data";
 
 function Bubble({
   from,
@@ -48,9 +43,9 @@ export function AISection() {
   return (
     <SectionShell
       id="ai"
-      eyebrow="AI Decision Assistant"
-      title="Ask LifeWise Anything"
-      subtitle="A calm, premium chat UI that turns everyday questions into clear decisions — spending, bills, subscriptions, and habits."
+      eyebrow="WiseAI"
+      title="Ask WiseAI Anything About Your Family"
+      subtitle="Powered by Claude API with secure family context — reminders, expenses, health readings, and appointments. Document images are never sent to AI."
       className="relative"
     >
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
@@ -63,36 +58,36 @@ export function AISection() {
                 <Bot className="h-6 w-6" />
               </div>
               <div>
-                <div className="text-sm font-semibold">LifeWise Assistant</div>
+                <div className="text-sm font-semibold">WiseAI Assistant</div>
                 <div className="text-xs text-slate-600 dark:text-slate-400">
-                  Smart, private, on your side
+                  Premium feature • Family-aware
                 </div>
               </div>
               <div className="ml-auto inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/60 px-3 py-1 text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
                 <Sparkles className="h-4 w-4 text-primary" />
-                AI Insights
+                Claude API
               </div>
             </div>
 
             <div className="mt-6 space-y-3">
               <Bubble
                 from="user"
-                text="Can I afford a new phone this month?"
+                text="What reminders does Papa have this week?"
                 delay={0.05}
               />
               <Bubble
                 from="bot"
-                text="Based on your spending trend, you can — if you keep food + subscriptions under ₹3,500 this week."
+                text="Papa has 12 reminders: 7 medicine (daily 8 AM & 8 PM), 1 doctor appointment Friday 10 AM at Sunshine Hospital, and 4 bill due dates."
                 delay={0.12}
               />
               <Bubble
                 from="user"
-                text="Should I cancel this subscription?"
+                text="How much have we spent on food this month?"
                 delay={0.18}
               />
               <Bubble
                 from="bot"
-                text="You haven’t used it in 22 days. Cancel now and set a reminder to re-enable if you need it next month."
+                text="Family food spending this month: Rs. 8,450 across all members. Top category: groceries (62%)."
                 delay={0.24}
               />
             </div>
@@ -101,13 +96,13 @@ export function AISection() {
 
         <Reveal delay={0.06}>
           <div className="glass p-6 sm:p-8">
-            <div className="text-sm font-semibold">Example prompts</div>
+            <div className="text-sm font-semibold">Example prompts from PRD</div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-              Tap to copy these ideas into your assistant.
+              Tap to copy — WiseAI understands Hindi and English.
             </p>
 
             <div className="mt-6 grid gap-3">
-              {prompts.map((p, i) => (
+              {WISEAI_PROMPTS.map((p, i) => (
                 <motion.button
                   key={p}
                   type="button"
@@ -127,10 +122,6 @@ export function AISection() {
                       Copy
                     </span>
                   </div>
-                  <div className="mt-2 h-px w-full bg-gradient-to-r from-primary/40 via-transparent to-accent/40 opacity-60" />
-                  <div className="mt-2 text-xs text-slate-600 dark:text-slate-400">
-                    Hint {i + 1} of {prompts.length}
-                  </div>
                 </motion.button>
               ))}
             </div>
@@ -140,4 +131,3 @@ export function AISection() {
     </SectionShell>
   );
 }
-

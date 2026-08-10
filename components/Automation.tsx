@@ -1,24 +1,40 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bot, CreditCard, HeartPulse, Lightbulb } from "lucide-react";
+import { Bell, RefreshCw, Shield, Zap } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 
 const items = [
-  { icon: CreditCard, t: "Detects bills", d: "Find due dates from alerts and reduce missed payments." },
-  { icon: HeartPulse, t: "Reminds medicines", d: "Consistency with gentle nudges and confirmations." },
-  { icon: Bot, t: "Tracks spending", d: "Simple summaries with category clarity." },
-  { icon: Lightbulb, t: "Suggests improvements", d: "Small changes that compound into better days." }
+  {
+    icon: Bell,
+    t: "Firebase FCM notifications",
+    d: "Push to member + caregivers — Mark Done, Snooze, Skip action buttons."
+  },
+  {
+    icon: RefreshCw,
+    t: "Real-time WebSocket sync",
+    d: "Socket.io rooms per family — instant sync when any caregiver takes action."
+  },
+  {
+    icon: Shield,
+    t: "Caregiver permissions",
+    d: "View Only / Can Edit / Full Access — control who manages which member."
+  },
+  {
+    icon: Zap,
+    t: "Offline queue",
+    d: "View reminders offline, queue actions, sync on reconnection."
+  }
 ];
 
 export function Automation() {
   return (
     <SectionShell
       id="automation"
-      eyebrow="Automation"
-      title="Automation That Works Quietly"
-      subtitle="LifeWise runs in the background: it detects, reminds, tracks, and suggests—without noise."
+      eyebrow="Real-Time Sync"
+      title="Notifications & Sync That Just Work"
+      subtitle="Firebase FCM for push, Socket.io for live caregiver sync, and smart escalation when reminders are missed."
     >
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {items.map((x, i) => {
@@ -49,4 +65,3 @@ export function Automation() {
     </SectionShell>
   );
 }
-

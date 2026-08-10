@@ -1,10 +1,34 @@
 "use client";
 
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
-import { PhoneMock } from "@/components/PhoneMock";
 import { Reveal } from "@/components/Reveal";
+import { StoreDownloadButtons } from "@/components/StoreDownloadButtons";
+import {
+  PRODUCT_DESCRIPTION,
+  PRODUCT_TAGLINE,
+  PRD_EXAMPLE_DATE
+} from "@/lib/landing-data";
+
+const PhoneMock = dynamic(
+  () => import("@/components/PhoneMock").then((m) => m.PhoneMock),
+  {
+    loading: () => (
+      <div
+        className="mx-auto aspect-[78/163.4] w-full max-w-[22rem] animate-pulse rounded-[3rem] bg-slate-200/40 dark:bg-white/5"
+        aria-hidden
+      />
+    )
+  }
+);
+
+const heroHighlights = [
+  "Family Hub — hero feature",
+  "20 modules per member",
+  "WiseAI assistant",
+  "Voice + Bill Scan"
+];
 
 export function Hero() {
   return (
@@ -17,68 +41,59 @@ export function Hero() {
 
       <div className="section-max relative grid min-h-[calc(82vh-4rem)] grid-cols-1 items-center gap-7 py-12 lg:min-h-[calc(88vh-4rem)] lg:grid-cols-[1.08fr_0.92fr] lg:gap-6 lg:py-14">
         <div className="max-w-[42rem]">
-          <Reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/60 px-3 py-1 text-xs font-semibold text-slate-700 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
+          <Reveal blur={false}>
+            <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-slate-200/70 bg-white/60 px-3 py-1 text-xs font-semibold text-slate-700 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
               <Sparkles className="h-4 w-4 text-primary" />
-              Your Smart AI Life Assistant
-              <span className="ml-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold tracking-wide text-primary border border-primary/20">
-                NEW
+              {PRODUCT_TAGLINE}
+              <span className="inline-flex items-center gap-1 rounded-full bg-accent/10 px-2 py-0.5 text-[10px] font-bold tracking-wide text-accent border border-accent/20">
+                Android + iOS
               </span>
             </div>
           </Reveal>
 
-          <Reveal delay={0.05}>
+          <Reveal delay={0.05} blur={false}>
             <h1 className="mt-6 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl dark:text-slate-50">
-              AI Life Assistant for{" "}
-              <span className="gradient-text">
-                Smart Reminders &amp; Daily Life
-              </span>
+              <span className="gradient-text">LifeWise</span> — One App to
+              Manage Your{" "}
+              <span className="text-slate-950 dark:text-slate-50">Entire Family</span>
             </h1>
           </Reveal>
 
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} blur={false}>
             <p className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-200/90">
-              LifeWise is a powerful AI life assistant designed to help you
-              manage reminders, bills, medicines, family tasks and daily life
-              effortlessly with smart voice reminders, UPI bill alerts and
-              AI-powered life insights.
+              {PRODUCT_DESCRIPTION}
             </p>
           </Reveal>
 
-          <Reveal delay={0.15}>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <motion.a
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-                href="#download"
-                className="btn-primary w-full sm:w-auto"
+          <Reveal delay={0.12} blur={false}>
+            <p className="mt-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+              Today — {PRD_EXAMPLE_DATE}
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.15} blur={false}>
+            <div className="mt-7">
+              <StoreDownloadButtons variant="light" />
+              <a
+                href="#family"
+                className="btn-secondary mt-4 inline-flex w-full sm:w-auto"
               >
-                Download on Google Play
+                Explore Family Hub
                 <ArrowRight className="h-4 w-4" />
-              </motion.a>
-              <motion.a
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-                href="#features"
-                className="btn-secondary w-full sm:w-auto"
-              >
-                Explore Features
-              </motion.a>
+              </a>
             </div>
           </Reveal>
 
-          <Reveal delay={0.2}>
+          <Reveal delay={0.2} blur={false}>
             <div className="mt-8 flex flex-wrap gap-3 text-xs text-slate-600 dark:text-slate-400">
-              {["AI memory", "Bills + medicine", "Family hub", "Privacy-first"].map(
-                (t) => (
-                  <span
-                    key={t}
-                    className="rounded-full border border-slate-200/70 bg-white/55 px-3 py-1 backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
-                  >
-                    {t}
-                  </span>
-                )
-              )}
+              {heroHighlights.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-slate-200/70 bg-white/55 px-3 py-1 backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
+                >
+                  {t}
+                </span>
+              ))}
             </div>
           </Reveal>
         </div>
@@ -91,4 +106,3 @@ export function Hero() {
     </section>
   );
 }
-
