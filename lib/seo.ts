@@ -9,7 +9,7 @@ export const DEFAULT_TITLE =
   "LifeWise App – Family Operating System for Medicine, Bills & Health Reminders";
 
 export const DEFAULT_DESCRIPTION =
-  "LifeWise is the official Family Operating System app — manage Papa's medicine, electricity bills, doctor appointments, insurance, and family routines in one place. Family Hub, WiseAI, 20 modules. Free on Android & iOS. Premium from Rs. 199/month.";
+  "LifeWise is the official Family Operating System app. Manage Papa's medicine, electricity bills, doctor appointments, insurance, and family routines in one place. Family Hub, WiseAI, 20 modules. Free on Android & iOS. Premium from Rs. 199/month.";
 
 export const KEYWORDS = [
   "LifeWise",
@@ -151,7 +151,7 @@ export function buildTermsMetadata(): Metadata {
   return {
     title: "Terms & Conditions – LifeWise India",
     description:
-      "LifeWise Terms and Conditions — app usage rules, Free vs Premium subscriptions (Rs. 199/month), health disclaimers, WiseAI terms, acceptable use, and governing law in India.",
+      "LifeWise Terms and Conditions: app usage rules, Free vs Premium subscriptions (Rs. 199/month), health disclaimers, WiseAI terms, acceptable use, and governing law in India.",
     alternates: { canonical: `${SITE_URL}/terms-and-conditions` },
     openGraph: {
       title: "LifeWise Terms & Conditions",

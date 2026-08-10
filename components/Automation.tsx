@@ -9,17 +9,17 @@ const items = [
   {
     icon: Bell,
     t: "Firebase FCM notifications",
-    d: "Push to member + caregivers — Mark Done, Snooze, Skip action buttons."
+    d: "Push to member + caregivers with Mark Done, Snooze, Skip action buttons."
   },
   {
     icon: RefreshCw,
     t: "Real-time WebSocket sync",
-    d: "Socket.io rooms per family — instant sync when any caregiver takes action."
+    d: "Socket.io rooms per family for instant sync when any caregiver takes action."
   },
   {
     icon: Shield,
     t: "Caregiver permissions",
-    d: "View Only / Can Edit / Full Access — control who manages which member."
+    d: "View Only / Can Edit / Full Access to control who manages which member."
   },
   {
     icon: Zap,

@@ -3,13 +3,13 @@
 export const PRODUCT_TAGLINE = "Family Operating System";
 
 export const PRODUCT_DESCRIPTION =
-  "One app to manage your entire family — from Papa's medicine to electricity bills, from Mummy's doctor appointments to children's study schedules. Everything in one place, accessible by the whole family.";
+  "One app to manage your entire family. From Papa's medicine to electricity bills, Mummy's doctor appointments to children's study schedules. Everything in one place, accessible by the whole family.";
 
 export const HOME_QUICK_ACTIONS = [
   {
     icon: "mic" as const,
     title: "Voice Reminder",
-    desc: "Speak naturally — Whisper AI detects member, time, and task. Example: \"Add Papa's medicine reminder at 8 PM\"."
+    desc: "Speak naturally. Whisper AI detects member, time, and task. Example: \"Add Papa's medicine reminder at 8 PM\"."
   },
   {
     icon: "camera" as const,
@@ -19,7 +19,7 @@ export const HOME_QUICK_ACTIONS = [
   {
     icon: "ai" as const,
     title: "WiseAI Chat",
-    desc: "Ask anything about your family — reminders, expenses, appointments, and health summaries."
+    desc: "Ask anything about your family: reminders, expenses, appointments, and health summaries."
   }
 ] as const;
 
@@ -73,7 +73,7 @@ export const PREMIUM_PLAN = {
   name: "Premium",
   price: "₹199",
   period: "/ month",
-  desc: "Full Family Operating System — all modules and AI.",
+  desc: "Full Family Operating System with all modules and AI.",
   features: [
     "Unlimited family members",
     "All 20 modules",
@@ -94,7 +94,7 @@ export const YEARLY_TIERS = [
     name: "Premium Yearly",
     price: "₹1,499",
     period: "/ year",
-    note: "Save ₹888 — 37% off"
+    note: "Save ₹888 (37% off)"
   },
   {
     name: "Family Yearly",

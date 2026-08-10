@@ -61,7 +61,7 @@ export function SupportSection() {
     <SectionShell
       id="support"
       eyebrow="Support"
-      title="LifeWise India Support — We're Here to Help"
+      title="LifeWise India Support: We're Here to Help"
       subtitle="Questions about medicine reminders, bills, Family Hub, Premium billing, or app setup? Fill the form and our team will reply to your email within 24 hours."
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-5 lg:gap-8">
@@ -69,7 +69,7 @@ export function SupportSection() {
           <div className="glass h-full p-6 sm:p-8">
             <h3 className="text-lg font-semibold">Contact LifeWise (India)</h3>
             <p className="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-              Made for Indian families — support in English &amp; Hindi. Sales, app help,
+              Made for Indian families with support in English &amp; Hindi. Sales, app help,
               and Premium billing assistance.
             </p>
 
@@ -206,7 +206,7 @@ export function SupportSection() {
                   required
                   rows={5}
                   className="mt-1.5 w-full resize-y rounded-2xl border border-slate-200/70 bg-white/60 px-4 py-3 text-sm shadow-premium backdrop-blur-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-white/10 dark:bg-white/5"
-                  placeholder="Describe your issue — e.g. Papa medicine reminder not working, Premium payment, Family Hub setup..."
+                  placeholder="Describe your issue, e.g. Papa medicine reminder not working, Premium payment, Family Hub setup..."
                 />
               </label>
 

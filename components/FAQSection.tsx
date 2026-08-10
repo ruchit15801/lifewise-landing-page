@@ -14,7 +14,7 @@ export function FAQSection() {
     <SectionShell
       id="faq"
       eyebrow="FAQ"
-      title="Real Questions About LifeWise — India Family App"
+      title="Real Questions About LifeWise, India's Family App"
       subtitle="Answers about Papa medicine reminders, electricity bills, Hindi support, Premium Rs. 199, Family Hub, and how to contact our India support team."
     >
       <div className="mx-auto max-w-3xl">
@@ -24,7 +24,7 @@ export function FAQSection() {
         >
           <strong className="text-slate-900 dark:text-white">LifeWise</strong> is
           the official <strong>Family Operating System</strong> mobile app at{" "}
-          <strong>lifewiseee.com</strong> — built for Indian families to manage
+          <strong>lifewiseee.com</strong>, built for Indian families to manage
           medicine reminders, electricity bills, doctor appointments, insurance,
           documents, and daily routines for every family member in one app.
         </p>

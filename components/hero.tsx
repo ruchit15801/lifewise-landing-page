@@ -5,11 +5,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Reveal } from "@/components/Reveal";
 import { StoreDownloadButtons } from "@/components/StoreDownloadButtons";
-import {
-  PRODUCT_DESCRIPTION,
-  PRODUCT_TAGLINE,
-  PRD_EXAMPLE_DATE
-} from "@/lib/landing-data";
+import { PRODUCT_DESCRIPTION, PRODUCT_TAGLINE } from "@/lib/landing-data";
 
 const PhoneMock = dynamic(
   () => import("@/components/PhoneMock").then((m) => m.PhoneMock),
@@ -24,7 +20,7 @@ const PhoneMock = dynamic(
 );
 
 const heroHighlights = [
-  "Family Hub — hero feature",
+  "Family Hub (hero feature)",
   "20 modules per member",
   "WiseAI assistant",
   "Voice + Bill Scan"
@@ -53,7 +49,7 @@ export function Hero() {
 
           <Reveal delay={0.05} blur={false}>
             <h1 className="mt-6 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl dark:text-slate-50">
-              <span className="gradient-text">LifeWise</span> — One App to
+              <span className="gradient-text">LifeWise</span>: One App to
               Manage Your{" "}
               <span className="text-slate-950 dark:text-slate-50">Entire Family</span>
             </h1>
@@ -62,12 +58,6 @@ export function Hero() {
           <Reveal delay={0.1} blur={false}>
             <p className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-200/90">
               {PRODUCT_DESCRIPTION}
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.12} blur={false}>
-            <p className="mt-3 text-sm font-medium text-slate-600 dark:text-slate-400">
-              Today — {PRD_EXAMPLE_DATE}
             </p>
           </Reveal>
 

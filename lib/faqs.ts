@@ -1,4 +1,4 @@
-/** Real user questions for LifeWise — Indian family app context */
+/** Real user questions for LifeWise (Indian family app context) */
 
 export type FaqItem = {
   question: string;
@@ -10,13 +10,13 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "What is LifeWise app?",
     answer:
-      "LifeWise is India's Family Operating System — a mobile app where you manage Papa's medicine, Mummy's doctor visits, electricity bills, insurance renewals, school fees, and daily family routines from one place. It works on Android and iOS.",
+      "LifeWise is India's Family Operating System: a mobile app where you manage Papa's medicine, Mummy's doctor visits, electricity bills, insurance renewals, school fees, and daily family routines from one place. It works on Android and iOS.",
     keywords: ["what is lifewise", "lifewise app kya hai"]
   },
   {
     question: "Is LifeWise free to use in India?",
     answer:
-      "Yes. LifeWise has a free plan for Indian families — up to 3 members, Medicine + Bills modules, basic reminders, and 7 days history. Premium is Rs. 199/month for all 20 modules, WiseAI, voice reminders, bill scan, and unlimited family members.",
+      "Yes. LifeWise has a free plan for Indian families: up to 3 members, Medicine + Bills modules, basic reminders, and 7 days history. Premium is Rs. 199/month for all 20 modules, WiseAI, voice reminders, bill scan, and unlimited family members.",
     keywords: ["free", "price", "cost", "kitna"]
   },
   {
@@ -28,7 +28,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Can LifeWise remind me about electricity and mobile bills?",
     answer:
-      "Yes. Add bills in the Bills module — electricity, gas, broadband, mobile recharge, credit card, rent, and more. Set due date (e.g. every 15th), reminder days before, and approximate amount in Rs. You can also Scan Bill with camera OCR to auto-fill details.",
+      "Yes. Add bills in the Bills module: electricity, gas, broadband, mobile recharge, credit card, rent, and more. Set due date (e.g. every 15th), reminder days before, and approximate amount in Rs. You can also Scan Bill with camera OCR to auto-fill details.",
     keywords: ["bill", "electricity", "bijli", "recharge", "upi"]
   },
   {
@@ -40,7 +40,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "What is Family Hub in LifeWise?",
     answer:
-      "Family Hub is the main feature — each family member (Papa, Mummy, child, spouse) gets a profile with up to 20 modules: medicine, bills, insurance, documents, SOS, study, vehicle, and more. Caregivers can manage members and get real-time sync when reminders are done or missed.",
+      "Family Hub is the main feature. Each family member (Papa, Mummy, child, spouse) gets a profile with up to 20 modules: medicine, bills, insurance, documents, SOS, study, vehicle, and more. Caregivers can manage members and get real-time sync when reminders are done or missed.",
     keywords: ["family hub", "members", "caregiver"]
   },
   {
@@ -52,7 +52,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "What is WiseAI and is it included?",
     answer:
-      "WiseAI is LifeWise's AI family assistant (Premium). Ask: 'What reminders does Papa have this week?', 'How much spent on food this month?', or 'Mummy ki next appointment kab hai?' It uses your family data securely — document images are never sent to AI.",
+      "WiseAI is LifeWise's AI family assistant (Premium). Ask: 'What reminders does Papa have this week?', 'How much spent on food this month?', or 'Mummy ki next appointment kab hai?' It uses your family data securely. Document images are never sent to AI.",
     keywords: ["wiseai", "ai", "chat", "assistant"]
   },
   {
@@ -64,7 +64,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "What is SOS emergency feature?",
     answer:
-      "Emergency SOS lets a family member shake phone 3 times or long-press SOS button. LifeWise sends SMS and calls to emergency contacts with location and medical info — useful for elderly parents living alone in India.",
+      "Emergency SOS lets a family member shake phone 3 times or long-press SOS button. LifeWise sends SMS and calls to emergency contacts with location and medical info, useful for elderly parents living alone in India.",
     keywords: ["sos", "emergency", "help"]
   },
   {
@@ -76,7 +76,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "How do I download LifeWise app?",
     answer:
-      "Visit the official website lifewiseee.com and tap Download on Google Play. iOS version is also available. Only download from lifewiseee.com — avoid fake apps with similar names.",
+      "Visit the official website lifewiseee.com and tap Download on Google Play. iOS version is also available. Only download from lifewiseee.com. Avoid fake apps with similar names.",
     keywords: ["download", "install", "play store", "android", "ios"]
   },
   {
@@ -88,13 +88,13 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Can LifeWise track insurance and subscription renewals?",
     answer:
-      "Yes. Insurance module tracks health, life, vehicle, and home policies with renewal reminders (30/15/7 days before). Subscriptions module tracks Netflix, Prime, Hotstar, and other renewals — Money Leak detection flags unused subscriptions to save Rs. per month.",
+      "Yes. Insurance module tracks health, life, vehicle, and home policies with renewal reminders (30/15/7 days before). Subscriptions module tracks Netflix, Prime, Hotstar, and other renewals. Money Leak detection flags unused subscriptions to save Rs. per month.",
     keywords: ["insurance", "netflix", "subscription", "renewal"]
   },
   {
     question: "Who is LifeWise made for in India?",
     answer:
-      "LifeWise is built for Indian families: adult children managing parents in Ahmedabad, Mumbai, Delhi or abroad; caregivers coordinating health; seniors using simple reminders; students tracking fees and study schedules — all in one Family Operating System.",
+      "LifeWise is built for Indian families: adult children managing parents in Ahmedabad, Mumbai, Delhi or abroad; caregivers coordinating health; seniors using simple reminders; students tracking fees and study schedules, all in one Family Operating System.",
     keywords: ["india", "indian", "family", "parents"]
   }
 ];

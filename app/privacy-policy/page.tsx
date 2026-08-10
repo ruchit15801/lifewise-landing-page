@@ -14,7 +14,7 @@ function privacySchema() {
     name: "LifeWise Privacy Policy",
     url: `${SITE_URL}/privacy-policy`,
     description:
-      "LifeWise privacy policy for the Family Operating System app — data collection, SMS permissions, family health data, WiseAI, and your rights under Indian law.",
+      "LifeWise privacy policy for the Family Operating System app: data collection, SMS permissions, family health data, WiseAI, and your rights under Indian law.",
     isPartOf: { "@type": "WebSite", url: SITE_URL },
     about: { "@type": "SoftwareApplication", name: "LifeWise" }
   };
@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
             </li>
             <li>
               <strong>SMS data (optional permission):</strong> only bill and payment-related
-              SMS content to detect due dates and amounts — not for advertising.
+              SMS content to detect due dates and amounts, not for advertising.
             </li>
             <li>
               <strong>Voice &amp; camera inputs:</strong> audio for voice reminders and
@@ -114,7 +114,7 @@ export default function PrivacyPolicyPage() {
           </p>
           <p>
             We may also request notification, camera, microphone, contacts (for SOS), and
-            biometric permissions — each only for the stated feature. You can revoke
+            biometric permissions, each only for the stated feature. You can revoke
             permissions in your device settings at any time.
           </p>
         </LegalSection>
@@ -128,7 +128,7 @@ export default function PrivacyPolicyPage() {
             </li>
             <li>
               <strong>Service providers:</strong> cloud hosting, push notifications
-              (Firebase FCM), secure storage (e.g. AWS S3), analytics, and AI APIs — bound
+              (Firebase FCM), secure storage (e.g. AWS S3), analytics, and AI APIs, bound
               by confidentiality and data-processing agreements.
             </li>
             <li>

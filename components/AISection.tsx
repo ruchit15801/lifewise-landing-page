@@ -45,7 +45,7 @@ export function AISection() {
       id="ai"
       eyebrow="WiseAI"
       title="Ask WiseAI Anything About Your Family"
-      subtitle="Powered by Claude API with secure family context — reminders, expenses, health readings, and appointments. Document images are never sent to AI."
+      subtitle="Powered by Claude API with secure family context: reminders, expenses, health readings, and appointments. Document images are never sent to AI."
       className="relative"
     >
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
@@ -98,7 +98,7 @@ export function AISection() {
           <div className="glass p-6 sm:p-8">
             <div className="text-sm font-semibold">Example prompts from PRD</div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-              Tap to copy — WiseAI understands Hindi and English.
+              Tap to copy. WiseAI understands Hindi and English.
             </p>
 
             <div className="mt-6 grid gap-3">

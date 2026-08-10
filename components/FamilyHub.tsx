@@ -8,9 +8,9 @@ import { cn } from "@/components/cn";
 import { FAMILY_HUB_MODULES } from "@/lib/landing-data";
 
 const cards = [
-  { name: "Papa", label: "Medicine reminder — 8 AM", icon: Pill },
-  { name: "Mummy", label: "Doctor appointment — Friday", icon: Heart },
-  { name: "Child", label: "School fee due — 15th", icon: Users }
+  { name: "Papa", label: "Medicine reminder, 8 AM", icon: Pill },
+  { name: "Mummy", label: "Doctor appointment, Friday", icon: Heart },
+  { name: "Child", label: "School fee due, 15th", icon: Users }
 ];
 
 export function FamilyHub() {
@@ -21,7 +21,7 @@ export function FamilyHub() {
       badge="Hero Feature"
       highlight
       title="The Heart of LifeWise"
-      subtitle="Every family member gets their own profile card. Every module — medicine, bills, insurance, documents, SOS — is attached to a member. Caregivers manage loved ones in real time."
+      subtitle="Every family member gets their own profile card. Every module (medicine, bills, insurance, documents, SOS) is attached to a member. Caregivers manage loved ones in real time."
     >
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
         <Reveal>
@@ -30,7 +30,7 @@ export function FamilyHub() {
             <div className="pointer-events-none absolute -left-24 -bottom-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
             <div className="text-sm font-semibold">Family overview</div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-              Add Papa, Mummy, children — each with selected modules and connected caregivers.
+              Add Papa, Mummy, children, each with selected modules and connected caregivers.
             </p>
 
             <div className="mt-7 grid gap-3">
@@ -104,7 +104,7 @@ export function FamilyHub() {
                   <div className="text-sm font-semibold">Connected Caregivers</div>
                   <div className="mt-1 text-sm text-slate-700 dark:text-slate-300">
                     Spouse, siblings, or relatives can view, edit, or get full access.
-                    Mark reminders done — everyone syncs instantly via WebSocket.
+                    Mark reminders done and everyone syncs instantly via WebSocket.
                   </div>
                 </div>
               </div>

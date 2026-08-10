@@ -26,7 +26,7 @@ export function Features() {
       id="features"
       eyebrow="Core Features"
       title="Your Family Command Center"
-      subtitle="Family Hub is the hero feature — every reminder, bill, health record, and document flows through it. Plus three instant actions from your Home screen."
+      subtitle="Family Hub is the hero feature. Every reminder, bill, health record, and document flows through it. Plus three instant actions from your Home screen."
     >
       <Reveal>
         <motion.div
@@ -50,7 +50,7 @@ export function Features() {
                   </span>
                 </div>
                 <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                  Add Papa, Mummy, children — each with their own profile card and
+                  Add Papa, Mummy, children, each with their own profile card and
                   up to 20 modules: medicine, bills, insurance, documents, SOS,
                   study schedules, and more. Caregivers stay connected in real time.
                 </p>

@@ -6,7 +6,7 @@
 https://www.lifewiseee.com
 
 ## What is LifeWise?
-LifeWise is a Family Operating System (FOS) — a single mobile application that lets one family manage every member's health, finances, reminders, documents, and daily routines from one place. It is NOT just a reminder app. It is the command center for your family.
+LifeWise is a Family Operating System (FOS): a single mobile application that lets one family manage every member's health, finances, reminders, documents, and daily routines from one place. It is NOT just a reminder app. It is the command center for your family.
 
 ## Brand entity
 - Name: LifeWise
@@ -28,7 +28,7 @@ LifeWise is a Family Operating System (FOS) — a single mobile application that
 
 ## Pricing (INR)
 - Free: up to 3 family members, Medicine + Bills modules, basic reminders
-- Premium: Rs. 199/month — all 20 modules, WiseAI, voice, OCR, unlimited members
+- Premium: Rs. 199/month, all 20 modules, WiseAI, voice, OCR, unlimited members
 - Premium Yearly: Rs. 1,499/year (37% off)
 - Family Yearly: Rs. 1,999/year (up to 6 accounts, coming soon)
 

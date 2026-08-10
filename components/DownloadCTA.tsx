@@ -24,7 +24,7 @@ export function DownloadCTA() {
               <Reveal delay={0.06} blur={false}>
                 <p className="mt-3 text-white/85 leading-relaxed">
                   Get LifeWise on <strong>Google Play</strong> and the{" "}
-                  <strong>App Store</strong> — manage Papa&apos;s medicine, bijli
+                  <strong>App Store</strong> to manage Papa&apos;s medicine, bijli
                   bills, doctor visits &amp; family routines. Free to start, Premium
                   Rs. 199/month.
                 </p>

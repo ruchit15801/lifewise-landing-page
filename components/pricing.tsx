@@ -12,7 +12,7 @@ export function Pricing() {
     <SectionShell
       id="pricing"
       eyebrow="Pricing"
-      title="Freemium — Free vs Premium"
+      title="Freemium: Free vs Premium"
       subtitle="Start free with essentials. Upgrade to Premium for all 20 modules, WiseAI, voice reminders, and full family management."
     >
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">

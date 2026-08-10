@@ -19,7 +19,7 @@ function termsSchema() {
     name: "LifeWise Terms and Conditions",
     url: `${SITE_URL}/terms-and-conditions`,
     description:
-      "Terms and Conditions for using the LifeWise Family Operating System app — subscriptions, acceptable use, disclaimers, and governing law in India.",
+      "Terms and Conditions for using the LifeWise Family Operating System app: subscriptions, acceptable use, disclaimers, and governing law in India.",
     isPartOf: { "@type": "WebSite", url: SITE_URL },
     about: { "@type": "SoftwareApplication", name: "LifeWise" }
   };

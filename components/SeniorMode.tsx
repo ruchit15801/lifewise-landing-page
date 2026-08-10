@@ -18,14 +18,14 @@ export function SeniorMode() {
       id="senior"
       eyebrow="For Everyone"
       title="Designed for Seniors Too"
-      subtitle="Senior members (55+) can view their reminders and health status with a calm, readable interface — large tap targets, high contrast, and clear confirmations."
+      subtitle="Senior members (55+) can view their reminders and health status with a calm, readable interface: large tap targets, high contrast, and clear confirmations."
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Reveal>
           <div className="glass p-6 sm:p-8">
             <div className="text-sm font-semibold">Senior member experience</div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-              Parents use the app lightly — view reminders, mark medicines taken, and see health status.
+              Parents use the app lightly: view reminders, mark medicines taken, and see health status.
               Adult children manage the full setup via Family Hub.
             </p>
 
@@ -61,7 +61,7 @@ export function SeniorMode() {
                 {[
                   { t: "Languages", d: "English, Hindi, Gujarati, Marathi, Tamil, Telugu, Bengali" },
                   { t: "Biometric lock", d: "Touch ID / Face ID for secure access" },
-                  { t: "Emergency SOS", d: "Shake phone 3× or long-press — SMS + call to emergency contacts with location" }
+                  { t: "Emergency SOS", d: "Shake phone 3× or long-press for SMS + call to emergency contacts with location" }
                 ].map((x) => (
                   <motion.div
                     key={x.t}

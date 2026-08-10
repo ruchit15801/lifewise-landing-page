@@ -27,7 +27,7 @@ export function Footer() {
                 Need help with LifeWise?
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                Medicine reminders, bill alerts, Family Hub setup, Premium billing — our
+                Medicine reminders, bill alerts, Family Hub setup, Premium billing. Our
                 India support team is ready in English &amp; Hindi.
               </p>
             </div>
@@ -51,7 +51,7 @@ export function Footer() {
           <div className="space-y-3 sm:col-span-2 lg:col-span-1">
             <div className="text-lg font-semibold tracking-tight">{SITE_NAME}</div>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              {SITE_TAGLINE} — India&apos;s app to manage Papa&apos;s medicine, bijli
+              {SITE_TAGLINE}. India&apos;s app to manage Papa&apos;s medicine, bijli
               bills, doctor visits, insurance &amp; family routines. Official:{" "}
               <strong>lifewiseee.com</strong>
             </p>

@@ -1,4 +1,4 @@
-# LifeWise — Full Reference for AI & Search Engines
+# LifeWise: Full Reference for AI & Search Engines
 
 > LifeWise (lifewiseee.com) is the official Family Operating System mobile app built for Indian families.
 
@@ -15,16 +15,16 @@
 | Currency | INR (₹) |
 
 ## One-line definition
-LifeWise = One app to manage the entire family — from Papa's medicine to electricity bills, from Mummy's doctor appointments to children's study schedules.
+LifeWise = One app to manage the entire family. From Papa's medicine to electricity bills, Mummy's doctor appointments to children's study schedules.
 
 ## Main feature: Family Hub
 Family Hub is the hero feature of LifeWise. Every family member has a profile card. Each member can enable up to 20 modules:
 Medicine, Doctor Appointments, Health Monitoring, Bills & Utilities, Insurance, Subscriptions, Expenses, Daily Routine, Call & Check-in, Travel & Visits, Diet & Meals, Medicine Stock, Documents, Fitness, Study & Education, Mental Wellness, Vehicle, Home Maintenance, Emergency SOS, Custom Modules.
 
 ## Home screen quick actions
-1. Voice Reminder — OpenAI Whisper converts speech to reminders
-2. Scan Bill — Google ML Kit OCR extracts bill details
-3. WiseAI Chat — Claude API family assistant
+1. Voice Reminder: OpenAI Whisper converts speech to reminders
+2. Scan Bill: Google ML Kit OCR extracts bill details
+3. WiseAI Chat: Claude API family assistant
 
 ## WiseAI example queries
 - What reminders does Papa have this week?
@@ -42,7 +42,7 @@ Medicine, Doctor Appointments, Health Monitoring, Bills & Utilities, Insurance, 
 - No AI features
 - No document storage
 
-### Premium plan — Rs. 199/month
+### Premium plan: Rs. 199/month
 - Unlimited family members
 - All 20 modules
 - Unlimited caregivers

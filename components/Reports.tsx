@@ -50,7 +50,7 @@ export function Reports() {
       id="insights"
       eyebrow="Insights Tab"
       title="Analytics, Reports & Money Leak Detection"
-      subtitle="Spending overview, bills tracker, health summary, family activity feed, and AI-driven savings alerts — all in one Insights tab."
+      subtitle="Spending overview, bills tracker, health summary, family activity feed, and AI-driven savings alerts, all in one Insights tab."
     >
       <Reveal>
         <motion.div
@@ -67,7 +67,7 @@ export function Reports() {
                 {MONEY_LEAK_EXAMPLE}
               </p>
               <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">
-                Example: Netflix, Prime & Hotstar — potential saving Rs. 3,600/year if you cancel one.
+                Example: Netflix, Prime & Hotstar. Potential saving Rs. 3,600/year if you cancel one.
               </p>
             </div>
           </div>
@@ -119,7 +119,7 @@ export function Reports() {
             <div className="mt-7 grid gap-3">
               {[
                 { t: "Spending by category", d: "Pie chart + month-over-month comparison" },
-                { t: "Bills tracker", d: "Paid, upcoming, overdue — full payment history" },
+                { t: "Bills tracker", d: "Paid, upcoming, overdue with full payment history" },
                 { t: "Health summary", d: "Medicine compliance %, BP/sugar trends, appointments" },
                 { t: "Family activity", d: "Son marked Papa's medicine as taken at 8:05 PM" }
               ].map((x) => (

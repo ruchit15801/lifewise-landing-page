@@ -29,7 +29,7 @@ export function organizationSchema() {
     },
     image: `${SITE_URL}/og-image.svg`,
     description:
-      "LifeWise builds the Family Operating System — a mobile app for Indian families to manage health, bills, reminders, and daily routines.",
+      "LifeWise builds the Family Operating System, a mobile app for Indian families to manage health, bills, reminders, and daily routines.",
     email: CONTACT_EMAIL,
     telephone: SUPPORT_PHONE,
     contactPoint: [
@@ -79,7 +79,7 @@ export function websiteSchema() {
     alternateName: "LifeWise App",
     url: SITE_URL,
     description:
-      "Official LifeWise website — download the Family Operating System app for Android and iOS.",
+      "Official LifeWise website. Download the Family Operating System app for Android and iOS.",
     publisher: { "@id": ORG_ID },
     inLanguage: "en-IN"
   };

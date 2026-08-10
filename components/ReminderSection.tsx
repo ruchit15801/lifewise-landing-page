@@ -29,7 +29,7 @@ export function ReminderSection() {
       id="reminders"
       eyebrow="Reminders Tab"
       title="Your Reminder Command Center"
-      subtitle="All reminders across all family members in one unified view — filter by Today, Upcoming, Overdue, or per member."
+      subtitle="All reminders across all family members in one unified view. Filter by Today, Upcoming, Overdue, or per member."
     >
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {cards.map((c, idx) => {
@@ -69,9 +69,9 @@ export function ReminderSection() {
               </p>
               <div className="mt-6 space-y-3">
                 {[
-                  "Papa ki BP Tablet — 8:00 PM. Tap to mark as taken.",
+                  "Papa ki BP Tablet, 8:00 PM. Tap to mark as taken.",
                   "Electricity bill due in 3 days. Amount approx Rs. 2,400",
-                  "MISSED — Papa ki medicine nahi li abhi tak. 30 min ho gaye."
+                  "MISSED: Papa ki medicine nahi li abhi tak. 30 min ho gaye."
                 ].map((t) => (
                   <div
                     key={t}
@@ -89,11 +89,11 @@ export function ReminderSection() {
           <div className="glass p-6 sm:p-8">
             <div className="text-sm font-semibold">Filter & manage</div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-              All • Today • Upcoming • Overdue • Completed — plus per-member filters for Papa, Mummy, and more.
+              All • Today • Upcoming • Overdue • Completed, plus per-member filters for Papa, Mummy, and more.
             </p>
             <div className="mt-6 grid gap-3">
               {[
-                { t: "Mark Done", d: "First-write wins — all caregivers see COMPLETED." },
+                { t: "Mark Done", d: "First-write wins. All caregivers see COMPLETED." },
                 { t: "Snooze", d: "Reschedule notification in X minutes." },
                 { t: "Missed alerts", d: "Red badge on Home + alert to caregivers after 30 min." }
               ].map((x) => (

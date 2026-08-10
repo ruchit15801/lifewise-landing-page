@@ -71,7 +71,7 @@ export function LifeScore() {
       id="health"
       eyebrow="Home Screen"
       title="Family Health Summary"
-      subtitle="Horizontal scroll of member cards on Home — health compliance %, upcoming bills, and today's reminders across the whole family."
+      subtitle="Horizontal scroll of member cards on Home: health compliance %, upcoming bills, and today's reminders across the whole family."
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Reveal>
@@ -81,7 +81,7 @@ export function LifeScore() {
             </div>
             <div className="flex-1">
               <div className="text-sm font-semibold">
-                {FAMILY_HEALTH_EXAMPLE.name} — {FAMILY_HEALTH_EXAMPLE.compliance}{" "}
+                {FAMILY_HEALTH_EXAMPLE.name}: {FAMILY_HEALTH_EXAMPLE.compliance}{" "}
                 {FAMILY_HEALTH_EXAMPLE.label}
               </div>
               <div className="mt-5 grid gap-3">
@@ -94,12 +94,12 @@ export function LifeScore() {
                   {
                     icon: HeartPulse,
                     t: "Health readings",
-                    d: "BP, sugar, weight — trends over last 30 days."
+                    d: "BP, sugar, weight trends over last 30 days."
                   },
                   {
                     icon: ReceiptIndianRupee,
                     t: "Upcoming bills",
-                    d: "Next 3–5 due within 7 days — green, orange, red coded."
+                    d: "Next 3–5 due within 7 days, green, orange, red coded."
                   }
                 ].map((x) => {
                   const Icon = x.icon;
@@ -135,12 +135,12 @@ export function LifeScore() {
           <div className="glass p-6 sm:p-8">
             <div className="text-sm font-semibold">Today&apos;s reminders</div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-              All reminders due today across ALL family members — with MISSED badges and green checkmarks for completed.
+              All reminders due today across ALL family members, with MISSED badges and green checkmarks for completed.
             </p>
             <div className="mt-6 grid gap-3">
               {[
-                { k: "Papa", v: "BP Tablet — 8:00 PM • Pending" },
-                { k: "Mummy", v: "Doctor appointment — 10:00 AM • Done" },
+                { k: "Papa", v: "BP Tablet, 8:00 PM • Pending" },
+                { k: "Mummy", v: "Doctor appointment, 10:00 AM • Done" },
                 { k: "Electricity", v: "Bill due in 2 days • Rs. 2,400" }
               ].map((x) => (
                 <motion.div
