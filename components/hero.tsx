@@ -1,8 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { StoreDownloadButtons } from "@/components/StoreDownloadButtons";
 import { PRODUCT_DESCRIPTION, PRODUCT_TAGLINE } from "@/lib/landing-data";
@@ -12,7 +11,7 @@ const PhoneMock = dynamic(
   {
     loading: () => (
       <div
-        className="mx-auto aspect-[78/163.4] w-full max-w-[22rem] animate-pulse rounded-[3rem] bg-slate-200/40 dark:bg-white/5"
+        className="mx-auto aspect-[78/163.4] w-full max-w-[22rem] animate-pulse rounded-[3rem] bg-slate-100 border-8 border-slate-200 dark:bg-slate-900 dark:border-slate-800"
         aria-hidden
       />
     )
@@ -28,69 +27,84 @@ const heroHighlights = [
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
-      <AnimatedBackground />
+    <section id="top" className="relative overflow-hidden bg-slate-50 dark:bg-[#050508] transition-colors duration-500">
+      
+      {/* Light modern grid background */}
       <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-grid opacity-[0.35] dark:opacity-[0.22]"
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.08]"
+        style={{
+          backgroundImage: "linear-gradient(to right, #4f46e5 1px, transparent 1px), linear-gradient(to bottom, #4f46e5 1px, transparent 1px)",
+          backgroundSize: "40px 40px"
+        }}
       />
+      
+      {/* Fading gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-50/80 to-slate-50 dark:via-[#050508]/80 dark:to-[#050508]" />
 
-      <div className="w-full max-w-[98rem] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative grid min-h-[calc(82vh-4rem)] grid-cols-1 items-center gap-7 pt-24 pb-12 lg:min-h-[calc(88vh-4rem)] lg:grid-cols-[1fr_1.2fr] lg:gap-10 lg:pt-28 lg:pb-14">
-        <div className="max-w-[38rem] xl:max-w-[44rem]">
+      {/* Glows */}
+      <div className="absolute left-1/4 top-0 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/20 blur-[120px] pointer-events-none dark:bg-indigo-600/20" />
+      <div className="absolute right-1/4 bottom-0 h-[400px] w-[400px] translate-x-1/2 translate-y-1/2 rounded-full bg-blue-500/15 blur-[100px] pointer-events-none dark:bg-blue-600/10" />
+
+      <div className="section-max relative z-10 grid min-h-[calc(82vh-4rem)] grid-cols-1 items-center gap-7 pt-24 pb-12 lg:min-h-[calc(88vh-4rem)] lg:grid-cols-[1.08fr_0.92fr] lg:gap-6 lg:pt-28 lg:pb-14">
+        
+        {/* Left Content */}
+        <div className="max-w-[42rem]">
           <Reveal blur={false}>
-            <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-slate-200/70 bg-white/60 px-3 py-1 text-xs font-semibold text-slate-700 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
-              <Sparkles className="h-4 w-4 text-primary" />
+            <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50/80 px-3 py-1.5 text-xs font-bold text-indigo-700 backdrop-blur-xl mb-2 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-400">
+              <Sparkles className="h-4 w-4" />
               {PRODUCT_TAGLINE}
-              <span className="inline-flex items-center gap-1 rounded-full bg-accent/10 px-2 py-0.5 text-[10px] font-bold tracking-wide text-accent border border-accent/20">
-                Android + iOS
+              <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase text-emerald-700 dark:bg-emerald-500/10 dark:border-emerald-500/20 dark:text-emerald-400">
+                Android & iOS
               </span>
             </div>
           </Reveal>
 
           <Reveal delay={0.05} blur={false}>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl dark:text-slate-50">
-              <span className="gradient-text">LifeWise</span>: One App to
-              Manage Your{" "}
-              <span className="text-slate-950 dark:text-slate-50">Entire Family</span>
+            <h1 className="mt-6 text-5xl font-black tracking-tight text-slate-900 sm:text-6xl lg:text-[4.2rem] leading-[1.05] dark:text-white">
+              One App to Manage
+              <br />
+              <span className="text-indigo-600 dark:text-indigo-400">Your Entire Family.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.1} blur={false}>
-            <p className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-200/90">
+            <p className="mt-6 text-[17px] leading-relaxed text-slate-600 sm:text-lg font-medium max-w-[90%] dark:text-slate-400">
               {PRODUCT_DESCRIPTION}
             </p>
           </Reveal>
 
           <Reveal delay={0.15} blur={false}>
-            <div className="mt-7">
-              <StoreDownloadButtons variant="light" />
-              <a
-                href="#family"
-                className="btn-secondary mt-4 inline-flex w-full sm:w-auto"
-              >
-                Explore Family Hub
-                <ArrowRight className="h-4 w-4" />
-              </a>
+            <div className="mt-10 flex flex-col gap-5">
+              <StoreDownloadButtons className="justify-start" />
+              <div>
+                <a
+                  href="#family"
+                  className="inline-flex h-[48px] items-center justify-center gap-2 rounded-xl bg-indigo-50 border border-indigo-100 px-6 text-sm font-bold text-indigo-700 transition-all hover:bg-indigo-100 hover:-translate-y-0.5 shadow-sm dark:bg-indigo-500/10 dark:border-indigo-500/20 dark:text-indigo-400 dark:hover:bg-indigo-500/20 w-full sm:w-auto"
+                >
+                  Explore Family Hub
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
             </div>
           </Reveal>
 
           <Reveal delay={0.2} blur={false}>
-            <div className="mt-8 flex flex-wrap gap-3 text-xs text-slate-600 dark:text-slate-400">
+            <div className="mt-10 flex flex-wrap gap-4 text-sm font-medium text-slate-500 dark:text-slate-400">
               {heroHighlights.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-slate-200/70 bg-white/55 px-3 py-1 backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
-                >
+                <div key={t} className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-indigo-500" />
                   {t}
-                </span>
+                </div>
               ))}
             </div>
           </Reveal>
         </div>
 
-        <div className="relative noise justify-self-center lg:justify-self-center">
-          <div className="pointer-events-none absolute -inset-10 rounded-[3rem] bg-white/30 blur-3xl dark:bg-white/5" />
-          <PhoneMock className="max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem]" />
+        {/* Right Phone Mockup */}
+        <div className="relative justify-self-center lg:justify-self-center w-full max-w-[22rem] sm:max-w-[24rem] lg:max-w-[22rem] mt-12 lg:mt-0">
+          {/* Backing glow for phone */}
+          <div className="absolute inset-0 rounded-full bg-indigo-500/10 blur-[80px] pointer-events-none dark:bg-indigo-500/20 dark:blur-[100px]" />
+          <PhoneMock className="relative z-10 w-full drop-shadow-2xl" />
         </div>
       </div>
     </section>

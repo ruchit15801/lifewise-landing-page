@@ -1,241 +1,120 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { AlertTriangle, PieChart, TrendingUp, BarChart3, Activity } from "lucide-react";
+import { motion } from "framer-motion";
+import { LineChart, Search, FileDown, ShieldAlert } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
-import { cn } from "@/components/cn";
-import { MONEY_LEAK_EXAMPLE, PRD_EXAMPLE_DATE } from "@/lib/landing-data";
-
-function Bar({
-  label,
-  value,
-  pct,
-  tone,
-  delay
-}: {
-  label: string;
-  value: string;
-  pct: number;
-  tone: "primary" | "accent";
-  delay: number;
-}) {
-  return (
-    <motion.div 
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay, type: "spring", stiffness: 300, damping: 25 }}
-      whileHover={{ scale: 1.02, x: 5 }}
-      className="group/bar relative overflow-hidden rounded-2xl border border-white/60 bg-white/70 p-4 shadow-lg backdrop-blur-xl transition-all hover:bg-white hover:shadow-xl dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20"
-    >
-      <div className={cn("absolute -left-6 -top-6 h-20 w-20 rounded-full blur-[25px] transition-opacity opacity-0 group-hover/bar:opacity-100", tone === "primary" ? "bg-indigo-500/20" : "bg-emerald-500/20")} />
-      <div className="relative z-10 flex items-center justify-between gap-4">
-        <div className="text-sm font-bold text-slate-900 dark:text-white">{label}</div>
-        <div className="text-xs font-bold text-slate-600 dark:text-slate-300">
-          {value}
-        </div>
-      </div>
-      <div className="relative z-10 mt-3 h-2.5 rounded-full bg-slate-200 dark:bg-white/10 overflow-hidden shadow-inner">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${pct}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: delay + 0.2, ease: "easeOut" }}
-          className={cn(
-            "h-full rounded-full shadow-[0_0_10px_rgba(0,0,0,0.2)]",
-            tone === "primary"
-              ? "bg-gradient-to-r from-indigo-500 to-purple-600"
-              : "bg-gradient-to-r from-emerald-400 to-teal-500"
-          )}
-        />
-      </div>
-    </motion.div>
-  );
-}
+import { EXPENSE_CATEGORIES } from "@/lib/landing-data";
 
 export function Reports() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [-60, 60]);
-
   return (
     <SectionShell
-      id="insights"
-      eyebrow="Insights Tab"
-      title="Analytics, Reports & Money Leak Detection"
-      subtitle="Spending overview, bills tracker, health summary, family activity feed, and AI-driven savings alerts, all in one Insights tab."
+      id="reports"
+      eyebrow="Insights & Reports"
+      title="Understand where the money goes."
+      subtitle="Auto-categorize family expenses, track month-over-month trends, and get alerted to unusual spending or 'Money Leaks'."
     >
-      <div ref={containerRef} className="relative w-full z-10">
+      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
         
-        {/* Parallax Background Gradients */}
-        <div className="pointer-events-none absolute inset-0 overflow-visible flex items-center justify-center -z-10">
-          <motion.div 
-            style={{ y: y1 }}
-            className="absolute left-[0%] top-[30%] h-[35rem] w-[35rem] rounded-full bg-emerald-500/10 blur-[120px] dark:bg-emerald-500/20"
-          />
-          <motion.div 
-            style={{ y: y2 }}
-            className="absolute right-[10%] top-[10%] h-[30rem] w-[30rem] rounded-full bg-blue-500/10 blur-[100px] dark:bg-blue-500/20"
-          />
-        </div>
-
-        <Reveal>
-          <motion.div
-            whileHover={{ y: -4, scale: 1.01 }}
-            className="mb-8 group relative overflow-hidden rounded-3xl p-6 sm:p-8 border border-amber-300/60 bg-amber-50/80 shadow-[0_15px_30px_-10px_rgba(245,158,11,0.15)] backdrop-blur-2xl transition-all dark:border-amber-500/30 dark:bg-amber-900/20"
-          >
-            {/* Warning Pulsing SVG Background */}
-            <div className="absolute inset-0 pointer-events-none opacity-30">
-              <svg viewBox="0 0 800 200" className="w-full h-full object-cover">
-                <motion.rect x="0" y="0" width="800" height="200" fill="url(#warnGrad)" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, repeat: Infinity }} />
-                <motion.path d="M 0 100 Q 100 0 200 100 T 400 100 T 600 100 T 800 100" fill="none" stroke="#F59E0B" strokeWidth="2" opacity="0.5" animate={{ x: [-200, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }} />
-                <defs>
-                  <radialGradient id="warnGrad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(400 100) rotate(90) scale(200)">
-                    <stop stopColor="#F59E0B" stopOpacity="0.2"/><stop offset="1" stopColor="#F59E0B" stopOpacity="0"/>
-                  </radialGradient>
-                </defs>
-              </svg>
-            </div>
-
-            <div className="relative z-10 flex flex-col sm:flex-row items-start gap-5">
-              <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_0_20px_rgba(245,158,11,0.4)]">
-                <AlertTriangle className="h-7 w-7" />
-              </div>
-              <div>
-                <div className="text-xl font-bold text-slate-900 dark:text-amber-400">Money Leak Alert</div>
-                <p className="mt-2 text-[15px] font-medium text-slate-700 leading-relaxed dark:text-slate-300">
-                  {MONEY_LEAK_EXAMPLE}
-                </p>
-                <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/60 px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm border border-amber-200 dark:bg-black/20 dark:text-slate-300 dark:border-amber-500/30">
-                  <Activity className="h-4 w-4 text-orange-500" />
-                  Potential saving ₹3,600/year if you cancel one.
+        {/* Left: Monthly Expenses Mockup */}
+        <Reveal delay={0.1}>
+          <div className="relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-8 sm:p-10 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+            <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle, #3b82f6 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+            
+            <div className="relative z-10">
+              <div className="mb-8 flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">August Expenses</h3>
+                  <div className="text-[13px] font-medium text-slate-500 mt-1 dark:text-slate-400">Total: ₹42,500</div>
+                </div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400">
+                  <LineChart className="h-5 w-5" />
                 </div>
               </div>
+
+              <div className="space-y-5">
+                {EXPENSE_CATEGORIES.map((cat, i) => (
+                  <div key={cat.name}>
+                    <div className="mb-2 flex items-center justify-between text-[13px]">
+                      <span className="font-bold text-slate-700 dark:text-slate-300">{cat.name}</span>
+                      <span className="font-medium text-slate-500 dark:text-slate-400">{cat.amount}</span>
+                    </div>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${cat.pct}%` }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1 + 0.2, duration: 1, ease: "easeOut" }}
+                        className="h-full rounded-full bg-blue-500 dark:bg-blue-500"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex gap-3">
+                <button className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white border border-slate-200 py-3 text-[13px] font-bold text-slate-700 shadow-sm transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
+                  <Search className="h-4 w-4" />
+                  View Details
+                </button>
+                <button className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white border border-slate-200 py-3 text-[13px] font-bold text-slate-700 shadow-sm transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
+                  <FileDown className="h-4 w-4" />
+                  Export PDF
+                </button>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
-          <Reveal delay={0.1}>
-            <motion.div
-              whileHover={{ y: -4, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="glass group relative overflow-hidden rounded-[2.5rem] p-8 sm:p-10 min-h-[480px] border border-white/60 bg-white/40 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] backdrop-blur-2xl dark:border-white/10 dark:bg-white/5"
-            >
-              {/* SVG Vector Background for Charts */}
-              <div className="absolute inset-0 pointer-events-none opacity-20">
-                <svg viewBox="0 0 400 500" className="w-full h-full object-cover">
-                  <motion.path d="M 50 400 L 100 250 L 200 300 L 300 150 L 400 200" fill="none" stroke="url(#chartGrad)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" animate={{ strokeDasharray: ["0 1000", "1000 0"] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
-                  <motion.path d="M 50 400 L 100 250 L 200 300 L 300 150 L 400 200 L 400 500 L 50 500 Z" fill="url(#chartFill)" opacity="0.5" animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
-                  <defs>
-                    <linearGradient id="chartGrad" x1="0" y1="0" x2="400" y2="0">
-                      <stop stopColor="#3B82F6"/><stop offset="1" stopColor="#10B981"/>
-                    </linearGradient>
-                    <linearGradient id="chartFill" x1="200" y1="150" x2="200" y2="500">
-                      <stop stopColor="#3B82F6" stopOpacity="0.5"/><stop offset="1" stopColor="#3B82F6" stopOpacity="0"/>
-                    </linearGradient>
-                  </defs>
-                </svg>
+        {/* Right: Money Leak Alert Mockup */}
+        <Reveal delay={0.2}>
+          <div className="relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-8 sm:p-10 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+            <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle, #ef4444 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+            <div className="absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-rose-500/10 blur-[60px] pointer-events-none dark:bg-rose-600/10" />
+
+            <div className="relative z-10 flex h-full flex-col">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-rose-200 bg-rose-100 px-3 py-1 text-xs font-bold uppercase tracking-widest text-rose-700 w-fit dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-400">
+                <ShieldAlert className="h-4 w-4" />
+                Smart Alerts
               </div>
 
-              <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-                    <TrendingUp className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <div className="text-xl font-bold text-slate-900 dark:text-white">Spending Overview</div>
-                    <div className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                      {PRD_EXAMPLE_DATE} • Last 30 days
+              <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">Money Leak Detected</h3>
+              <p className="text-[14px] leading-relaxed text-slate-600 dark:text-slate-400">
+                LifeWise AI constantly monitors family expenses against historical patterns and alerts caregivers of unusual spikes.
+              </p>
+
+              <div className="mt-auto pt-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="rounded-2xl border border-rose-200 bg-white p-5 shadow-xl dark:border-rose-500/30 dark:bg-slate-900/90 dark:shadow-2xl"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-600 dark:bg-rose-500/20 dark:text-rose-400">
+                      <ShieldAlert className="h-5 w-5" />
                     </div>
-                  </div>
-                </div>
-
-                <div className="mt-10 grid gap-4">
-                  <Bar label="Food" value="₹8,450" pct={62} tone="accent" delay={0.1} />
-                  <Bar label="Bills" value="₹4,200" pct={66} tone="primary" delay={0.2} />
-                  <Bar label="Medical" value="₹2,100" pct={40} tone="accent" delay={0.3} />
-                  <Bar label="Subscriptions" value="₹799" pct={30} tone="primary" delay={0.4} />
-                </div>
-              </div>
-            </motion.div>
-          </Reveal>
-
-          <Reveal delay={0.2}>
-            <motion.div
-              whileHover={{ y: -4, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="glass group relative overflow-hidden rounded-[2.5rem] p-8 sm:p-10 min-h-[480px] border border-white/60 bg-white/40 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] backdrop-blur-2xl flex flex-col dark:border-white/10 dark:bg-white/5"
-            >
-              {/* SVG Vector Background for Pie/Report */}
-              <div className="absolute inset-0 pointer-events-none opacity-20">
-                <svg viewBox="0 0 400 500" className="w-full h-full object-cover">
-                  <motion.circle cx="300" cy="150" r="100" fill="none" stroke="url(#pieGrad1)" strokeWidth="30" strokeDasharray="300 400" animate={{ rotate: 360 }} style={{ transformOrigin: "300px 150px" }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} />
-                  <motion.circle cx="300" cy="150" r="100" fill="none" stroke="url(#pieGrad2)" strokeWidth="30" strokeDasharray="150 400" strokeDashoffset="100" animate={{ rotate: -360 }} style={{ transformOrigin: "300px 150px" }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} />
-                  <defs>
-                    <linearGradient id="pieGrad1" x1="0" y1="0" x2="400" y2="400">
-                      <stop stopColor="#10B981"/><stop offset="1" stopColor="#06B6D4"/>
-                    </linearGradient>
-                    <linearGradient id="pieGrad2" x1="400" y1="0" x2="0" y2="400">
-                      <stop stopColor="#F59E0B"/><stop offset="1" stopColor="#EF4444"/>
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-
-              <div className="relative z-10 flex-1">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-                    <PieChart className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <div className="text-xl font-bold text-slate-900 dark:text-white">Monthly PDF Report</div>
-                    <div className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                      Premium • Auto-generated
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8 grid gap-4">
-                  {[
-                    { t: "Spending by category", d: "Pie chart + month-over-month comparison", icon: PieChart },
-                    { t: "Bills tracker", d: "Paid, upcoming, overdue with full payment history", icon: BarChart3 },
-                    { t: "Health summary", d: "Medicine compliance %, BP/sugar trends, appointments", icon: Activity },
-                    { t: "Family activity", d: "Son marked Papa's medicine as taken at 8:05 PM", icon: TrendingUp }
-                  ].map((x, i) => (
-                    <motion.div
-                      key={x.t}
-                      whileHover={{ scale: 1.02, x: 5 }}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                      className="group/item relative overflow-hidden rounded-2xl border border-white/80 bg-white/70 p-5 shadow-lg backdrop-blur-xl transition-all hover:bg-white hover:shadow-xl dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20"
-                    >
-                      <div className="absolute -left-6 -top-6 h-20 w-20 rounded-full bg-emerald-500/20 blur-[20px] transition-opacity opacity-0 group-hover/item:opacity-100" />
-                      <div className="relative z-10 flex items-start gap-4">
-                        <x.icon className="h-5 w-5 text-teal-600 shrink-0 mt-0.5 dark:text-teal-400" />
-                        <div>
-                          <div className="text-[15px] font-bold text-slate-900 dark:text-white">{x.t}</div>
-                          <div className="mt-1 text-sm font-medium text-slate-600 dark:text-slate-300">
-                            {x.d}
-                          </div>
-                        </div>
+                    <div>
+                      <h4 className="text-[14px] font-bold text-slate-900 dark:text-white">Unusual Pharmacy Bill</h4>
+                      <p className="mt-1 text-xs font-medium leading-relaxed text-slate-600 dark:text-slate-400">
+                        A bill of ₹4,500 was logged for Papa. This is 3x higher than his usual monthly pharmacy expense of ₹1,500.
+                      </p>
+                      <div className="mt-4 flex gap-3">
+                        <button className="rounded-lg bg-rose-600 px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-rose-700">
+                          Review Bill
+                        </button>
+                        <button className="rounded-lg bg-slate-100 px-4 py-2 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
+                          Dismiss
+                        </button>
                       </div>
-                    </motion.div>
-                  ))}
-                </div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
-          </Reveal>
-        </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </SectionShell>
   );

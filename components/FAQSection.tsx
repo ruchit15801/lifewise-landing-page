@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { ChevronDown, MessageCircleQuestion } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, MessageCircleQuestion, ArrowRight } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/components/cn";
@@ -10,14 +10,6 @@ import { FAQ_ITEMS } from "@/lib/faqs";
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [-40, 40]);
 
   return (
     <SectionShell
@@ -26,113 +18,114 @@ export function FAQSection() {
       title="Real Questions About LifeWise, India's Family App"
       subtitle="Answers about Papa medicine reminders, electricity bills, Hindi support, Premium Rs. 199, Family Hub, and how to contact our India support team."
     >
-      <div ref={containerRef} className="relative w-full z-10 mx-auto max-w-4xl">
-        
-        {/* Parallax Background Gradients */}
-        <div className="pointer-events-none absolute inset-0 overflow-visible flex items-center justify-center -z-10">
-          <motion.div 
-            style={{ y: y1 }}
-            className="absolute left-[-20%] top-[10%] h-[35rem] w-[35rem] rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-500/20"
-          />
-          <motion.div 
-            style={{ y: y2 }}
-            className="absolute right-[-20%] top-[40%] h-[30rem] w-[30rem] rounded-full bg-cyan-500/10 blur-[100px] dark:bg-cyan-500/20"
-          />
-        </div>
+      <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-        {/* Global Abstract SVG Background */}
-        <div className="absolute inset-0 pointer-events-none opacity-20 -z-10 flex justify-center items-center">
-          <svg viewBox="0 0 800 600" className="w-[150%] max-w-[1200px] h-auto opacity-50">
-            <motion.path d="M 100 100 Q 400 500 700 100" fill="none" stroke="url(#faqGrad)" strokeWidth="6" strokeLinecap="round" animate={{ d: ["M 100 100 Q 400 500 700 100", "M 100 300 Q 400 100 700 300", "M 100 100 Q 400 500 700 100"] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} />
-            <motion.circle cx="400" cy="300" r="150" fill="url(#faqGlow)" animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 5, repeat: Infinity }} />
-            <defs>
-              <linearGradient id="faqGrad" x1="0" y1="0" x2="800" y2="0">
-                <stop stopColor="#3B82F6"/><stop offset="1" stopColor="#06B6D4"/>
-              </linearGradient>
-              <radialGradient id="faqGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(400 300) rotate(90) scale(150)">
-                <stop stopColor="#3B82F6"/><stop offset="1" stopColor="#3B82F6" stopOpacity="0"/>
-              </radialGradient>
-            </defs>
-          </svg>
-        </div>
+        {/* Left: Visual sticky card */}
+        <Reveal className="lg:col-span-1">
+          <div className="lg:sticky lg:top-24 rounded-2xl border border-slate-200 bg-slate-50 p-8 overflow-hidden transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+            {/* Dot grid */}
+            <div
+              className="absolute inset-0 opacity-[0.03] dark:opacity-[0.08] pointer-events-none"
+              style={{ backgroundImage: "radial-gradient(circle, #3b82f6 1px, transparent 1px)", backgroundSize: "22px 22px" }}
+            />
+            {/* Glow */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-40 w-40 rounded-full bg-blue-500/10 blur-[50px] pointer-events-none dark:bg-blue-600/20" />
 
-        <Reveal>
-          <motion.div
-            whileHover={{ y: -4, scale: 1.01 }}
-            className="mb-10 group relative overflow-hidden rounded-3xl p-6 sm:p-8 border border-white/60 bg-white/40 shadow-[0_15px_30px_-10px_rgba(0,0,0,0.05)] backdrop-blur-2xl transition-all hover:bg-white/60 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
-          >
-            <div className="absolute -left-10 -top-10 h-32 w-32 rounded-full bg-blue-500/20 blur-[30px] transition-opacity opacity-0 group-hover:opacity-100" />
-            <div className="relative z-10 flex flex-col sm:flex-row items-start gap-5">
-              <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/30">
-                <MessageCircleQuestion className="h-7 w-7" />
+            <div className="relative z-10">
+              <div className="h-12 w-12 rounded-xl bg-blue-100 border border-blue-200 grid place-items-center mb-5 dark:bg-blue-500/20 dark:border-blue-500/30">
+                <MessageCircleQuestion className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <p
-                id="lifewise-definition"
-                className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300 font-medium"
-              >
-                <strong className="text-slate-900 dark:text-white text-lg block mb-1">LifeWise</strong>
-                is the official <strong className="text-blue-600 dark:text-blue-400">Family Operating System</strong> mobile app at{" "}
-                <strong className="text-blue-600 dark:text-blue-400">lifewiseee.com</strong>, built for Indian families to manage
-                medicine reminders, electricity bills, doctor appointments, insurance,
-                documents, and daily routines for every family member in one beautiful app.
+
+              <h3 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Got questions?</h3>
+              <p className="mt-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Most answers are right here. If not, our India support team is ready in English & Hindi.
               </p>
+
+              <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800/60 space-y-4">
+                {[
+                  { q: `${FAQ_ITEMS.length}+`, label: "FAQs answered" },
+                  { q: "24h", label: "Reply time (IST)" },
+                  { q: "🇮🇳", label: "India-first product" },
+                ].map((s) => (
+                  <div key={s.label} className="flex items-center gap-3">
+                    <div className="text-lg font-black text-slate-900 dark:text-white w-12 shrink-0">{s.q}</div>
+                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">{s.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="/support"
+                className="mt-8 flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+              >
+                Contact Support
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
-          </motion.div>
+          </div>
         </Reveal>
 
-        <div className="space-y-4">
-          {FAQ_ITEMS.map((item, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <Reveal key={item.question} delay={index * 0.05}>
-                <motion.article 
-                  whileHover={{ scale: 1.01, x: 5 }}
-                  className={cn(
-                    "glass overflow-hidden rounded-2xl border transition-all duration-300",
-                    isOpen 
-                      ? "border-blue-300/60 bg-white/70 shadow-lg dark:border-blue-500/30 dark:bg-blue-900/10" 
-                      : "border-white/60 bg-white/40 shadow-sm hover:shadow-md hover:bg-white/50 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
-                  )}
+        {/* Right: Accordion list */}
+        <Reveal delay={0.08} className="lg:col-span-2">
+          <div className="space-y-2">
+            {FAQ_ITEMS.map((faq, i) => (
+              <motion.div
+                key={faq.question}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.04, type: "spring", stiffness: 300, damping: 25 }}
+                className={cn(
+                  "rounded-2xl border overflow-hidden transition-all",
+                  openIndex === i
+                    ? "border-blue-200 bg-blue-50 dark:border-blue-500/30 dark:bg-blue-950/30"
+                    : "border-slate-200 bg-white dark:border-slate-800/60 dark:bg-slate-950"
+                )}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
                 >
-                  <button
-                    type="button"
-                    className="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6 focus:outline-none"
-                    aria-expanded={isOpen}
-                    onClick={() => setOpenIndex(isOpen ? null : index)}
-                  >
-                    <h3 className={cn("text-[17px] font-bold tracking-tight transition-colors", isOpen ? "text-blue-700 dark:text-blue-400" : "text-slate-900 dark:text-white")}>
-                      {item.question}
-                    </h3>
-                    <div className={cn("grid h-8 w-8 shrink-0 place-items-center rounded-full transition-all duration-300", isOpen ? "bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400" : "bg-slate-100 text-slate-500 dark:bg-white/10 dark:text-slate-400")}>
-                      <ChevronDown
-                        className={cn(
-                          "h-5 w-5 transition-transform duration-300",
-                          isOpen && "rotate-180"
-                        )}
-                        aria-hidden
-                      />
-                    </div>
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <p className="faq-answer px-5 pb-6 pt-0 text-[15px] font-medium leading-relaxed text-slate-700 dark:px-6 dark:text-slate-300">
-                          {item.answer}
-                        </p>
-                      </motion.div>
+                  <span className={cn(
+                    "text-[15px] font-bold leading-snug transition-colors",
+                    openIndex === i ? "text-blue-700 dark:text-blue-300" : "text-slate-900 dark:text-white"
+                  )}>
+                    {faq.question}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: openIndex === i ? 180 : 0 }}
+                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    className={cn(
+                      "h-7 w-7 rounded-full flex-shrink-0 grid place-items-center border transition-colors",
+                      openIndex === i
+                        ? "border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-500/30 dark:bg-blue-500/20 dark:text-blue-400"
+                        : "border-slate-200 bg-slate-100 text-slate-500 dark:border-slate-700 dark:bg-slate-800"
                     )}
-                  </AnimatePresence>
-                </motion.article>
-              </Reveal>
-            );
-          })}
-        </div>
+                  >
+                    <ChevronDown className="h-4 w-4" />
+                  </motion.div>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {openIndex === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6 text-[14px] leading-relaxed text-slate-600 dark:text-slate-300 border-t border-blue-200 dark:border-blue-500/10 pt-4">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </SectionShell>
   );

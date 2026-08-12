@@ -1,173 +1,145 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Bell, HeartPulse, Landmark, Users, Settings } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Volume2, ScanFace, Languages, Fingerprint, HeartPulse, Accessibility } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/components/cn";
-
-const blocks = [
-  { icon: Landmark, t: "Money", color: "from-emerald-400 to-teal-500", shadow: "shadow-emerald-500/30" },
-  { icon: HeartPulse, t: "Health", color: "from-rose-400 to-pink-500", shadow: "shadow-pink-500/30" },
-  { icon: Users, t: "Family", color: "from-blue-500 to-indigo-500", shadow: "shadow-blue-500/30" },
-  { icon: Bell, t: "Reminders", color: "from-amber-400 to-orange-500", shadow: "shadow-orange-500/30" }
-];
+import { SENIOR_FEATURES } from "@/lib/landing-data";
 
 export function SeniorMode() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [-40, 40]);
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <SectionShell
-      id="senior"
-      eyebrow="For Everyone"
-      title="Designed for Seniors Too"
-      subtitle="Senior members (55+) can view their reminders and health status with a calm, readable interface: large tap targets, high contrast, and clear confirmations."
+      id="senior-mode"
+      eyebrow="Accessibility"
+      title="Built for Seniors."
+      subtitle="No complex menus, no tiny text. LifeWise adapts to the elderly, making it the easiest app they'll ever use."
     >
-      <div ref={containerRef} className="relative w-full z-10 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
-        
-        {/* Parallax Background Gradients */}
-        <div className="pointer-events-none absolute inset-0 overflow-visible flex items-center justify-center -z-10">
-          <motion.div 
-            style={{ y: y1 }}
-            className="absolute left-[-10%] top-[10%] h-[35rem] w-[35rem] rounded-full bg-teal-500/10 blur-[120px] dark:bg-teal-500/20"
-          />
-          <motion.div 
-            style={{ y: y2 }}
-            className="absolute right-[-10%] top-[40%] h-[25rem] w-[25rem] rounded-full bg-rose-500/10 blur-[100px] dark:bg-rose-500/20"
-          />
-        </div>
-
-        <Reveal>
-          <motion.div
-            whileHover={{ y: -4, scale: 1.01 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="glass group relative overflow-hidden rounded-[2.5rem] p-8 sm:p-10 min-h-[480px] border border-white/60 bg-white/40 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] backdrop-blur-2xl flex flex-col dark:border-white/10 dark:bg-white/5"
-          >
-            {/* SVG Vector Background for Seniors Experience */}
-            <div className="absolute inset-0 pointer-events-none opacity-20">
-              <svg viewBox="0 0 400 600" className="w-full h-full object-cover">
-                <motion.circle cx="200" cy="200" r="150" fill="none" stroke="url(#seniorGrad)" strokeWidth="4" strokeDasharray="20 20" animate={{ rotate: 360 }} style={{ transformOrigin: "200px 200px" }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }} />
-                <motion.circle cx="200" cy="200" r="100" fill="url(#seniorFill)" opacity="0.5" animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 4, repeat: Infinity }} />
-                <defs>
-                  <linearGradient id="seniorGrad" x1="0" y1="0" x2="400" y2="400">
-                    <stop stopColor="#14B8A6"/><stop offset="1" stopColor="#3B82F6"/>
-                  </linearGradient>
-                  <radialGradient id="seniorFill" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200 200) rotate(90) scale(100)">
-                    <stop stopColor="#14B8A6"/><stop offset="1" stopColor="#14B8A6" stopOpacity="0"/>
-                  </radialGradient>
-                </defs>
-              </svg>
+      <div className="mt-12 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          
+          {/* Left: Feature Tabs */}
+          <div className="flex flex-col p-8 sm:p-12 lg:p-14 border-b border-slate-200 lg:border-b-0 lg:border-r dark:border-slate-800/60">
+            <div className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-orange-700 w-fit mb-8 dark:border-orange-500/30 dark:bg-orange-500/10 dark:text-orange-400">
+              <Accessibility className="h-4 w-4" />
+              Senior Mode
             </div>
 
-            <div className="relative z-10 flex-1">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 text-white shadow-[0_0_20px_rgba(20,184,166,0.3)]">
-                  <Users className="h-6 w-6" />
-                </div>
-                <div className="text-xl font-bold text-slate-900 dark:text-white">Senior Member Experience</div>
-              </div>
-              <p className="mt-2 text-sm font-medium text-slate-600 dark:text-slate-300">
-                Parents use the app lightly: view reminders, mark medicines taken, and see health status.
-                Adult children manage the full setup via Family Hub.
-              </p>
+            <h3 className="mb-8 text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.2]">
+              Familiar interfaces.
+              <br />
+              <span className="text-orange-600 dark:text-orange-400">Zero learning curve.</span>
+            </h3>
 
-              <div className="mt-8 grid grid-cols-2 gap-4">
-                {blocks.map((b, i) => {
-                  const Icon = b.icon;
-                  return (
-                    <motion.div
-                      key={b.t}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                      whileHover={{ scale: 1.05, y: -4 }}
-                      className="group/btn relative overflow-hidden rounded-2xl border border-white/80 bg-white/70 p-5 text-center shadow-md backdrop-blur-xl transition-all hover:bg-white hover:shadow-xl dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20"
-                    >
-                      <div className="absolute inset-0 bg-white/40 opacity-0 group-hover/btn:opacity-100 transition-opacity dark:bg-white/5" />
-                      <div className="relative z-10 flex flex-col items-center">
-                        <div className={cn("grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br text-white shadow-lg mb-3", b.color, b.shadow)}>
-                          <Icon className="h-7 w-7" />
-                        </div>
-                        <div className="text-[15px] font-bold text-slate-900 dark:text-white">{b.t}</div>
-                        <div className="mt-1.5 inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:bg-white/10 dark:text-slate-300">
-                          Large tap target
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-          </motion.div>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <motion.div
-            whileHover={{ y: -4, scale: 1.01 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="glass group relative overflow-hidden rounded-[2.5rem] p-8 sm:p-10 min-h-[480px] border border-white/60 bg-white/40 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] backdrop-blur-2xl flex flex-col dark:border-white/10 dark:bg-white/5"
-          >
-            {/* SVG Vector Background for Settings */}
-            <div className="absolute inset-0 pointer-events-none opacity-20">
-              <svg viewBox="0 0 400 600" className="w-full h-full object-cover">
-                <motion.path d="M 50 100 L 350 100 M 50 250 L 350 250 M 50 400 L 350 400" stroke="url(#settingsGrad)" strokeWidth="6" strokeLinecap="round" strokeDasharray="10 20" animate={{ strokeDashoffset: [0, -100] }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }} />
-                <motion.rect x="150" y="80" width="100" height="40" rx="20" fill="#8B5CF6" opacity="0.3" animate={{ x: [-20, 20] }} transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }} />
-                <defs>
-                  <linearGradient id="settingsGrad" x1="0" y1="0" x2="400" y2="0">
-                    <stop stopColor="#8B5CF6"/><stop offset="1" stopColor="#EC4899"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-
-            <div className="relative z-10 flex-1">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 text-white shadow-[0_0_20px_rgba(168,85,247,0.3)]">
-                  <Settings className="h-6 w-6" />
-                </div>
-                <div className="text-xl font-bold text-slate-900 dark:text-white">App Settings from PRD</div>
-              </div>
-              <p className="mt-2 text-sm font-medium text-slate-600 dark:text-slate-300">
-                Essential configurations ensuring accessibility and safety for all users.
-              </p>
-
-              <div className="mt-8 grid gap-4">
-                {[
-                  { t: "Languages", d: "English, Hindi, Gujarati, Marathi, Tamil, Telugu, Bengali", color: "from-purple-500/20 to-pink-500/20" },
-                  { t: "Biometric lock", d: "Touch ID / Face ID for secure access", color: "from-blue-500/20 to-cyan-500/20" },
-                  { t: "Emergency SOS", d: "Shake phone 3× or long-press for SMS + call to emergency contacts with location", color: "from-rose-500/20 to-red-500/20" }
-                ].map((x, i) => (
-                  <motion.div
-                    key={x.t}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.15, type: "spring", stiffness: 300 }}
-                    whileHover={{ scale: 1.02, x: -5 }}
-                    className="group/item relative overflow-hidden rounded-2xl border border-white/80 bg-white/70 p-5 shadow-md backdrop-blur-xl transition-all hover:bg-white hover:shadow-xl dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20"
+            <div className="flex flex-col gap-3">
+              {SENIOR_FEATURES.map((feature, i) => {
+                const isActive = activeTab === i;
+                return (
+                  <button
+                    key={feature.title}
+                    onClick={() => setActiveTab(i)}
+                    className={cn(
+                      "flex items-start gap-4 rounded-2xl p-4 text-left transition-all",
+                      isActive 
+                        ? "bg-white shadow-md border border-slate-200 dark:bg-slate-900/80 dark:border-slate-700/60 dark:shadow-xl" 
+                        : "hover:bg-slate-100 border border-transparent dark:hover:bg-slate-900/40"
+                    )}
                   >
-                    <div className={cn("absolute -left-10 -top-10 h-24 w-24 rounded-full blur-[20px] transition-opacity opacity-0 group-hover/item:opacity-100 bg-gradient-to-br", x.color)} />
-                    <div className="relative z-10">
-                      <div className="text-[15px] font-bold text-slate-900 dark:text-white">{x.t}</div>
-                      <div className="mt-1.5 text-xs font-medium text-slate-600 leading-relaxed dark:text-slate-300">
-                        {x.d}
+                    <div className={cn(
+                      "shrink-0 grid h-12 w-12 place-items-center rounded-xl transition-colors",
+                      isActive 
+                        ? "bg-orange-100 text-orange-600 dark:bg-orange-500/20 dark:text-orange-400" 
+                        : "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
+                    )}>
+                      <feature.icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h4 className={cn(
+                        "text-[15px] font-bold mb-1 transition-colors",
+                        isActive ? "text-slate-900 dark:text-white" : "text-slate-600 dark:text-slate-400"
+                      )}>{feature.title}</h4>
+                      <p className={cn(
+                        "text-sm font-medium leading-relaxed transition-colors",
+                        isActive ? "text-slate-600 dark:text-slate-300" : "text-slate-500 dark:text-slate-500"
+                      )}>{feature.desc}</p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right: Phone Mockup showcasing the active feature */}
+          <div className="relative flex items-center justify-center p-8 lg:p-14 min-h-[500px]">
+            {/* Background Glow based on active tab */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-orange-500/10 blur-[100px] pointer-events-none dark:bg-orange-500/15 transition-all duration-700" />
+            
+            <div className="relative mx-auto w-full max-w-[280px] aspect-[9/19] rounded-[3rem] border-[8px] border-slate-200 bg-white shadow-2xl overflow-hidden dark:border-slate-800 dark:bg-slate-950">
+              {/* Dynamic UI based on active tab */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0 flex flex-col pt-12 p-6"
+                >
+                  {activeTab === 0 && (
+                    <div className="flex flex-col items-center justify-center h-full text-center space-y-8">
+                      <motion.div 
+                        animate={{ scale: [1, 1.2, 1] }} 
+                        transition={{ repeat: Infinity, duration: 2 }}
+                        className="h-24 w-24 rounded-full bg-orange-100 text-orange-600 grid place-items-center dark:bg-orange-500/20 dark:text-orange-400"
+                      >
+                        <Volume2 className="h-10 w-10" />
+                      </motion.div>
+                      <div>
+                        <div className="text-2xl font-black text-slate-900 dark:text-white mb-2">Papa, it's 8 PM.</div>
+                        <div className="text-lg font-bold text-slate-600 dark:text-slate-400">Time for Amlodipine.</div>
+                      </div>
+                      <div className="w-full space-y-3 mt-auto">
+                        <div className="w-full rounded-2xl bg-emerald-500 py-4 text-center text-lg font-bold text-white shadow-lg">I took it</div>
+                        <div className="w-full rounded-2xl bg-slate-100 py-4 text-center text-lg font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-300">Snooze</div>
                       </div>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
+                  )}
+
+                  {activeTab === 1 && (
+                    <div className="flex flex-col items-center justify-center h-full text-center space-y-8">
+                      <div className="relative">
+                        <ScanFace className="h-24 w-24 text-slate-300 dark:text-slate-600" />
+                        <motion.div 
+                          animate={{ top: ["0%", "100%", "0%"] }} 
+                          transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                          className="absolute left-0 w-full h-1 bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.8)]" 
+                        />
+                      </div>
+                      <div>
+                        <div className="text-xl font-bold text-slate-900 dark:text-white">Face ID</div>
+                        <div className="text-sm font-medium text-slate-500 mt-2 dark:text-slate-400">Logging you securely without passwords.</div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === 2 && (
+                    <div className="flex flex-col items-center justify-center h-full text-center">
+                      <Languages className="h-16 w-16 text-orange-500 mb-8" />
+                      <div className="w-full space-y-4">
+                        <div className="w-full rounded-2xl border-2 border-orange-500 bg-orange-50 py-5 text-xl font-bold text-orange-700 dark:bg-orange-500/20 dark:text-orange-400">हिन्दी</div>
+                        <div className="w-full rounded-2xl border-2 border-slate-200 bg-slate-50 py-5 text-xl font-bold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">English</div>
+                        <div className="w-full rounded-2xl border-2 border-slate-200 bg-slate-50 py-5 text-xl font-bold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">मराठी</div>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
             </div>
-          </motion.div>
-        </Reveal>
+          </div>
+        </div>
       </div>
     </SectionShell>
   );

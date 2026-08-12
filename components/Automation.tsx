@@ -2,124 +2,131 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Bell, RefreshCw, Shield, Zap } from "lucide-react";
+import { Cpu, Zap, Share2, Workflow, ArrowRight } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/components/cn";
 
-const items = [
-  {
-    icon: Bell,
-    t: "Firebase FCM notifications",
-    d: "Push to member + caregivers with Mark Done, Snooze, Skip action buttons.",
-    color: "from-amber-400 to-orange-500",
-    shadow: "shadow-orange-500/30",
-    glow: "bg-orange-500/20"
-  },
-  {
-    icon: RefreshCw,
-    t: "Real-time WebSocket sync",
-    d: "Socket.io rooms per family for instant sync when any caregiver takes action.",
-    color: "from-blue-500 to-cyan-500",
-    shadow: "shadow-cyan-500/30",
-    glow: "bg-cyan-500/20"
-  },
-  {
-    icon: Shield,
-    t: "Caregiver permissions",
-    d: "View Only / Can Edit / Full Access to control who manages which member.",
-    color: "from-indigo-500 to-purple-600",
-    shadow: "shadow-purple-500/30",
-    glow: "bg-purple-500/20"
-  },
-  {
-    icon: Zap,
-    t: "Offline queue",
-    d: "View reminders offline, queue actions, sync on reconnection.",
-    color: "from-emerald-400 to-teal-500",
-    shadow: "shadow-emerald-500/30",
-    glow: "bg-emerald-500/20"
-  }
-];
-
 export function Automation() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [-80, 80]);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
     <SectionShell
       id="automation"
-      eyebrow="Real-Time Sync"
-      title="Notifications & Sync That Just Work"
-      subtitle="Firebase FCM for push, Socket.io for live caregiver sync, and smart escalation when reminders are missed."
+      eyebrow="Smart Automation"
+      title="Workflows That Save Time"
+      subtitle="LifeWise isn't just a list. It actively detects bills, categorizes expenses, and routes missed reminders to the right caregiver."
     >
-      <div ref={containerRef} className="relative w-full z-10">
+      <div ref={containerRef} className="relative space-y-6">
         
-        {/* Parallax Background Gradients */}
-        <div className="pointer-events-none absolute inset-0 overflow-visible flex items-center justify-center -z-10">
-          <motion.div 
-            style={{ y: y1 }}
-            className="absolute left-[5%] top-[10%] h-[35rem] w-[35rem] rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-500/20"
-          />
-          <motion.div 
-            style={{ y: y2 }}
-            className="absolute right-[5%] top-[40%] h-[30rem] w-[30rem] rounded-full bg-purple-500/10 blur-[100px] dark:bg-purple-500/20"
-          />
-        </div>
+        {/* Main Automation Panel */}
+        <Reveal>
+          <div className="relative overflow-hidden rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-12 lg:p-14 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+            {/* Dot grid */}
+            <div
+              className="absolute inset-0 opacity-[0.03] dark:opacity-[0.06]"
+              style={{ backgroundImage: "radial-gradient(circle, #0ea5e9 1px, transparent 1px)", backgroundSize: "32px 32px" }}
+            />
+            {/* Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[100px] pointer-events-none dark:bg-cyan-600/10" />
 
-        {/* Global Network SVG Background */}
-        <div className="absolute inset-0 pointer-events-none opacity-20 -z-10 flex justify-center items-center">
-          <svg viewBox="0 0 800 600" className="w-[150%] max-w-[1200px] h-auto opacity-50">
-            <motion.path d="M 400 300 L 200 150 M 400 300 L 600 150 M 400 300 L 200 450 M 400 300 L 600 450" stroke="url(#netGrad)" strokeWidth="4" strokeDasharray="10 10" animate={{ strokeDashoffset: [0, -100] }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }} />
-            <motion.circle cx="400" cy="300" r="40" fill="url(#netGlow)" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, repeat: Infinity }} />
-            <motion.circle cx="200" cy="150" r="20" fill="#3B82F6" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} />
-            <motion.circle cx="600" cy="150" r="20" fill="#10B981" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2.5, repeat: Infinity, delay: 1 }} />
-            <motion.circle cx="200" cy="450" r="20" fill="#F59E0B" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2.2, repeat: Infinity, delay: 0.8 }} />
-            <motion.circle cx="600" cy="450" r="20" fill="#8B5CF6" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2.8, repeat: Infinity, delay: 1.2 }} />
-            <defs>
-              <linearGradient id="netGrad" x1="0" y1="0" x2="800" y2="600">
-                <stop stopColor="#3B82F6"/><stop offset="0.5" stopColor="#8B5CF6"/><stop offset="1" stopColor="#10B981"/>
-              </linearGradient>
-              <radialGradient id="netGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(400 300) rotate(90) scale(40)">
-                <stop stopColor="#8B5CF6"/><stop offset="1" stopColor="#8B5CF6" stopOpacity="0"/>
-              </radialGradient>
-            </defs>
-          </svg>
-        </div>
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[400px]">
+              
+              {/* Left: Diagram Mockup */}
+              <div className="flex items-center justify-center lg:justify-start">
+                <motion.div style={{ y }} className="w-full max-w-sm">
+                  <div className="relative p-6 rounded-3xl border border-slate-200 bg-white/80 shadow-2xl backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-900/60">
+                    
+                    {/* Flow diagram */}
+                    <div className="space-y-4">
+                      {/* Step 1 */}
+                      <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 relative z-10 dark:border-slate-700/50 dark:bg-slate-800/80">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="h-6 w-6 rounded border border-rose-200 bg-rose-100 text-rose-600 grid place-items-center dark:border-rose-500/30 dark:bg-rose-500/20 dark:text-rose-400">1</div>
+                          <span className="text-[13px] font-bold text-slate-900 dark:text-white">Reminder Missed</span>
+                        </div>
+                        <div className="text-[11px] text-slate-500 pl-9 dark:text-slate-400">Papa&apos;s BP Medicine (8:00 PM)</div>
+                      </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8 mt-10">
-          {items.map((x, i) => {
-            const Icon = x.icon;
-            return (
-              <Reveal key={x.t} delay={i * 0.1}>
-                <motion.div
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="glass group p-8 sm:p-10 relative overflow-hidden rounded-[2.5rem] border border-white/60 bg-white/40 shadow-[0_15px_30px_-10px_rgba(0,0,0,0.05)] backdrop-blur-2xl transition-all hover:bg-white/60 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
-                >
-                  <div className={cn("absolute -right-10 -top-10 h-40 w-40 rounded-full blur-[40px] transition-opacity duration-700 opacity-0 group-hover:opacity-100", x.glow)} />
-                  <div className="relative z-10 flex flex-col sm:flex-row items-start gap-6">
-                    <div className={cn("grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br text-white shadow-xl transition-transform group-hover:scale-110", x.color, x.shadow)}>
-                      <Icon className="h-8 w-8" />
-                    </div>
-                    <div>
-                      <div className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">{x.t}</div>
-                      <div className="mt-3 text-[15px] font-medium text-slate-600 dark:text-slate-300 leading-relaxed">
-                        {x.d}
+                      {/* Connecting Line */}
+                      <div className="h-6 border-l-2 border-dashed border-cyan-300 ml-7 relative -my-2 dark:border-cyan-500/40" />
+
+                      {/* Step 2 */}
+                      <div className="rounded-xl border border-cyan-200 bg-cyan-50 p-4 relative z-10 ring-1 ring-cyan-500/20 dark:border-cyan-800/50 dark:bg-cyan-950/40">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="h-6 w-6 rounded bg-cyan-100 text-cyan-600 grid place-items-center shadow-sm dark:bg-cyan-500/20 dark:text-cyan-400 dark:shadow-[0_0_10px_rgba(6,182,212,0.3)]">
+                            <Workflow className="h-3 w-3" />
+                          </div>
+                          <span className="text-[13px] font-bold text-cyan-700 dark:text-cyan-300">Wait 30 Minutes</span>
+                        </div>
+                        <div className="h-1 w-full bg-cyan-200 rounded-full mt-3 overflow-hidden dark:bg-cyan-900">
+                          <motion.div className="h-full bg-cyan-500 rounded-full dark:bg-cyan-400" initial={{ width: "0%" }} whileInView={{ width: "100%" }} transition={{ duration: 2, ease: "linear", repeat: Infinity }} />
+                        </div>
+                      </div>
+
+                      {/* Connecting Line splits */}
+                      <div className="flex -my-2">
+                        <div className="w-7 border-t-2 border-dashed border-cyan-300 mt-3 relative left-7 dark:border-cyan-500/40" />
+                        <div className="w-14 border-t-2 border-dashed border-cyan-300 mt-3 relative ml-auto right-7 dark:border-cyan-500/40" />
+                        <div className="h-6 border-l-2 border-dashed border-cyan-300 ml-7 absolute dark:border-cyan-500/40" />
+                      </div>
+
+                      {/* Step 3 */}
+                      <div className="grid grid-cols-2 gap-3 relative z-10 pt-2">
+                        <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 flex items-center gap-2 dark:border-slate-700/50 dark:bg-slate-800/80">
+                          <div className="h-5 w-5 rounded-full bg-blue-100 grid place-items-center text-[10px] font-bold text-blue-600 dark:bg-blue-500/20 dark:text-blue-400">R</div>
+                          <span className="text-[11px] font-medium text-slate-700 dark:text-slate-300">Alert Rahul</span>
+                        </div>
+                        <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 flex items-center gap-2 dark:border-slate-700/50 dark:bg-slate-800/80">
+                          <div className="h-5 w-5 rounded-full bg-emerald-100 grid place-items-center text-[10px] font-bold text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400">M</div>
+                          <span className="text-[11px] font-medium text-slate-700 dark:text-slate-300">Alert Mummy</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </motion.div>
-              </Reveal>
-            );
-          })}
-        </div>
+              </div>
+
+              {/* Right: Text */}
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-cyan-700 mb-8 dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-cyan-400">
+                  <Cpu className="h-4 w-4" />
+                  Background Tasks
+                </div>
+
+                <h3 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+                  It works while
+                  <br />
+                  <span className="text-cyan-600 dark:text-cyan-400">you sleep.</span>
+                </h3>
+
+                <p className="mt-6 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 max-w-sm mb-8">
+                  Set it and forget it. LifeWise automatically escalates missed tasks to caregivers, detects bills from SMS, and auto-categorizes expenses.
+                </p>
+
+                <div className="grid gap-4">
+                  {[
+                    { icon: Share2, t: "Smart Escalation", d: "Alerts caregivers if a critical medicine is missed by 30 mins." },
+                    { icon: Zap, t: "Auto Bill Detection", d: "Opt-in SMS scanning finds upcoming bills and adds them to Hub." }
+                  ].map((x, i) => (
+                    <div key={i} className="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 bg-slate-50 dark:border-slate-800/80 dark:bg-slate-900/50">
+                      <div className="shrink-0 h-10 w-10 rounded-xl border border-slate-200 bg-white grid place-items-center text-cyan-600 dark:border-slate-700 dark:bg-slate-800 dark:text-cyan-400">
+                        <x.icon className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <div className="text-[14px] font-bold text-slate-900 dark:text-white mb-1">{x.t}</div>
+                        <div className="text-xs text-slate-600 leading-relaxed font-medium dark:text-slate-400">{x.d}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </Reveal>
       </div>
     </SectionShell>
   );
