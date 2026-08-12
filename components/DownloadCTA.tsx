@@ -42,7 +42,7 @@ export function DownloadCTA() {
                 <div className="mt-5 flex flex-col gap-2 border-t border-white/15 pt-5 sm:flex-row">
                   <a
                     href={`mailto:${SUPPORT_EMAIL}?subject=Notify%20me%20when%20LifeWise%20launches`}
-                    className="inline-flex flex-1 items-center justify-center rounded-full border border-white/25 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
+                    className="inline-flex flex-1 items-center justify-center rounded-full border border-white/30 bg-white/20 hover:bg-white/30 px-4 py-2.5 text-sm font-bold text-white transition-colors"
                   >
                     Email notify me
                   </a>

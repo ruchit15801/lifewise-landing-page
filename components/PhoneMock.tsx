@@ -46,6 +46,44 @@ const TABS: { id: TabId; label: string; icon: any }[] = [
   { id: "profile", label: "Profile", icon: User }
 ];
 
+const TAB_WIDGETS: Record<TabId, any[]> = {
+  home: [
+    { id: "h1", posClasses: "right-[100%] mr-3 top-20", delay: 0.1, yAnim: [0, -6, 0], title: "WiseAI Status", subtitle: "Monitoring Bills", icon: Sparkles, colorClass: "bg-amber-50 text-amber-500 border-amber-100", arrow: "left" },
+    { id: "h2", posClasses: "right-[100%] mr-3 bottom-36", delay: 0.3, yAnim: [0, 6, 0], title: "Health Sync", subtitle: "Dad's BP Normal", icon: Heart, colorClass: "bg-emerald-50 text-emerald-500 border-emerald-100", arrow: "left" },
+    { id: "h3", posClasses: "left-[100%] ml-3 top-36", delay: 0.2, yAnim: [0, -8, 0], title: "Score Updated", subtitle: "LifeScore: 52/100", icon: LineChart, colorClass: "bg-indigo-50 text-indigo-500 border-indigo-100", arrow: "right" },
+    { id: "h4", posClasses: "left-[100%] ml-3 top-64", delay: 0.15, yAnim: [0, -5, 0], title: "Active Tab", subtitle: "Home Modules", icon: Activity, colorClass: "bg-white text-indigo-600 border-indigo-100", wrapperClass: "border-indigo-200/80 bg-indigo-50/95 shadow-[0_8px_30px_rgb(79,70,229,0.25)]", arrow: "right", isDynamic: true },
+    { id: "h5", posClasses: "left-[100%] ml-3 bottom-48", delay: 0.4, yAnim: [0, 8, 0], title: "Security", subtitle: "Fully Protected", icon: ShieldCheck, colorClass: "bg-blue-50 text-blue-500 border-blue-100", arrow: "right" },
+  ],
+  family: [
+    { id: "f1", posClasses: "right-[100%] mr-3 top-20", delay: 0.1, yAnim: [0, -6, 0], title: "Member Sync", subtitle: "All Phones Linked", icon: Users, colorClass: "bg-emerald-50 text-emerald-500 border-emerald-100", arrow: "left" },
+    { id: "f2", posClasses: "right-[100%] mr-3 bottom-36", delay: 0.3, yAnim: [0, 6, 0], title: "Papa's Meds", subtitle: "Taken at 9:00 AM", icon: CheckCircle2, colorClass: "bg-blue-50 text-blue-500 border-blue-100", arrow: "left" },
+    { id: "f3", posClasses: "left-[100%] ml-3 top-36", delay: 0.2, yAnim: [0, -8, 0], title: "Family Data", subtitle: "E2E Encrypted", icon: Shield, colorClass: "bg-indigo-50 text-indigo-500 border-indigo-100", arrow: "right" },
+    { id: "f4", posClasses: "left-[100%] ml-3 top-64", delay: 0.15, yAnim: [0, -5, 0], title: "Active Tab", subtitle: "Family Profiles", icon: Heart, colorClass: "bg-white text-indigo-600 border-indigo-100", wrapperClass: "border-indigo-200/80 bg-indigo-50/95 shadow-[0_8px_30px_rgb(79,70,229,0.25)]", arrow: "right", isDynamic: true },
+    { id: "f5", posClasses: "left-[100%] ml-3 bottom-48", delay: 0.4, yAnim: [0, 8, 0], title: "Location", subtitle: "Mummy at Home", icon: Home, colorClass: "bg-amber-50 text-amber-500 border-amber-100", arrow: "right" },
+  ],
+  reminders: [
+    { id: "r1", posClasses: "right-[100%] mr-3 top-20", delay: 0.1, yAnim: [0, -6, 0], title: "Voice Alert", subtitle: "Hindi/English Audio", icon: Mic, colorClass: "bg-indigo-50 text-indigo-500 border-indigo-100", arrow: "left" },
+    { id: "r2", posClasses: "right-[100%] mr-3 bottom-36", delay: 0.3, yAnim: [0, 6, 0], title: "Auto-repeat", subtitle: "Daily schedule set", icon: Clock, colorClass: "bg-emerald-50 text-emerald-500 border-emerald-100", arrow: "left" },
+    { id: "r3", posClasses: "left-[100%] ml-3 top-36", delay: 0.2, yAnim: [0, -8, 0], title: "Missed Dose", subtitle: "Escalation active", icon: Bell, colorClass: "bg-rose-50 text-rose-500 border-rose-100", arrow: "right" },
+    { id: "r4", posClasses: "left-[100%] ml-3 top-64", delay: 0.15, yAnim: [0, -5, 0], title: "Active Tab", subtitle: "Smart Reminders", icon: Bell, colorClass: "bg-white text-indigo-600 border-indigo-100", wrapperClass: "border-indigo-200/80 bg-indigo-50/95 shadow-[0_8px_30px_rgb(79,70,229,0.25)]", arrow: "right", isDynamic: true },
+    { id: "r5", posClasses: "left-[100%] ml-3 bottom-48", delay: 0.4, yAnim: [0, 8, 0], title: "WhatsApp Sync", subtitle: "Alerts enabled", icon: MessageSquare, colorClass: "bg-emerald-50 text-emerald-500 border-emerald-100", arrow: "right" },
+  ],
+  reports: [
+    { id: "p1", posClasses: "right-[100%] mr-3 top-20", delay: 0.1, yAnim: [0, -6, 0], title: "Health Trend", subtitle: "BP improved 12%", icon: LineChart, colorClass: "bg-emerald-50 text-emerald-500 border-emerald-100", arrow: "left" },
+    { id: "p2", posClasses: "right-[100%] mr-3 bottom-36", delay: 0.3, yAnim: [0, 6, 0], title: "Doctor PDF", subtitle: "Ready to share", icon: FileText, colorClass: "bg-blue-50 text-blue-500 border-blue-100", arrow: "left" },
+    { id: "p3", posClasses: "left-[100%] ml-3 top-36", delay: 0.2, yAnim: [0, -8, 0], title: "Weekly Scan", subtitle: "Generated today", icon: Sparkles, colorClass: "bg-amber-50 text-amber-500 border-amber-100", arrow: "right" },
+    { id: "p4", posClasses: "left-[100%] ml-3 top-64", delay: 0.15, yAnim: [0, -5, 0], title: "Active Tab", subtitle: "Health Reports", icon: PieChart, colorClass: "bg-white text-indigo-600 border-indigo-100", wrapperClass: "border-indigo-200/80 bg-indigo-50/95 shadow-[0_8px_30px_rgb(79,70,229,0.25)]", arrow: "right", isDynamic: true },
+    { id: "p5", posClasses: "left-[100%] ml-3 bottom-48", delay: 0.4, yAnim: [0, 8, 0], title: "Data Privacy", subtitle: "Local processing", icon: ShieldCheck, colorClass: "bg-indigo-50 text-indigo-500 border-indigo-100", arrow: "right" },
+  ],
+  profile: [
+    { id: "pr1", posClasses: "right-[100%] mr-3 top-20", delay: 0.1, yAnim: [0, -6, 0], title: "Subscription", subtitle: "Premium Active", icon: CreditCard, colorClass: "bg-amber-50 text-amber-500 border-amber-100", arrow: "left" },
+    { id: "pr2", posClasses: "right-[100%] mr-3 bottom-36", delay: 0.3, yAnim: [0, 6, 0], title: "App Settings", subtitle: "Hindi Language", icon: Settings, colorClass: "bg-slate-100 text-slate-600 border-slate-200", arrow: "left" },
+    { id: "pr3", posClasses: "left-[100%] ml-3 top-36", delay: 0.2, yAnim: [0, -8, 0], title: "Support", subtitle: "24/7 Priority", icon: HelpCircle, colorClass: "bg-blue-50 text-blue-500 border-blue-100", arrow: "right" },
+    { id: "pr4", posClasses: "left-[100%] ml-3 top-64", delay: 0.15, yAnim: [0, -5, 0], title: "Active Tab", subtitle: "User Profile", icon: User, colorClass: "bg-white text-indigo-600 border-indigo-100", wrapperClass: "border-indigo-200/80 bg-indigo-50/95 shadow-[0_8px_30px_rgb(79,70,229,0.25)]", arrow: "right", isDynamic: true },
+    { id: "pr5", posClasses: "left-[100%] ml-3 bottom-48", delay: 0.4, yAnim: [0, 8, 0], title: "Device", subtitle: "Papa's Phone", icon: CheckCircle2, colorClass: "bg-emerald-50 text-emerald-500 border-emerald-100", arrow: "right" },
+  ]
+};
+
 // Reusable Top Header
 function ScreenHeader({ title, subtitle, rightIcon: RightIcon, rightAction: RightAction }: any) {
   return (
@@ -609,99 +647,46 @@ export function PhoneMock({ className }: { className?: string }) {
       {!reduceMotion && (
         <div className="absolute inset-0 z-20 pointer-events-none hidden md:block">
           
-          {/* Top Left: Wise AI */}
-          <motion.div
-            // right-[100%] aligns the widget's right edge exactly with the phone's left edge
-            // mr-3 adds 12px gap for the arrow
-            className="absolute right-[100%] mr-3 top-20 flex w-max items-center gap-3 rounded-[18px] border border-white bg-white/95 p-3 shadow-xl backdrop-blur-md"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0, y: [0, -6, 0] }}
-            transition={{ opacity: { duration: 0.8 }, x: { type: "spring", stiffness: 200 }, y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.2 } }}
-          >
-            <SolidArrow direction="left" />
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-50 text-amber-500 shadow-inner border border-amber-100">
-              <Sparkles className="h-5 w-5" />
-            </div>
-            <div className="pr-2">
-              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">WiseAI Status</div>
-              <div className="text-[12px] font-black text-slate-800 mt-0.5">Monitoring Bills</div>
-            </div>
-          </motion.div>
-
-          {/* Bottom Left: Health Sync */}
-          <motion.div
-            className="absolute right-[100%] mr-3 bottom-36 flex w-max items-center gap-3 rounded-[18px] border border-white bg-white/95 p-3 shadow-xl backdrop-blur-md"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0, y: [0, 6, 0] }}
-            transition={{ opacity: { duration: 0.8, delay: 0.3 }, x: { type: "spring", stiffness: 200, delay: 0.3 }, y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.8 } }}
-          >
-            <SolidArrow direction="left" />
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-500 shadow-inner border border-emerald-100">
-              <Heart className="h-5 w-5" fill="currentColor" />
-            </div>
-            <div className="pr-2">
-              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Health Sync</div>
-              <div className="text-[12px] font-black text-slate-800 mt-0.5">Dad's BP Normal</div>
-            </div>
-          </motion.div>
-
-          {/* Top Right: Score */}
-          <motion.div
-            // left-[100%] aligns the widget's left edge exactly with the phone's right edge
-            // ml-3 adds 12px gap for the arrow
-            className="absolute left-[100%] ml-3 top-36 flex w-max items-center gap-3 rounded-[18px] border border-white bg-white/95 p-3 shadow-xl backdrop-blur-md"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0, y: [0, -8, 0] }}
-            transition={{ opacity: { duration: 0.8, delay: 0.2 }, x: { type: "spring", stiffness: 200, delay: 0.2 }, y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 } }}
-          >
-            <SolidArrow direction="right" />
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-50 text-indigo-500 shadow-inner border border-indigo-100">
-              <LineChart className="h-5 w-5" />
-            </div>
-            <div className="pr-2">
-              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Score Updated</div>
-              <div className="text-[12px] font-black text-slate-800 mt-0.5">LifeScore: 52/100</div>
-            </div>
-          </motion.div>
-
-          {/* Bottom Right: Security */}
-          <motion.div
-            className="absolute left-[100%] ml-3 bottom-48 flex w-max items-center gap-3 rounded-[18px] border border-white bg-white/95 p-3 shadow-xl backdrop-blur-md"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0, y: [0, 8, 0] }}
-            transition={{ opacity: { duration: 0.8, delay: 0.4 }, x: { type: "spring", stiffness: 200, delay: 0.4 }, y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
-          >
-            <SolidArrow direction="right" />
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-blue-500 shadow-inner border border-blue-100">
-              <ShieldCheck className="h-5 w-5" />
-            </div>
-            <div className="pr-2">
-              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Security</div>
-              <div className="text-[12px] font-black text-slate-800 mt-0.5">Fully Protected</div>
-            </div>
-          </motion.div>
-
-          {/* Dynamic Contextual Widget (Changes with Tab) */}
-          <motion.div
-            key={`context-${activeTab}`}
-            className="absolute left-[100%] ml-3 top-64 flex w-max items-center gap-3 rounded-[18px] border border-indigo-200/80 bg-indigo-50/95 p-3 shadow-[0_8px_30px_rgb(79,70,229,0.25)] backdrop-blur-md"
-            initial={{ opacity: 0, scale: 0.9, x: -20 }}
-            animate={{ opacity: 1, scale: 1, x: 0, y: [0, -5, 0] }}
-            transition={{ opacity: { duration: 0.3 }, scale: { type: "spring", stiffness: 300 }, y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
-          >
-            <SolidArrow direction="right" />
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-indigo-600 shadow-sm border border-indigo-100">
-              {activeTab === "home" && <Activity className="h-5 w-5" />}
-              {activeTab === "family" && <Heart className="h-5 w-5" />}
-              {activeTab === "reminders" && <Bell className="h-5 w-5" />}
-              {activeTab === "reports" && <PieChart className="h-5 w-5" />}
-              {activeTab === "profile" && <User className="h-5 w-5" />}
-            </div>
-            <div className="pr-2">
-              <div className="text-[10px] font-bold text-indigo-500 uppercase tracking-wider">Active Tab</div>
-              <div className="text-[12px] font-black text-indigo-900 mt-0.5 capitalize">{activeTab} Modules</div>
-            </div>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            {TAB_WIDGETS[activeTab].map((widget) => {
+              const Icon = widget.icon;
+              return (
+                <motion.div
+                  key={widget.id}
+                  className={cn(
+                    "absolute flex w-max items-center gap-3 rounded-[18px] p-3 backdrop-blur-md",
+                    widget.posClasses,
+                    widget.wrapperClass || "border border-white bg-white/95 shadow-xl"
+                  )}
+                  initial={{ opacity: 0, scale: widget.isDynamic ? 0.9 : 1, x: widget.arrow === "left" ? 20 : -20 }}
+                  animate={{ opacity: 1, scale: 1, x: 0, y: widget.yAnim }}
+                  exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.15 } }}
+                  transition={{
+                    opacity: { duration: 0.3, delay: widget.delay },
+                    scale: { type: "spring", stiffness: 300, delay: widget.delay },
+                    x: { type: "spring", stiffness: 200, delay: widget.delay },
+                    y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: widget.delay * 2 }
+                  }}
+                >
+                  {widget.arrow === "left" && <SolidArrow direction="left" />}
+                  {widget.arrow === "right" && widget.isDynamic && <SolidArrow direction="right" />}
+                  {widget.arrow === "right" && !widget.isDynamic && <SolidArrow direction="right" />}
+                  
+                  <div className={cn("flex h-10 w-10 items-center justify-center rounded-full shadow-inner border", widget.colorClass)}>
+                    <Icon className="h-5 w-5" fill={widget.isDynamic ? "none" : "currentColor"} />
+                  </div>
+                  <div className="pr-2">
+                    <div className={cn("text-[10px] font-bold uppercase tracking-wider", widget.isDynamic ? "text-indigo-500" : "text-slate-400")}>
+                      {widget.title}
+                    </div>
+                    <div className={cn("text-[12px] font-black mt-0.5", widget.isDynamic ? "text-indigo-900" : "text-slate-800")}>
+                      {widget.subtitle}
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
 
         </div>
       )}

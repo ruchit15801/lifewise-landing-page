@@ -62,8 +62,13 @@ export function StoreDownloadButtons({
   return (
     <div className={cn("w-full", className)}>
       {!STORES_ARE_LIVE && showSoonBadge ? (
-        <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-accent">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
+        <p className={cn(
+          "mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wide",
+          variant === "hero" 
+            ? "border-emerald-400/50 bg-emerald-400/20 text-emerald-50" 
+            : "border-accent/25 bg-accent/10 text-accent"
+        )}>
+          <span className={cn("h-2 w-2 animate-pulse rounded-full", variant === "hero" ? "bg-emerald-400" : "bg-accent")} />
           Launching soon on Play Store &amp; App Store
         </p>
       ) : null}
@@ -120,7 +125,10 @@ export function StoreDownloadButtons({
           {notice}
         </p>
       ) : (
-        <p className="mt-3 text-xs text-slate-600 dark:text-slate-400">
+        <p className={cn(
+          "mt-3 text-xs",
+          variant === "hero" ? "text-white/90 font-medium" : "text-slate-600 dark:text-slate-400"
+        )}>
           {STORES_ARE_LIVE
             ? "Free download • Android & iOS • Made for Indian families"
             : "Tap a store button and we'll notify you when LifeWise goes live."}

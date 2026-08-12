@@ -35,8 +35,8 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 bg-grid opacity-[0.35] dark:opacity-[0.22]"
       />
 
-      <div className="section-max relative grid min-h-[calc(82vh-4rem)] grid-cols-1 items-center gap-7 py-12 lg:min-h-[calc(88vh-4rem)] lg:grid-cols-[1.08fr_0.92fr] lg:gap-6 lg:py-14">
-        <div className="max-w-[42rem]">
+      <div className="w-full max-w-[98rem] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative grid min-h-[calc(82vh-4rem)] grid-cols-1 items-center gap-7 pt-24 pb-12 lg:min-h-[calc(88vh-4rem)] lg:grid-cols-[1fr_1.2fr] lg:gap-10 lg:pt-28 lg:pb-14">
+        <div className="max-w-[38rem] xl:max-w-[44rem]">
           <Reveal blur={false}>
             <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-slate-200/70 bg-white/60 px-3 py-1 text-xs font-semibold text-slate-700 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
               <Sparkles className="h-4 w-4 text-primary" />
@@ -88,7 +88,7 @@ export function Hero() {
           </Reveal>
         </div>
 
-        <div className="relative noise justify-self-center lg:justify-self-end lg:translate-x-1">
+        <div className="relative noise justify-self-center lg:justify-self-center">
           <div className="pointer-events-none absolute -inset-10 rounded-[3rem] bg-white/30 blur-3xl dark:bg-white/5" />
           <PhoneMock className="max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem]" />
         </div>

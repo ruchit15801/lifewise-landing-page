@@ -123,6 +123,20 @@ export function SupportSection() {
               UPI bills, Hindi voice reminders, Rs. pricing, and family care built for
               Indian households.
             </div>
+
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              {[
+                { label: "Bank-Grade Security", icon: "🔒" },
+                { label: "Priority Support", icon: "⭐" },
+                { label: "Family Data Sync", icon: "⚡" },
+                { label: "No Hidden Fees", icon: "💎" },
+              ].map((f) => (
+                <div key={f.label} className="flex items-center gap-2 rounded-xl bg-white/50 px-3 py-2.5 text-xs font-semibold text-slate-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] dark:bg-white/5 dark:text-slate-300">
+                  <span className="text-base">{f.icon}</span>
+                  {f.label}
+                </div>
+              ))}
+            </div>
           </div>
         </Reveal>
 
@@ -182,21 +196,26 @@ export function SupportSection() {
 
               <label className="block sm:col-span-2">
                 <span className="text-sm font-semibold">Topic *</span>
-                <select
-                  name="topic"
-                  required
-                  defaultValue=""
-                  className="mt-1.5 w-full rounded-2xl border border-slate-200/70 bg-white/60 px-4 py-3 text-sm shadow-premium backdrop-blur-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-white/10 dark:bg-white/5"
-                >
-                  <option value="" disabled>
-                    Select a topic
-                  </option>
-                  {SUPPORT_TOPICS.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
+                <div className="relative">
+                  <select
+                    name="topic"
+                    required
+                    defaultValue=""
+                    className="mt-1.5 w-full appearance-none rounded-2xl border border-slate-200/70 bg-white/60 px-4 py-3 pr-10 text-sm shadow-premium backdrop-blur-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-white/10 dark:bg-white/5"
+                  >
+                    <option value="" disabled>
+                      Select a topic
                     </option>
-                  ))}
-                </select>
+                    {SUPPORT_TOPICS.map((t) => (
+                      <option key={t} value={t}>
+                        {t}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center pt-1.5 text-slate-400 dark:text-slate-500">
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                  </div>
+                </div>
               </label>
 
               <label className="block sm:col-span-2">
@@ -247,7 +266,7 @@ export function SupportSection() {
               ) : (
                 <Send className="h-4 w-4" />
               )}
-              {status === "loading" ? "Sending..." : "Send to support@lifewiseee.com"}
+              {status === "loading" ? "Sending..." : "Send Request"}
             </button>
           </form>
         </Reveal>
