@@ -16,6 +16,15 @@ html.dark {
     overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    /* Hide page scrollbar; scroll still works (wheel / touch / keys) */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   body {
@@ -24,9 +33,17 @@ html.dark {
     overflow-x: hidden;
     min-height: 100dvh;
     padding-bottom: env(safe-area-inset-bottom, 0px);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     background-image:
       radial-gradient(120% 120% at 45% 0%, rgba(109, 93, 246, 0.18) 0%, rgba(248, 250, 252, 0.96) 42%, rgba(248, 250, 252, 0.98) 70%, rgba(109, 93, 246, 0.06) 100%),
       radial-gradient(90% 90% at 80% 18%, rgba(34, 197, 94, 0.14) 0%, transparent 55%);
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   h1,
@@ -130,12 +147,16 @@ html.dark {
       0 30px 80px rgba(109, 93, 246, 0.18);
   }
 
-  .scrollbar-none {
+  .scrollbar-none,
+  .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  .scrollbar-none::-webkit-scrollbar {
+  .scrollbar-none::-webkit-scrollbar,
+  .scrollbar-hide::-webkit-scrollbar {
     display: none;
+    width: 0;
+    height: 0;
   }
 
   .content-auto {
