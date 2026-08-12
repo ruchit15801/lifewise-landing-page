@@ -80,7 +80,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "ios", "iphone", "get app", "where to download", "kaise download",
       "link", "google play"
     ],
-    response: "Download LifeWise from the official sources! 📲\n\n🤖 Android: Google Play Store\n🍎 iOS: App Store\n🌐 Website: lifewiseee.com\n\n⚠️ Important: Only download from lifewiseee.com or official stores. Avoid fake apps with similar names.\n\nThe app is lightweight, works offline for reminders, and supports all Indian languages.",
+    response: "Download LifeWise now on Google Play! 📲\n\n🤖 Android: https://play.google.com/store/apps/details?id=com.lifewise\n🍎 iOS: App Store coming soon\n🌐 Website: https://www.lifewiseee.com\n\n⚠️ Only download from lifewiseee.com or official stores. Avoid fake apps with similar names.",
     followUp: "Need help with setup after downloading?"
   },
 

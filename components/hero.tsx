@@ -93,7 +93,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={0.05} blur={false}>
-            <h1 className="mt-6 font-display text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl dark:text-white">
+            <h1 className="mt-5 font-display text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-slate-950 sm:mt-6 sm:text-5xl lg:text-6xl dark:text-white">
               <span className="gradient-text">LifeWise</span>: One App to Manage
               Your{" "}
               <span className="text-slate-950 dark:text-white">Entire Family</span>

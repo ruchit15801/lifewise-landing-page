@@ -647,42 +647,74 @@ export function PhoneMock({ className }: { className?: string }) {
       {!reduceMotion && (
         <div className="absolute inset-0 z-20 pointer-events-none hidden md:block">
           
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="popLayout">
             {TAB_WIDGETS[activeTab].map((widget) => {
               const Icon = widget.icon;
               return (
                 <motion.div
                   key={widget.id}
-                  className={cn(
-                    "absolute flex w-max items-center gap-3 rounded-[18px] p-3 backdrop-blur-md",
-                    widget.posClasses,
-                    widget.wrapperClass || "border border-white bg-white/95 shadow-xl"
-                  )}
-                  initial={{ opacity: 0, scale: widget.isDynamic ? 0.9 : 1, x: widget.arrow === "left" ? 20 : -20 }}
-                  animate={{ opacity: 1, scale: 1, x: 0, y: widget.yAnim }}
-                  exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.15 } }}
+                  className={cn("absolute", widget.posClasses)}
+                  initial={{
+                    opacity: 0,
+                    scale: widget.isDynamic ? 0.94 : 1,
+                    x: widget.arrow === "left" ? 16 : -16
+                  }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.15 } }}
                   transition={{
-                    opacity: { duration: 0.3, delay: widget.delay },
-                    scale: { type: "spring", stiffness: 300, delay: widget.delay },
-                    x: { type: "spring", stiffness: 200, delay: widget.delay },
-                    y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: widget.delay * 2 }
+                    opacity: { duration: 0.28, delay: widget.delay },
+                    scale: { type: "spring", stiffness: 280, damping: 24, delay: widget.delay },
+                    x: { type: "spring", stiffness: 220, damping: 22, delay: widget.delay }
                   }}
                 >
-                  {widget.arrow === "left" && <SolidArrow direction="left" />}
-                  {widget.arrow === "right" && widget.isDynamic && <SolidArrow direction="right" />}
-                  {widget.arrow === "right" && !widget.isDynamic && <SolidArrow direction="right" />}
-                  
-                  <div className={cn("flex h-10 w-10 items-center justify-center rounded-full shadow-inner border", widget.colorClass)}>
-                    <Icon className="h-5 w-5" fill={widget.isDynamic ? "none" : "currentColor"} />
-                  </div>
-                  <div className="pr-2">
-                    <div className={cn("text-[10px] font-bold uppercase tracking-wider", widget.isDynamic ? "text-indigo-500" : "text-slate-400")}>
-                      {widget.title}
+                  {/* Float on a GPU layer only — keeps text sharp (no y on text parent mix) */}
+                  <motion.div
+                    className={cn(
+                      "flex w-max items-center gap-3 rounded-[18px] border p-3",
+                      "transform-gpu will-change-transform [backface-visibility:hidden]",
+                      widget.wrapperClass || "border-white bg-white shadow-xl"
+                    )}
+                    animate={{ y: widget.yAnim }}
+                    transition={{
+                      duration: 5.5,
+                      repeat: Infinity,
+                      ease: [0.45, 0.05, 0.55, 0.95],
+                      delay: widget.delay * 2
+                    }}
+                  >
+                    {widget.arrow === "left" && <SolidArrow direction="left" />}
+                    {widget.arrow === "right" && <SolidArrow direction="right" />}
+
+                    <div
+                      className={cn(
+                        "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border shadow-inner",
+                        widget.colorClass
+                      )}
+                    >
+                      <Icon
+                        className="h-5 w-5"
+                        fill={widget.isDynamic ? "none" : "currentColor"}
+                      />
                     </div>
-                    <div className={cn("text-[12px] font-black mt-0.5", widget.isDynamic ? "text-indigo-900" : "text-slate-800")}>
-                      {widget.subtitle}
+                    <div className="pr-2 [text-rendering:geometricPrecision] antialiased">
+                      <div
+                        className={cn(
+                          "text-[10px] font-bold uppercase tracking-wider",
+                          widget.isDynamic ? "text-indigo-500" : "text-slate-400"
+                        )}
+                      >
+                        {widget.title}
+                      </div>
+                      <div
+                        className={cn(
+                          "mt-0.5 text-[12px] font-black",
+                          widget.isDynamic ? "text-indigo-900" : "text-slate-800"
+                        )}
+                      >
+                        {widget.subtitle}
+                      </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </motion.div>
               );
             })}

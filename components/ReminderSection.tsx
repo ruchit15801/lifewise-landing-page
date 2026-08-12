@@ -24,7 +24,7 @@ export function ReminderSection() {
         
         {/* Main Panel */}
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-12 lg:p-14 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
+          <div className="relative overflow-hidden rounded-3xl bg-slate-50 border border-slate-200 p-5 sm:p-10 lg:p-14 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
             {/* Dot grid */}
             <div
               className="absolute inset-0 opacity-[0.05] dark:opacity-[0.06]"

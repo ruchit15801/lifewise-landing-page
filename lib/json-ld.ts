@@ -314,11 +314,11 @@ export function webPageSchema() {
     "@type": "WebPage",
     "@id": `${SITE_URL}/#webpage`,
     url: SITE_URL,
-    name: `${SITE_NAME} – ${SITE_TAGLINE}`,
+    name: `${SITE_NAME} App India – Family Operating System | Medicine Reminder, Bill Reminder & Family Hub`,
     description:
-      "Official LifeWise landing page. Download India's Family Operating System for medicine reminders, bill alerts, Family Hub, and WiseAI.",
+      "Official LifeWise landing page. Download India's Family Operating System for medicine reminders, bill alerts, Family Hub, and WiseAI. Free on Android & iOS.",
     isPartOf: { "@id": WEBSITE_ID },
-    about: { "@id": APP_ID },
+    about: [{ "@id": APP_ID }, { "@id": `${SITE_URL}/#family-operating-system` }],
     primaryImageOfPage: {
       "@type": "ImageObject",
       url: `${SITE_URL}/og-image.svg`
@@ -327,13 +327,14 @@ export function webPageSchema() {
     dateModified: new Date().toISOString().slice(0, 10),
     speakable: {
       "@type": "SpeakableSpecification",
-      cssSelector: ["#lifewise-definition", ".faq-answer"]
+      cssSelector: ["#lifewise-definition", ".faq-answer", "#why-lifewise h2"]
     },
     significantLink: [
       `${SITE_URL}/support`,
       `${SITE_URL}/privacy-policy`,
       `${SITE_URL}/terms-and-conditions`,
-      `${SITE_URL}/llms.txt`
+      `${SITE_URL}/llms.txt`,
+      `${SITE_URL}/llms-full.txt`
     ]
   };
 }
@@ -430,6 +431,81 @@ export function howToBillSchema() {
   };
 }
 
+/** AEO: define the product category term for answer engines */
+export function definedTermSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "@id": `${SITE_URL}/#family-operating-system`,
+    name: "Family Operating System",
+    alternateName: ["FOS", "Family OS", "LifeWise Family Operating System"],
+    description:
+      "A Family Operating System is a mobile app that lets one household manage every member's medicine reminders, bills, health, documents, and daily routines from a single command center. LifeWise is India's Family Operating System at lifewiseee.com.",
+    inDefinedTermSet: {
+      "@type": "DefinedTermSet",
+      name: "LifeWise product glossary",
+      url: SITE_URL
+    }
+  };
+}
+
+/** Visible ranking features as ItemList for rich results / AEO */
+export function featureItemListSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${SITE_URL}/#why-lifewise`,
+    name: "Why LifeWise – India Family Operating System features",
+    description:
+      "Core reasons Indian families choose LifeWise for medicine reminders, bill alerts, Family Hub, and WiseAI.",
+    numberOfItems: 6,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Medicine reminder app for parents",
+        description:
+          "Papa and Mummy medicine reminders in English or Hindi with caregiver escalation."
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Electricity & bill reminder India",
+        description:
+          "Bijli, gas, broadband, rent, and subscription due-date alerts with bill scan OCR."
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Family Hub for Indian households",
+        description:
+          "Up to 20 modules per family member, shared with caregivers in real time."
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "WiseAI family assistant",
+        description:
+          "AI assistant for reminders, expenses, and appointments with Hindi voice commands."
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        name: "Hindi, Gujarati & Indian languages",
+        description:
+          "English, Hindi, Gujarati, Marathi, Tamil, Telugu, and Bengali support."
+      },
+      {
+        "@type": "ListItem",
+        position: 6,
+        name: "Secure DPDP-aware family app",
+        description:
+          "Official LifeWise at lifewiseee.com — Free plan and Premium from ₹199/month."
+      }
+    ]
+  };
+}
+
 export function contactPageSchema() {
   return {
     "@context": "https://schema.org",
@@ -468,6 +544,8 @@ export function homePageSchemas() {
     mobileApplicationSchema(),
     productSchema(),
     webPageSchema(),
+    definedTermSchema(),
+    featureItemListSchema(),
     faqPageSchema(),
     howToMedicineSchema(),
     howToBillSchema(),

@@ -41,11 +41,11 @@ export function SectionShell({
               </span>
             ) : null}
           </div>
-          <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl dark:text-white">
+          <h2 className="mt-2 font-display text-[1.35rem] font-semibold tracking-tight text-slate-950 sm:text-3xl dark:text-white">
             {title}
           </h2>
           {subtitle ? (
-            <p className="mt-2.5 leading-relaxed text-slate-700 dark:text-slate-300">
+            <p className="mt-2.5 text-sm leading-relaxed text-slate-700 sm:text-base dark:text-slate-300">
               {subtitle}
             </p>
           ) : null}

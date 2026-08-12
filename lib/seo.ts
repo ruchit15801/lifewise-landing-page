@@ -19,45 +19,70 @@ export const ADDRESS = {
 } as const;
 
 export const DEFAULT_TITLE =
-  "LifeWise App – Family Operating System for Medicine, Bills & Health Reminders India";
+  "LifeWise App India – Family Operating System | Medicine Reminder, Bill Reminder & Family Hub";
 
 export const DEFAULT_DESCRIPTION =
-  "LifeWise is India's Family Operating System app. Manage Papa's medicine reminders, electricity bills, doctor appointments, insurance, and family routines in one place. Family Hub, WiseAI, 20 modules. Free on Android & iOS. Premium from ₹199/month.";
+  "Download LifeWise – India's Family Operating System app. Papa medicine reminder, electricity bill alerts, Family Hub (20 modules), WiseAI, voice reminders & bill scan OCR. Free on Android & iOS. Premium from ₹199/month. Made for Indian families.";
 
 export const KEYWORDS = [
+  // Brand / entity
   "LifeWise",
   "LifeWise app",
+  "LifeWise India",
   "LifeWise Family Operating System",
   "lifewiseee",
   "lifewiseee.com",
-  "family reminder app India",
-  "medicine reminder app for parents",
-  "medicine reminder app India",
-  "bill reminder app India",
-  "electricity bill reminder India",
-  "family health tracker app",
-  "WiseAI family assistant",
-  "family hub app India",
-  "caregiver reminder app",
-  "Papa medicine reminder",
-  "family operating system app",
-  "AI reminder app India",
-  "voice reminder app Hindi",
-  "family expense tracker India",
-  "senior medicine reminder app",
-  "insurance renewal reminder India",
-  "subscription tracker app India",
-  "best family management app India",
+  "LifeWise official website",
   "download LifeWise app",
   "LifeWise Android app",
   "LifeWise iOS app",
+  // Core product intent
+  "family operating system app",
+  "family management app India",
+  "best family management app India",
+  "family hub app India",
+  "family reminder app India",
+  "caregiver app for parents India",
+  "caregiver reminder app",
+  "family app for parents",
+  // Medicine / health
+  "medicine reminder app India",
+  "medicine reminder app for parents",
+  "Papa medicine reminder",
+  "Mummy medicine reminder",
+  "senior medicine reminder app",
+  "dawai reminder app",
+  "tablet reminder app India",
+  "family health tracker app",
+  "health reminder app Hindi",
+  // Bills / finance
+  "bill reminder app India",
+  "electricity bill reminder India",
+  "bijli bill reminder app",
+  "utility bill reminder app",
+  "insurance renewal reminder India",
+  "subscription tracker app India",
+  "family expense tracker India",
+  "scan bill OCR app India",
+  // AI / voice
+  "WiseAI family assistant",
+  "AI reminder app India",
+  "voice reminder app Hindi",
+  "Hindi medicine reminder app",
+  "Gujarati family app",
+  // GEO / cities
+  "family app Gurugram",
+  "family app Delhi NCR",
+  "family app Mumbai",
+  "family app Ahmedabad",
+  "family app Bengaluru",
+  // Support / trust
   "LifeWise support",
   "LifeWise contact number",
   "LifeWise customer care India",
-  "family app Gurugram",
-  "caregiver app for parents India",
+  "LifeWise WhatsApp support",
   "DPDP compliant family app",
-  "Hindi medicine reminder app"
+  "LifeWise Premium 199"
 ] as const;
 
 /** @deprecated use lib/stores.ts — re-exported for compatibility */

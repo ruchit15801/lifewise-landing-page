@@ -42,6 +42,10 @@ const Pricing = dynamic(
   () => import("@/components/pricing").then((m) => m.Pricing),
   { loading: () => null }
 );
+const RankingSection = dynamic(
+  () => import("@/components/RankingSection").then((m) => m.RankingSection),
+  { loading: () => null }
+);
 const FAQSection = dynamic(
   () => import("@/components/FAQSection").then((m) => m.FAQSection),
   { loading: () => null }
@@ -73,6 +77,7 @@ export default function HomePage() {
           <SeniorMode />
           <Automation />
           <Pricing />
+          <RankingSection />
           <FAQSection />
           <SupportSection />
           <DownloadCTA />

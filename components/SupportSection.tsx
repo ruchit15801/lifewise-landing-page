@@ -497,7 +497,7 @@ export function SupportSection() {
                             setFormData((p) => ({ ...p, contactMethod: value }))
                           }
                           className={cn(
-                            "flex h-full min-h-[5.5rem] w-full flex-col items-center justify-center gap-1 rounded-2xl border px-2 py-3 text-center transition sm:min-h-[6rem] sm:px-3",
+                            "flex h-full min-h-[4.75rem] w-full flex-col items-center justify-center gap-1 rounded-2xl border px-1.5 py-2.5 text-center transition sm:min-h-[6rem] sm:gap-1 sm:px-3 sm:py-3",
                             active
                               ? "border-indigo-500 bg-indigo-600 text-white shadow-md shadow-indigo-500/25 ring-2 ring-indigo-500/30"
                               : "border-slate-200 bg-slate-50/80 text-slate-700 hover:border-indigo-200 hover:bg-indigo-50 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-indigo-400/40 dark:hover:bg-indigo-500/10"
@@ -515,7 +515,7 @@ export function SupportSection() {
                           </span>
                           <span
                             className={cn(
-                              "text-[10px] font-medium leading-tight",
+                              "hidden text-[10px] font-medium leading-tight sm:inline",
                               active ? "text-indigo-100" : "text-slate-400 dark:text-slate-500"
                             )}
                           >

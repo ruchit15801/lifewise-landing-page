@@ -76,7 +76,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "How do I download LifeWise app?",
     answer:
-      "Visit the official website lifewiseee.com and tap Download on Google Play. iOS version is also available. Only download from lifewiseee.com. Avoid fake apps with similar names.",
+      "Download LifeWise free on Google Play: https://play.google.com/store/apps/details?id=com.lifewise. App Store version is coming soon. Only download from lifewiseee.com or the official Play listing — avoid fake apps with similar names.",
     keywords: ["download", "install", "play store", "android", "ios"]
   },
   {

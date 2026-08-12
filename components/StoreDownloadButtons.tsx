@@ -4,10 +4,11 @@ import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/components/cn";
 import {
+  APP_STORE_LIVE,
   APP_STORE_URL,
+  PLAY_STORE_LIVE,
   PLAY_STORE_URL,
-  STORE_LAUNCH_MESSAGE,
-  STORES_ARE_LIVE
+  STORE_LAUNCH_MESSAGE
 } from "@/lib/stores";
 
 type Variant = "dark" | "light" | "hero";
@@ -62,6 +63,19 @@ export function StoreDownloadButtons({
   const playUrl = PLAY_STORE_URL || "#download";
   const appUrl = APP_STORE_URL || "#download";
 
+  const statusLabel = PLAY_STORE_LIVE && !APP_STORE_LIVE
+    ? "Now on Google Play · App Store soon"
+    : !PLAY_STORE_LIVE && !APP_STORE_LIVE
+      ? "Launching soon on Play Store & App Store"
+      : null;
+
+  const helperText =
+    PLAY_STORE_LIVE && APP_STORE_LIVE
+      ? "Free download • Android & iOS • Made for Indian families"
+      : PLAY_STORE_LIVE
+        ? "Free on Google Play • App Store coming soon • Made for Indian families"
+        : "Tap a store button and we'll notify you when LifeWise goes live.";
+
   return (
     <div
       className={cn(
@@ -70,7 +84,7 @@ export function StoreDownloadButtons({
         className
       )}
     >
-      {!STORES_ARE_LIVE && showSoonBadge ? (
+      {statusLabel && showSoonBadge ? (
         <p
           className={cn(
             "mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wide",
@@ -87,7 +101,7 @@ export function StoreDownloadButtons({
                 : "bg-accent"
             )}
           />
-          Launching soon on Play Store &amp; App Store
+          {statusLabel}
         </p>
       ) : null}
 
@@ -100,8 +114,8 @@ export function StoreDownloadButtons({
         <a
           href={playUrl}
           onClick={(e) => handleClick(e, PLAY_STORE_URL)}
-          target={PLAY_STORE_URL ? "_blank" : undefined}
-          rel={PLAY_STORE_URL ? "noopener noreferrer" : undefined}
+          target={PLAY_STORE_LIVE ? "_blank" : undefined}
+          rel={PLAY_STORE_LIVE ? "noopener noreferrer" : undefined}
           aria-label="Get LifeWise on Google Play"
           className={cn(
             "group relative inline-flex shrink-0 transition-transform hover:-translate-y-0.5 active:translate-y-0",
@@ -119,8 +133,8 @@ export function StoreDownloadButtons({
         <a
           href={appUrl}
           onClick={(e) => handleClick(e, APP_STORE_URL)}
-          target={APP_STORE_URL ? "_blank" : undefined}
-          rel={APP_STORE_URL ? "noopener noreferrer" : undefined}
+          target={APP_STORE_LIVE ? "_blank" : undefined}
+          rel={APP_STORE_LIVE ? "noopener noreferrer" : undefined}
           aria-label="Download LifeWise on the App Store"
           className={cn(
             "group relative inline-flex shrink-0 transition-transform hover:-translate-y-0.5 active:translate-y-0",
@@ -162,9 +176,7 @@ export function StoreDownloadButtons({
               : "text-slate-600 dark:text-slate-400"
           )}
         >
-          {STORES_ARE_LIVE
-            ? "Free download • Android & iOS • Made for Indian families"
-            : "Tap a store button and we'll notify you when LifeWise goes live."}
+          {helperText}
         </p>
       )}
     </div>

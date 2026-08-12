@@ -22,7 +22,7 @@ export function SeniorMode() {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           
           {/* Left: Feature Tabs */}
-          <div className="flex flex-col p-8 sm:p-12 lg:p-14 border-b border-slate-200 lg:border-b-0 lg:border-r dark:border-slate-800/60">
+          <div className="flex flex-col p-5 sm:p-10 lg:p-14 border-b border-slate-200 lg:border-b-0 lg:border-r dark:border-slate-800/60">
             <div className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-orange-700 w-fit mb-8 dark:border-orange-500/30 dark:bg-orange-500/10 dark:text-orange-400">
               <Accessibility className="h-4 w-4" />
               Senior Mode
@@ -73,7 +73,7 @@ export function SeniorMode() {
           </div>
 
           {/* Right: Phone Mockup showcasing the active feature */}
-          <div className="relative flex items-center justify-center p-8 lg:p-14 min-h-[500px]">
+          <div className="relative flex min-h-[420px] items-center justify-center overflow-hidden p-5 sm:min-h-[500px] sm:p-10 lg:p-14">
             {/* Background Glow based on active tab */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-orange-500/10 blur-[100px] pointer-events-none dark:bg-orange-500/15 transition-all duration-700" />
             
