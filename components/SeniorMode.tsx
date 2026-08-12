@@ -18,7 +18,7 @@ export function SeniorMode() {
       title="Built for Seniors."
       subtitle="No complex menus, no tiny text. LifeWise adapts to the elderly, making it the easiest app they'll ever use."
     >
-      <div className="mt-12 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+      <div className="mt-12 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           
           {/* Left: Feature Tabs */}
@@ -98,7 +98,7 @@ export function SeniorMode() {
                         <Volume2 className="h-10 w-10" />
                       </motion.div>
                       <div>
-                        <div className="text-2xl font-black text-slate-900 dark:text-white mb-2">Papa, it's 8 PM.</div>
+                        <div className="text-2xl font-black text-slate-900 dark:text-white mb-2">Papa, it&apos;s 8 PM.</div>
                         <div className="text-lg font-bold text-slate-600 dark:text-slate-400">Time for Amlodipine.</div>
                       </div>
                       <div className="w-full space-y-3 mt-auto">

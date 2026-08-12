@@ -2,28 +2,22 @@ import type { Metadata } from "next";
 import { LegalPageShell, LegalSection } from "@/components/LegalPageShell";
 import { JsonLd } from "@/components/JsonLd";
 import { LEGAL_CONTACT_EMAIL, LEGAL_ENTITY } from "@/lib/legal";
+import { legalPageSchemas } from "@/lib/json-ld";
 import { buildPrivacyMetadata } from "@/lib/seo";
-import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = buildPrivacyMetadata();
-
-function privacySchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "LifeWise Privacy Policy",
-    url: `${SITE_URL}/privacy-policy`,
-    description:
-      "LifeWise privacy policy for the Family Operating System app: data collection, SMS permissions, family health data, WiseAI, and your rights under Indian law.",
-    isPartOf: { "@type": "WebSite", url: SITE_URL },
-    about: { "@type": "SoftwareApplication", name: "LifeWise" }
-  };
-}
 
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <JsonLd data={privacySchema()} />
+      <JsonLd
+        data={legalPageSchemas({
+          path: "/privacy-policy",
+          name: "Privacy Policy",
+          description:
+            "LifeWise privacy policy for the Family Operating System app: data collection, SMS permissions, family health data, WiseAI, and your rights under Indian DPDP Act 2023."
+        })}
+      />
       <LegalPageShell
         title="Privacy Policy"
         subtitle={`This Privacy Policy explains how ${LEGAL_ENTITY.product} ("we", "us", "our") collects, uses, stores, and protects your personal and family data when you use the LifeWise mobile application and website at ${LEGAL_ENTITY.domain}.`}

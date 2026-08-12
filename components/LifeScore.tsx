@@ -66,7 +66,7 @@ export function LifeScore() {
         
         {/* Main Health Panel */}
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
             {/* Dot grid */}
             <div
               className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08]"

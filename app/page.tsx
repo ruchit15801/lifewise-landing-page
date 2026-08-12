@@ -63,18 +63,20 @@ export default function HomePage() {
       <JsonLd data={homePageSchemas()} />
       <main id="main-content">
         <Hero />
-        <Features />
-        <FamilyHub />
-        <ReminderSection />
-        <AISection />
-        <Reports />
-        <LifeScore />
-        <SeniorMode />
-        <Automation />
-        <Pricing />
-        <FAQSection />
-        <SupportSection />
-        <DownloadCTA />
+        <div className="relative bg-slate-50 text-slate-950 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-50 [&_section]:scroll-mt-24">
+          <Features />
+          <FamilyHub />
+          <ReminderSection />
+          <AISection />
+          <Reports />
+          <LifeScore />
+          <SeniorMode />
+          <Automation />
+          <Pricing />
+          <FAQSection />
+          <SupportSection />
+          <DownloadCTA />
+        </div>
       </main>
     </>
   );

@@ -13,45 +13,79 @@ const navItems = [
   { href: "#features", label: "Features" },
   { href: "#pricing", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
-  { href: "/support", label: "Support", isPage: true }
+  { href: "#support", label: "Support" }
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("#family");
+  const [active, setActive] = useState<string>("#features");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const sections = useMemo(
+  const sectionIds = useMemo(
     () => navItems.map((i) => i.href).filter((h) => h.startsWith("#")),
     []
   );
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`);
-          }
-        }
-      },
-      { rootMargin: "-40% 0px -40% 0px" }
+    let ticking = false;
+
+    const update = () => {
+      setIsScrolled(window.scrollY > 12);
+
+      const marker = window.innerHeight * 0.32;
+      let crossed = sectionIds[0] ?? "#features";
+
+      for (const id of sectionIds) {
+        const el = document.querySelector(id) as HTMLElement | null;
+        if (!el) continue;
+        if (el.getBoundingClientRect().top - marker <= 12) crossed = id;
+      }
+
+      // Near page bottom — force last nav section (Support)
+      const doc = document.documentElement;
+      const nearBottom =
+        window.innerHeight + window.scrollY >= doc.scrollHeight - 120;
+      if (nearBottom && sectionIds.includes("#support")) {
+        crossed = "#support";
+      }
+
+      setActive(crossed);
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    // Dynamic sections load after first paint — refresh a few times
+    const timers = [200, 600, 1200, 2500].map((ms) =>
+      window.setTimeout(update, ms)
     );
 
-    sections.forEach((s) => {
-      const el = document.querySelector(s);
-      if (el) observer.observe(el);
-    });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      timers.forEach(clearTimeout);
+    };
+  }, [sectionIds]);
 
-    return () => observer.disconnect();
-  }, [sections]);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   const NavLink = ({
     item,
@@ -62,13 +96,13 @@ export function Navbar() {
     onClick?: () => void;
     className: string;
   }) => {
-    const isActive = !item.isPage && active === item.href;
+    const isActive = active === item.href;
     const inner = (
       <>
         {isActive ? (
           <motion.span
             layoutId="nav-pill"
-            className="absolute inset-0 rounded-full bg-indigo-100 border border-indigo-200 dark:bg-indigo-500/10 dark:border-indigo-500/20"
+            className="absolute inset-0 rounded-full border border-indigo-200/80 bg-indigo-100/90 dark:border-indigo-400/30 dark:bg-indigo-500/20"
             transition={{ type: "spring", stiffness: 520, damping: 40 }}
           />
         ) : null}
@@ -76,15 +110,24 @@ export function Navbar() {
       </>
     );
 
-    if (item.isPage) {
-      return (
-        <Link href={item.href} onClick={onClick} className={className}>
-          {inner}
-        </Link>
-      );
-    }
     return (
-      <a href={item.href} onClick={onClick} className={className}>
+      <a
+        href={`/${item.href}`}
+        onClick={(e) => {
+          e.preventDefault();
+          const el = document.querySelector(item.href);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+            setActive(item.href);
+            onClick?.();
+            return;
+          }
+          // Other pages (privacy, etc.) — go home to section
+          window.location.href = `/${item.href}`;
+          onClick?.();
+        }}
+        className={className}
+      >
         {inner}
       </a>
     );
@@ -94,47 +137,57 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-[100] transition-all duration-500 border-b",
+          "fixed inset-x-0 top-0 z-[100] transition-all duration-500",
           isScrolled
-            ? "border-slate-200/80 bg-white/80 dark:border-slate-800/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-xl shadow-slate-200/20 dark:shadow-none"
-            : "border-transparent bg-transparent py-2"
+            ? "border-b border-white/50 bg-white/55 py-1 shadow-[0_8px_40px_rgba(15,23,42,0.08)] backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/55 dark:shadow-[0_8px_40px_rgba(0,0,0,0.35)]"
+            : "border-b border-transparent bg-transparent py-2"
         )}
       >
-        <div className="section-max flex h-16 items-center justify-between">
+        <div className="section-max flex h-16 items-center justify-between gap-3">
           <Link
             href="/"
-            className="group flex items-center gap-2.5 outline-none transition-transform hover:-translate-y-0.5 active:translate-y-0"
-            aria-label="Home"
+            className="group relative inline-flex h-14 w-14 shrink-0 items-center justify-center transition-transform hover:scale-105"
+            aria-label="LifeWise home"
           >
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-indigo-500/20 blur-xl transition-all group-hover:bg-indigo-500/30 dark:bg-indigo-500/30" />
-              <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white p-1.5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] ring-1 ring-slate-200 dark:shadow-[0_4px_20px_-4px_rgba(255,255,255,0.2)] dark:ring-white/10 transition-shadow group-hover:shadow-md z-10">
-                <Image
-                  src="/logo.png"
-                  alt="LifeWise Logo"
-                  fill
-                  sizes="40px"
-                  className="object-contain p-1.5 transition-transform group-hover:scale-105"
-                  priority
-                />
-              </div>
-            </div>
-            <span className="hidden font-black tracking-tight text-slate-900 dark:text-white sm:block sm:text-xl">
-              LifeWise
-            </span>
+            <motion.div
+              aria-hidden
+              className="absolute inset-[-2px] rounded-full opacity-80 blur-[12px] transition-all duration-500 group-hover:scale-125 group-hover:opacity-100"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              style={{
+                background:
+                  "conic-gradient(from 0deg, #ff0080, #ff8c00, #40e0d0, #8a2be2, #ff0080)"
+              }}
+            />
+            <span className="absolute inset-0 rounded-full bg-white/70 shadow-sm ring-1 ring-white/80 dark:bg-slate-950/50 dark:ring-white/10" />
+            <Image
+              src="/logo.png"
+              alt="LifeWise Logo"
+              width={56}
+              height={56}
+              priority
+              className="relative z-10 h-12 w-12 rounded-full object-contain drop-shadow-md md:h-14 md:w-14"
+            />
           </Link>
 
           <nav className="hidden lg:block">
-            <ul className="flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50/80 p-1.5 shadow-sm backdrop-blur-md dark:border-slate-800/60 dark:bg-slate-900/50">
+            <ul
+              className={cn(
+                "flex items-center gap-1 rounded-full border p-1.5 shadow-sm backdrop-blur-xl transition-colors",
+                isScrolled
+                  ? "border-slate-200/70 bg-white/50 dark:border-white/10 dark:bg-white/5"
+                  : "border-slate-200/80 bg-white/70 dark:border-white/10 dark:bg-slate-950/40"
+              )}
+            >
               {navItems.map((item) => (
                 <li key={item.label}>
                   <NavLink
                     item={item}
                     className={cn(
-                      "relative px-4 py-2 text-[13px] font-bold tracking-wide transition-colors",
+                      "relative inline-flex px-4 py-2 font-display text-[13px] font-semibold tracking-wide transition-colors",
                       active === item.href
-                        ? "text-indigo-700 dark:text-indigo-400"
-                        : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
+                        ? "text-indigo-700 dark:text-indigo-300"
+                        : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
                     )}
                   />
                 </li>
@@ -142,10 +195,16 @@ export function Navbar() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-3">
             <a
               href="#download"
-              className="hidden sm:inline-flex items-center justify-center rounded-full bg-indigo-600 px-5 py-2.5 text-[13px] font-bold text-white shadow-lg shadow-indigo-500/25 transition-all hover:bg-indigo-500 hover:shadow-indigo-500/40 hover:-translate-y-0.5"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .querySelector("#download")
+                  ?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              className="hidden items-center justify-center rounded-full bg-indigo-600 px-5 py-2.5 font-display text-[13px] font-bold text-white shadow-lg shadow-indigo-500/25 transition-all hover:-translate-y-0.5 hover:bg-indigo-500 hover:shadow-indigo-500/40 sm:inline-flex"
             >
               Download Free
             </a>
@@ -154,8 +213,9 @@ export function Navbar() {
             </div>
 
             <button
+              type="button"
               onClick={() => setOpen((p) => !p)}
-              className="grid h-11 w-11 place-items-center rounded-xl border border-slate-200 bg-white/50 text-slate-600 dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300 backdrop-blur-sm lg:hidden"
+              className="grid h-11 w-11 place-items-center rounded-xl border border-slate-200/80 bg-white/60 text-slate-600 backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-slate-200 lg:hidden"
               aria-label="Toggle menu"
               aria-expanded={open}
             >
@@ -188,13 +248,13 @@ export function Navbar() {
       </header>
 
       <AnimatePresence>
-        {open && (
+        {open ? (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            className="fixed inset-x-4 top-24 z-[90] overflow-hidden rounded-[2rem] border border-slate-200 bg-white/95 dark:border-slate-800/80 dark:bg-slate-950/95 p-6 shadow-2xl backdrop-blur-2xl lg:hidden"
+            className="fixed inset-x-3 top-[4.75rem] z-[90] overflow-hidden rounded-[1.75rem] border border-white/60 bg-white/85 p-5 shadow-2xl backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/90 sm:inset-x-4 sm:p-6 lg:hidden"
           >
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => (
@@ -202,30 +262,50 @@ export function Navbar() {
                   key={item.label}
                   item={item}
                   onClick={() => setOpen(false)}
-                  className="relative rounded-2xl px-5 py-4 text-base font-bold text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-900 dark:hover:text-white"
+                  className={cn(
+                    "relative rounded-2xl px-5 py-3.5 font-display text-base font-semibold transition-colors",
+                    active === item.href
+                      ? "bg-indigo-50 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300"
+                      : "text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-200 dark:hover:bg-white/5 dark:hover:text-white"
+                  )}
                 />
               ))}
-              <div className="my-4 h-px w-full bg-slate-200 dark:bg-slate-800/60" />
-              <div className="flex items-center justify-between px-5">
-                <span className="text-sm font-bold text-slate-600 dark:text-slate-400">Appearance</span>
+              <div className="my-3 h-px w-full bg-slate-200/80 dark:bg-white/10" />
+              <div className="flex items-center justify-between px-2">
+                <span className="text-sm font-semibold text-slate-600 dark:text-slate-300">
+                  Appearance
+                </span>
                 <ThemeToggle />
               </div>
+              <a
+                href="#download"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpen(false);
+                  document
+                    .querySelector("#download")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="mt-2 inline-flex items-center justify-center rounded-full bg-indigo-600 px-5 py-3 font-display text-sm font-bold text-white"
+              >
+                Download Free
+              </a>
             </nav>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
 
       <AnimatePresence>
-        {open && (
+        {open ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[80] bg-slate-900/40 dark:bg-slate-950/40 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-[80] bg-slate-900/35 backdrop-blur-sm dark:bg-slate-950/50 lg:hidden"
             onClick={() => setOpen(false)}
             aria-hidden
           />
-        )}
+        ) : null}
       </AnimatePresence>
     </>
   );

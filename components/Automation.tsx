@@ -23,7 +23,7 @@ export function Automation() {
         
         {/* Main Automation Panel */}
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-12 lg:p-14 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+          <div className="relative overflow-hidden rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-12 lg:p-14 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
             {/* Dot grid */}
             <div
               className="absolute inset-0 opacity-[0.03] dark:opacity-[0.06]"

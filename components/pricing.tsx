@@ -19,7 +19,7 @@ export function Pricing() {
         
         {/* FREE PLAN */}
         <Reveal>
-          <div className="relative flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-8 sm:p-10 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+          <div className="relative flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-8 sm:p-10 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
             <div className="mb-8">
               <div className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-widest text-slate-600 dark:bg-slate-800 dark:text-slate-400">
                 FREE
@@ -131,7 +131,7 @@ export function Pricing() {
 
       {/* Feature Comparison Table */}
       <Reveal delay={0.2}>
-        <div className="mt-16 overflow-hidden rounded-3xl border border-slate-200 bg-white dark:border-slate-800/60 dark:bg-[#0a0a12] transition-colors">
+        <div className="mt-16 overflow-hidden rounded-3xl border border-slate-200 bg-white dark:border-slate-800/60 dark:bg-slate-800/90 transition-colors">
           <div className="px-6 py-4 border-b border-slate-200 bg-slate-50 dark:border-slate-800/60 dark:bg-slate-900/50">
             <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500">Feature Comparison</h4>
           </div>

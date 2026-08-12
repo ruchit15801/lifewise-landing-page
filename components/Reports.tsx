@@ -18,7 +18,7 @@ export function Reports() {
         
         {/* Left: Monthly Expenses Mockup */}
         <Reveal delay={0.1}>
-          <div className="relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-8 sm:p-10 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+          <div className="relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-8 sm:p-10 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
             <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle, #3b82f6 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             
             <div className="relative z-10">
@@ -68,7 +68,7 @@ export function Reports() {
 
         {/* Right: Money Leak Alert Mockup */}
         <Reveal delay={0.2}>
-          <div className="relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-8 sm:p-10 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+          <div className="relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-8 sm:p-10 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
             <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle, #ef4444 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-rose-500/10 blur-[60px] pointer-events-none dark:bg-rose-600/10" />
 

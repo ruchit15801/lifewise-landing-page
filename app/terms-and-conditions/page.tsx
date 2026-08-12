@@ -7,28 +7,22 @@ import {
   LEGAL_GOVERNING_LAW,
   LEGAL_JURISDICTION
 } from "@/lib/legal";
+import { legalPageSchemas } from "@/lib/json-ld";
 import { buildTermsMetadata } from "@/lib/seo";
-import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = buildTermsMetadata();
-
-function termsSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "LifeWise Terms and Conditions",
-    url: `${SITE_URL}/terms-and-conditions`,
-    description:
-      "Terms and Conditions for using the LifeWise Family Operating System app: subscriptions, acceptable use, disclaimers, and governing law in India.",
-    isPartOf: { "@type": "WebSite", url: SITE_URL },
-    about: { "@type": "SoftwareApplication", name: "LifeWise" }
-  };
-}
 
 export default function TermsAndConditionsPage() {
   return (
     <>
-      <JsonLd data={termsSchema()} />
+      <JsonLd
+        data={legalPageSchemas({
+          path: "/terms-and-conditions",
+          name: "Terms & Conditions",
+          description:
+            "Terms and Conditions for using the LifeWise Family Operating System app: subscriptions, acceptable use, disclaimers, and governing law in India."
+        })}
+      />
       <LegalPageShell
         title="Terms & Conditions"
         subtitle={`Please read these Terms & Conditions ("Terms") carefully before using the ${LEGAL_ENTITY.product} mobile application or website at ${LEGAL_ENTITY.domain}. By downloading, installing, or using LifeWise, you agree to these Terms.`}

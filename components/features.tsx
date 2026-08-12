@@ -5,7 +5,6 @@ import { Mic, ScanLine, Bot, CheckCircle2, Copy } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/components/cn";
-import { PRODUCT_FEATURES } from "@/lib/landing-data";
 
 export function Features() {
   return (
@@ -19,7 +18,7 @@ export function Features() {
         
         {/* Feature 1: Voice */}
         <Reveal delay={0.1}>
-          <div className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12] h-full flex flex-col">
+          <div className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90 h-full flex flex-col">
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle, #8b5cf6 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-violet-500/10 blur-[60px] pointer-events-none group-hover:bg-violet-500/20 transition-colors" />
 
@@ -56,7 +55,7 @@ export function Features() {
 
         {/* Feature 2: Bill Scan */}
         <Reveal delay={0.2}>
-          <div className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12] h-full flex flex-col">
+          <div className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90 h-full flex flex-col">
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle, #0ea5e9 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-sky-500/10 blur-[60px] pointer-events-none group-hover:bg-sky-500/20 transition-colors" />
 
@@ -92,7 +91,7 @@ export function Features() {
 
         {/* Feature 3: WiseAI */}
         <Reveal delay={0.3}>
-          <div className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12] h-full flex flex-col">
+          <div className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90 h-full flex flex-col">
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle, #f43f5e 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-rose-500/10 blur-[60px] pointer-events-none group-hover:bg-rose-500/20 transition-colors" />
 

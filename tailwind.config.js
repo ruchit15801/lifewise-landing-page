@@ -7,7 +7,8 @@ module.exports = {
       colors: {
         primary: "#6D5DF6",
         accent: "#22C55E",
-        darkBg: "#0F172A",
+        darkBg: "#1E293B",
+        darkSurface: "#334155",
         lightBg: "#F8FAFC"
       },
       boxShadow: {
@@ -17,6 +18,10 @@ module.exports = {
       },
       borderRadius: {
         xl2: "1.25rem"
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-sans)", "ui-sans-serif", "sans-serif"]
       },
       keyframes: {
         floaty: {

@@ -20,7 +20,7 @@ html.dark {
 
   body {
     @apply antialiased transition-colors duration-300;
-    @apply bg-lightBg text-slate-950;
+    @apply bg-lightBg text-slate-950 font-sans;
     overflow-x: hidden;
     min-height: 100dvh;
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -29,11 +29,19 @@ html.dark {
       radial-gradient(90% 90% at 80% 18%, rgba(34, 197, 94, 0.14) 0%, transparent 55%);
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display), var(--font-sans), ui-sans-serif, sans-serif;
+  }
+
   .dark body {
     @apply bg-darkBg text-slate-50;
     background-image:
-      radial-gradient(120% 120% at 45% 0%, rgba(109, 93, 246, 0.32) 0%, rgba(2, 6, 23, 0.92) 44%, rgba(2, 6, 23, 0.98) 78%, rgba(109, 93, 246, 0.10) 100%),
-      radial-gradient(90% 90% at 72% 14%, rgba(34, 197, 94, 0.10) 0%, transparent 56%);
+      radial-gradient(120% 120% at 45% 0%, rgba(129, 140, 248, 0.28) 0%, rgba(30, 41, 59, 0.94) 42%, rgba(30, 41, 59, 0.98) 78%, rgba(109, 93, 246, 0.12) 100%),
+      radial-gradient(90% 90% at 78% 16%, rgba(52, 211, 153, 0.12) 0%, transparent 55%);
   }
 
   ::selection {
@@ -88,9 +96,9 @@ html.dark {
     @apply rounded-xl2 border border-slate-200/70 bg-white/60 backdrop-blur-xl shadow-premium;
   }
   .dark .glass {
-    @apply border-white/10 bg-slate-950/35;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset,
-      0 20px 80px rgba(0, 0, 0, 0.55);
+    @apply border-white/10 bg-slate-800/70;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 16px 48px rgba(0, 0, 0, 0.25);
   }
 
   .btn-primary {

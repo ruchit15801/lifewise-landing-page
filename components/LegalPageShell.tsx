@@ -17,7 +17,7 @@ export function LegalPageShell({
         <p className="text-xs font-semibold uppercase tracking-wide text-primary">
           {SITE_NAME} Legal
         </p>
-        <h1 className="mt-2 text-3xl sm:text-4xl font-semibold tracking-tight">
+        <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl dark:text-white">
           {title}
         </h1>
         <p className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">

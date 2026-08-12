@@ -22,7 +22,7 @@ export function AISection() {
         
         {/* Main AI Panel */}
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-12 lg:p-14 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+          <div className="relative overflow-hidden rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-12 lg:p-14 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
             {/* Dot grid */}
             <div
               className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
@@ -92,12 +92,13 @@ export function AISection() {
                       {/* User message */}
                       <div className="flex justify-end">
                         <motion.div 
-                          initial={{ opacity: 0, scale: 0.9, originBottomRight: 1 }}
+                          initial={{ opacity: 0, scale: 0.9 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
                           className="max-w-[85%] rounded-2xl rounded-tr-sm bg-purple-600 px-4 py-3 text-[13px] font-medium text-white shadow-sm"
+                          style={{ transformOrigin: "bottom right" }}
                         >
-                          What was Papa's BP trend over the last 3 days?
+                          What was Papa&apos;s BP trend over the last 3 days?
                         </motion.div>
                       </div>
 
@@ -107,20 +108,21 @@ export function AISection() {
                           <Bot className="h-4 w-4" />
                         </div>
                         <motion.div 
-                          initial={{ opacity: 0, scale: 0.9, originTopLeft: 1 }}
+                          initial={{ opacity: 0, scale: 0.9 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.5 }}
                           className="max-w-[85%] rounded-2xl rounded-tl-sm border border-slate-200 bg-white px-4 py-3 shadow-sm dark:border-slate-700/50 dark:bg-slate-800/80"
+                          style={{ transformOrigin: "top left" }}
                         >
                           <div className="text-[13px] font-medium text-slate-700 leading-relaxed dark:text-slate-300">
-                            Here is Papa's BP from the last 3 days:
+                            Here is Papa&apos;s BP from the last 3 days:
                             <br/><br/>
                             • <strong>Today:</strong> 120/80 (Normal)<br/>
                             • <strong>Yesterday:</strong> 125/82 (Normal)<br/>
                             • <strong>Monday:</strong> 130/85 (Slightly High)
                             <br/><br/>
-                            His BP has been stabilizing well. I have also noted that he hasn't missed any medication this week.
+                            His BP has been stabilizing well. I have also noted that he hasn&apos;t missed any medication this week.
                           </div>
                           
                           {/* Data pills */}

@@ -40,14 +40,17 @@ function StoreBadgeImage({
 export function StoreDownloadButtons({
   variant = "light",
   className,
-  showSoonBadge = true
+  showSoonBadge = true,
+  align = "start"
 }: {
   variant?: Variant;
   className?: string;
   showSoonBadge?: boolean;
+  align?: "start" | "center";
 }) {
   const [notice, setNotice] = useState<string | null>(null);
   const useWhiteAppStoreBadge = variant === "dark" || variant === "hero";
+  const centered = align === "center";
 
   function handleClick(e: React.MouseEvent, url: string) {
     if (url) return;
@@ -60,20 +63,40 @@ export function StoreDownloadButtons({
   const appUrl = APP_STORE_URL || "#download";
 
   return (
-    <div className={cn("w-full", className)}>
+    <div
+      className={cn(
+        "w-full",
+        centered && "flex flex-col items-center text-center",
+        className
+      )}
+    >
       {!STORES_ARE_LIVE && showSoonBadge ? (
-        <p className={cn(
-          "mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wide",
-          variant === "hero" 
-            ? "border-emerald-400/50 bg-emerald-400/20 text-emerald-50" 
-            : "border-accent/25 bg-accent/10 text-accent"
-        )}>
-          <span className={cn("h-2 w-2 animate-pulse rounded-full", variant === "hero" ? "bg-emerald-400" : "bg-accent")} />
+        <p
+          className={cn(
+            "mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wide",
+            variant === "dark" || variant === "hero"
+              ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-50"
+              : "border-accent/25 bg-accent/10 text-accent"
+          )}
+        >
+          <span
+            className={cn(
+              "h-2 w-2 animate-pulse rounded-full",
+              variant === "dark" || variant === "hero"
+                ? "bg-emerald-300"
+                : "bg-accent"
+            )}
+          />
           Launching soon on Play Store &amp; App Store
         </p>
       ) : null}
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+      <div
+        className={cn(
+          "flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center",
+          centered && "items-center justify-center"
+        )}
+      >
         <a
           href={playUrl}
           onClick={(e) => handleClick(e, PLAY_STORE_URL)}
@@ -82,7 +105,7 @@ export function StoreDownloadButtons({
           aria-label="Get LifeWise on Google Play"
           className={cn(
             "group relative inline-flex shrink-0 transition-transform hover:-translate-y-0.5 active:translate-y-0",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg"
+            "rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           )}
         >
           <StoreBadgeImage
@@ -101,7 +124,7 @@ export function StoreDownloadButtons({
           aria-label="Download LifeWise on the App Store"
           className={cn(
             "group relative inline-flex shrink-0 transition-transform hover:-translate-y-0.5 active:translate-y-0",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg"
+            "rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           )}
         >
           <StoreBadgeImage
@@ -120,15 +143,25 @@ export function StoreDownloadButtons({
       {notice ? (
         <p
           role="status"
-          className="mt-4 rounded-2xl border border-primary/20 bg-primary/5 px-4 py-3 text-sm leading-relaxed text-slate-700 dark:text-slate-200"
+          className={cn(
+            "mt-4 rounded-2xl border px-4 py-3 text-sm leading-relaxed",
+            variant === "dark" || variant === "hero"
+              ? "border-white/20 bg-white/10 text-white"
+              : "border-primary/20 bg-primary/5 text-slate-700 dark:text-slate-200"
+          )}
         >
           {notice}
         </p>
       ) : (
-        <p className={cn(
-          "mt-3 text-xs",
-          variant === "hero" ? "text-white/90 font-medium" : "text-slate-600 dark:text-slate-400"
-        )}>
+        <p
+          className={cn(
+            "mt-3 text-xs",
+            centered && "text-center",
+            variant === "dark" || variant === "hero"
+              ? "font-medium text-white/85"
+              : "text-slate-600 dark:text-slate-400"
+          )}
+        >
           {STORES_ARE_LIVE
             ? "Free download • Android & iOS • Made for Indian families"
             : "Tap a store button and we'll notify you when LifeWise goes live."}

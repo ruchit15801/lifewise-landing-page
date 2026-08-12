@@ -23,7 +23,7 @@ export function FamilyHub() {
         
         {/* Main Hub Showcase */}
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-slate-50 border border-slate-200 dark:bg-[#0a0a12] dark:border-slate-800/60 p-8 sm:p-12 lg:p-14 transition-colors duration-500">
+          <div className="relative overflow-hidden rounded-3xl bg-slate-50 border border-slate-200 dark:bg-slate-800/90 dark:border-slate-800/60 p-8 sm:p-12 lg:p-14 transition-colors duration-500">
             {/* Dot grid */}
             <div
               className="absolute inset-0 opacity-[0.05]"
@@ -162,7 +162,7 @@ export function FamilyHub() {
         {/* Feature Highlights Below Hub */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           <Reveal delay={0.1}>
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 dark:border-slate-800/60 dark:bg-[#0a0a12] transition-colors">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 dark:border-slate-800/60 dark:bg-slate-800/90 transition-colors">
               <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-600 border border-blue-100 grid place-items-center mb-5 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20">
                 <FileText className="h-6 w-6" />
               </div>
@@ -184,7 +184,7 @@ export function FamilyHub() {
           </Reveal>
 
           <Reveal delay={0.2}>
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 h-full flex flex-col justify-between dark:border-slate-800/60 dark:bg-[#0a0a12] transition-colors">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 h-full flex flex-col justify-between dark:border-slate-800/60 dark:bg-slate-800/90 transition-colors">
               <div>
                 <div className="h-12 w-12 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100 grid place-items-center mb-5 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20">
                   <ShieldCheck className="h-6 w-6" />

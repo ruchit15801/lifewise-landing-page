@@ -24,7 +24,7 @@ export function ReminderSection() {
         
         {/* Main Panel */}
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-12 lg:p-14 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+          <div className="relative overflow-hidden rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-12 lg:p-14 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
             {/* Dot grid */}
             <div
               className="absolute inset-0 opacity-[0.05] dark:opacity-[0.06]"
@@ -49,7 +49,7 @@ export function ReminderSection() {
                 </h3>
 
                 <p className="mt-6 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 max-w-sm mb-8">
-                  View all upcoming tasks across your family, or zoom in on one person's medicines. LifeWise intelligently organizes everything by urgency.
+                  View all upcoming tasks across your family, or zoom in on one person&apos;s medicines. LifeWise intelligently organizes everything by urgency.
                 </p>
 
                 <div className="grid gap-4 max-w-sm">

@@ -1,5 +1,7 @@
 /** PRD-accurate content for the LifeWise landing page (PRD v1.0) */
 
+import { Volume2, ScanFace, Languages } from "lucide-react";
+
 export const PRODUCT_TAGLINE = "Family Operating System";
 
 export const PRODUCT_DESCRIPTION =
@@ -124,7 +126,6 @@ export const EXPENSE_CATEGORIES = [
   { name: "Doctor Visits", amount: "₹1,200", pct: 20 },
 ];
 
-import { Volume2, ScanFace, Languages } from "lucide-react";
 export const SENIOR_FEATURES = [
   { title: "Loud Voice Prompts", desc: "Papa can hear reminders clearly in Hindi or English.", icon: Volume2 },
   { title: "No Passwords", desc: "Simple Face ID or Fingerprint login. No confusing OTPs.", icon: ScanFace },

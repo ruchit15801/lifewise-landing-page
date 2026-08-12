@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Sora } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeContext";
@@ -9,17 +9,23 @@ import { SkipToContent } from "@/components/SkipToContent";
 import { JsonLd } from "@/components/JsonLd";
 import dynamic from "next/dynamic";
 import { organizationSchema, websiteSchema } from "@/lib/json-ld";
-import { buildRootMetadata } from "@/lib/seo";
+import { buildRootMetadata, SITE_URL } from "@/lib/seo";
 
 const SupportChatbot = dynamic(
   () => import("@/components/SupportChatbot").then((m) => m.SupportChatbot),
   { ssr: false }
 );
 
-
-const inter = Inter({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  display: "swap"
+  display: "swap",
+  variable: "--font-sans"
+});
+
+const sora = Sora({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-display"
 });
 
 export const metadata: Metadata = buildRootMetadata();
@@ -44,6 +50,8 @@ export default function RootLayout({
     <html lang="en-IN" suppressHydrationWarning>
       <head>
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site summary" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="Full LLM reference for LifeWise" />
+        <link rel="author" href={`${SITE_URL}/llms.txt`} />
       </head>
       <JsonLd data={[organizationSchema(), websiteSchema()]} />
       <Script
@@ -84,7 +92,7 @@ export default function RootLayout({
           `
         }}
       />
-      <body className={inter.className}>
+      <body className={`${plusJakarta.variable} ${sora.variable} font-sans`}>
         <SkipToContent />
         <ThemeProvider>
           <Navbar />
