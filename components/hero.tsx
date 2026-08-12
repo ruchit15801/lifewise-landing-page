@@ -90,7 +90,7 @@ export function Hero() {
 
         <div className="relative noise justify-self-center lg:justify-self-end lg:translate-x-1">
           <div className="pointer-events-none absolute -inset-10 rounded-[3rem] bg-white/30 blur-3xl dark:bg-white/5" />
-          <PhoneMock className="max-w-[min(92vw,22rem)] sm:max-w-[24rem] lg:max-w-[26rem]" />
+          <PhoneMock className="max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem]" />
         </div>
       </div>
     </section>

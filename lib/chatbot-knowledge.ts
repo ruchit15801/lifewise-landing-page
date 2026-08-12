@@ -66,7 +66,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     triggers: [
       "price", "pricing", "cost", "kitna", "kharcha", "paisa",
       "free", "premium", "199", "subscription", "plan", "rupees",
-      "rs", "monthly", "yearly", "payment plan", "kimat", "rate"
+      "rs", "monthly", "yearly", "payment plan", "kimat", "rate", "kya app free hai", "is it free"
     ],
     response: "LifeWise has a generous free tier + affordable Premium! 💰\n\n🆓 FREE Plan:\n• Up to 3 family members\n• Medicine + Bills modules\n• Basic reminders\n• 1 caregiver per member\n• 7 days history\n\n⭐ PREMIUM — ₹199/month:\n• Unlimited family members\n• All 20 modules\n• WiseAI chat assistant\n• Voice reminders\n• Bill scan OCR\n• Monthly PDF reports\n• Money Leak detection\n• 1 GB document storage\n\n💰 YEARLY SAVINGS:\n• Premium Yearly: ₹1,499/year (save ₹889!)\n• Family Yearly: ₹1,999/year (up to 6 accounts)\n\nCancel anytime from Profile → Subscription.",
     followUp: "Ready to download, or have questions about specific features?"
@@ -193,7 +193,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     intent: "who_is_it_for",
     triggers: [
       "who is it for", "target", "audience", "kiske liye",
-      "for whom", "use case", "suitable"
+      "for whom", "use case", "suitable", "who is this app for", "who can use", "kon use kari sake"
     ],
     response: "LifeWise is built for Indian families! 🇮🇳\n\n👨‍👩‍👧‍👦 Perfect for:\n• Adult children managing parents in Ahmedabad, Mumbai, Delhi\n• NRI children caring for parents remotely\n• Caregivers coordinating health routines\n• Seniors needing simple, voice-driven reminders\n• Students tracking fees & study schedules\n• Families managing shared bills & expenses\n\nFrom a single person to a joint family of 10+ — LifeWise scales to your needs.",
     followUp: "Ready to download and try it free?"

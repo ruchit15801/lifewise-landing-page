@@ -113,7 +113,7 @@ export function LifeScore() {
                       )}
                     >
                       <div className="flex items-start gap-3">
-                        <div className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
+                        <div className="shrink-0 grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
                           <Icon className="h-5 w-5" />
                         </div>
                         <div>

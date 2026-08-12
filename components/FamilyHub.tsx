@@ -54,7 +54,7 @@ export function FamilyHub() {
                     )}
                   >
                     <div className="p-5 flex items-center gap-4">
-                      <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
+                      <div className="shrink-0 grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
                         <Icon className="h-6 w-6" />
                       </div>
                       <div className="min-w-0">
@@ -97,7 +97,7 @@ export function FamilyHub() {
 
             <div className="mt-6 rounded-2xl border border-slate-200/70 bg-white/50 p-5 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
               <div className="flex items-start gap-3">
-                <div className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
+                <div className="shrink-0 grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
                   <Shield className="h-5 w-5" />
                 </div>
                 <div>
