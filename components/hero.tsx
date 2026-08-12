@@ -94,8 +94,8 @@ export function Hero() {
 
           <Reveal delay={0.05} blur={false}>
             <h1 className="mt-5 font-display text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-slate-950 sm:mt-6 sm:text-5xl lg:text-6xl dark:text-white">
-              <span className="gradient-text">LifeWise</span>: One App to Manage
-              Your{" "}
+              <span className="gradient-text">LifeWise: Family OS</span>
+              . One App to Manage Your{" "}
               <span className="text-slate-950 dark:text-white">Entire Family</span>
             </h1>
           </Reveal>
@@ -106,10 +106,10 @@ export function Hero() {
               className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-200"
             >
               <strong className="font-semibold text-slate-900 dark:text-white">
-                LifeWise is India&apos;s Family Operating System
+                LifeWise is India&apos;s Family Operating System (Family OS)
               </strong>
-              {" — "}
-              {PRODUCT_DESCRIPTION}
+              . {PRODUCT_DESCRIPTION} Official Android app on Google Play (
+              <span className="whitespace-nowrap">com.lifewise</span>).
             </p>
           </Reveal>
 

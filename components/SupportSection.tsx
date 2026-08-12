@@ -46,9 +46,9 @@ const LANGUAGES = [
 ] as const;
 
 const FAMILY_SIZES = [
-  { value: "1-2", label: "1–2 members", hint: "Just us" },
-  { value: "3-4", label: "3–4 members", hint: "Typical family" },
-  { value: "5-6", label: "5–6 members", hint: "Joint family" },
+  { value: "1-2", label: "1-2 members", hint: "Just us" },
+  { value: "3-4", label: "3-4 members", hint: "Typical family" },
+  { value: "5-6", label: "5-6 members", hint: "Joint family" },
   { value: "7+", label: "7+ members", hint: "Big household" }
 ] as const;
 
@@ -340,7 +340,7 @@ export function SupportSection() {
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Languages className="h-4 w-4 shrink-0 text-sky-200" />
-                  English · Hindi · Gujarati support
+                  English, Hindi, Gujarati support
                 </li>
                 <li className="flex items-center gap-2.5">
                   <ShieldCheck className="h-4 w-4 shrink-0 text-amber-200" />
@@ -370,7 +370,7 @@ export function SupportSection() {
                     Send us a message
                   </h3>
                   <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                    Tell us what you need — we reply to your email.
+                    Tell us what you need. We reply to your email.
                   </p>
                 </div>
                 {status === "success" ? (
@@ -446,7 +446,7 @@ export function SupportSection() {
                       type="text"
                       autoComplete="address-level2"
                       className={fieldClass}
-                      placeholder="Ahmedabad, Mumbai…"
+                      placeholder="Ahmedabad, Mumbai..."
                       value={formData.city}
                       onChange={(e) =>
                         setFormData((p) => ({ ...p, city: e.target.value }))
@@ -536,7 +536,7 @@ export function SupportSection() {
                     required
                     rows={3}
                     className={cn(fieldClass, "resize-none")}
-                    placeholder="Describe your issue — Family Hub, reminders, billing…"
+                    placeholder="Describe your issue: Family Hub, reminders, billing..."
                     value={formData.message}
                     onChange={(e) =>
                       setFormData((p) => ({ ...p, message: e.target.value }))
@@ -556,7 +556,7 @@ export function SupportSection() {
                   className="flex w-full items-center justify-center gap-2 rounded-2xl bg-indigo-600 py-3.5 font-display text-[15px] font-bold text-white shadow-lg shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-500 hover:shadow-indigo-500/40 disabled:translate-y-0 disabled:opacity-70"
                 >
                   {status === "submitting"
-                    ? "Sending…"
+                    ? "Sending..."
                     : status === "success"
                       ? "Message sent!"
                       : (
@@ -580,7 +580,7 @@ export function SupportSection() {
                   <span className="hidden h-1 w-1 rounded-full bg-slate-300 sm:inline-block" />
                   <span className="inline-flex items-center gap-1.5">
                     <ShieldCheck className="h-3.5 w-3.5 text-violet-500" />
-                    No spam · Secure
+                    No spam, Secure
                   </span>
                 </div>
               </form>

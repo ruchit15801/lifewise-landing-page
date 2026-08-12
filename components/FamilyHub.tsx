@@ -51,7 +51,7 @@ export function FamilyHub() {
                 </h3>
 
                 <p className="mt-6 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 max-w-sm">
-                  Papa, Mummy, children — each with their own profile card and up to 20 modules. Caregivers stay connected in real time via WebSocket sync.
+                  Papa, Mummy, children: each with their own profile card and up to 20 modules. Caregivers stay connected in real time via WebSocket sync.
                 </p>
 
                 <div className="mt-10 flex items-center gap-6">

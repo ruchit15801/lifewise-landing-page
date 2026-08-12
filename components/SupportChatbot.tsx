@@ -161,7 +161,7 @@ export function SupportChatbot() {
                     <Sparkles className="h-3.5 w-3.5 text-primary" />
                   </div>
                   <div className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
-                    ● Online — Instant answers
+                    ● Online | Instant answers
                   </div>
                 </div>
               </div>

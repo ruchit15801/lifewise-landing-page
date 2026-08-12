@@ -1,5 +1,11 @@
 import { FAQ_ITEMS } from "@/lib/faqs";
-import { PLAY_STORE_URL, APP_STORE_URL } from "@/lib/stores";
+import { PLAY_STORE_URL } from "@/lib/stores";
+import {
+  PLAY_APP_TITLE,
+  PLAY_DISAMBIGUATION,
+  PLAY_PACKAGE_ID,
+  PLAY_SHORT_DESCRIPTION
+} from "@/lib/play-listing";
 import { FAMILY_HUB_MODULES, FREE_PLAN, PREMIUM_PLAN } from "@/lib/landing-data";
 import {
   ADDRESS,
@@ -57,7 +63,7 @@ export function organizationSchema() {
     },
     image: `${SITE_URL}/og-image.svg`,
     description:
-      "LifeWise builds the Family Operating System — a mobile app for Indian families to manage health, bills, reminders, and daily routines from one place.",
+      "LifeWise builds the Family Operating System: a mobile app for Indian families to manage health, bills, reminders, and daily routines from one place.",
     email: CONTACT_EMAIL,
     telephone: SUPPORT_PHONE,
     address: postalAddress(),
@@ -143,7 +149,9 @@ export function organizationSchema() {
     brand: {
       "@type": "Brand",
       name: SITE_NAME
-    }
+    },
+    sameAs: [PLAY_STORE_URL].filter(Boolean),
+    identifier: PLAY_PACKAGE_ID
   };
 }
 
@@ -157,7 +165,7 @@ export function localBusinessSchema() {
     image: `${SITE_URL}/logo.png`,
     telephone: SUPPORT_PHONE,
     email: CONTACT_EMAIL,
-    priceRange: "₹0–₹199",
+    priceRange: "₹0-₹199",
     address: postalAddress(),
     geo: geoCoordinates(),
     areaServed: {
@@ -188,10 +196,10 @@ export function websiteSchema() {
     "@type": "WebSite",
     "@id": WEBSITE_ID,
     name: SITE_NAME,
-    alternateName: ["LifeWise App", "lifewiseee.com"],
+    alternateName: ["LifeWise App", "LifeWise: Family OS", "lifewiseee.com", "com.lifewise"],
     url: SITE_URL,
     description:
-      "Official LifeWise website. Download India's Family Operating System app for Android and iOS.",
+      "Official LifeWise: Family OS website. Download India's Family Operating System on Google Play  for medicine reminders, bill alerts, Family Hub, and WiseAI.",
     publisher: { "@id": ORG_ID },
     inLanguage: ["en-IN", "en", "hi"],
     potentialAction: {
@@ -210,17 +218,25 @@ export function softwareApplicationSchema() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "@id": APP_ID,
-    name: SITE_NAME,
-    alternateName: `${SITE_NAME} App`,
+    name: PLAY_APP_TITLE,
+    alternateName: [
+      "LifeWise",
+      "LifeWise App",
+      "LifeWise Family Operating System",
+      "LifeWise Family OS",
+      PLAY_PACKAGE_ID
+    ],
     applicationCategory: "LifestyleApplication",
     applicationSubCategory: "Family Management",
-    operatingSystem: "Android, iOS",
+    operatingSystem: "Android",
     url: SITE_URL,
-    downloadUrl: PLAY_STORE_URL || APP_STORE_URL || SITE_URL,
+    downloadUrl: PLAY_STORE_URL || SITE_URL,
+    installUrl: PLAY_STORE_URL || SITE_URL,
     screenshot: `${SITE_URL}/og-image.svg`,
     image: `${SITE_URL}/og-image.svg`,
-    description:
-      "LifeWise is a Family Operating System mobile app for India. Manage medicine reminders, bills, insurance, documents, health readings, and family routines with Family Hub, WiseAI, and 20 smart modules.",
+    identifier: PLAY_PACKAGE_ID,
+    softwareVersion: "1.0",
+    description: `${PLAY_SHORT_DESCRIPTION} ${PLAY_DISAMBIGUATION}`,
     featureList: [
       "Family Hub with 20 modules per member",
       "WiseAI family assistant",
@@ -262,7 +278,8 @@ export function softwareApplicationSchema() {
         "@type": "Country",
         name: "India"
       }
-    }
+    },
+    sameAs: [PLAY_STORE_URL].filter(Boolean)
   };
 }
 
@@ -271,22 +288,24 @@ export function productSchema() {
     "@context": "https://schema.org",
     "@type": "Product",
     "@id": `${SITE_URL}/#product`,
-    name: `${SITE_NAME} Family Operating System`,
-    description:
-      "Mobile Family Operating System for Indian families — medicine reminders, bills, Family Hub, and WiseAI.",
+    name: PLAY_APP_TITLE,
+    description: PLAY_SHORT_DESCRIPTION,
     brand: { "@type": "Brand", name: SITE_NAME },
     category: "Family Management Software",
     image: `${SITE_URL}/og-image.svg`,
     url: SITE_URL,
+    sku: PLAY_PACKAGE_ID,
     offers: {
       "@type": "AggregateOffer",
       lowPrice: "0",
       highPrice: "199",
       priceCurrency: "INR",
       offerCount: 2,
-      availability: "https://schema.org/InStock"
+      availability: "https://schema.org/InStock",
+      url: PLAY_STORE_URL || SITE_URL
     },
-    isRelatedTo: { "@id": APP_ID }
+    isRelatedTo: { "@id": APP_ID },
+    sameAs: [PLAY_STORE_URL].filter(Boolean)
   };
 }
 
@@ -294,17 +313,23 @@ export function mobileApplicationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "MobileApplication",
-    name: SITE_NAME,
-    operatingSystem: "Android, iOS",
+    name: PLAY_APP_TITLE,
+    alternateName: ["LifeWise", PLAY_PACKAGE_ID],
+    operatingSystem: "Android",
     applicationCategory: "LifestyleApplication",
     url: SITE_URL,
+    downloadUrl: PLAY_STORE_URL || SITE_URL,
+    installUrl: PLAY_STORE_URL || SITE_URL,
+    identifier: PLAY_PACKAGE_ID,
     offers: {
       "@type": "Offer",
       price: "0",
-      priceCurrency: "INR"
+      priceCurrency: "INR",
+      url: PLAY_STORE_URL || SITE_URL
     },
     publisher: { "@id": ORG_ID },
-    countriesSupported: "IN"
+    countriesSupported: "IN",
+    sameAs: [PLAY_STORE_URL].filter(Boolean)
   };
 }
 
@@ -314,9 +339,8 @@ export function webPageSchema() {
     "@type": "WebPage",
     "@id": `${SITE_URL}/#webpage`,
     url: SITE_URL,
-    name: `${SITE_NAME} App India – Family Operating System | Medicine Reminder, Bill Reminder & Family Hub`,
-    description:
-      "Official LifeWise landing page. Download India's Family Operating System for medicine reminders, bill alerts, Family Hub, and WiseAI. Free on Android & iOS.",
+    name: `${PLAY_APP_TITLE} - Medicine & Bill Reminder App India | Family Hub`,
+    description: PLAY_SHORT_DESCRIPTION,
     isPartOf: { "@id": WEBSITE_ID },
     about: [{ "@id": APP_ID }, { "@id": `${SITE_URL}/#family-operating-system` }],
     primaryImageOfPage: {
@@ -330,12 +354,13 @@ export function webPageSchema() {
       cssSelector: ["#lifewise-definition", ".faq-answer", "#why-lifewise h2"]
     },
     significantLink: [
+      PLAY_STORE_URL,
       `${SITE_URL}/support`,
       `${SITE_URL}/privacy-policy`,
       `${SITE_URL}/terms-and-conditions`,
       `${SITE_URL}/llms.txt`,
       `${SITE_URL}/llms-full.txt`
-    ]
+    ].filter(Boolean)
   };
 }
 
@@ -387,7 +412,7 @@ export function howToMedicineSchema() {
         "@type": "HowToStep",
         position: 3,
         name: "Add reminder",
-        text: "Add medicine name, dose, and time — or use Voice Reminder and say it in Hindi or English."
+        text: "Add medicine name, dose, and time, or use Voice Reminder and say it in Hindi or English."
       },
       {
         "@type": "HowToStep",
@@ -455,7 +480,7 @@ export function featureItemListSchema() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "@id": `${SITE_URL}/#why-lifewise`,
-    name: "Why LifeWise – India Family Operating System features",
+    name: "Why LifeWise - India Family Operating System features",
     description:
       "Core reasons Indian families choose LifeWise for medicine reminders, bill alerts, Family Hub, and WiseAI.",
     numberOfItems: 6,
@@ -500,7 +525,7 @@ export function featureItemListSchema() {
         position: 6,
         name: "Secure DPDP-aware family app",
         description:
-          "Official LifeWise at lifewiseee.com — Free plan and Premium from ₹199/month."
+          "Official LifeWise at lifewiseee.com. Free plan and Premium from ₹199/month."
       }
     ]
   };
@@ -512,7 +537,7 @@ export function contactPageSchema() {
     "@type": "ContactPage",
     "@id": `${SITE_URL}/support#webpage`,
     url: `${SITE_URL}/support`,
-    name: "LifeWise Support & Contact – India",
+    name: "LifeWise Support & Contact - India",
     description:
       "Contact LifeWise India customer care by email, WhatsApp, or phone for Family Hub, medicine reminders, bills, and Premium help.",
     isPartOf: { "@id": WEBSITE_ID },
@@ -537,7 +562,7 @@ export function breadcrumbSchema(
   };
 }
 
-/** Home page — Org/Website already in root layout; avoid duplicates */
+/** Home page - Org/Website already in root layout; avoid duplicates */
 export function homePageSchemas() {
   return [
     softwareApplicationSchema(),

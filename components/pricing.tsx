@@ -122,7 +122,7 @@ export function Pricing() {
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 py-4 text-sm font-bold text-white shadow-lg shadow-indigo-500/30 transition-transform hover:-translate-y-0.5 hover:shadow-indigo-500/40"
               >
                 <Zap className="h-4 w-4" />
-                Start Premium — ₹199/month
+                Start Premium (₹199/month)
               </a>
             </div>
           </div>

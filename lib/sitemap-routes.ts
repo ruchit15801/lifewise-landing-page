@@ -2,9 +2,9 @@ import { SITE_URL } from "@/lib/seo";
 
 /**
  * Every public, indexable URL for lifewiseee.com.
- * Update this file when adding new pages — sitemap.xml is generated from here.
+ * Update this file when adding new pages - sitemap.xml is generated from here.
  *
- * Homepage sections (#family, #faq, #pricing, #download) live on `/` — do not add
+ * Homepage sections (#family, #faq, #pricing, #download) live on `/` - do not add
  * hash URLs to the sitemap; Google indexes one URL per page.
  */
 export type SitemapRoute = {
@@ -17,7 +17,7 @@ export type SitemapRoute = {
 export const INDEXABLE_ROUTES: SitemapRoute[] = [
   {
     path: "/",
-    label: "LifeWise App India – Family Operating System | Medicine & Bill Reminder",
+    label: "LifeWise: Family OS - Medicine & Bill Reminder App India | Google Play",
     changeFrequency: "weekly",
     priority: 1
   },
@@ -29,7 +29,7 @@ export const INDEXABLE_ROUTES: SitemapRoute[] = [
   },
   {
     path: "/privacy-policy",
-    label: "LifeWise Privacy Policy – DPDP Act India",
+    label: "LifeWise Privacy Policy - DPDP Act India",
     changeFrequency: "monthly",
     priority: 0.7
   },

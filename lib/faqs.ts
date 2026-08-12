@@ -10,8 +10,8 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "What is LifeWise app?",
     answer:
-      "LifeWise is India's Family Operating System: a mobile app where you manage Papa's medicine, Mummy's doctor visits, electricity bills, insurance renewals, school fees, and daily family routines from one place. It works on Android and iOS.",
-    keywords: ["what is lifewise", "lifewise app kya hai"]
+      "LifeWise is India's Family Operating System (Family OS) app, also titled LifeWise: Family OS on Google Play (package com.lifewise). Manage Papa's medicine, Mummy's doctor visits, electricity bills, insurance, and daily routines in one Family Hub with WiseAI. Free on Android; iOS coming soon. Official site: lifewiseee.com. Not LifeWise Student Insurance.",
+    keywords: ["what is lifewise", "lifewise app kya hai", "family os", "com.lifewise"]
   },
   {
     question: "Is LifeWise free to use in India?",
@@ -76,13 +76,19 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "How do I download LifeWise app?",
     answer:
-      "Download LifeWise free on Google Play: https://play.google.com/store/apps/details?id=com.lifewise. App Store version is coming soon. Only download from lifewiseee.com or the official Play listing — avoid fake apps with similar names.",
-    keywords: ["download", "install", "play store", "android", "ios"]
+      "Download LifeWise: Family OS free on Google Play: https://play.google.com/store/apps/details?id=com.lifewise (package com.lifewise). App Store coming soon. Only use lifewiseee.com or the official Play listing; avoid fake apps with similar names (including unrelated LifeWise insurance apps).",
+    keywords: ["download", "install", "play store", "android", "ios", "com.lifewise"]
+  },
+  {
+    question: "Is LifeWise the same as LifeWise Student Insurance?",
+    answer:
+      "No. LifeWise at lifewiseee.com (Google Play package com.lifewise) is India's Family Operating System for medicine reminders, bills, and Family Hub. It is not affiliated with LifeWise Student Insurance or LifeWise Assurance Company.",
+    keywords: ["lifewise insurance", "student insurance", "different", "official"]
   },
   {
     question: "How do I contact LifeWise support?",
     answer:
-      "Email support@lifewiseee.com, call or WhatsApp +91 63538 91986 (Mon–Sat 9 AM–7 PM IST), or fill the Support form on lifewiseee.com/support. Our team helps with setup, billing, and app issues in English and Hindi.",
+      "Email support@lifewiseee.com, call or WhatsApp +91 63538 91986 (Mon-Sat 9 AM-7 PM IST), or fill the Support form on lifewiseee.com/support. Our team helps with setup, billing, and app issues in English and Hindi.",
     keywords: ["support", "contact", "help", "call", "whatsapp", "email"]
   },
   {

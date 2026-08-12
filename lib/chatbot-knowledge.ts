@@ -20,7 +20,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "explain lifewise", "intro", "introduction", "overview",
       "what app", "kya app", "konsi app", "which app"
     ],
-    response: "LifeWise is India's Family Operating System 🇮🇳 — a single mobile app where your entire family's life is organized.\n\n🏠 Manage Papa's medicine reminders\n💡 Track electricity & mobile bills\n🏥 Schedule Mummy's doctor appointments\n📚 Monitor children's study schedules\n👨‍👩‍👧‍👦 Connect caregivers in real-time\n\nIt works on both Android & iOS with support for Hindi, Gujarati, Marathi, Tamil, Telugu & Bengali.",
+    response: "LifeWise is India's Family Operating System 🇮🇳. A single mobile app where your entire family's life is organized.\n\n🏠 Manage Papa's medicine reminders\n💡 Track electricity & mobile bills\n🏥 Schedule Mummy's doctor appointments\n📚 Monitor children's study schedules\n👨‍👩‍👧‍👦 Connect caregivers in real-time\n\nIt works on both Android & iOS with support for Hindi, Gujarati, Marathi, Tamil, Telugu & Bengali.",
     followUp: "Would you like to know about pricing, features, or how to download?"
   },
 
@@ -68,7 +68,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "free", "premium", "199", "subscription", "plan", "rupees",
       "rs", "monthly", "yearly", "payment plan", "kimat", "rate", "kya app free hai", "is it free"
     ],
-    response: "LifeWise has a generous free tier + affordable Premium! 💰\n\n🆓 FREE Plan:\n• Up to 3 family members\n• Medicine + Bills modules\n• Basic reminders\n• 1 caregiver per member\n• 7 days history\n\n⭐ PREMIUM — ₹199/month:\n• Unlimited family members\n• All 20 modules\n• WiseAI chat assistant\n• Voice reminders\n• Bill scan OCR\n• Monthly PDF reports\n• Money Leak detection\n• 1 GB document storage\n\n💰 YEARLY SAVINGS:\n• Premium Yearly: ₹1,499/year (save ₹889!)\n• Family Yearly: ₹1,999/year (up to 6 accounts)\n\nCancel anytime from Profile → Subscription.",
+    response: "LifeWise has a generous free tier + affordable Premium! 💰\n\n🆓 FREE Plan:\n• Up to 3 family members\n• Medicine + Bills modules\n• Basic reminders\n• 1 caregiver per member\n• 7 days history\n\n⭐ PREMIUM (₹199/month):\n• Unlimited family members\n• All 20 modules\n• WiseAI chat assistant\n• Voice reminders\n• Bill scan OCR\n• Monthly PDF reports\n• Money Leak detection\n• 1 GB document storage\n\n💰 YEARLY SAVINGS:\n• Premium Yearly: ₹1,499/year (save ₹889!)\n• Family Yearly: ₹1,999/year (up to 6 accounts)\n\nCancel anytime from Profile → Subscription.",
     followUp: "Ready to download, or have questions about specific features?"
   },
 
@@ -116,7 +116,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "permission", "access", "connect family", "sync", "real time",
       "dekhbhal", "seva"
     ],
-    response: "Stay connected with your family through Caregivers! 👨‍👩‍👧‍👦\n\n📱 Family Hub → Select member → Settings → Manage Caregivers\n\nInvite anyone with 3 permission levels:\n👁️ View Only — see reminders & status\n✏️ Can Edit — add/modify reminders\n🔑 Full Access — complete management\n\n🔔 Missed-dose alerts: When Papa misses medicine, ALL caregivers get notified within 30 minutes.\n\nPerfect for:\n• Siblings sharing parent care across cities\n• Spouse coordinating children's schedules\n• NRI children monitoring elderly parents in India",
+    response: "Stay connected with your family through Caregivers! 👨‍👩‍👧‍👦\n\n📱 Family Hub → Select member → Settings → Manage Caregivers\n\nInvite anyone with 3 permission levels:\n👁️ View Only: see reminders & status\n✏️ Can Edit: add/modify reminders\n🔑 Full Access: complete management\n\n🔔 Missed-dose alerts: When Papa misses medicine, ALL caregivers get notified within 30 minutes.\n\nPerfect for:\n• Siblings sharing parent care across cities\n• Spouse coordinating children's schedules\n• NRI children monitoring elderly parents in India",
     followUp: "Need help with SOS emergency feature or medicine setup?"
   },
 
@@ -151,7 +151,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "phone number", "sampark", "madad", "customer care",
       "complaint", "issue", "problem", "bug", "not working"
     ],
-    response: "LifeWise India Support is here to help! 🙏\n\n📧 Email: support@lifewiseee.com\n📞 Call: +91 63538 91986\n💬 WhatsApp: +91 63538 91986\n\n🕐 Hours: Mon–Sat, 9 AM – 7 PM IST\n\n📝 You can also fill the Support form on this page — we'll reply within 24 hours.\n\nSupport available in English & Hindi.",
+    response: "LifeWise India Support is here to help! 🙏\n\n📧 Email: support@lifewiseee.com\n📞 Call: +91 63538 91986\n💬 WhatsApp: +91 63538 91986\n\n🕐 Hours: Mon-Sat, 9 AM - 7 PM IST\n\n📝 You can also fill the Support form on this page. We'll reply within 24 hours.\n\nSupport available in English & Hindi.",
     followUp: "Is there anything specific I can help with right now?"
   },
 
@@ -195,7 +195,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "who is it for", "target", "audience", "kiske liye",
       "for whom", "use case", "suitable", "who is this app for", "who can use", "kon use kari sake"
     ],
-    response: "LifeWise is built for Indian families! 🇮🇳\n\n👨‍👩‍👧‍👦 Perfect for:\n• Adult children managing parents in Ahmedabad, Mumbai, Delhi\n• NRI children caring for parents remotely\n• Caregivers coordinating health routines\n• Seniors needing simple, voice-driven reminders\n• Students tracking fees & study schedules\n• Families managing shared bills & expenses\n\nFrom a single person to a joint family of 10+ — LifeWise scales to your needs.",
+    response: "LifeWise is built for Indian families! 🇮🇳\n\n👨‍👩‍👧‍👦 Perfect for:\n• Adult children managing parents in Ahmedabad, Mumbai, Delhi\n• NRI children caring for parents remotely\n• Caregivers coordinating health routines\n• Seniors needing simple, voice-driven reminders\n• Students tracking fees & study schedules\n• Families managing shared bills & expenses\n\nFrom a single person to a joint family of 10+. LifeWise scales to your needs.",
     followUp: "Ready to download and try it free?"
   },
 

@@ -41,7 +41,7 @@ export function Navbar() {
         if (el.getBoundingClientRect().top - marker <= 12) crossed = id;
       }
 
-      // Near page bottom — force last nav section (Support)
+      // Near page bottom - force last nav section (Support)
       const doc = document.documentElement;
       const nearBottom =
         window.innerHeight + window.scrollY >= doc.scrollHeight - 120;
@@ -62,7 +62,7 @@ export function Navbar() {
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
-    // Dynamic sections load after first paint — refresh a few times
+    // Dynamic sections load after first paint - refresh a few times
     const timers = [200, 600, 1200, 2500].map((ms) =>
       window.setTimeout(update, ms)
     );
@@ -122,7 +122,7 @@ export function Navbar() {
             onClick?.();
             return;
           }
-          // Other pages (privacy, etc.) — go home to section
+          // Other pages (privacy, etc.) - go home to section
           window.location.href = `/${item.href}`;
           onClick?.();
         }}

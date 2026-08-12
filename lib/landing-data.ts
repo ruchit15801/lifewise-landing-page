@@ -2,10 +2,10 @@
 
 import { Volume2, ScanFace, Languages } from "lucide-react";
 
-export const PRODUCT_TAGLINE = "Family Operating System";
+export const PRODUCT_TAGLINE = "LifeWise: Family OS";
 
 export const PRODUCT_DESCRIPTION =
-  "One app to manage your entire family. From Papa's medicine to electricity bills, Mummy's doctor appointments to children's study schedules. Everything in one place, accessible by the whole family.";
+  "One app to manage your entire family. From Papa's medicine to electricity bills, Mummy's doctor appointments to children's study schedules. Everything in one Family Hub, accessible by the whole family.";
 
 export const HOME_QUICK_ACTIONS = [
   {

@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
+import {
+  PLAY_APP_TITLE,
+  PLAY_DISAMBIGUATION,
+  PLAY_KEYWORDS,
+  PLAY_SHORT_DESCRIPTION,
+  assertPlayListingLimits
+} from "@/lib/play-listing";
+
+assertPlayListingLimits();
 
 export const SITE_URL = "https://www.lifewiseee.com";
 export const SITE_NAME = "LifeWise";
 export const SITE_TAGLINE = "Family Operating System";
 export const SITE_LOCALE = "en_IN";
 
-/** Gurugram HQ — used for GEO / LocalBusiness schema */
+/** Gurugram HQ - used for GEO / LocalBusiness schema */
 export const ADDRESS = {
   street: "Sector 14",
   city: "Gurugram",
@@ -18,26 +27,28 @@ export const ADDRESS = {
   longitude: 77.0266
 } as const;
 
+/**
+ * SERP title - mirrors Play Store app title + India rank keywords.
+ * Keep under ~60-65 chars when possible for Google display.
+ */
 export const DEFAULT_TITLE =
-  "LifeWise App India – Family Operating System | Medicine Reminder, Bill Reminder & Family Hub";
+  `${PLAY_APP_TITLE} - Medicine & Bill Reminder App India | Family Hub`;
 
+/**
+ * Meta description: Play short + rank keywords + official download CTA.
+ * ~155-160 chars ideal for Google snippet.
+ */
 export const DEFAULT_DESCRIPTION =
-  "Download LifeWise – India's Family Operating System app. Papa medicine reminder, electricity bill alerts, Family Hub (20 modules), WiseAI, voice reminders & bill scan OCR. Free on Android & iOS. Premium from ₹199/month. Made for Indian families.";
+  "Download LifeWise: Family OS on Google Play. India's Family Operating System for medicine reminders, bill alerts, Family Hub & WiseAI. Free Android app (com.lifewise). Premium ₹199/mo. Official: lifewiseee.com.";
 
 export const KEYWORDS = [
-  // Brand / entity
-  "LifeWise",
-  "LifeWise app",
+  ...PLAY_KEYWORDS,
+  // Extra India / GEO / long-tail (site-only; Play uses subset above)
   "LifeWise India",
   "LifeWise Family Operating System",
-  "lifewiseee",
   "lifewiseee.com",
   "LifeWise official website",
-  "download LifeWise app",
-  "LifeWise Android app",
   "LifeWise iOS app",
-  // Core product intent
-  "family operating system app",
   "family management app India",
   "best family management app India",
   "family hub app India",
@@ -45,38 +56,28 @@ export const KEYWORDS = [
   "caregiver app for parents India",
   "caregiver reminder app",
   "family app for parents",
-  // Medicine / health
-  "medicine reminder app India",
   "medicine reminder app for parents",
-  "Papa medicine reminder",
   "Mummy medicine reminder",
   "senior medicine reminder app",
   "dawai reminder app",
   "tablet reminder app India",
   "family health tracker app",
   "health reminder app Hindi",
-  // Bills / finance
-  "bill reminder app India",
-  "electricity bill reminder India",
-  "bijli bill reminder app",
   "utility bill reminder app",
   "insurance renewal reminder India",
   "subscription tracker app India",
   "family expense tracker India",
   "scan bill OCR app India",
-  // AI / voice
   "WiseAI family assistant",
   "AI reminder app India",
   "voice reminder app Hindi",
   "Hindi medicine reminder app",
   "Gujarati family app",
-  // GEO / cities
   "family app Gurugram",
   "family app Delhi NCR",
   "family app Mumbai",
   "family app Ahmedabad",
   "family app Bengaluru",
-  // Support / trust
   "LifeWise support",
   "LifeWise contact number",
   "LifeWise customer care India",
@@ -85,7 +86,7 @@ export const KEYWORDS = [
   "LifeWise Premium 199"
 ] as const;
 
-/** @deprecated use lib/stores.ts — re-exported for compatibility */
+/** @deprecated use lib/stores.ts - re-exported for compatibility */
 export { PLAY_STORE_URL, APP_STORE_URL, STORES_ARE_LIVE } from "@/lib/stores";
 
 export { FAQ_ITEMS } from "@/lib/faqs";
@@ -104,13 +105,13 @@ const OG_IMAGE = {
   url: "/og-image.svg",
   width: 1200,
   height: 630,
-  alt: "LifeWise – Family Operating System for Indian families: medicine, bills & Family Hub"
+  alt: `${PLAY_APP_TITLE} - medicine reminder, bill reminder & Family Hub for Indian families`
 };
 
 export function buildRootMetadata(): Metadata {
   return {
     metadataBase: new URL(SITE_URL),
-    applicationName: SITE_NAME,
+    applicationName: PLAY_APP_TITLE,
     title: {
       default: DEFAULT_TITLE,
       template: `%s | ${SITE_NAME}`
@@ -160,14 +161,14 @@ export function buildRootMetadata(): Metadata {
       alternateLocale: ["en_US", "hi_IN"],
       url: SITE_URL,
       siteName: SITE_NAME,
-      title: `${SITE_NAME} – ${SITE_TAGLINE}`,
+      title: DEFAULT_TITLE,
       description: DEFAULT_DESCRIPTION,
       countryName: "India",
       images: [OG_IMAGE]
     },
     twitter: {
       card: "summary_large_image",
-      title: `${SITE_NAME} – ${SITE_TAGLINE}`,
+      title: DEFAULT_TITLE,
       description: DEFAULT_DESCRIPTION,
       images: [OG_IMAGE.url]
     },
@@ -189,12 +190,14 @@ export function buildRootMetadata(): Metadata {
       "geo.position": `${ADDRESS.latitude};${ADDRESS.longitude}`,
       ICBM: `${ADDRESS.latitude}, ${ADDRESS.longitude}`,
       "content-language": "en-IN",
-      "revisit-after": "7 days",
+      "revisit-after": "3 days",
       rating: "general",
       distribution: "global",
       coverage: "India",
       target: "all",
-      HandheldFriendly: "true"
+      HandheldFriendly: "true",
+      "google-play-app": "app-id=com.lifewise",
+      "application-name": PLAY_APP_TITLE
     }
   };
 }
@@ -225,27 +228,33 @@ export function buildHomeMetadata(): Metadata {
       title: DEFAULT_TITLE,
       description: DEFAULT_DESCRIPTION,
       images: [OG_IMAGE.url]
+    },
+    other: {
+      "al:android:url": "https://play.google.com/store/apps/details?id=com.lifewise",
+      "al:android:package": "com.lifewise",
+      "al:android:app_name": PLAY_APP_TITLE
     }
   };
 }
 
 export function buildSupportMetadata(): Metadata {
   return {
-    title: "Support & Contact – LifeWise India Customer Care",
+    title: "Support & Contact - LifeWise India Customer Care",
     description:
-      "Contact LifeWise India support: email support@lifewiseee.com, call or WhatsApp +91 63538 91986. Help with medicine reminders, bills, Family Hub, Premium billing. Mon–Sat 9 AM–7 PM IST. English & Hindi.",
+      "Contact LifeWise (Family OS) India support: support@lifewiseee.com, WhatsApp/call +91 63538 91986. Help with medicine reminders, bills, Family Hub, Premium. Mon-Sat 9 AM-7 PM IST.",
     keywords: [
       "LifeWise support",
       "LifeWise customer care",
       "LifeWise contact number",
       "LifeWise WhatsApp",
-      "Family Hub help India"
+      "Family Hub help India",
+      "com.lifewise support"
     ],
     alternates: { canonical: `${SITE_URL}/support` },
     openGraph: {
-      title: "LifeWise Support – India Customer Care",
+      title: "LifeWise Support - India Customer Care",
       description:
-        "Get help with LifeWise Family Operating System: medicine reminders, bills, Family Hub, Premium.",
+        "Get help with LifeWise: Family OS for medicine reminders, bills, Family Hub, Premium.",
       url: `${SITE_URL}/support`,
       type: "website",
       locale: "en_IN",
@@ -253,9 +262,9 @@ export function buildSupportMetadata(): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: "LifeWise Support – India",
+      title: "LifeWise Support - India",
       description:
-        "Email, WhatsApp & call LifeWise India support. Mon–Sat 9 AM–7 PM IST.",
+        "Email, WhatsApp & call LifeWise India support. Mon-Sat 9 AM-7 PM IST.",
       images: [OG_IMAGE.url]
     }
   };
@@ -263,12 +272,12 @@ export function buildSupportMetadata(): Metadata {
 
 export function buildPrivacyMetadata(): Metadata {
   return {
-    title: "Privacy Policy – LifeWise India (DPDP Act 2023)",
+    title: "Privacy Policy - LifeWise India (DPDP Act 2023)",
     description:
-      "LifeWise Privacy Policy for the Family Operating System app. How we collect, use, and protect family health data, bill reminders, SMS permissions, WiseAI, and your rights under India's DPDP Act 2023.",
+      "LifeWise (com.lifewise) Privacy Policy for the Family Operating System app. How we collect, use, and protect family health data, bill reminders, SMS permissions, WiseAI, and your rights under India's DPDP Act 2023.",
     alternates: { canonical: `${SITE_URL}/privacy-policy` },
     openGraph: {
-      title: "LifeWise Privacy Policy – India",
+      title: "LifeWise Privacy Policy - India",
       description:
         "How LifeWise protects your family's health, bill, and reminder data under Indian law.",
       url: `${SITE_URL}/privacy-policy`,
@@ -280,9 +289,9 @@ export function buildPrivacyMetadata(): Metadata {
 
 export function buildTermsMetadata(): Metadata {
   return {
-    title: "Terms & Conditions – LifeWise India",
+    title: "Terms & Conditions - LifeWise India",
     description:
-      "LifeWise Terms and Conditions: app usage rules, Free vs Premium (₹199/month), health disclaimers, WiseAI terms, acceptable use, and governing law in India.",
+      "LifeWise Terms and Conditions: app usage rules, Free vs Premium (₹199/month), health disclaimers, WiseAI terms, acceptable use, and governing law in India. Package: com.lifewise.",
     alternates: { canonical: `${SITE_URL}/terms-and-conditions` },
     openGraph: {
       title: "LifeWise Terms & Conditions",
@@ -294,3 +303,6 @@ export function buildTermsMetadata(): Metadata {
     robots: { index: true, follow: true }
   };
 }
+
+/** Exported for AEO / FAQ disambiguation snippets */
+export { PLAY_DISAMBIGUATION, PLAY_APP_TITLE, PLAY_SHORT_DESCRIPTION };

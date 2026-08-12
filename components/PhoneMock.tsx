@@ -667,7 +667,7 @@ export function PhoneMock({ className }: { className?: string }) {
                     x: { type: "spring", stiffness: 220, damping: 22, delay: widget.delay }
                   }}
                 >
-                  {/* Float on a GPU layer only — keeps text sharp (no y on text parent mix) */}
+                  {/* Float on a GPU layer only - keeps text sharp (no y on text parent mix) */}
                   <motion.div
                     className={cn(
                       "flex w-max items-center gap-3 rounded-[18px] border p-3",

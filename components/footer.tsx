@@ -120,6 +120,16 @@ export function Footer() {
                   Get App
                 </a>
               </li>
+              <li>
+                <a
+                  className="text-slate-600 dark:text-slate-400 transition-colors hover:text-indigo-600"
+                  href="https://play.google.com/store/apps/details?id=com.lifewise"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Play
+                </a>
+              </li>
             </ul>
           </nav>
 
