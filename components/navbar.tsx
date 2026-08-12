@@ -46,9 +46,9 @@ export function Navbar() {
     const inner = (
       <>
         {isActive ? (
-          <motion.span
+            <motion.span
             layoutId="nav-pill"
-            className="absolute inset-0 rounded-full bg-slate-900/5 dark:bg-white/10"
+            className="absolute inset-0 rounded-full bg-white/80 shadow-sm border border-white dark:border-white/10 dark:bg-white/15"
             transition={{ type: "spring", stiffness: 520, damping: 40 }}
           />
         ) : null}
@@ -108,7 +108,7 @@ export function Navbar() {
         className={cn(
           "pointer-events-none absolute inset-0 transition-all duration-500",
           isScrolled 
-            ? "border-b border-slate-200/60 bg-white/75 backdrop-blur-2xl shadow-[0_4px_30px_rgba(0,0,0,0.03)] dark:border-white/10 dark:bg-slate-950/75"
+            ? "border-b border-white/60 bg-white/30 backdrop-blur-3xl shadow-[0_8px_32px_-8px_rgba(0,0,0,0.1)] dark:border-white/10 dark:bg-slate-950/40 dark:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)]"
             : "border-b border-transparent bg-transparent"
         )} 
       />
@@ -139,7 +139,7 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden md:block">
-          <div className="relative rounded-full border border-slate-200/70 bg-white/60 p-1 shadow-[0_1px_0_rgba(255,255,255,0.35)_inset,0_18px_60px_rgba(2,6,23,0.10)] backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:shadow-[0_1px_0_rgba(255,255,255,0.08)_inset,0_24px_90px_rgba(0,0,0,0.45)]">
+          <div className="relative rounded-full border border-white/60 bg-white/30 p-1 shadow-[0_8px_32px_rgba(0,0,0,0.04)] backdrop-blur-2xl dark:border-white/10 dark:bg-black/20 dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
             <div className="flex items-center">
               {navItems.map((item) => (
                 <NavLink

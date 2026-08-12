@@ -1,4 +1,4 @@
-import { getChatbotReply } from "./lib/chatbot.ts";
+import { getChatbotReply } from "./lib/chatbot";
 
 const queries = [
   "what is lifewise?",
