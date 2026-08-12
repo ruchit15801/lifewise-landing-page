@@ -15,10 +15,7 @@ const SupportChatbot = dynamic(
   () => import("@/components/SupportChatbot").then((m) => m.SupportChatbot),
   { ssr: false }
 );
-const WhatsAppButton = dynamic(
-  () => import("@/components/WhatsAppButton").then((m) => m.WhatsAppButton),
-  { ssr: false }
-);
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -93,7 +90,6 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
-          <WhatsAppButton />
           <SupportChatbot />
         </ThemeProvider>
       </body>
