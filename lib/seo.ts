@@ -56,6 +56,14 @@ export {
 
 export const CONTACT_EMAIL = "support@lifewiseee.com";
 
+export const ADDRESS = {
+  street: "Sector 14",
+  city: "Gurugram",
+  state: "Haryana",
+  pin: "122001",
+  country: "India"
+};
+
 export function buildRootMetadata(): Metadata {
   return {
     metadataBase: new URL(SITE_URL),

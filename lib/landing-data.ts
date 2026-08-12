@@ -114,3 +114,31 @@ export const FAMILY_HEALTH_EXAMPLE = {
   compliance: "80%",
   label: "medicine compliance this week"
 } as const;
+
+export const MODULES = FAMILY_HUB_MODULES;
+
+export const EXPENSE_CATEGORIES = [
+  { name: "Pharmacy & Medicines", amount: "₹4,500", pct: 60 },
+  { name: "Electricity", amount: "₹2,450", pct: 40 },
+  { name: "Groceries", amount: "₹15,000", pct: 85 },
+  { name: "Doctor Visits", amount: "₹1,200", pct: 20 },
+];
+
+import { Volume2, ScanFace, Languages } from "lucide-react";
+export const SENIOR_FEATURES = [
+  { title: "Loud Voice Prompts", desc: "Papa can hear reminders clearly in Hindi or English.", icon: Volume2 },
+  { title: "No Passwords", desc: "Simple Face ID or Fingerprint login. No confusing OTPs.", icon: ScanFace },
+  { title: "Local Languages", desc: "Fully supports Hindi, Marathi, Gujarati, and more.", icon: Languages },
+];
+
+export const PRICING_FEATURES = [
+  { name: "Family Members", free: "Up to 3", premium: "Unlimited" },
+  { name: "Modules", free: "Medicine + Bills", premium: "All 20 Modules" },
+  { name: "Caregivers", free: "1 per member", premium: "Unlimited" },
+  { name: "History", free: "7 Days", premium: "Unlimited + Export" },
+  { name: "WiseAI Chat", free: "No", premium: "Yes" },
+  { name: "Voice Logging", free: "No", premium: "Yes" },
+  { name: "Bill OCR Scan", free: "No", premium: "Yes" },
+  { name: "Money Leak Alerts", free: "No", premium: "Yes" },
+  { name: "Document Storage", free: "No", premium: "1 GB" },
+];

@@ -1,139 +1,117 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AlertTriangle, PieChart, TrendingUp } from "lucide-react";
+import { LineChart, Search, FileDown, ShieldAlert } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
-import { cn } from "@/components/cn";
-import { MONEY_LEAK_EXAMPLE, PRD_EXAMPLE_DATE } from "@/lib/landing-data";
-
-function Bar({
-  label,
-  value,
-  pct,
-  tone
-}: {
-  label: string;
-  value: string;
-  pct: number;
-  tone: "primary" | "accent";
-}) {
-  return (
-    <div className="rounded-2xl border border-slate-200/70 bg-white/55 p-4 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
-      <div className="flex items-center justify-between gap-4">
-        <div className="text-sm font-semibold">{label}</div>
-        <div className="text-xs font-semibold text-slate-600 dark:text-slate-400">
-          {value}
-        </div>
-      </div>
-      <div className="mt-3 h-2 rounded-full bg-slate-900/5 dark:bg-white/10 overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${pct}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className={cn(
-            "h-full rounded-full",
-            tone === "primary"
-              ? "bg-gradient-to-r from-primary to-indigo-600"
-              : "bg-gradient-to-r from-accent to-emerald-500"
-          )}
-        />
-      </div>
-    </div>
-  );
-}
+import { EXPENSE_CATEGORIES } from "@/lib/landing-data";
 
 export function Reports() {
   return (
     <SectionShell
-      id="insights"
-      eyebrow="Insights Tab"
-      title="Analytics, Reports & Money Leak Detection"
-      subtitle="Spending overview, bills tracker, health summary, family activity feed, and AI-driven savings alerts, all in one Insights tab."
+      id="reports"
+      eyebrow="Insights & Reports"
+      title="Understand where the money goes."
+      subtitle="Auto-categorize family expenses, track month-over-month trends, and get alerted to unusual spending or 'Money Leaks'."
     >
-      <Reveal>
-        <motion.div
-          whileHover={{ y: -4 }}
-          className="mb-6 glass p-5 sm:p-6 border border-amber-200/60 bg-amber-50/50 dark:border-amber-500/20 dark:bg-amber-500/5"
-        >
-          <div className="flex items-start gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-2xl bg-amber-500/15 text-amber-700 dark:text-amber-400">
-              <AlertTriangle className="h-5 w-5" />
-            </div>
-            <div>
-              <div className="text-sm font-semibold">Money Leak Alert</div>
-              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-                {MONEY_LEAK_EXAMPLE}
-              </p>
-              <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">
-                Example: Netflix, Prime & Hotstar. Potential saving Rs. 3,600/year if you cancel one.
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      </Reveal>
-
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
-        <Reveal>
-          <div className="glass p-6 sm:p-8 relative overflow-hidden">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/12 blur-3xl" />
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
-                  <TrendingUp className="h-6 w-6" />
-                </div>
+      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        
+        {/* Left: Monthly Expenses Mockup */}
+        <Reveal delay={0.1}>
+          <div className="relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-8 sm:p-10 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+            <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle, #3b82f6 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+            
+            <div className="relative z-10">
+              <div className="mb-8 flex items-center justify-between">
                 <div>
-                  <div className="text-sm font-semibold">Spending overview</div>
-                  <div className="text-xs text-slate-600 dark:text-slate-400">
-                    {PRD_EXAMPLE_DATE} • Last 30 days
-                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">August Expenses</h3>
+                  <div className="text-[13px] font-medium text-slate-500 mt-1 dark:text-slate-400">Total: ₹42,500</div>
+                </div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400">
+                  <LineChart className="h-5 w-5" />
                 </div>
               </div>
-            </div>
 
-            <div className="mt-7 grid gap-3">
-              <Bar label="Food" value="₹8,450" pct={62} tone="accent" />
-              <Bar label="Bills" value="₹4,200" pct={66} tone="primary" />
-              <Bar label="Medical" value="₹2,100" pct={40} tone="accent" />
-              <Bar label="Subscriptions" value="₹799" pct={30} tone="primary" />
+              <div className="space-y-5">
+                {EXPENSE_CATEGORIES.map((cat, i) => (
+                  <div key={cat.name}>
+                    <div className="mb-2 flex items-center justify-between text-[13px]">
+                      <span className="font-bold text-slate-700 dark:text-slate-300">{cat.name}</span>
+                      <span className="font-medium text-slate-500 dark:text-slate-400">{cat.amount}</span>
+                    </div>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${cat.pct}%` }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1 + 0.2, duration: 1, ease: "easeOut" }}
+                        className="h-full rounded-full bg-blue-500 dark:bg-blue-500"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex gap-3">
+                <button className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white border border-slate-200 py-3 text-[13px] font-bold text-slate-700 shadow-sm transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
+                  <Search className="h-4 w-4" />
+                  View Details
+                </button>
+                <button className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white border border-slate-200 py-3 text-[13px] font-bold text-slate-700 shadow-sm transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
+                  <FileDown className="h-4 w-4" />
+                  Export PDF
+                </button>
+              </div>
             </div>
           </div>
         </Reveal>
 
-        <Reveal delay={0.06}>
-          <div className="glass p-6 sm:p-8 relative overflow-hidden">
-            <div className="pointer-events-none absolute -left-24 -bottom-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
-            <div className="flex items-center gap-3">
-              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-accent to-emerald-500 text-white shadow-premium">
-                <PieChart className="h-6 w-6" />
-              </div>
-              <div>
-                <div className="text-sm font-semibold">Monthly PDF report</div>
-                <div className="text-xs text-slate-600 dark:text-slate-400">
-                  Premium • Auto-generated
-                </div>
-              </div>
-            </div>
+        {/* Right: Money Leak Alert Mockup */}
+        <Reveal delay={0.2}>
+          <div className="relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-8 sm:p-10 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+            <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle, #ef4444 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+            <div className="absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-rose-500/10 blur-[60px] pointer-events-none dark:bg-rose-600/10" />
 
-            <div className="mt-7 grid gap-3">
-              {[
-                { t: "Spending by category", d: "Pie chart + month-over-month comparison" },
-                { t: "Bills tracker", d: "Paid, upcoming, overdue with full payment history" },
-                { t: "Health summary", d: "Medicine compliance %, BP/sugar trends, appointments" },
-                { t: "Family activity", d: "Son marked Papa's medicine as taken at 8:05 PM" }
-              ].map((x) => (
+            <div className="relative z-10 flex h-full flex-col">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-rose-200 bg-rose-100 px-3 py-1 text-xs font-bold uppercase tracking-widest text-rose-700 w-fit dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-400">
+                <ShieldAlert className="h-4 w-4" />
+                Smart Alerts
+              </div>
+
+              <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">Money Leak Detected</h3>
+              <p className="text-[14px] leading-relaxed text-slate-600 dark:text-slate-400">
+                LifeWise AI constantly monitors family expenses against historical patterns and alerts caregivers of unusual spikes.
+              </p>
+
+              <div className="mt-auto pt-8">
                 <motion.div
-                  key={x.t}
-                  whileHover={{ y: -4 }}
-                  className="rounded-2xl border border-slate-200/70 bg-white/55 p-5 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="rounded-2xl border border-rose-200 bg-white p-5 shadow-xl dark:border-rose-500/30 dark:bg-slate-900/90 dark:shadow-2xl"
                 >
-                  <div className="text-sm font-semibold">{x.t}</div>
-                  <div className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-                    {x.d}
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-600 dark:bg-rose-500/20 dark:text-rose-400">
+                      <ShieldAlert className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-[14px] font-bold text-slate-900 dark:text-white">Unusual Pharmacy Bill</h4>
+                      <p className="mt-1 text-xs font-medium leading-relaxed text-slate-600 dark:text-slate-400">
+                        A bill of ₹4,500 was logged for Papa. This is 3x higher than his usual monthly pharmacy expense of ₹1,500.
+                      </p>
+                      <div className="mt-4 flex gap-3">
+                        <button className="rounded-lg bg-rose-600 px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-rose-700">
+                          Review Bill
+                        </button>
+                        <button className="rounded-lg bg-slate-100 px-4 py-2 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
+                          Dismiss
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
-              ))}
+              </div>
             </div>
           </div>
         </Reveal>

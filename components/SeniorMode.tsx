@@ -1,83 +1,145 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Bell, HeartPulse, Landmark, Users } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Volume2, ScanFace, Languages, Fingerprint, HeartPulse, Accessibility } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
-
-const blocks = [
-  { icon: Landmark, t: "Money" },
-  { icon: HeartPulse, t: "Health" },
-  { icon: Users, t: "Family" },
-  { icon: Bell, t: "Reminders" }
-];
+import { cn } from "@/components/cn";
+import { SENIOR_FEATURES } from "@/lib/landing-data";
 
 export function SeniorMode() {
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
     <SectionShell
-      id="senior"
-      eyebrow="For Everyone"
-      title="Designed for Seniors Too"
-      subtitle="Senior members (55+) can view their reminders and health status with a calm, readable interface: large tap targets, high contrast, and clear confirmations."
+      id="senior-mode"
+      eyebrow="Accessibility"
+      title="Built for Seniors."
+      subtitle="No complex menus, no tiny text. LifeWise adapts to the elderly, making it the easiest app they'll ever use."
     >
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <Reveal>
-          <div className="glass p-6 sm:p-8">
-            <div className="text-sm font-semibold">Senior member experience</div>
-            <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-              Parents use the app lightly: view reminders, mark medicines taken, and see health status.
-              Adult children manage the full setup via Family Hub.
-            </p>
+      <div className="mt-12 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 transition-colors dark:border-slate-800/60 dark:bg-[#0a0a12]">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          
+          {/* Left: Feature Tabs */}
+          <div className="flex flex-col p-8 sm:p-12 lg:p-14 border-b border-slate-200 lg:border-b-0 lg:border-r dark:border-slate-800/60">
+            <div className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-orange-700 w-fit mb-8 dark:border-orange-500/30 dark:bg-orange-500/10 dark:text-orange-400">
+              <Accessibility className="h-4 w-4" />
+              Senior Mode
+            </div>
 
-            <div className="mt-7 grid grid-cols-2 gap-4">
-              {blocks.map((b, i) => {
-                const Icon = b.icon;
+            <h3 className="mb-8 text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.2]">
+              Familiar interfaces.
+              <br />
+              <span className="text-orange-600 dark:text-orange-400">Zero learning curve.</span>
+            </h3>
+
+            <div className="flex flex-col gap-3">
+              {SENIOR_FEATURES.map((feature, i) => {
+                const isActive = activeTab === i;
                 return (
-                  <motion.div
-                    key={b.t}
-                    whileHover={{ y: -6 }}
-                    className="rounded-2xl border border-slate-200/70 bg-white/55 p-6 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
+                  <button
+                    key={feature.title}
+                    onClick={() => setActiveTab(i)}
+                    className={cn(
+                      "flex items-start gap-4 rounded-2xl p-4 text-left transition-all",
+                      isActive 
+                        ? "bg-white shadow-md border border-slate-200 dark:bg-slate-900/80 dark:border-slate-700/60 dark:shadow-xl" 
+                        : "hover:bg-slate-100 border border-transparent dark:hover:bg-slate-900/40"
+                    )}
                   >
-                    <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-premium">
-                      <Icon className="h-6 w-6" />
+                    <div className={cn(
+                      "shrink-0 grid h-12 w-12 place-items-center rounded-xl transition-colors",
+                      isActive 
+                        ? "bg-orange-100 text-orange-600 dark:bg-orange-500/20 dark:text-orange-400" 
+                        : "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
+                    )}>
+                      <feature.icon className="h-6 w-6" />
                     </div>
-                    <div className="mt-4 text-base font-semibold">{b.t}</div>
-                    <div className="mt-2 text-xs font-semibold text-slate-600 dark:text-slate-400">
-                      Large tap target
+                    <div>
+                      <h4 className={cn(
+                        "text-[15px] font-bold mb-1 transition-colors",
+                        isActive ? "text-slate-900 dark:text-white" : "text-slate-600 dark:text-slate-400"
+                      )}>{feature.title}</h4>
+                      <p className={cn(
+                        "text-sm font-medium leading-relaxed transition-colors",
+                        isActive ? "text-slate-600 dark:text-slate-300" : "text-slate-500 dark:text-slate-500"
+                      )}>{feature.desc}</p>
                     </div>
-                  </motion.div>
+                  </button>
                 );
               })}
             </div>
           </div>
-        </Reveal>
 
-        <Reveal delay={0.06}>
-          <div className="glass p-6 sm:p-8 relative overflow-hidden">
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent/18 blur-3xl" />
-            <div className="relative">
-              <div className="text-sm font-semibold">App settings from PRD</div>
-              <div className="mt-6 grid gap-3">
-                {[
-                  { t: "Languages", d: "English, Hindi, Gujarati, Marathi, Tamil, Telugu, Bengali" },
-                  { t: "Biometric lock", d: "Touch ID / Face ID for secure access" },
-                  { t: "Emergency SOS", d: "Shake phone 3× or long-press for SMS + call to emergency contacts with location" }
-                ].map((x) => (
-                  <motion.div
-                    key={x.t}
-                    whileHover={{ y: -4 }}
-                    className="rounded-2xl border border-slate-200/70 bg-white/55 p-5 shadow-premium backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
-                  >
-                    <div className="text-sm font-semibold">{x.t}</div>
-                    <div className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-                      {x.d}
+          {/* Right: Phone Mockup showcasing the active feature */}
+          <div className="relative flex items-center justify-center p-8 lg:p-14 min-h-[500px]">
+            {/* Background Glow based on active tab */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-orange-500/10 blur-[100px] pointer-events-none dark:bg-orange-500/15 transition-all duration-700" />
+            
+            <div className="relative mx-auto w-full max-w-[280px] aspect-[9/19] rounded-[3rem] border-[8px] border-slate-200 bg-white shadow-2xl overflow-hidden dark:border-slate-800 dark:bg-slate-950">
+              {/* Dynamic UI based on active tab */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0 flex flex-col pt-12 p-6"
+                >
+                  {activeTab === 0 && (
+                    <div className="flex flex-col items-center justify-center h-full text-center space-y-8">
+                      <motion.div 
+                        animate={{ scale: [1, 1.2, 1] }} 
+                        transition={{ repeat: Infinity, duration: 2 }}
+                        className="h-24 w-24 rounded-full bg-orange-100 text-orange-600 grid place-items-center dark:bg-orange-500/20 dark:text-orange-400"
+                      >
+                        <Volume2 className="h-10 w-10" />
+                      </motion.div>
+                      <div>
+                        <div className="text-2xl font-black text-slate-900 dark:text-white mb-2">Papa, it's 8 PM.</div>
+                        <div className="text-lg font-bold text-slate-600 dark:text-slate-400">Time for Amlodipine.</div>
+                      </div>
+                      <div className="w-full space-y-3 mt-auto">
+                        <div className="w-full rounded-2xl bg-emerald-500 py-4 text-center text-lg font-bold text-white shadow-lg">I took it</div>
+                        <div className="w-full rounded-2xl bg-slate-100 py-4 text-center text-lg font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-300">Snooze</div>
+                      </div>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
+                  )}
+
+                  {activeTab === 1 && (
+                    <div className="flex flex-col items-center justify-center h-full text-center space-y-8">
+                      <div className="relative">
+                        <ScanFace className="h-24 w-24 text-slate-300 dark:text-slate-600" />
+                        <motion.div 
+                          animate={{ top: ["0%", "100%", "0%"] }} 
+                          transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                          className="absolute left-0 w-full h-1 bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.8)]" 
+                        />
+                      </div>
+                      <div>
+                        <div className="text-xl font-bold text-slate-900 dark:text-white">Face ID</div>
+                        <div className="text-sm font-medium text-slate-500 mt-2 dark:text-slate-400">Logging you securely without passwords.</div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === 2 && (
+                    <div className="flex flex-col items-center justify-center h-full text-center">
+                      <Languages className="h-16 w-16 text-orange-500 mb-8" />
+                      <div className="w-full space-y-4">
+                        <div className="w-full rounded-2xl border-2 border-orange-500 bg-orange-50 py-5 text-xl font-bold text-orange-700 dark:bg-orange-500/20 dark:text-orange-400">हिन्दी</div>
+                        <div className="w-full rounded-2xl border-2 border-slate-200 bg-slate-50 py-5 text-xl font-bold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">English</div>
+                        <div className="w-full rounded-2xl border-2 border-slate-200 bg-slate-50 py-5 text-xl font-bold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">मराठी</div>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
-        </Reveal>
+        </div>
       </div>
     </SectionShell>
   );

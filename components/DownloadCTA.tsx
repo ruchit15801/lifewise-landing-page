@@ -1,64 +1,59 @@
-import { Reveal } from "@/components/Reveal";
+"use client";
+
+import { motion } from "framer-motion";
+import { Sparkles, ShieldCheck } from "lucide-react";
 import { StoreDownloadButtons } from "@/components/StoreDownloadButtons";
-import { SITE_TAGLINE } from "@/lib/seo";
-import { SUPPORT_EMAIL, WHATSAPP_URL } from "@/lib/support";
+import { SITE_NAME } from "@/lib/seo";
 
 export function DownloadCTA() {
   return (
-    <section id="download" className="py-16 sm:py-20 content-auto">
-      <div className="section-max">
-        <div className="relative overflow-hidden rounded-3xl border border-slate-200/70 bg-gradient-to-br from-primary to-indigo-600 p-8 sm:p-12 shadow-lift">
-          <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/15 blur-3xl" />
-          <div className="absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-emerald-300/20 blur-3xl" />
-
-          <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center">
-            <div>
-              <Reveal blur={false}>
-                <p className="text-sm font-semibold text-white/80 uppercase tracking-wide">
-                  {SITE_TAGLINE}
-                </p>
-                <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-white">
-                  Download LifeWise App
-                </h2>
-              </Reveal>
-              <Reveal delay={0.06} blur={false}>
-                <p className="mt-3 text-white/85 leading-relaxed">
-                  Get LifeWise on <strong>Google Play</strong> and the{" "}
-                  <strong>App Store</strong> to manage Papa&apos;s medicine, bijli
-                  bills, doctor visits &amp; family routines. Free to start, Premium
-                  Rs. 199/month.
-                </p>
-                <ul className="mt-4 space-y-2 text-sm text-white/80">
-                  <li>✓ One-tap install when stores go live</li>
-                  <li>✓ Works on Android phones &amp; iPhone</li>
-                  <li>✓ Hindi + English • Made for India</li>
-                </ul>
-              </Reveal>
+    <section id="download" className="relative overflow-hidden bg-white py-24 sm:py-32 dark:bg-[#050508] transition-colors duration-500">
+      <div className="section-max relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative overflow-hidden rounded-[3rem] bg-indigo-600 px-6 py-20 text-center shadow-2xl dark:bg-[#0a0a12] sm:px-16"
+        >
+          {/* Decorative Background */}
+          <div className="absolute inset-0 border-[8px] border-indigo-700/50 rounded-[3rem] dark:border-indigo-500/20" />
+          <div className="absolute inset-0 opacity-[0.1] dark:opacity-[0.05]" style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-blue-500/30 blur-[120px] pointer-events-none dark:bg-indigo-500/20" />
+          
+          <div className="relative z-10 mx-auto max-w-2xl">
+            <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-indigo-400/50 bg-indigo-500/20 px-4 py-1.5 text-[13px] font-bold uppercase tracking-widest text-indigo-100 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-400">
+              <Sparkles className="h-4 w-4" />
+              Start For Free
             </div>
-
-            <Reveal delay={0.1} blur={false}>
-              <div className="rounded-2xl border border-white/20 bg-white/10 p-5 sm:p-6 backdrop-blur-xl">
-                <StoreDownloadButtons variant="hero" showSoonBadge />
-                <div className="mt-5 flex flex-col gap-2 border-t border-white/15 pt-5 sm:flex-row">
-                  <a
-                    href={`mailto:${SUPPORT_EMAIL}?subject=Notify%20me%20when%20LifeWise%20launches`}
-                    className="inline-flex flex-1 items-center justify-center rounded-full border border-white/30 bg-white/20 hover:bg-white/30 px-4 py-2.5 text-sm font-bold text-white transition-colors"
-                  >
-                    Email notify me
-                  </a>
-                  <a
-                    href={WHATSAPP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex flex-1 items-center justify-center rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-slate-950"
-                  >
-                    WhatsApp notify
-                  </a>
+            
+            <h2 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl mb-6">
+              Ready to simplify your family's life?
+            </h2>
+            
+            <p className="mx-auto mb-10 max-w-xl text-lg font-medium leading-relaxed text-indigo-100 dark:text-slate-400">
+              Join thousands of Indian families using {SITE_NAME} to manage medicines, bills, and daily routines securely in one place.
+            </p>
+            
+            <div className="flex flex-col items-center gap-6">
+              <StoreDownloadButtons className="justify-center" />
+              
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[13px] font-bold text-indigo-200 dark:text-slate-500">
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                  Bank-Grade Security
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                  No Credit Card Required
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                  DPDP Act Compliant
                 </div>
               </div>
-            </Reveal>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
