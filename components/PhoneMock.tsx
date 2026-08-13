@@ -89,19 +89,19 @@ function ScreenHeader({ title, subtitle, rightIcon: RightIcon, rightAction: Righ
   return (
     <div className="flex shrink-0 items-start justify-between z-10 px-1 pt-1 pb-2">
       <div>
-        <h1 className="text-[22px] font-bold text-slate-900 tracking-tight leading-tight">{title}</h1>
+        <div className="text-[22px] font-bold text-slate-900 tracking-tight leading-tight">{title}</div>
         {subtitle && <p className="text-[11px] font-medium text-slate-500 mt-0.5">{subtitle}</p>}
       </div>
       <div className="flex gap-2">
         {RightIcon && (
-          <button className="flex h-8 w-8 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm" aria-hidden="true">
             <RightIcon className="h-4 w-4 text-slate-600" />
-          </button>
+          </div>
         )}
         {RightAction && (
-          <button className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-600 shadow-sm">
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-600 shadow-sm" aria-hidden="true">
             <RightAction className="h-4 w-4 text-white" />
-          </button>
+          </div>
         )}
       </div>
     </div>
@@ -122,14 +122,14 @@ function HomeContent() {
             <div className="text-[17px] font-bold text-slate-900 tracking-tight leading-tight mt-0.5">Alex W.</div>
           </div>
         </div>
-        <div className="flex gap-2">
-          <button className="relative flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm">
+        <div className="flex gap-2" aria-hidden="true">
+          <div className="relative flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm">
             <Bell className="h-4 w-4 text-slate-600" />
             <div className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-red-500" />
-          </button>
-          <button className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm">
+          </div>
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm">
             <HelpCircle className="h-4 w-4 text-slate-600" />
-          </button>
+          </div>
         </div>
       </div>
 
