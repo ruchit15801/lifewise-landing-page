@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { Mail, Phone, ShieldCheck, Heart } from "lucide-react";
+import Image from "next/image";
+import { Mail, Phone, Heart } from "lucide-react";
 import {
   SITE_NAME,
   SITE_TAGLINE,
   SUPPORT_EMAIL,
-  SUPPORT_HOURS,
   SUPPORT_PHONE_DISPLAY,
   TEL_URL,
   WHATSAPP_URL
@@ -77,10 +77,33 @@ export function Footer() {
 
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:grid-cols-12 lg:gap-6">
           <div className="col-span-2 space-y-3 lg:col-span-4 lg:pr-6">
-            <div className="flex items-center gap-2 font-display text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-              <div className="grid h-8 w-8 place-items-center rounded-lg bg-indigo-600 text-white shadow-md">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
+            <div className="flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+              <Link
+                href="/"
+                className="group relative inline-flex h-8 w-8 shrink-0 items-center justify-center"
+                aria-label="LifeWise home"
+              >
+                <span
+                  aria-hidden
+                  className="absolute -inset-1 animate-[spin_6s_linear_infinite] rounded-full opacity-90 blur-[8px] dark:opacity-100"
+                  style={{
+                    background:
+                      "conic-gradient(from 0deg, #ff0080, #ff8c00, #40e0d0, #8a2be2, #ff0080)"
+                  }}
+                />
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -inset-2 rounded-full bg-indigo-400/20 blur-md dark:bg-indigo-400/25"
+                />
+                <span className="absolute inset-0 rounded-full bg-white/85 shadow-sm ring-1 ring-white/90 dark:bg-slate-950/60 dark:ring-white/15" />
+                <Image
+                  src="/logo.png"
+                  alt="LifeWise Logo"
+                  width={32}
+                  height={32}
+                  className="relative z-10 h-7 w-7 rounded-full object-contain drop-shadow-sm"
+                />
+              </Link>
               {SITE_NAME}
             </div>
             <p className="text-[14px] font-medium leading-relaxed text-slate-600 dark:text-slate-400 sm:text-[15px]">
@@ -88,13 +111,6 @@ export function Footer() {
               bills, doctor visits, insurance & family routines. Official:{" "}
               <strong className="text-slate-900 dark:text-white">lifewiseee.com</strong>
             </p>
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800/80 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 text-xs font-bold text-slate-600 dark:text-slate-400">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              {SUPPORT_HOURS}
-            </div>
           </div>
 
           <nav aria-label="Product links" className="space-y-3 lg:col-span-2 lg:col-start-6">

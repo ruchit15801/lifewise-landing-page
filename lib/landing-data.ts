@@ -1,6 +1,6 @@
 /** PRD-accurate content for the LifeWise landing page (PRD v1.0) */
 
-import { Volume2, ScanFace, Languages } from "lucide-react";
+import { Volume2, ScanFace, Languages, HeartPulse } from "lucide-react";
 
 export const PRODUCT_TAGLINE = "LifeWise: Family OS";
 
@@ -130,6 +130,7 @@ export const SENIOR_FEATURES = [
   { title: "Loud Voice Prompts", desc: "Papa can hear reminders clearly in Hindi or English.", icon: Volume2 },
   { title: "No Passwords", desc: "Simple Face ID or Fingerprint login. No confusing OTPs.", icon: ScanFace },
   { title: "Local Languages", desc: "Fully supports Hindi, Marathi, Gujarati, and more.", icon: Languages },
+  { title: "One-Tap SOS", desc: "Tap SOS once. Family gets a call, SMS, and live location instantly.", icon: HeartPulse },
 ];
 
 export const PRICING_FEATURES = [

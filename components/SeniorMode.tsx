@@ -135,6 +135,57 @@ export function SeniorMode() {
                       </div>
                     </div>
                   )}
+
+                  {activeTab === 3 && (
+                    <div className="flex h-full flex-col items-center justify-center text-center">
+                      <div className="relative mb-6 grid h-28 w-28 place-items-center">
+                        <motion.span
+                          aria-hidden
+                          className="absolute inset-0 rounded-full bg-rose-500/25"
+                          animate={{ scale: [1, 1.55, 1], opacity: [0.55, 0, 0.55] }}
+                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+                        />
+                        <motion.span
+                          aria-hidden
+                          className="absolute inset-2 rounded-full bg-rose-500/20"
+                          animate={{ scale: [1, 1.35, 1], opacity: [0.7, 0.1, 0.7] }}
+                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut", delay: 0.25 }}
+                        />
+                        <motion.div
+                          animate={{ scale: [1, 1.08, 1] }}
+                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                          className="relative grid h-20 w-20 place-items-center rounded-full bg-rose-500 text-white shadow-lg shadow-rose-500/40"
+                        >
+                          <HeartPulse className="h-9 w-9" />
+                        </motion.div>
+                      </div>
+                      <div className="text-xl font-black text-slate-900 dark:text-white">SOS sent</div>
+                      <div className="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">
+                        Calling Rahul + sharing location
+                      </div>
+                      <div className="mt-8 w-full space-y-2.5">
+                        {[
+                          { label: "Rahul (Son)", status: "Calling…" },
+                          { label: "Priya (Caregiver)", status: "SMS sent" }
+                        ].map((row, i) => (
+                          <motion.div
+                            key={row.label}
+                            initial={{ opacity: 0, x: 12 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 + i * 0.18, duration: 0.35 }}
+                            className="flex items-center justify-between rounded-2xl border border-rose-100 bg-rose-50 px-4 py-3 dark:border-rose-500/20 dark:bg-rose-500/10"
+                          >
+                            <span className="text-sm font-bold text-slate-800 dark:text-slate-100">
+                              {row.label}
+                            </span>
+                            <span className="text-xs font-bold text-rose-600 dark:text-rose-400">
+                              {row.status}
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>
