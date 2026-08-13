@@ -8,10 +8,28 @@ export type FaqItem = {
 
 export const FAQ_ITEMS: FaqItem[] = [
   {
+    question: "What is LifeWise?",
+    answer:
+      "LifeWise is the official Family Operating System (Family OS) mobile app for Indian families. Official website: lifewiseee.com. Google Play package: com.lifewise. Title on Play: LifeWise: Family OS. It helps you manage Papa's medicine, electricity bills, doctor visits, insurance, and family routines in one Family Hub with WiseAI.",
+    keywords: ["what is lifewise", "lifewise", "lifewise meaning", "lifewise kya hai"]
+  },
+  {
     question: "What is LifeWise app?",
     answer:
       "LifeWise is India's Family Operating System (Family OS) app, also titled LifeWise: Family OS on Google Play (package com.lifewise). Manage Papa's medicine, Mummy's doctor visits, electricity bills, insurance, and daily routines in one Family Hub with WiseAI. Free on Android. Official site: lifewiseee.com. Not LifeWise Student Insurance.",
     keywords: ["what is lifewise", "lifewise app kya hai", "family os", "com.lifewise"]
+  },
+  {
+    question: "Is lifewiseee.com the official LifeWise website?",
+    answer:
+      "Yes. https://www.lifewiseee.com is the official LifeWise website. The official Android app is on Google Play as LifeWise: Family OS (package com.lifewise). Download only from lifewiseee.com or the official Play listing.",
+    keywords: ["official", "lifewiseee", "website", "real lifewise"]
+  },
+  {
+    question: "Is LifeWise the same as LifeWise Student Insurance?",
+    answer:
+      "No. LifeWise at lifewiseee.com (Google Play package com.lifewise) is India's Family Operating System for medicine reminders, bills, and Family Hub. It is not affiliated with LifeWise Student Insurance or LifeWise Assurance Company.",
+    keywords: ["lifewise insurance", "student insurance", "different", "official"]
   },
   {
     question: "Is LifeWise free to use in India?",
@@ -77,13 +95,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     question: "How do I download LifeWise app?",
     answer:
       "Download LifeWise: Family OS free on Google Play: https://play.google.com/store/apps/details?id=com.lifewise (package com.lifewise). Only use lifewiseee.com or the official Play listing; avoid fake apps with similar names (including unrelated LifeWise insurance apps).",
-    keywords: ["download", "install", "play store", "android", "ios", "com.lifewise"]
-  },
-  {
-    question: "Is LifeWise the same as LifeWise Student Insurance?",
-    answer:
-      "No. LifeWise at lifewiseee.com (Google Play package com.lifewise) is India's Family Operating System for medicine reminders, bills, and Family Hub. It is not affiliated with LifeWise Student Insurance or LifeWise Assurance Company.",
-    keywords: ["lifewise insurance", "student insurance", "different", "official"]
+    keywords: ["download", "install", "play store", "android", "com.lifewise"]
   },
   {
     question: "How do I contact LifeWise support?",
@@ -102,5 +114,11 @@ export const FAQ_ITEMS: FaqItem[] = [
     answer:
       "LifeWise is built for Indian families: adult children managing parents in Ahmedabad, Mumbai, Delhi or abroad; caregivers coordinating health; seniors using simple reminders; students tracking fees and study schedules, all in one Family Operating System.",
     keywords: ["india", "indian", "family", "parents"]
+  },
+  {
+    question: "Where is LifeWise based?",
+    answer:
+      "LifeWise is an India product with support from Sector 14, Gurugram, Haryana 122001. Contact: support@lifewiseee.com, WhatsApp/call +91 63538 91986. Official site: lifewiseee.com.",
+    keywords: ["gurugram", "location", "headquarters", "india", "where"]
   }
 ];

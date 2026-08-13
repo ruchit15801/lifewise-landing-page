@@ -36,18 +36,50 @@ const RANKING_POINTS = [
 ] as const;
 
 /**
- * Visible ranking / AEO content block for Google + answer engines.
- * Not cloaked: real user-facing section with semantic headings.
+ * Visible ranking / AEO content - brand entity + keyword coverage for Google & answer engines.
  */
 export function RankingSection() {
   return (
     <SectionShell
       id="why-lifewise"
-      eyebrow="Why LifeWise"
-      title="LifeWise: Family OS for medicine, bills & daily life in India"
-      subtitle="Official Google Play app (com.lifewise). LifeWise helps adult children and caregivers in Delhi NCR, Mumbai, Ahmedabad, Bengaluru and across India manage parents' health, utility bills, and family routines in one Family Hub."
+      eyebrow="Official LifeWise"
+      title="LifeWise: Family OS - India's Family Operating System app"
+      subtitle="When people search LifeWise, LifeWise app, or lifewiseee.com, this is the official product: medicine reminders, bill alerts, Family Hub & WiseAI for Indian families."
     >
       <Reveal>
+        <div className="mb-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800/90 sm:p-6">
+          <h3 className="font-display text-base font-bold text-slate-900 dark:text-white sm:text-lg">
+            Official LifeWise identity
+          </h3>
+          <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+            <li>
+              <strong className="text-slate-900 dark:text-white">Brand:</strong> LifeWise / LifeWise: Family OS
+            </li>
+            <li>
+              <strong className="text-slate-900 dark:text-white">Website:</strong>{" "}
+              <a href="https://www.lifewiseee.com" className="font-semibold text-indigo-600 underline-offset-2 hover:underline dark:text-indigo-300">
+                https://www.lifewiseee.com
+              </a>
+            </li>
+            <li>
+              <strong className="text-slate-900 dark:text-white">Google Play:</strong>{" "}
+              <a
+                href="https://play.google.com/store/apps/details?id=com.lifewise"
+                className="font-semibold text-indigo-600 underline-offset-2 hover:underline dark:text-indigo-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                com.lifewise
+              </a>
+            </li>
+            <li>
+              <strong className="text-slate-900 dark:text-white">Not:</strong> LifeWise Student Insurance / LifeWise Assurance Company
+            </li>
+          </ul>
+        </div>
+      </Reveal>
+
+      <Reveal delay={0.04}>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4">
           {RANKING_POINTS.map(({ icon: Icon, title, body }) => (
             <article
@@ -71,7 +103,7 @@ export function RankingSection() {
       <Reveal delay={0.08}>
         <div className="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50/70 p-5 dark:border-indigo-400/20 dark:bg-indigo-500/10 sm:p-6">
           <h3 className="font-display text-base font-bold text-indigo-950 dark:text-indigo-100 sm:text-lg">
-            Search: LifeWise Family OS, medicine reminder, bill reminder, Family Hub, WiseAI
+            Search LifeWise for: LifeWise app, Family OS, medicine reminder, bill reminder, Family Hub, WiseAI
           </h3>
           <p className="mt-2 text-sm leading-relaxed text-indigo-900/80 dark:text-indigo-100/85">
             Official product: <strong>LifeWise: Family OS</strong> (

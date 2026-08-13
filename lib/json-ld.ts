@@ -49,9 +49,15 @@ export function organizationSchema() {
     legalName: SITE_NAME,
     alternateName: [
       "LifeWise App",
+      "LifeWise: Family OS",
+      "LifeWise Family OS",
       "LifeWise Family Operating System",
+      "LifeWise India",
+      "LifeWise",
+      "lifewise",
       "lifewiseee",
-      "LifeWise India"
+      "lifewiseee.com",
+      "com.lifewise"
     ],
     url: SITE_URL,
     logo: {
@@ -63,7 +69,7 @@ export function organizationSchema() {
     },
     image: `${SITE_URL}/og-image.svg`,
     description:
-      "LifeWise builds the Family Operating System: a mobile app for Indian families to manage health, bills, reminders, and daily routines from one place.",
+      "LifeWise (lifewiseee.com) is India's official Family Operating System app for medicine reminders, bill alerts, Family Hub, and WiseAI. Google Play package: com.lifewise. Not affiliated with LifeWise Student Insurance.",
     email: CONTACT_EMAIL,
     telephone: SUPPORT_PHONE,
     address: postalAddress(),
@@ -136,13 +142,17 @@ export function organizationSchema() {
       }
     ],
     knowsAbout: [
+      "LifeWise",
+      "LifeWise Family OS",
+      "Family Operating System",
       "family health management",
       "medicine reminders for parents",
       "bill payment reminders India",
       "caregiver coordination",
       "family expense tracking",
+      "WiseAI",
+      "Family Hub",
       "AI life assistant",
-      "Family Operating System",
       "DPDP Act compliant family apps"
     ],
     slogan: SITE_TAGLINE,
@@ -195,11 +205,17 @@ export function websiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": WEBSITE_ID,
-    name: SITE_NAME,
-    alternateName: ["LifeWise App", "LifeWise: Family OS", "lifewiseee.com", "com.lifewise"],
+    name: "LifeWise",
+    alternateName: [
+      "LifeWise App",
+      "LifeWise: Family OS",
+      "LifeWise Family OS",
+      "lifewiseee.com",
+      "com.lifewise"
+    ],
     url: SITE_URL,
     description:
-      "Official LifeWise: Family OS website. Download India's Family Operating System on Google Play  for medicine reminders, bill alerts, Family Hub, and WiseAI.",
+      "Official LifeWise website (lifewiseee.com). Download India's Family Operating System app on Google Play (com.lifewise) for medicine reminders, bill alerts, Family Hub, and WiseAI.",
     publisher: { "@id": ORG_ID },
     inLanguage: ["en-IN", "en", "hi"],
     potentialAction: {

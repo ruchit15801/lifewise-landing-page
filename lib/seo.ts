@@ -28,27 +28,42 @@ export const ADDRESS = {
 } as const;
 
 /**
- * SERP title - mirrors Play Store app title + India rank keywords.
- * Keep under ~60-65 chars when possible for Google display.
+ * SERP title - brand-first so "LifeWise" queries match official site.
+ * ~60 chars ideal for Google title display.
  */
 export const DEFAULT_TITLE =
-  `${PLAY_APP_TITLE} - Medicine & Bill Reminder App India | Family Hub`;
+  "LifeWise App - Official Family OS India | Medicine & Bill Reminder";
 
 /**
- * Meta description: Play short + rank keywords + official download CTA.
- * ~155-160 chars ideal for Google snippet.
+ * Meta description: brand + Play package + high-intent keywords for CTR.
  */
 export const DEFAULT_DESCRIPTION =
-  "Download LifeWise: Family OS on Google Play. India's Family Operating System for medicine reminders, bill alerts, Family Hub & WiseAI. Free Android app (com.lifewise). Premium ₹199/mo. Official: lifewiseee.com.";
+  "Official LifeWise app (lifewiseee.com / com.lifewise). India's Family Operating System for Papa medicine reminders, bijli bill alerts, Family Hub & WiseAI. Free on Google Play. Premium ₹199/mo. Gurugram, India.";
 
 export const KEYWORDS = [
   ...PLAY_KEYWORDS,
-  // Extra India / GEO / long-tail (site-only; Play uses subset above)
-  "LifeWise India",
-  "LifeWise Family Operating System",
-  "lifewiseee.com",
+  // Brand / entity (people type "LifeWise" alone)
+  "LifeWise",
+  "lifewise",
+  "LifeWise app",
+  "LifeWise app India",
+  "LifeWise official",
   "LifeWise official website",
-  "LifeWise iOS app",
+  "LifeWise website",
+  "what is LifeWise",
+  "LifeWise kya hai",
+  "LifeWise Family OS",
+  "LifeWise Family Operating System",
+  "LifeWise India",
+  "lifewiseee",
+  "lifewiseee.com",
+  "www.lifewiseee.com",
+  "com.lifewise",
+  "LifeWise Google Play",
+  "download LifeWise app",
+  "LifeWise Android app",
+  "LifeWise Play Store",
+  // Product intent
   "family management app India",
   "best family management app India",
   "family hub app India",
@@ -73,11 +88,14 @@ export const KEYWORDS = [
   "voice reminder app Hindi",
   "Hindi medicine reminder app",
   "Gujarati family app",
+  // GEO
   "family app Gurugram",
   "family app Delhi NCR",
   "family app Mumbai",
   "family app Ahmedabad",
   "family app Bengaluru",
+  "LifeWise Gurugram",
+  // Support / trust
   "LifeWise support",
   "LifeWise contact number",
   "LifeWise customer care India",
