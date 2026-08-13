@@ -143,45 +143,47 @@ export function Navbar() {
             : "border-b border-transparent bg-transparent py-2"
         )}
       >
-        <div className="section-max grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-3">
-          {/* Left: logo with full backlight */}
-          <div className="flex justify-start">
-            <Link
-              href="/"
-              className="group relative inline-flex h-14 w-14 shrink-0 items-center justify-center transition-transform hover:scale-105"
-              aria-label="LifeWise home"
-            >
-              <motion.div
-                aria-hidden
-                className="absolute -inset-1 rounded-full opacity-90 blur-[14px] transition-all duration-500 group-hover:scale-125 group-hover:opacity-100 dark:opacity-100"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                style={{
-                  background:
-                    "conic-gradient(from 0deg, #ff0080, #ff8c00, #40e0d0, #8a2be2, #ff0080)"
-                }}
-              />
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -inset-3 rounded-full bg-indigo-400/20 blur-xl dark:bg-indigo-400/25"
-              />
-              <span className="absolute inset-0 rounded-full bg-white/85 shadow-sm ring-1 ring-white/90 dark:bg-slate-950/60 dark:ring-white/15" />
-              <Image
-                src="/logo.png"
-                alt="LifeWise Logo"
-                width={56}
-                height={56}
-                priority
-                className="relative z-10 h-12 w-12 rounded-full object-contain drop-shadow-md md:h-14 md:w-14"
-              />
-            </Link>
-          </div>
+        {/* Same width/padding as hero so logo + buttons align to page edges on every device */}
+        <div className="relative mx-auto flex h-16 w-full max-w-[98rem] items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-12 [padding-left:max(1rem,env(safe-area-inset-left,1rem))] [padding-right:max(1rem,env(safe-area-inset-right,1rem))]">
+          {/* Left edge: logo */}
+          <Link
+            href="/"
+            className="group relative z-20 inline-flex h-14 w-14 shrink-0 items-center justify-center transition-transform hover:scale-105"
+            aria-label="LifeWise home"
+          >
+            <motion.div
+              aria-hidden
+              className="absolute -inset-1 rounded-full opacity-90 blur-[14px] transition-all duration-500 group-hover:scale-125 group-hover:opacity-100 dark:opacity-100"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              style={{
+                background:
+                  "conic-gradient(from 0deg, #ff0080, #ff8c00, #40e0d0, #8a2be2, #ff0080)"
+              }}
+            />
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -inset-3 rounded-full bg-indigo-400/20 blur-xl dark:bg-indigo-400/25"
+            />
+            <span className="absolute inset-0 rounded-full bg-white/85 shadow-sm ring-1 ring-white/90 dark:bg-slate-950/60 dark:ring-white/15" />
+            <Image
+              src="/logo.png"
+              alt="LifeWise Logo"
+              width={56}
+              height={56}
+              priority
+              className="relative z-10 h-12 w-12 rounded-full object-contain drop-shadow-md md:h-14 md:w-14"
+            />
+          </Link>
 
-          {/* Center: nav perfectly centered between logo and actions */}
-          <nav className="hidden justify-self-center lg:block">
+          {/* Dead-center menu (absolute so left/right width never shifts it) */}
+          <nav
+            className="pointer-events-none absolute inset-x-0 top-1/2 z-10 hidden -translate-y-1/2 justify-center lg:flex"
+            aria-label="Primary"
+          >
             <ul
               className={cn(
-                "flex items-center gap-1 rounded-full border p-1.5 shadow-sm backdrop-blur-xl transition-colors",
+                "pointer-events-auto flex items-center gap-1 rounded-full border p-1.5 shadow-sm backdrop-blur-xl transition-colors",
                 isScrolled
                   ? "border-slate-200/70 bg-white/55 dark:border-white/10 dark:bg-white/5"
                   : "border-slate-200/80 bg-white/75 dark:border-white/10 dark:bg-slate-950/40"
@@ -203,8 +205,8 @@ export function Navbar() {
             </ul>
           </nav>
 
-          {/* Right: actions with soft light glow, mirrors logo side weight */}
-          <div className="relative flex items-center justify-end gap-2 sm:gap-3">
+          {/* Right edge: actions */}
+          <div className="relative z-20 flex shrink-0 items-center justify-end gap-2 sm:gap-3">
             <span
               aria-hidden
               className="pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full bg-indigo-400/15 blur-2xl dark:bg-indigo-400/20"
