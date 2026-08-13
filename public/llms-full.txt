@@ -14,7 +14,7 @@
 | Official website | https://www.lifewiseee.com |
 | Alternate names | LifeWise App, LifeWise Family OS, lifewiseee, LifeWise India |
 | Category | Family management, health reminders, bill reminders, AI assistant |
-| Platforms | Android (Google Play live), iOS coming soon |
+| Platforms | Android (Google Play live) |
 | Primary geography | India (Gurugram HQ) |
 | Currency | INR (₹) |
 | Support languages | English, Hindi, Gujarati, Marathi, Tamil, Telugu, Bengali |

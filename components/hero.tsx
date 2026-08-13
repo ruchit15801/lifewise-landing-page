@@ -87,7 +87,7 @@ export function Hero() {
               <Sparkles className="h-4 w-4 text-primary dark:text-indigo-300" />
               {PRODUCT_TAGLINE}
               <span className="inline-flex items-center gap-1 rounded-full border border-accent/25 bg-accent/15 px-2 py-0.5 text-[10px] font-bold tracking-wide text-accent dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300">
-                Android + iOS
+                Android
               </span>
             </div>
           </Reveal>

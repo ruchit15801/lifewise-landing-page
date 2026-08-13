@@ -20,7 +20,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "explain lifewise", "intro", "introduction", "overview",
       "what app", "kya app", "konsi app", "which app"
     ],
-    response: "LifeWise is India's Family Operating System 🇮🇳. A single mobile app where your entire family's life is organized.\n\n🏠 Manage Papa's medicine reminders\n💡 Track electricity & mobile bills\n🏥 Schedule Mummy's doctor appointments\n📚 Monitor children's study schedules\n👨‍👩‍👧‍👦 Connect caregivers in real-time\n\nIt works on both Android & iOS with support for Hindi, Gujarati, Marathi, Tamil, Telugu & Bengali.",
+    response: "LifeWise is India's Family Operating System 🇮🇳. A single mobile app where your entire family's life is organized.\n\n🏠 Manage Papa's medicine reminders\n💡 Track electricity & mobile bills\n🏥 Schedule Mummy's doctor appointments\n📚 Monitor children's study schedules\n👨‍👩‍👧‍👦 Connect caregivers in real-time\n\nAvailable on Google Play, with support for Hindi, Gujarati, Marathi, Tamil, Telugu & Bengali.",
     followUp: "Would you like to know about pricing, features, or how to download?"
   },
 
@@ -80,7 +80,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "ios", "iphone", "get app", "where to download", "kaise download",
       "link", "google play"
     ],
-    response: "Download LifeWise now on Google Play! 📲\n\n🤖 Android: https://play.google.com/store/apps/details?id=com.lifewise\n🍎 iOS: App Store coming soon\n🌐 Website: https://www.lifewiseee.com\n\n⚠️ Only download from lifewiseee.com or official stores. Avoid fake apps with similar names.",
+    response: "Download LifeWise now on Google Play! 📲\n\n🤖 Android: https://play.google.com/store/apps/details?id=com.lifewise\n🌐 Website: https://www.lifewiseee.com\n\n⚠️ Only download from lifewiseee.com or official stores. Avoid fake apps with similar names.",
     followUp: "Need help with setup after downloading?"
   },
 

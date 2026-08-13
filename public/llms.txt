@@ -30,7 +30,8 @@ LifeWise (com.lifewise / lifewiseee.com) is NOT LifeWise Student Insurance or Li
 - Type: Mobile application / Family Operating System
 - Package ID: com.lifewise
 - Official domain: lifewiseee.com
-- Platforms: Android (Google Play live), iOS (coming soon)
+- Platforms: Android (Google Play live)
+- Google Play: https://play.google.com/store/apps/details?id=com.lifewise
 - Primary market: India (Gurugram HQ, Delhi NCR, Mumbai, Ahmedabad, Bengaluru)
 - Languages: English, Hindi, Gujarati, Marathi, Tamil, Telugu, Bengali
 

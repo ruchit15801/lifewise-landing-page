@@ -85,7 +85,7 @@ export function RankingSection() {
             >
               Google Play
             </a>
-            . App Store coming soon. Support: support@lifewiseee.com, +91 63538
+            . Support: support@lifewiseee.com, +91 63538
             91986 (Mon-Sat, 9 AM-7 PM IST). HQ: Sector 14, Gurugram, Haryana.
           </p>
         </div>

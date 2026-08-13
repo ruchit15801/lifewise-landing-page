@@ -10,7 +10,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "What is LifeWise app?",
     answer:
-      "LifeWise is India's Family Operating System (Family OS) app, also titled LifeWise: Family OS on Google Play (package com.lifewise). Manage Papa's medicine, Mummy's doctor visits, electricity bills, insurance, and daily routines in one Family Hub with WiseAI. Free on Android; iOS coming soon. Official site: lifewiseee.com. Not LifeWise Student Insurance.",
+      "LifeWise is India's Family Operating System (Family OS) app, also titled LifeWise: Family OS on Google Play (package com.lifewise). Manage Papa's medicine, Mummy's doctor visits, electricity bills, insurance, and daily routines in one Family Hub with WiseAI. Free on Android. Official site: lifewiseee.com. Not LifeWise Student Insurance.",
     keywords: ["what is lifewise", "lifewise app kya hai", "family os", "com.lifewise"]
   },
   {
@@ -76,7 +76,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "How do I download LifeWise app?",
     answer:
-      "Download LifeWise: Family OS free on Google Play: https://play.google.com/store/apps/details?id=com.lifewise (package com.lifewise). App Store coming soon. Only use lifewiseee.com or the official Play listing; avoid fake apps with similar names (including unrelated LifeWise insurance apps).",
+      "Download LifeWise: Family OS free on Google Play: https://play.google.com/store/apps/details?id=com.lifewise (package com.lifewise). Only use lifewiseee.com or the official Play listing; avoid fake apps with similar names (including unrelated LifeWise insurance apps).",
     keywords: ["download", "install", "play store", "android", "ios", "com.lifewise"]
   },
   {

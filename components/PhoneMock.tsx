@@ -627,7 +627,7 @@ export function PhoneMock({ className }: { className?: string }) {
   const ActiveContent = TAB_CONTENT[activeTab];
 
   return (
-    <div className={cn("relative mx-auto w-full max-w-[28rem] lg:max-w-[30rem] pt-6 pb-6", className)}>
+    <div className={cn("relative mx-auto w-full max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem] pt-4 pb-2 sm:pt-6 sm:pb-6", className)}>
       
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] -z-20 pointer-events-none">
@@ -643,9 +643,9 @@ export function PhoneMock({ className }: { className?: string }) {
         />
       </div>
 
-      {/* Floating Widgets Array - z-20 to be FULLY visible, positioned precisely to TOUCH the border symmetrically */}
+      {/* Desktop floating chips with arrows (space beside phone) */}
       {!reduceMotion && (
-        <div className="absolute inset-0 z-20 pointer-events-none hidden md:block">
+        <div className="pointer-events-none absolute inset-0 z-20 hidden md:block">
           
           <AnimatePresence mode="popLayout">
             {TAB_WIDGETS[activeTab].map((widget) => {
@@ -808,6 +808,51 @@ export function PhoneMock({ className }: { className?: string }) {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Mobile: chips with arrow below phone (side float has no room) */}
+      <div className="mt-4 w-full md:hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {TAB_WIDGETS[activeTab].slice(0, 4).map((widget) => {
+              const Icon = widget.icon;
+              return (
+                <div
+                  key={widget.id}
+                  className={cn(
+                    "flex min-w-[9.5rem] shrink-0 items-center gap-2 rounded-2xl border bg-white px-3 py-2.5 shadow-md",
+                    widget.wrapperClass || "border-slate-200/80"
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "grid h-8 w-8 shrink-0 place-items-center rounded-full border",
+                      widget.colorClass
+                    )}
+                  >
+                    <Icon className="h-3.5 w-3.5" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="truncate text-[9px] font-bold uppercase tracking-wide text-slate-400">
+                      {widget.title}
+                    </div>
+                    <div className="truncate text-[11px] font-bold text-slate-800">
+                      {widget.subtitle}
+                    </div>
+                  </div>
+                  <ChevronRight className="h-3.5 w-3.5 shrink-0 text-indigo-500" aria-hidden />
+                </div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );

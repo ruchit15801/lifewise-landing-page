@@ -143,12 +143,11 @@ export function Navbar() {
             : "border-b border-transparent bg-transparent py-2"
         )}
       >
-        {/* Same width/padding as hero so logo + buttons align to page edges on every device */}
-        <div className="relative mx-auto flex h-16 w-full max-w-[98rem] items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-12 [padding-left:max(1rem,env(safe-area-inset-left,1rem))] [padding-right:max(1rem,env(safe-area-inset-right,1rem))]">
-          {/* Left edge: logo */}
+        {/* Logo left, menu right (ml-auto). Desktop nav absolute-centered. */}
+        <div className="relative mx-auto flex h-16 w-full max-w-[98rem] items-center px-4 sm:px-6 lg:px-8 xl:px-12">
           <Link
             href="/"
-            className="group relative z-20 inline-flex h-14 w-14 shrink-0 items-center justify-center transition-transform hover:scale-105"
+            className="group relative z-20 inline-flex h-12 w-12 shrink-0 items-center justify-center transition-transform hover:scale-105 sm:h-14 sm:w-14"
             aria-label="LifeWise home"
           >
             <motion.div
@@ -172,11 +171,10 @@ export function Navbar() {
               width={56}
               height={56}
               priority
-              className="relative z-10 h-12 w-12 rounded-full object-contain drop-shadow-md md:h-14 md:w-14"
+              className="relative z-10 h-10 w-10 rounded-full object-contain drop-shadow-md sm:h-12 sm:w-12 md:h-14 md:w-14"
             />
           </Link>
 
-          {/* Dead-center menu (absolute so left/right width never shifts it) */}
           <nav
             className="pointer-events-none absolute inset-x-0 top-1/2 z-10 hidden -translate-y-1/2 justify-center lg:flex"
             aria-label="Primary"
@@ -205,8 +203,7 @@ export function Navbar() {
             </ul>
           </nav>
 
-          {/* Right edge: actions */}
-          <div className="relative z-20 flex shrink-0 items-center justify-end gap-2 sm:gap-3">
+          <div className="relative z-20 ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
             <span
               aria-hidden
               className="pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full bg-indigo-400/15 blur-2xl dark:bg-indigo-400/20"
@@ -219,7 +216,7 @@ export function Navbar() {
                   .querySelector("#download")
                   ?.scrollIntoView({ behavior: "smooth", block: "start" });
               }}
-              className="relative hidden items-center justify-center rounded-full bg-indigo-600 px-5 py-2.5 font-display text-[13px] font-bold text-white shadow-lg shadow-indigo-500/30 ring-1 ring-white/30 transition-all hover:-translate-y-0.5 hover:bg-indigo-500 hover:shadow-indigo-500/45 sm:inline-flex"
+              className="relative hidden items-center justify-center rounded-full bg-indigo-600 px-5 py-2.5 font-display text-[13px] font-bold text-white shadow-lg shadow-indigo-500/30 ring-1 ring-white/30 transition-all hover:-translate-y-0.5 hover:bg-indigo-500 hover:shadow-indigo-500/45 lg:inline-flex"
             >
               Download Free
             </a>
@@ -230,7 +227,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setOpen((p) => !p)}
-              className="relative grid h-11 w-11 place-items-center rounded-xl border border-slate-200/80 bg-white/70 text-slate-600 shadow-[0_0_20px_rgba(109,93,246,0.12)] backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:shadow-[0_0_24px_rgba(129,140,248,0.18)] lg:hidden"
+              className="relative grid h-11 w-11 place-items-center rounded-xl border border-slate-200/80 bg-white/80 text-slate-700 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-slate-200 lg:hidden"
               aria-label="Toggle menu"
               aria-expanded={open}
             >
