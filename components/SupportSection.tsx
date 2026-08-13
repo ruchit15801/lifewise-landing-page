@@ -268,7 +268,7 @@ export function SupportSection() {
             <div className="mb-5 grid h-12 w-12 place-items-center rounded-2xl border border-indigo-100 bg-indigo-50 text-indigo-600">
               <Mail className="h-6 w-6" />
             </div>
-            <h4 className="font-display text-lg font-bold text-slate-900 dark:text-white">Email Support</h4>
+            <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">Email Support</h3>
             <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
               Drop us a line anytime. We usually reply within 24 hours.
             </p>
@@ -285,7 +285,7 @@ export function SupportSection() {
             <div className="mb-5 grid h-12 w-12 place-items-center rounded-2xl border border-emerald-200 bg-emerald-100 text-emerald-700">
               <Phone className="h-6 w-6" />
             </div>
-            <h4 className="font-display text-lg font-bold text-slate-900 dark:text-white">WhatsApp & Call</h4>
+            <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">WhatsApp & Call</h3>
             <p className="mt-2 text-sm font-medium leading-relaxed text-slate-700 dark:text-slate-300">
               {SUPPORT_HOURS}
             </p>

@@ -11,8 +11,7 @@ import {
 } from "@/lib/seo";
 
 export function Footer() {
-  const year = new Date().getFullYear();
-  const yearRange = `${year}-${String(year + 1).slice(-2)}`;
+  const yearRange = "2026-27";
 
   return (
     <footer className="relative overflow-hidden border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-800/90 pt-8 sm:pt-12 transition-colors duration-500">
@@ -97,7 +96,7 @@ export function Footer() {
                 />
                 <span className="absolute inset-0 rounded-full bg-white/85 shadow-sm ring-1 ring-white/90 dark:bg-slate-950/60 dark:ring-white/15" />
                 <Image
-                  src="/logo.png"
+                  src="/icon-192.png"
                   alt="LifeWise Logo"
                   width={32}
                   height={32}

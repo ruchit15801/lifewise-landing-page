@@ -31,7 +31,7 @@ export function SectionShell({
         >
           <div className="flex flex-wrap items-center gap-2">
             {eyebrow ? (
-              <div className="font-display text-xs font-semibold tracking-wide text-primary/90 dark:text-indigo-300">
+              <div className="font-display text-xs font-semibold tracking-wide text-indigo-700 dark:text-indigo-300">
                 {eyebrow}
               </div>
             ) : null}

@@ -1,16 +1,12 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Cpu, Zap, Share2, Workflow, ArrowRight } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/components/cn";
 
 export function Automation() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
     <SectionShell
@@ -19,7 +15,7 @@ export function Automation() {
       title="Workflows That Save Time"
       subtitle="LifeWise isn't just a list. It actively detects bills, categorizes expenses, and routes missed reminders to the right caregiver."
     >
-      <div ref={containerRef} className="relative space-y-6">
+      <div className="relative space-y-6">
         
         {/* Main Automation Panel */}
         <Reveal>
@@ -36,7 +32,7 @@ export function Automation() {
               
               {/* Left: Diagram Mockup */}
               <div className="flex items-center justify-center lg:justify-start">
-                <motion.div style={{ y }} className="w-full max-w-sm">
+                <div className="w-full max-w-sm">
                   <div className="relative p-6 rounded-3xl border border-slate-200 bg-white/80 shadow-2xl backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-900/60">
                     
                     {/* Flow diagram */}
@@ -62,7 +58,7 @@ export function Automation() {
                           <span className="text-[13px] font-bold text-cyan-700 dark:text-cyan-300">Wait 30 Minutes</span>
                         </div>
                         <div className="h-1 w-full bg-cyan-200 rounded-full mt-3 overflow-hidden dark:bg-cyan-900">
-                          <motion.div className="h-full bg-cyan-500 rounded-full dark:bg-cyan-400" initial={{ width: "0%" }} whileInView={{ width: "100%" }} transition={{ duration: 2, ease: "linear", repeat: Infinity }} />
+                          <motion.div className="h-full bg-cyan-500 rounded-full dark:bg-cyan-400" initial={{ width: "0%" }} whileInView={{ width: "100%" }} viewport={{ once: true }} transition={{ duration: 1.2, ease: "easeOut" }} />
                         </div>
                       </div>
 
@@ -86,7 +82,7 @@ export function Automation() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
 
               {/* Right: Text */}

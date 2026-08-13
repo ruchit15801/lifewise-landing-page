@@ -1,7 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   Sparkles,
@@ -11,22 +10,10 @@ import {
   Mic
 } from "lucide-react";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { DeferredPhoneMock } from "@/components/DeferredPhoneMock";
 import { Reveal } from "@/components/Reveal";
 import { StoreDownloadButtons } from "@/components/StoreDownloadButtons";
-import { useTheme } from "@/components/ThemeContext";
 import { PRODUCT_DESCRIPTION, PRODUCT_TAGLINE } from "@/lib/landing-data";
-
-const PhoneMock = dynamic(
-  () => import("@/components/PhoneMock").then((m) => m.PhoneMock),
-  {
-    loading: () => (
-      <div
-        className="mx-auto aspect-[78/163.4] w-full max-w-[22rem] animate-pulse rounded-[3rem] bg-slate-200/40 dark:bg-slate-700/40"
-        aria-hidden
-      />
-    )
-  }
-);
 
 const heroHighlights = [
   {
@@ -60,8 +47,12 @@ const heroHighlights = [
 ] as const;
 
 export function Hero() {
-  const { theme } = useTheme();
-  const storeVariant = theme === "dark" ? "hero" : "light";
+  const [storeVariant, setStoreVariant] = useState<"hero" | "light">("light");
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem("lifewise-theme");
+    setStoreVariant(stored === "dark" ? "hero" : "light");
+  }, []);
 
   return (
     <section id="top" className="relative overflow-hidden">
@@ -82,8 +73,8 @@ export function Hero() {
             className="pointer-events-none absolute -left-10 -top-8 hidden h-56 w-56 rounded-full bg-indigo-400/20 blur-3xl dark:block"
           />
 
-          <Reveal blur={false}>
-            <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-premium backdrop-blur-xl dark:border-indigo-400/25 dark:bg-slate-800/80 dark:text-slate-100 dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
+          <Reveal eager blur={false}>
+            <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-slate-200/70 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-premium dark:border-indigo-400/25 dark:bg-slate-800 dark:text-slate-100 dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
               <Sparkles className="h-4 w-4 text-primary dark:text-indigo-300" />
               {PRODUCT_TAGLINE}
               <span className="inline-flex items-center gap-1 rounded-full border border-accent/25 bg-accent/15 px-2 py-0.5 text-[10px] font-bold tracking-wide text-accent dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300">
@@ -92,7 +83,7 @@ export function Hero() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.05} blur={false}>
+          <Reveal eager delay={0.05} blur={false}>
             <h1 className="mt-5 font-display text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-slate-950 sm:mt-6 sm:text-5xl lg:text-6xl dark:text-white">
               <span className="gradient-text">LifeWise: Family OS</span>
               . One App to Manage Your{" "}
@@ -100,7 +91,7 @@ export function Hero() {
             </h1>
           </Reveal>
 
-          <Reveal delay={0.1} blur={false}>
+          <Reveal eager delay={0.1} blur={false}>
             <p
               id="lifewise-definition"
               className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-200"
@@ -113,7 +104,7 @@ export function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.15} blur={false}>
+          <Reveal eager delay={0.15} blur={false}>
             <div className="mt-7">
               <StoreDownloadButtons variant={storeVariant} />
               <a
@@ -126,21 +117,12 @@ export function Hero() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.2} blur={false}>
+          <Reveal eager delay={0.2}>
             <div className="mt-8 grid grid-cols-2 gap-2.5 sm:gap-3">
-              {heroHighlights.map(({ label, detail, icon: Icon, tint }, i) => (
-                <motion.div
+              {heroHighlights.map(({ label, detail, icon: Icon, tint }) => (
+                <div
                   key={label}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: 0.05 * i,
-                    duration: 0.4,
-                    ease: [0.16, 1, 0.3, 1]
-                  }}
-                  whileHover={{ y: -3, scale: 1.02 }}
-                  className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${tint} p-3 ring-1 backdrop-blur-xl sm:p-3.5`}
+                  className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${tint} p-3 ring-1 backdrop-blur-xl transition hover:-translate-y-0.5 sm:p-3.5`}
                 >
                   <div
                     aria-hidden
@@ -162,24 +144,22 @@ export function Hero() {
                       </span>
                     </span>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </Reveal>
         </div>
 
         <div className="relative justify-self-center noise lg:justify-self-center">
-          <motion.div
+          <div
             aria-hidden
             className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-indigo-300/30 blur-3xl dark:bg-indigo-400/25"
-            animate={{ opacity: [0.4, 0.75, 0.4], scale: [1, 1.05, 1] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
-          <motion.div
+          <div
             aria-hidden
             className="pointer-events-none absolute -inset-4 rounded-[3rem] bg-white/25 blur-2xl dark:bg-slate-200/10"
           />
-          <PhoneMock className="relative z-10 max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem]" />
+          <DeferredPhoneMock className="relative z-10 max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem]" />
         </div>
       </div>
     </section>

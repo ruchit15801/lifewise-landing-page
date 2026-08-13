@@ -118,7 +118,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Where is LifeWise based?",
     answer:
-      "LifeWise is an India product with support from Sector 14, Gurugram, Haryana 122001. Contact: support@lifewiseee.com, WhatsApp/call +91 63538 91986. Official site: lifewiseee.com.",
+      "LifeWise is an India product. Support is available in English and Hindi at support@lifewiseee.com or WhatsApp/call +91 63538 91986 (Mon-Sat, 9 AM-7 PM IST). Official site: lifewiseee.com.",
     keywords: ["gurugram", "location", "headquarters", "india", "where"]
   }
 ];

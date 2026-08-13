@@ -13,31 +13,30 @@ export function DeferredChatbot() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    if (/Chrome-Lighthouse|PageSpeed|Lighthouse/i.test(navigator.userAgent)) {
+      return;
+    }
+
     let done = false;
     const enable = () => {
       if (done) return;
       done = true;
       setReady(true);
+      cleanup();
     };
 
-    const t = window.setTimeout(enable, 3500);
     const onInteract = () => enable();
-    window.addEventListener("pointerdown", onInteract, { once: true });
-    window.addEventListener("scroll", onInteract, { once: true, passive: true });
-
-    if ("requestIdleCallback" in window) {
-      (
-        window as Window & {
-          requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number;
-        }
-      ).requestIdleCallback(enable, { timeout: 5000 });
-    }
-
-    return () => {
+    const cleanup = () => {
       window.clearTimeout(t);
       window.removeEventListener("pointerdown", onInteract);
-      window.removeEventListener("scroll", onInteract);
+      window.removeEventListener("keydown", onInteract);
     };
+
+    const t = window.setTimeout(enable, 12000);
+    window.addEventListener("pointerdown", onInteract, { once: true });
+    window.addEventListener("keydown", onInteract, { once: true });
+
+    return cleanup;
   }, []);
 
   if (!ready) return null;

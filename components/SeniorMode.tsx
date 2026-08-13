@@ -92,7 +92,7 @@ export function SeniorMode() {
                     <div className="flex flex-col items-center justify-center h-full text-center space-y-8">
                       <motion.div 
                         animate={{ scale: [1, 1.2, 1] }} 
-                        transition={{ repeat: Infinity, duration: 2 }}
+                        transition={{ duration: 2 }}
                         className="h-24 w-24 rounded-full bg-orange-100 text-orange-600 grid place-items-center dark:bg-orange-500/20 dark:text-orange-400"
                       >
                         <Volume2 className="h-10 w-10" />
@@ -102,7 +102,7 @@ export function SeniorMode() {
                         <div className="text-lg font-bold text-slate-600 dark:text-slate-400">Time for Amlodipine.</div>
                       </div>
                       <div className="w-full space-y-3 mt-auto">
-                        <div className="w-full rounded-2xl bg-emerald-500 py-4 text-center text-lg font-bold text-white shadow-lg">I took it</div>
+                        <div className="w-full rounded-2xl bg-emerald-700 py-4 text-center text-lg font-bold text-white shadow-lg">I took it</div>
                         <div className="w-full rounded-2xl bg-slate-100 py-4 text-center text-lg font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-300">Snooze</div>
                       </div>
                     </div>
@@ -114,7 +114,7 @@ export function SeniorMode() {
                         <ScanFace className="h-24 w-24 text-slate-300 dark:text-slate-600" />
                         <motion.div 
                           animate={{ top: ["0%", "100%", "0%"] }} 
-                          transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                          transition={{ duration: 3, ease: "linear" }}
                           className="absolute left-0 w-full h-1 bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.8)]" 
                         />
                       </div>
@@ -143,17 +143,17 @@ export function SeniorMode() {
                           aria-hidden
                           className="absolute inset-0 rounded-full bg-rose-500/25"
                           animate={{ scale: [1, 1.55, 1], opacity: [0.55, 0, 0.55] }}
-                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+                          transition={{ duration: 1.8, ease: "easeOut" }}
                         />
                         <motion.span
                           aria-hidden
                           className="absolute inset-2 rounded-full bg-rose-500/20"
                           animate={{ scale: [1, 1.35, 1], opacity: [0.7, 0.1, 0.7] }}
-                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut", delay: 0.25 }}
+                          transition={{ duration: 1.8, ease: "easeOut", delay: 0.25 }}
                         />
                         <motion.div
                           animate={{ scale: [1, 1.08, 1] }}
-                          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                          transition={{ duration: 1.8, ease: "easeInOut" }}
                           className="relative grid h-20 w-20 place-items-center rounded-full bg-rose-500 text-white shadow-lg shadow-rose-500/40"
                         >
                           <HeartPulse className="h-9 w-9" />

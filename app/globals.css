@@ -164,6 +164,22 @@ html.dark {
     contain-intrinsic-size: auto 500px;
   }
 
+  .not-found-glow {
+    animation: not-found-pulse 5s ease-in-out infinite;
+  }
+
+  @keyframes not-found-pulse {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.06);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-shimmer-bg,
     .animate-floaty,

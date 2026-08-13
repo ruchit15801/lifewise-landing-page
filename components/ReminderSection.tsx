@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { CheckCircle2, Clock, CalendarSync, BellRing, ArrowRight } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
@@ -9,9 +8,6 @@ import { cn } from "@/components/cn";
 import { MODULES } from "@/lib/landing-data";
 
 export function ReminderSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
     <SectionShell
@@ -20,7 +16,7 @@ export function ReminderSection() {
       title="Never miss what matters."
       subtitle="From daily medicines to yearly insurance premiums, LifeWise tracks it all in one unified task list."
     >
-      <div ref={containerRef} className="relative space-y-6">
+      <div className="relative space-y-6">
         
         {/* Main Panel */}
         <Reveal>
@@ -79,7 +75,7 @@ export function ReminderSection() {
 
               {/* Right Hub Mockup */}
               <div className="relative mt-12 lg:mt-0 flex items-center justify-center lg:justify-end border-t border-slate-200 lg:border-t-0 lg:border-l lg:pl-12 pt-12 lg:pt-0 dark:border-slate-800/60">
-                <motion.div style={{ y }} className="w-full">
+                <div className="w-full">
                   <div className="relative mx-auto w-full max-w-[340px] rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden dark:border-slate-700/60 dark:bg-slate-900/90 dark:backdrop-blur-xl">
                     
                     {/* Header + Filters */}
@@ -145,7 +141,7 @@ export function ReminderSection() {
 
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </div>

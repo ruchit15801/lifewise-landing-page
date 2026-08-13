@@ -1,16 +1,23 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@/components/ThemeContext";
 import { cn } from "@/components/cn";
 
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const label = !mounted ? "Light theme" : theme === "dark" ? "Dark theme" : "Light theme";
+  const isDark = mounted && theme === "dark";
 
   return (
     <button
       type="button"
-      aria-label="Toggle theme"
+      aria-label={label}
       onClick={toggleTheme}
       className={cn(
         "group inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/60 px-3 py-2 text-sm font-semibold text-slate-900 shadow-premium backdrop-blur-xl transition hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0",
@@ -18,24 +25,23 @@ export function ThemeToggle({ className }: { className?: string }) {
         className
       )}
     >
-      <span className="relative h-5 w-5">
+      <span className="relative h-5 w-5" aria-hidden="true">
         <Sun
           className={cn(
             "absolute inset-0 h-5 w-5 transition-all duration-300",
-            theme === "dark" ? "scale-0 opacity-0" : "scale-100 opacity-100"
+            isDark ? "scale-0 opacity-0" : "scale-100 opacity-100"
           )}
         />
         <Moon
           className={cn(
             "absolute inset-0 h-5 w-5 transition-all duration-300",
-            theme === "dark" ? "scale-100 opacity-100" : "scale-0 opacity-0"
+            isDark ? "scale-100 opacity-100" : "scale-0 opacity-0"
           )}
         />
       </span>
-      <span className="hidden sm:inline">
-        {theme === "dark" ? "Dark" : "Light"}
+      <span className="hidden sm:inline" suppressHydrationWarning>
+        {isDark ? "Dark" : "Light"}
       </span>
     </button>
   );
 }
-

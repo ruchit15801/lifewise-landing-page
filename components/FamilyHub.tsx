@@ -1,16 +1,12 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { FileText, ShieldCheck, CheckCircle2, Bell } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 import { MODULES } from "@/lib/landing-data";
 
 export function FamilyHub() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
     <SectionShell
@@ -19,7 +15,7 @@ export function FamilyHub() {
       title="One Hub for the Entire Family"
       subtitle="Stop juggling multiple apps. LifeWise brings your whole family's health, tasks, and bills into one real-time dashboard."
     >
-      <div ref={containerRef} className="relative space-y-6">
+      <div className="relative space-y-6">
         
         {/* Main Hub Showcase */}
         <Reveal>
@@ -76,7 +72,7 @@ export function FamilyHub() {
 
               {/* Right Hub Mockup */}
               <div className="relative mt-12 lg:mt-0 flex items-center justify-center lg:justify-end border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-slate-800/60 lg:pl-12 pt-12 lg:pt-0">
-                <motion.div style={{ y }} className="w-full">
+                <div className="w-full">
                   <div className="relative mx-auto w-full max-w-[340px] rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden dark:border-slate-700/60 dark:bg-slate-900/90 dark:backdrop-blur-xl">
                     
                     {/* Top bar */}
@@ -153,7 +149,7 @@ export function FamilyHub() {
                       <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 tracking-wide">Real-time sync • All caregivers</span>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </div>
@@ -195,13 +191,18 @@ export function FamilyHub() {
                 </p>
               </div>
               
-              <div className="mt-6 flex -space-x-3">
+              <div className="mt-6 flex -space-x-3" aria-hidden="true">
                 {[
-                  "https://i.pravatar.cc/100?img=68",
-                  "https://i.pravatar.cc/100?img=47",
-                  "https://i.pravatar.cc/100?img=33"
-                ].map((src, i) => (
-                  <img key={i} src={src} alt="" className="h-10 w-10 rounded-full border-2 border-white object-cover dark:border-slate-900" />
+                  { initials: "R", tint: "bg-violet-100 text-violet-700" },
+                  { initials: "S", tint: "bg-emerald-100 text-emerald-700" },
+                  { initials: "A", tint: "bg-sky-100 text-sky-700" }
+                ].map((person, i) => (
+                  <div
+                    key={i}
+                    className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-white text-[11px] font-bold dark:border-slate-900 ${person.tint}`}
+                  >
+                    {person.initials}
+                  </div>
                 ))}
                 <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-slate-100 text-[10px] font-bold text-slate-600 dark:border-slate-900 dark:bg-slate-800 dark:text-slate-400">
                   +2

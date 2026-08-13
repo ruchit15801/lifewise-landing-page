@@ -1,15 +1,11 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Bot, Sparkles, MessageSquare, ArrowRight } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 
 export function AISection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
     <SectionShell
@@ -18,7 +14,7 @@ export function AISection() {
       title="Meet Your Family's Brain"
       subtitle="Stop scrolling through chat history. Ask WiseAI natural questions about your family's health, expenses, and schedule, and get instant answers."
     >
-      <div ref={containerRef} className="relative space-y-6">
+      <div className="relative space-y-6">
         
         {/* Main AI Panel */}
         <Reveal>
@@ -74,7 +70,7 @@ export function AISection() {
 
               {/* Right Chat Mockup */}
               <div className="relative h-full flex items-center justify-center lg:justify-end">
-                <motion.div style={{ y }} className="w-full max-w-md">
+                <div className="w-full max-w-md">
                   <div className="rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden dark:border-slate-700/60 dark:bg-slate-900/90 dark:backdrop-blur-xl">
                     {/* Header */}
                     <div className="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50 dark:border-slate-800/60 dark:bg-slate-900/50">
@@ -144,7 +140,7 @@ export function AISection() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
 
             </div>

@@ -1,50 +1,64 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/components/cn";
 
+/** Lightweight reveal — no Framer Motion (keeps TBT / hydration clean). */
 export function Reveal({
   children,
   delay = 0,
   y = 18,
-  blur = true,
-  className
+  className,
+  /** Start visible immediately (hero / above-the-fold). */
+  eager = false
 }: {
   children: ReactNode;
   delay?: number;
   y?: number;
   blur?: boolean;
   className?: string;
+  eager?: boolean;
 }) {
-  const ref = useRef(null);
-  const reduceMotion = useReducedMotion();
-  const inView = useInView(ref, { margin: "-80px", once: true });
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(eager);
+
+  useEffect(() => {
+    if (eager) {
+      setVisible(true);
+      return;
+    }
+
+    const el = ref.current;
+    if (!el) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.08 }
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, [eager]);
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      className={cn(className)}
-      initial={
-        reduceMotion
-          ? { opacity: 0 }
-          : { opacity: 0, y, filter: blur ? "blur(10px)" : "none" }
-      }
-      animate={
-        inView
-          ? reduceMotion
-            ? { opacity: 1 }
-            : { opacity: 1, y: 0, filter: "blur(0px)" }
-          : undefined
-      }
-      transition={{
-        duration: reduceMotion ? 0.2 : 0.75,
-        ease: [0.16, 1, 0.3, 1],
-        delay
+      className={cn(
+        "transition-[opacity,transform] duration-500 ease-out will-change-transform",
+        visible ? "translate-y-0 opacity-100" : "opacity-0",
+        className
+      )}
+      style={{
+        transitionDelay: visible ? `${Math.round(delay * 1000)}ms` : "0ms",
+        transform: visible ? "none" : `translateY(${y}px)`
       }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
-

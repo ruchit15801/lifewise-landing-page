@@ -308,6 +308,45 @@ export function buildPrivacyMetadata(): Metadata {
   };
 }
 
+export function buildNotFoundMetadata(): Metadata {
+  const title = "Page not found (404) | LifeWise Family OS";
+  const description =
+    "This LifeWise page does not exist. Go to the official Family OS site for medicine reminders, bill alerts, Family Hub, WiseAI, or contact support.";
+
+  return {
+    title,
+    description,
+    robots: {
+      index: false,
+      follow: true,
+      nocache: true,
+      googleBot: {
+        index: false,
+        follow: true,
+        noimageindex: true
+      }
+    },
+    alternates: {
+      canonical: `${SITE_URL}/`
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/`,
+      siteName: SITE_NAME,
+      type: "website",
+      locale: "en_IN",
+      images: [OG_IMAGE]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [OG_IMAGE.url]
+    }
+  };
+}
+
 export function buildTermsMetadata(): Metadata {
   return {
     title: "Terms & Conditions - LifeWise India",

@@ -68,19 +68,19 @@ export function DownloadCTA() {
             aria-hidden
             className="pointer-events-none absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-sky-400/30 blur-[90px]"
             animate={{ x: [0, 24, 0], opacity: [0.35, 0.55, 0.35] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 8, ease: "easeInOut" }}
           />
           <motion.div
             aria-hidden
             className="pointer-events-none absolute -right-20 top-10 h-80 w-80 rounded-full bg-fuchsia-400/25 blur-[100px]"
             animate={{ y: [0, 30, 0], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 9, ease: "easeInOut" }}
           />
           <motion.div
             aria-hidden
             className="pointer-events-none absolute bottom-[-20%] left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-emerald-400/20 blur-[80px]"
             animate={{ scale: [1, 1.15, 1] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 7, ease: "easeInOut" }}
           />
 
           {/* Vertical accent rails */}
@@ -104,7 +104,6 @@ export function DownloadCTA() {
               transition={{
                 duration: 5.5,
                 delay,
-                repeat: Infinity,
                 ease: "easeInOut"
               }}
             >
@@ -122,7 +121,7 @@ export function DownloadCTA() {
             >
               <motion.span
                 animate={{ rotate: [0, 15, -10, 0], scale: [1, 1.1, 1] }}
-                transition={{ duration: 3.5, repeat: Infinity }}
+                transition={{ duration: 3.5 }}
               >
                 <Sparkles className="h-4 w-4 text-amber-200" />
               </motion.span>

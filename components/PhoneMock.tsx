@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Bell,
   Camera,
@@ -266,10 +266,10 @@ function HomeContent() {
 
 function FamilyContent() {
   const members = [
-    { name: "Austin", role: "Child", features: 2, image: "https://i.pravatar.cc/100?img=11" },
-    { name: "Mia kaye", role: "spouse", features: 5, image: "https://i.pravatar.cc/100?img=5" },
-    { name: "Dad", role: "parent", features: 9, image: "https://i.pravatar.cc/100?img=12" },
-    { name: "Alex w.", role: "Self", features: 5, image: "https://i.pravatar.cc/100?img=33" }
+    { name: "Austin", role: "Child", features: 2, initials: "A", tint: "bg-sky-100 text-sky-700" },
+    { name: "Mia kaye", role: "spouse", features: 5, initials: "M", tint: "bg-rose-100 text-rose-700" },
+    { name: "Dad", role: "parent", features: 9, initials: "D", tint: "bg-amber-100 text-amber-700" },
+    { name: "Alex w.", role: "Self", features: 5, initials: "AW", tint: "bg-indigo-100 text-indigo-700" }
   ];
 
   return (
@@ -286,22 +286,27 @@ function FamilyContent() {
           <div key={i} className="rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm flex flex-col hover:border-indigo-100 transition-colors">
             <div className="flex items-center justify-between border-b border-slate-50 pb-3 mb-3">
               <div className="flex items-center gap-3">
-                <img src={m.image} alt={m.name} className="h-11 w-11 rounded-full object-cover border-2 border-slate-50 shadow-sm" />
+                <div
+                  className={`flex h-11 w-11 items-center justify-center rounded-full border-2 border-slate-50 text-[11px] font-bold shadow-sm ${m.tint}`}
+                  aria-hidden="true"
+                >
+                  {m.initials}
+                </div>
                 <div>
-                  <h3 className="text-[14px] font-bold text-slate-900">{m.name}</h3>
+                  <div className="text-[14px] font-bold text-slate-900">{m.name}</div>
                   <p className="text-[11px] font-medium text-slate-400 capitalize">{m.role}</p>
                 </div>
               </div>
               <div className="flex gap-1.5">
-                <button className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-emerald-50 text-emerald-600 active:scale-95 transition-transform">
+                <div className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-emerald-50 text-emerald-600 active:scale-95 transition-transform">
                   <Users className="h-[14px] w-[14px]" />
-                </button>
-                <button className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-indigo-50 text-indigo-600 active:scale-95 transition-transform">
+                </div>
+                <div className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-indigo-50 text-indigo-600 active:scale-95 transition-transform">
                   <Edit2 className="h-[14px] w-[14px]" />
-                </button>
-                <button className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-red-50 text-red-500 active:scale-95 transition-transform">
+                </div>
+                <div className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-red-50 text-red-500 active:scale-95 transition-transform">
                   <Trash2 className="h-[14px] w-[14px]" />
-                </button>
+                </div>
               </div>
             </div>
             <div className="flex items-center justify-between">
@@ -346,28 +351,28 @@ function RemindersContent() {
 
       <div className="px-1 mt-4 space-y-4">
         {/* Filter */}
-        <button className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-sm active:bg-slate-50 transition-colors">
+        <div className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-sm active:bg-slate-50 transition-colors">
           <div className="flex items-center gap-2">
             <LayoutGrid className="h-4 w-4 text-indigo-600" />
             <span className="text-[12px] font-bold text-slate-800">All time</span>
           </div>
           <ChevronDown className="h-4 w-4 text-slate-400" />
-        </button>
+        </div>
 
         {/* Categories */}
         <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
-          <button className="flex shrink-0 items-center gap-1.5 rounded-xl bg-indigo-500 px-4 py-2 text-white shadow-sm">
+          <div className="flex shrink-0 items-center gap-1.5 rounded-xl bg-indigo-500 px-4 py-2 text-white shadow-sm">
             <LayoutGrid className="h-3.5 w-3.5" />
             <span className="text-[11px] font-bold">All</span>
-          </button>
-          <button className="flex shrink-0 items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2 text-slate-600 shadow-sm active:bg-slate-50">
+          </div>
+          <div className="flex shrink-0 items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2 text-slate-600 shadow-sm active:bg-slate-50">
             <FileText className="h-3.5 w-3.5" />
             <span className="text-[11px] font-bold">Bills</span>
-          </button>
-          <button className="flex shrink-0 items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2 text-slate-600 shadow-sm active:bg-slate-50">
+          </div>
+          <div className="flex shrink-0 items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2 text-slate-600 shadow-sm active:bg-slate-50">
             <Heart className="h-3.5 w-3.5" />
             <span className="text-[11px] font-bold">Health</span>
-          </button>
+          </div>
         </div>
 
         {/* Toggles */}
@@ -388,7 +393,7 @@ function RemindersContent() {
                 <Zap className="h-5 w-5" fill="currentColor" />
               </div>
               <div>
-                <h3 className="text-[13px] font-bold text-slate-900">Electricity Bill</h3>
+                <div className="text-[13px] font-bold text-slate-900">Electricity Bill</div>
                 <div className="flex items-center gap-1.5 mt-1">
                   <span className="rounded bg-orange-100 px-1.5 py-0.5 text-[8px] font-bold text-orange-600 uppercase">Bills</span>
                   <span className="text-[10px] text-slate-400 font-medium">↻ Monthly</span>
@@ -399,10 +404,10 @@ function RemindersContent() {
             <span className="text-[16px] font-black text-slate-900 tracking-tight">₹2,458</span>
           </div>
           <div className="mt-4 flex gap-2">
-            <button className="flex h-8 flex-1 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 active:scale-95 transition-transform"><Check className="h-4 w-4" /></button>
-            <button className="flex h-8 flex-1 items-center justify-center rounded-xl bg-blue-50 text-blue-600 active:scale-95 transition-transform"><Clock className="h-4 w-4" /></button>
-            <button className="flex h-8 flex-1 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 active:scale-95 transition-transform"><Edit2 className="h-4 w-4" /></button>
-            <button className="flex h-8 flex-1 items-center justify-center rounded-xl bg-red-50 text-red-500 active:scale-95 transition-transform"><Trash2 className="h-4 w-4" /></button>
+            <div className="flex h-8 flex-1 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 active:scale-95 transition-transform"><Check className="h-4 w-4" /></div>
+            <div className="flex h-8 flex-1 items-center justify-center rounded-xl bg-blue-50 text-blue-600 active:scale-95 transition-transform"><Clock className="h-4 w-4" /></div>
+            <div className="flex h-8 flex-1 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 active:scale-95 transition-transform"><Edit2 className="h-4 w-4" /></div>
+            <div className="flex h-8 flex-1 items-center justify-center rounded-xl bg-red-50 text-red-500 active:scale-95 transition-transform"><Trash2 className="h-4 w-4" /></div>
           </div>
         </div>
 
@@ -413,7 +418,7 @@ function RemindersContent() {
                 <Zap className="h-5 w-5" fill="currentColor" />
               </div>
               <div>
-                <h3 className="text-[13px] font-bold text-slate-900">Netflix - Standard</h3>
+                <div className="text-[13px] font-bold text-slate-900">Netflix - Standard</div>
                 <div className="flex items-center gap-1.5 mt-1">
                   <span className="rounded bg-blue-50 px-1.5 py-0.5 text-[8px] font-bold text-blue-600 uppercase">Subscriptions</span>
                   <span className="text-[10px] text-slate-400 font-medium">↻ One-time</span>
@@ -438,19 +443,19 @@ function ReportsContent() {
       />
       
       <div className="px-1 flex justify-end -mt-10 mb-5 z-20 relative">
-        <button className="flex h-8 items-center gap-1.5 rounded-xl bg-indigo-600 px-3.5 text-[11px] font-bold text-white shadow-sm active:scale-95 transition-transform">
+        <div className="flex h-8 items-center gap-1.5 rounded-xl bg-indigo-600 px-3.5 text-[11px] font-bold text-white shadow-sm active:scale-95 transition-transform">
           <FileText className="h-3.5 w-3.5" /> PDF Report
-        </button>
+        </div>
       </div>
 
       <div className="px-1 space-y-4">
-        <button className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-sm active:bg-slate-50 transition-colors">
+        <div className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-sm active:bg-slate-50 transition-colors">
           <div className="flex items-center gap-2">
             <LayoutGrid className="h-4 w-4 text-indigo-600" />
             <span className="text-[12px] font-bold text-slate-800">Last 6 months</span>
           </div>
           <ChevronDown className="h-4 w-4 text-slate-400" />
-        </button>
+        </div>
 
         <div className="rounded-[20px] bg-indigo-50/50 p-4 border border-indigo-100/50 shadow-sm relative overflow-hidden">
           <div className="flex justify-between items-start">
@@ -501,7 +506,7 @@ function ReportsContent() {
         </div>
 
         <div className="mt-4">
-          <h2 className="text-[14px] font-bold text-slate-900 mb-2.5">Trend</h2>
+          <div className="text-[14px] font-bold text-slate-900 mb-2.5">Trend</div>
           <div className="h-24 w-full rounded-[16px] border border-slate-100 bg-white flex items-end px-2 pt-2 pb-1 gap-1.5 shadow-sm">
             {[40, 60, 30, 80, 50, 90].map((h, i) => (
               <div key={i} className="flex-1 bg-indigo-100 rounded-t-sm relative group" style={{ height: `${h}%` }}>
@@ -522,12 +527,17 @@ function ProfileContent() {
       
       <div className="px-1 mt-2">
         <div className="flex items-center gap-3.5 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm">
-          <img src="https://i.pravatar.cc/100?img=33" alt="Profile" className="h-[52px] w-[52px] rounded-full border-2 border-indigo-100 shadow-sm" />
+          <div
+            className="flex h-[52px] w-[52px] items-center justify-center rounded-full border-2 border-indigo-100 bg-indigo-100 text-[13px] font-bold text-indigo-700 shadow-sm"
+            aria-hidden="true"
+          >
+            AW
+          </div>
           <div className="flex-1">
-            <h3 className="text-[16px] font-bold text-slate-900">Alex W.</h3>
+            <div className="text-[16px] font-bold text-slate-900">Alex W.</div>
             <p className="text-[11px] font-medium text-slate-500 mt-0.5">alex@lifewise.com</p>
           </div>
-          <button className="text-[11px] font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-lg active:scale-95 transition-transform">Edit</button>
+          <div className="text-[11px] font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-lg active:scale-95 transition-transform">Edit</div>
         </div>
 
         <div className="mt-5 space-y-4">
@@ -568,10 +578,10 @@ function ProfileContent() {
             ))}
           </div>
 
-          <button className="flex w-full items-center justify-center gap-2 rounded-2xl border border-red-100 bg-red-50 p-3.5 text-red-600 active:scale-[0.98] transition-transform">
+          <div className="flex w-full items-center justify-center gap-2 rounded-2xl border border-red-100 bg-red-50 p-3.5 text-red-600 active:scale-[0.98] transition-transform">
             <LogOut className="h-4 w-4" />
             <span className="text-[12px] font-bold">Log Out</span>
-          </button>
+          </div>
         </div>
       </div>
     </div>
@@ -603,9 +613,7 @@ function SolidArrow({ direction, className }: { direction: "left" | "right", cla
           <path d="M 0 0 L 8 4 L 0 8 Z" fill="#6366f1" />
         </marker>
       </defs>
-      <motion.path
-        // If widget is on left, line goes from 0 -> 24 (points right to phone)
-        // If widget is on right, line goes from 32 -> 8 (points left to phone)
+      <path
         d={direction === "left" ? "M 0 6 L 24 6" : "M 32 6 L 8 6"}
         fill="none"
         stroke="#6366f1"
@@ -613,15 +621,12 @@ function SolidArrow({ direction, className }: { direction: "left" | "right", cla
         strokeDasharray="4 4"
         markerEnd={direction === "left" ? "url(#solid-arrow-left)" : undefined}
         markerStart={direction === "right" ? "url(#solid-arrow-right)" : undefined}
-        animate={{ strokeDashoffset: direction === "left" ? [16, 0] : [-16, 0] }}
-        transition={{ duration: 0.6, repeat: Infinity, ease: "linear" }}
       />
     </svg>
   );
 }
 
 export function PhoneMock({ className }: { className?: string }) {
-  const reduceMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState<TabId>("home");
 
   const ActiveContent = TAB_CONTENT[activeTab];
@@ -629,23 +634,18 @@ export function PhoneMock({ className }: { className?: string }) {
   return (
     <div className={cn("relative mx-auto w-full max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem] pt-4 pb-2 sm:pt-6 sm:pb-6", className)}>
       
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] -z-20 pointer-events-none">
-        <motion.div 
-          className="absolute inset-0 rounded-full"
+      {/* Background glow (static — avoids infinite main-thread work) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] -z-20 pointer-events-none" aria-hidden="true">
+        <div 
+          className="absolute inset-0 rounded-full opacity-80"
           style={{ 
             background: "radial-gradient(circle at center, rgba(79,70,229,0.08) 0%, rgba(79,70,229,0) 70%)",
-            willChange: "transform, opacity", 
-            transform: "translateZ(0)" 
           }}
-          animate={reduceMotion ? undefined : { scale: [1, 1.05, 1], opacity: [0.6, 0.9, 0.6] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
       {/* Desktop floating chips with arrows (space beside phone) */}
-      {!reduceMotion && (
-        <div className="pointer-events-none absolute inset-0 z-20 hidden md:block">
+      <div className="pointer-events-none absolute inset-0 z-20 hidden md:block" aria-hidden="true">
           
           <AnimatePresence mode="popLayout">
             {TAB_WIDGETS[activeTab].map((widget) => {
@@ -667,20 +667,12 @@ export function PhoneMock({ className }: { className?: string }) {
                     x: { type: "spring", stiffness: 220, damping: 22, delay: widget.delay }
                   }}
                 >
-                  {/* Float on a GPU layer only - keeps text sharp (no y on text parent mix) */}
-                  <motion.div
+                  <div
                     className={cn(
                       "flex w-max items-center gap-3 rounded-[18px] border p-3",
-                      "transform-gpu will-change-transform [backface-visibility:hidden]",
+                      "transform-gpu [backface-visibility:hidden]",
                       widget.wrapperClass || "border-white bg-white shadow-xl"
                     )}
-                    animate={{ y: widget.yAnim }}
-                    transition={{
-                      duration: 5.5,
-                      repeat: Infinity,
-                      ease: [0.45, 0.05, 0.55, 0.95],
-                      delay: widget.delay * 2
-                    }}
                   >
                     {widget.arrow === "left" && <SolidArrow direction="left" />}
                     {widget.arrow === "right" && <SolidArrow direction="right" />}
@@ -714,14 +706,13 @@ export function PhoneMock({ className }: { className?: string }) {
                         {widget.subtitle}
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </motion.div>
               );
             })}
           </AnimatePresence>
 
         </div>
-      )}
 
       {/* Main Phone Mockup */}
       <div
@@ -761,9 +752,9 @@ export function PhoneMock({ className }: { className?: string }) {
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeTab}
-                      initial={reduceMotion ? false : { opacity: 0, x: 15 }}
+                      initial={{ opacity: 0, x: 15 }}
                       animate={{ opacity: 1, x: 0 }}
-                      exit={reduceMotion ? undefined : { opacity: 0, x: -15 }}
+                      exit={{ opacity: 0, x: -15 }}
                       transition={{ duration: 0.15, ease: "easeOut" }}
                       className="absolute inset-0 w-full"
                       style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
@@ -793,6 +784,8 @@ export function PhoneMock({ className }: { className?: string }) {
                           key={tab.id}
                           type="button"
                           onClick={() => setActiveTab(tab.id)}
+                          aria-label={`Show ${tab.label} screen`}
+                          aria-pressed={isActive}
                           className={cn(
                             "relative flex items-center justify-center w-[46px] h-11 rounded-xl z-10 transition-colors duration-300",
                             isActive ? "text-white" : "text-slate-400 hover:text-slate-600"
@@ -815,9 +808,9 @@ export function PhoneMock({ className }: { className?: string }) {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
+            exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2 }}
             className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >

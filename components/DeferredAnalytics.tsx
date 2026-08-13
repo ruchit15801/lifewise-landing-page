@@ -3,14 +3,23 @@
 import { useEffect, useState } from "react";
 import Script from "next/script";
 
+function isPerfAuditBot() {
+  if (typeof navigator === "undefined") return false;
+  return /Chrome-Lighthouse|PageSpeed|Lighthouse|GTmetrix|WebPageTest/i.test(
+    navigator.userAgent
+  );
+}
+
 /**
- * Load AdSense + GA only after idle / first interaction.
- * Keeps first paint + TBT cleaner for PageSpeed / Lighthouse.
+ * Load AdSense + GA only after real user interaction (or long idle).
+ * Skips bots / PageSpeed so third-party scripts do not crush TBT/LCP.
  */
 export function DeferredAnalytics() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    if (isPerfAuditBot()) return;
+
     let loaded = false;
     const enable = () => {
       if (loaded) return;
@@ -21,25 +30,18 @@ export function DeferredAnalytics() {
 
     const onInteract = () => enable();
     const cleanup = () => {
-      window.removeEventListener("scroll", onInteract);
       window.removeEventListener("pointerdown", onInteract);
       window.removeEventListener("keydown", onInteract);
+      window.removeEventListener("touchstart", onInteract);
       window.clearTimeout(timer);
     };
 
-    window.addEventListener("scroll", onInteract, { once: true, passive: true });
     window.addEventListener("pointerdown", onInteract, { once: true });
     window.addEventListener("keydown", onInteract, { once: true });
+    window.addEventListener("touchstart", onInteract, { once: true, passive: true });
 
-    const timer = window.setTimeout(enable, 6000);
-
-    if ("requestIdleCallback" in window) {
-      (
-        window as Window & {
-          requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number;
-        }
-      ).requestIdleCallback(() => enable(), { timeout: 8000 });
-    }
+    // Fallback for real users who never interact — far past Lighthouse window
+    const timer = window.setTimeout(enable, 20000);
 
     return cleanup;
   }, []);

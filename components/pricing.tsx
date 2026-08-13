@@ -133,7 +133,7 @@ export function Pricing() {
       <Reveal delay={0.2}>
         <div className="mt-16 overflow-hidden rounded-3xl border border-slate-200 bg-white dark:border-slate-800/60 dark:bg-slate-800/90 transition-colors">
           <div className="px-6 py-4 border-b border-slate-200 bg-slate-50 dark:border-slate-800/60 dark:bg-slate-900/50">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500">Feature Comparison</h4>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-500">Feature Comparison</h3>
           </div>
           <div className="divide-y divide-slate-100 dark:divide-slate-800/60">
             {PRICING_FEATURES.map((item, i) => (

@@ -15,14 +15,14 @@ import { buildRootMetadata, SITE_URL } from "@/lib/seo";
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600", "700"],
   variable: "--font-sans"
 });
 
 const sora = Sora({
   subsets: ["latin"],
   display: "swap",
-  weight: ["500", "600", "700"],
+  weight: ["600", "700"],
   variable: "--font-display"
 });
 

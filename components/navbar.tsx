@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -41,7 +40,6 @@ export function Navbar() {
         if (el.getBoundingClientRect().top - marker <= 12) crossed = id;
       }
 
-      // Near page bottom - force last nav section (Support)
       const doc = document.documentElement;
       const nearBottom =
         window.innerHeight + window.scrollY >= doc.scrollHeight - 120;
@@ -62,7 +60,6 @@ export function Navbar() {
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
-    // Dynamic sections load after first paint - refresh a few times
     const timers = [200, 600, 1200, 2500].map((ms) =>
       window.setTimeout(update, ms)
     );
@@ -79,37 +76,20 @@ export function Navbar() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
-    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   const NavLink = ({
     item,
-    onClick,
-    className
+    className,
+    onClick
   }: {
     item: (typeof navItems)[number];
-    onClick?: () => void;
     className: string;
+    onClick?: () => void;
   }) => {
     const isActive = active === item.href;
-    const inner = (
-      <>
-        {isActive ? (
-          <motion.span
-            layoutId="nav-pill"
-            className="absolute inset-0 rounded-full border border-indigo-200/80 bg-indigo-100/90 dark:border-indigo-400/30 dark:bg-indigo-500/20"
-            transition={{ type: "spring", stiffness: 520, damping: 40 }}
-          />
-        ) : null}
-        <span className="relative z-10">{item.label}</span>
-      </>
-    );
-
     return (
       <a
         href={`/${item.href}`}
@@ -122,13 +102,18 @@ export function Navbar() {
             onClick?.();
             return;
           }
-          // Other pages (privacy, etc.) - go home to section
           window.location.href = `/${item.href}`;
           onClick?.();
         }}
         className={className}
       >
-        {inner}
+        {isActive ? (
+          <span
+            aria-hidden
+            className="absolute inset-0 rounded-full border border-indigo-200/80 bg-indigo-100/90 dark:border-indigo-400/30 dark:bg-indigo-500/20"
+          />
+        ) : null}
+        <span className="relative z-10">{item.label}</span>
       </a>
     );
   };
@@ -143,18 +128,15 @@ export function Navbar() {
             : "border-b border-transparent bg-transparent py-2"
         )}
       >
-        {/* Logo left, menu right (ml-auto). Desktop nav absolute-centered. */}
         <div className="relative mx-auto flex h-16 w-full max-w-[98rem] items-center px-4 sm:px-6 lg:px-8 xl:px-12">
           <Link
             href="/"
             className="group relative z-20 inline-flex h-12 w-12 shrink-0 items-center justify-center transition-transform hover:scale-105 sm:h-14 sm:w-14"
             aria-label="LifeWise home"
           >
-            <motion.div
+            <span
               aria-hidden
-              className="absolute -inset-1 rounded-full opacity-90 blur-[14px] transition-all duration-500 group-hover:scale-125 group-hover:opacity-100 dark:opacity-100"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              className="absolute -inset-1 rounded-full opacity-90 blur-[14px] dark:opacity-100"
               style={{
                 background:
                   "conic-gradient(from 0deg, #ff0080, #ff8c00, #40e0d0, #8a2be2, #ff0080)"
@@ -166,7 +148,7 @@ export function Navbar() {
             />
             <span className="absolute inset-0 rounded-full bg-white/85 shadow-sm ring-1 ring-white/90 dark:bg-slate-950/60 dark:ring-white/15" />
             <Image
-              src="/logo.png"
+              src="/icon-192.png"
               alt="LifeWise Logo"
               width={56}
               height={56}
@@ -231,43 +213,20 @@ export function Navbar() {
               aria-label="Toggle menu"
               aria-expanded={open}
             >
-              <AnimatePresence mode="wait">
-                {open ? (
-                  <motion.div
-                    key="close"
-                    initial={{ opacity: 0, rotate: -90 }}
-                    animate={{ opacity: 1, rotate: 0 }}
-                    exit={{ opacity: 0, rotate: 90 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <X className="h-5 w-5" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ opacity: 0, rotate: 90 }}
-                    animate={{ opacity: 1, rotate: 0 }}
-                    exit={{ opacity: 0, rotate: -90 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <Menu className="h-5 w-5" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
       </header>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            className="fixed inset-x-3 top-[4.75rem] z-[90] overflow-hidden rounded-[1.75rem] border border-white/60 bg-white/85 p-5 shadow-2xl backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/90 sm:inset-x-4 sm:p-6 lg:hidden"
-          >
+      {open ? (
+        <>
+          <div
+            className="fixed inset-0 z-[80] bg-slate-900/35 backdrop-blur-sm dark:bg-slate-950/50 lg:hidden"
+            onClick={() => setOpen(false)}
+            aria-hidden
+          />
+          <div className="fixed inset-x-3 top-[4.75rem] z-[90] overflow-hidden rounded-[1.75rem] border border-white/60 bg-white/85 p-5 shadow-2xl backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/90 sm:inset-x-4 sm:p-6 lg:hidden">
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <NavLink
@@ -303,22 +262,9 @@ export function Navbar() {
                 Download Free
               </a>
             </nav>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[80] bg-slate-900/35 backdrop-blur-sm dark:bg-slate-950/50 lg:hidden"
-            onClick={() => setOpen(false)}
-            aria-hidden
-          />
-        ) : null}
-      </AnimatePresence>
+          </div>
+        </>
+      ) : null}
     </>
   );
 }

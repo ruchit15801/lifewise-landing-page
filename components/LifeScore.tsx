@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { HeartPulse, Pill, Activity, TrendingUp } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
@@ -51,9 +50,6 @@ function ProgressRing({ value, size = 120, strokeWidth = 10 }: { value: number; 
 }
 
 export function LifeScore() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [20, -20]);
 
   return (
     <SectionShell
@@ -62,7 +58,7 @@ export function LifeScore() {
       title="Family Health Summary"
       subtitle="Track medicine compliance, health readings, and upcoming appointments across the whole family in a single glance."
     >
-      <div ref={containerRef} className="relative space-y-4">
+      <div className="relative space-y-4">
         
         {/* Main Health Panel */}
         <Reveal>
@@ -124,7 +120,7 @@ export function LifeScore() {
 
               {/* Right: Mockup UI */}
               <div className="relative flex items-center justify-center p-8 lg:p-10 border-t border-slate-200 lg:border-l lg:border-t-0 dark:border-slate-800/60">
-                <motion.div style={{ y }} className="w-full max-w-sm space-y-4">
+                <div className="w-full max-w-sm space-y-4">
                   
                   {/* Health Card */}
                   <div className="rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-xl backdrop-blur-xl dark:border-slate-700/60 dark:bg-slate-900/90 dark:shadow-2xl">
@@ -194,7 +190,7 @@ export function LifeScore() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </div>
