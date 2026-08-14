@@ -24,8 +24,7 @@ import {
   SUPPORT_EMAIL,
   SUPPORT_PHONE_DISPLAY,
   TEL_URL,
-  WHATSAPP_URL,
-  SUPPORT_HOURS
+  WHATSAPP_URL
 } from "@/lib/seo";
 
 const TOPICS = [
@@ -287,7 +286,7 @@ export function SupportSection() {
             </div>
             <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">WhatsApp & Call</h3>
             <p className="mt-2 text-sm font-medium leading-relaxed text-slate-700 dark:text-slate-300">
-              {SUPPORT_HOURS}
+              Message or call the LifeWise India team on WhatsApp.
             </p>
             <div className="mt-5 grid grid-cols-1 gap-2.5">
               <a

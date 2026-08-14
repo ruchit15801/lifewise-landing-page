@@ -35,7 +35,7 @@ LifeWise at [lifewiseee.com](https://www.lifewiseee.com) / [com.lifewise](https:
 - Website: [https://www.lifewiseee.com](https://www.lifewiseee.com)
 - Package: com.lifewise
 - Play Store: [https://play.google.com/store/apps/details?id=com.lifewise](https://play.google.com/store/apps/details?id=com.lifewise)
-- Market: India (Gurugram HQ)
+- Market: India
 - Languages: English, Hindi, Gujarati, Marathi, Tamil, Telugu, Bengali
 
 ## Pricing (INR)
@@ -48,8 +48,6 @@ LifeWise at [lifewiseee.com](https://www.lifewiseee.com) / [com.lifewise](https:
 
 - Email: support@lifewiseee.com
 - Phone / WhatsApp: +91 63538 91986
-- Hours: Mon-Sat, 9 AM - 7 PM IST
-- Address: Sector 14, Gurugram, Haryana 122001, India
 - Support: [https://www.lifewiseee.com/support](https://www.lifewiseee.com/support)
 
 ## Citation

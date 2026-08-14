@@ -8,7 +8,6 @@ import {
 } from "@/lib/play-listing";
 import { FAMILY_HUB_MODULES, FREE_PLAN, PREMIUM_PLAN } from "@/lib/landing-data";
 import {
-  ADDRESS,
   CONTACT_EMAIL,
   SITE_NAME,
   SITE_TAGLINE,
@@ -20,25 +19,6 @@ const ORG_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 const APP_ID = `${SITE_URL}/#software`;
 const LOCAL_ID = `${SITE_URL}/#localbusiness`;
-
-function postalAddress() {
-  return {
-    "@type": "PostalAddress",
-    streetAddress: ADDRESS.street,
-    addressLocality: ADDRESS.city,
-    addressRegion: ADDRESS.state,
-    postalCode: ADDRESS.pin,
-    addressCountry: ADDRESS.countryCode
-  };
-}
-
-function geoCoordinates() {
-  return {
-    "@type": "GeoCoordinates",
-    latitude: ADDRESS.latitude,
-    longitude: ADDRESS.longitude
-  };
-}
 
 export function organizationSchema() {
   return {
@@ -72,12 +52,9 @@ export function organizationSchema() {
       "LifeWise (lifewiseee.com) is India's official Family Operating System app for medicine reminders, bill alerts, Family Hub, and WiseAI. Google Play package: com.lifewise. Not affiliated with LifeWise Student Insurance.",
     email: CONTACT_EMAIL,
     telephone: SUPPORT_PHONE,
-    address: postalAddress(),
-    foundingLocation: {
-      "@type": "Place",
-      name: `${ADDRESS.city}, ${ADDRESS.country}`,
-      address: postalAddress(),
-      geo: geoCoordinates()
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "IN"
     },
     contactPoint: [
       {
@@ -90,20 +67,6 @@ export function organizationSchema() {
         areaServed: {
           "@type": "Country",
           name: "India"
-        },
-        hoursAvailable: {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday"
-          ],
-          opens: "09:00",
-          closes: "19:00",
-          timeZone: "Asia/Kolkata"
         }
       },
       {
@@ -115,32 +78,10 @@ export function organizationSchema() {
         availableLanguage: ["English", "Hindi"]
       }
     ],
-    areaServed: [
-      {
-        "@type": "Country",
-        name: "India"
-      },
-      {
-        "@type": "City",
-        name: "Gurugram"
-      },
-      {
-        "@type": "City",
-        name: "Mumbai"
-      },
-      {
-        "@type": "City",
-        name: "Delhi"
-      },
-      {
-        "@type": "City",
-        name: "Ahmedabad"
-      },
-      {
-        "@type": "City",
-        name: "Bengaluru"
-      }
-    ],
+    areaServed: {
+      "@type": "Country",
+      name: "India"
+    },
     knowsAbout: [
       "LifeWise",
       "LifeWise Family OS",
@@ -176,26 +117,11 @@ export function localBusinessSchema() {
     telephone: SUPPORT_PHONE,
     email: CONTACT_EMAIL,
     priceRange: "₹0-₹199",
-    address: postalAddress(),
-    geo: geoCoordinates(),
     areaServed: {
       "@type": "Country",
       name: "India"
     },
     parentOrganization: { "@id": ORG_ID },
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
-      opens: "09:00",
-      closes: "19:00"
-    },
     availableLanguage: ["English", "Hindi", "Gujarati"]
   };
 }

@@ -26,7 +26,7 @@ const THANKS_RESPONSE =
   "You're welcome! 🙏 Happy to help. Feel free to ask anything else about LifeWise anytime!";
 
 const FALLBACK =
-  `I appreciate your question! While I don't have a specific answer for that, here's how to get help:\n\n📧 Email: ${SUPPORT_EMAIL}\n📞 Call/WhatsApp: ${SUPPORT_PHONE_DISPLAY}\n🕐 Mon-Sat, 9 AM - 7 PM IST\n\nOr scroll to the Support form on this page. Our team replies within 24 hours!\n\nYou can also try asking me about features, pricing, medicine reminders, or Family Hub.`;
+  `I appreciate your question! While I don't have a specific answer for that, here's how to get help:\n\n📧 Email: ${SUPPORT_EMAIL}\n📞 Call/WhatsApp: ${SUPPORT_PHONE_DISPLAY}\n\nOr scroll to the Support form on this page. Our team replies within 24 hours!\n\nYou can also try asking me about features, pricing, medicine reminders, or Family Hub.`;
 
 const QUICK_REPLIES = [
   "What is LifeWise?",

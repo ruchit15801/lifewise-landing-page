@@ -151,7 +151,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "phone number", "sampark", "madad", "customer care",
       "complaint", "issue", "problem", "bug", "not working"
     ],
-    response: "LifeWise India Support is here to help! 🙏\n\n📧 Email: support@lifewiseee.com\n📞 Call: +91 63538 91986\n💬 WhatsApp: +91 63538 91986\n\n🕐 Hours: Mon-Sat, 9 AM - 7 PM IST\n\n📝 You can also fill the Support form on this page. We'll reply within 24 hours.\n\nSupport available in English & Hindi.",
+    response: "LifeWise India Support is here to help! 🙏\n\n📧 Email: support@lifewiseee.com\n📞 Call: +91 63538 91986\n💬 WhatsApp: +91 63538 91986\n\n📝 You can also fill the Support form on this page. We'll reply within 24 hours.\n\nSupport available in English & Hindi.",
     followUp: "Is there anything specific I can help with right now?"
   },
 

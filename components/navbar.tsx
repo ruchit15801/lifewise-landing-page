@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/components/cn";
+import { scrollToSection } from "@/lib/section-nav";
 
 const navItems = [
   { href: "#family", label: "Family Hub" },
@@ -95,15 +96,10 @@ export function Navbar() {
         href={`/${item.href}`}
         onClick={(e) => {
           e.preventDefault();
-          const el = document.querySelector(item.href);
-          if (el) {
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          void scrollToSection(item.href).then(() => {
             setActive(item.href);
             onClick?.();
-            return;
-          }
-          window.location.href = `/${item.href}`;
-          onClick?.();
+          });
         }}
         className={className}
       >
@@ -194,9 +190,7 @@ export function Navbar() {
               href="#download"
               onClick={(e) => {
                 e.preventDefault();
-                document
-                  .querySelector("#download")
-                  ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                void scrollToSection("#download");
               }}
               className="relative hidden items-center justify-center rounded-full bg-indigo-600 px-5 py-2.5 font-display text-[13px] font-bold text-white shadow-lg shadow-indigo-500/30 ring-1 ring-white/30 transition-all hover:-translate-y-0.5 hover:bg-indigo-500 hover:shadow-indigo-500/45 lg:inline-flex"
             >
@@ -253,9 +247,7 @@ export function Navbar() {
                 onClick={(e) => {
                   e.preventDefault();
                   setOpen(false);
-                  document
-                    .querySelector("#download")
-                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  void scrollToSection("#download");
                 }}
                 className="mt-2 inline-flex items-center justify-center rounded-full bg-indigo-600 px-5 py-3 font-display text-sm font-bold text-white"
               >

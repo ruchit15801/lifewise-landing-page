@@ -14,19 +14,6 @@ export const SITE_NAME = "LifeWise";
 export const SITE_TAGLINE = "Family Operating System";
 export const SITE_LOCALE = "en_IN";
 
-/** Gurugram HQ - used for GEO / LocalBusiness schema */
-export const ADDRESS = {
-  street: "Sector 14",
-  city: "Gurugram",
-  state: "Haryana",
-  pin: "122001",
-  country: "India",
-  countryCode: "IN",
-  /** Approximate coordinates for Sector 14, Gurugram */
-  latitude: 28.4601,
-  longitude: 77.0266
-} as const;
-
 /**
  * SERP title - brand-first so "LifeWise" queries match official site.
  * ~60 chars ideal for Google title display.
@@ -38,7 +25,7 @@ export const DEFAULT_TITLE =
  * Meta description: brand + Play package + high-intent keywords for CTR.
  */
 export const DEFAULT_DESCRIPTION =
-  "Official LifeWise app (lifewiseee.com / com.lifewise). India's Family Operating System for Papa medicine reminders, bijli bill alerts, Family Hub & WiseAI. Free on Google Play. Premium ₹199/mo. Gurugram, India.";
+  "Official LifeWise app (lifewiseee.com / com.lifewise). India's Family Operating System for Papa medicine reminders, bijli bill alerts, Family Hub & WiseAI. Free on Google Play. Premium ₹199/mo.";
 
 export const KEYWORDS = [
   ...PLAY_KEYWORDS,
@@ -88,13 +75,6 @@ export const KEYWORDS = [
   "voice reminder app Hindi",
   "Hindi medicine reminder app",
   "Gujarati family app",
-  // GEO
-  "family app Gurugram",
-  "family app Delhi NCR",
-  "family app Mumbai",
-  "family app Ahmedabad",
-  "family app Bengaluru",
-  "LifeWise Gurugram",
   // Support / trust
   "LifeWise support",
   "LifeWise contact number",
@@ -113,8 +93,7 @@ export {
   SUPPORT_PHONE,
   SUPPORT_PHONE_DISPLAY,
   WHATSAPP_URL,
-  TEL_URL,
-  SUPPORT_HOURS
+  TEL_URL
 } from "@/lib/support";
 
 export const CONTACT_EMAIL = "support@lifewiseee.com";
@@ -206,10 +185,6 @@ export function buildRootMetadata(): Metadata {
       "mobile-web-app-capable": "yes",
       "apple-mobile-web-app-capable": "yes",
       "apple-mobile-web-app-title": SITE_NAME,
-      "geo.region": "IN-HR",
-      "geo.placename": `${ADDRESS.city}, ${ADDRESS.state}, India`,
-      "geo.position": `${ADDRESS.latitude};${ADDRESS.longitude}`,
-      ICBM: `${ADDRESS.latitude}, ${ADDRESS.longitude}`,
       "content-language": "en-IN",
       "revisit-after": "3 days",
       rating: "general",
@@ -262,7 +237,7 @@ export function buildSupportMetadata(): Metadata {
   return {
     title: "Support & Contact - LifeWise India Customer Care",
     description:
-      "Contact LifeWise (Family OS) India support: support@lifewiseee.com, WhatsApp/call +91 63538 91986. Help with medicine reminders, bills, Family Hub, Premium. Mon-Sat 9 AM-7 PM IST.",
+      "Contact LifeWise (Family OS) India support: support@lifewiseee.com, WhatsApp/call +91 63538 91986. Help with medicine reminders, bills, Family Hub, Premium.",
     keywords: [
       "LifeWise support",
       "LifeWise customer care",
@@ -285,7 +260,7 @@ export function buildSupportMetadata(): Metadata {
       card: "summary_large_image",
       title: "LifeWise Support - India",
       description:
-        "Email, WhatsApp & call LifeWise India support. Mon-Sat 9 AM-7 PM IST.",
+        "Email, WhatsApp & call LifeWise India support.",
       images: [OG_IMAGE.url]
     }
   };

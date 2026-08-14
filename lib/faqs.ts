@@ -100,7 +100,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "How do I contact LifeWise support?",
     answer:
-      "Email support@lifewiseee.com, call or WhatsApp +91 63538 91986 (Mon-Sat 9 AM-7 PM IST), or fill the Support form on lifewiseee.com/support. Our team helps with setup, billing, and app issues in English and Hindi.",
+      "Email support@lifewiseee.com, call or WhatsApp +91 63538 91986, or fill the Support form on lifewiseee.com/support. Our team helps with setup, billing, and app issues in English and Hindi.",
     keywords: ["support", "contact", "help", "call", "whatsapp", "email"]
   },
   {
@@ -118,7 +118,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Where is LifeWise based?",
     answer:
-      "LifeWise is an India product. Support is available in English and Hindi at support@lifewiseee.com or WhatsApp/call +91 63538 91986 (Mon-Sat, 9 AM-7 PM IST). Official site: lifewiseee.com.",
-    keywords: ["gurugram", "location", "headquarters", "india", "where"]
+      "LifeWise is an India product. Support is available in English and Hindi at support@lifewiseee.com or WhatsApp/call +91 63538 91986. Official site: lifewiseee.com.",
+    keywords: ["india", "location", "support", "where"]
   }
 ];
