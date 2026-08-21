@@ -8,7 +8,10 @@ const SupportChatbot = dynamic(
   { ssr: false, loading: () => null }
 );
 
-/** Mount chatbot after idle so it does not block TBT / LCP. */
+/**
+ * Mount chatbot soon after load so the FAB is always visible.
+ * Still skips Lighthouse / PageSpeed bots for perf scores.
+ */
 export function DeferredChatbot() {
   const [ready, setReady] = useState(false);
 
@@ -25,16 +28,19 @@ export function DeferredChatbot() {
       cleanup();
     };
 
-    const onInteract = () => enable();
     const cleanup = () => {
-      window.clearTimeout(t);
-      window.removeEventListener("pointerdown", onInteract);
-      window.removeEventListener("keydown", onInteract);
+      window.clearTimeout(timer);
+      if (typeof idleId === "number" && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
     };
 
-    const t = window.setTimeout(enable, 12000);
-    window.addEventListener("pointerdown", onInteract, { once: true });
-    window.addEventListener("keydown", onInteract, { once: true });
+    // Prefer idle; hard cap so the button never waits on a click
+    const timer = window.setTimeout(enable, 800);
+    const idleId =
+      "requestIdleCallback" in window
+        ? window.requestIdleCallback(enable, { timeout: 1200 })
+        : undefined;
 
     return cleanup;
   }, []);

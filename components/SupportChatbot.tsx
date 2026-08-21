@@ -249,9 +249,11 @@ export function SupportChatbot() {
           "fixed z-[60] grid h-14 w-14 place-items-center rounded-full shadow-2xl",
           "bg-gradient-to-br from-primary to-indigo-600 text-white",
           "bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4",
+          "ring-2 ring-white/40 dark:ring-white/20",
           "transition-shadow hover:shadow-[0_8px_32px_rgba(109,93,246,0.5)]"
         )}
         aria-label={open ? "Close support chat" : "Open LifeWise AI chat"}
+        aria-expanded={open}
       >
         <AnimatePresence mode="wait">
           {open ? (

@@ -9,6 +9,7 @@ import { SkipToContent } from "@/components/SkipToContent";
 import { JsonLd } from "@/components/JsonLd";
 import { DeferredAnalytics } from "@/components/DeferredAnalytics";
 import { DeferredChatbot } from "@/components/DeferredChatbot";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { organizationSchema, websiteSchema } from "@/lib/json-ld";
 import { buildRootMetadata, SITE_URL } from "@/lib/seo";
 
@@ -74,6 +75,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <DeferredChatbot />
+          <ScrollToTop />
         </ThemeProvider>
         <DeferredAnalytics />
       </body>
