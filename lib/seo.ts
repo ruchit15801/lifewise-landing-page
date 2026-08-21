@@ -19,13 +19,13 @@ export const SITE_LOCALE = "en_IN";
  * ~60 chars ideal for Google title display.
  */
 export const DEFAULT_TITLE =
-  "LifeWise App - Official Family OS India | Medicine & Bill Reminder";
+  "LifeWise: Family OS India | Medicine & Bill Reminders";
 
 /**
- * Meta description: brand + Play package + high-intent keywords for CTR.
+ * Meta description: 70–160 chars. Brand + intent + CTA.
  */
 export const DEFAULT_DESCRIPTION =
-  "Official LifeWise app (lifewiseee.com / com.lifewise). India's Family Operating System for Papa medicine reminders, bijli bill alerts, Family Hub & WiseAI. Free on Google Play. Premium ₹199/mo.";
+  "Official LifeWise Family OS: Papa medicine reminders, bijli bills, Family Hub & WiseAI. Free on Google Play.";
 
 export const KEYWORDS = [
   ...PLAY_KEYWORDS,
@@ -200,7 +200,7 @@ export function buildRootMetadata(): Metadata {
 
 export function buildHomeMetadata(): Metadata {
   return {
-    title: DEFAULT_TITLE,
+    title: { absolute: DEFAULT_TITLE },
     description: DEFAULT_DESCRIPTION,
     keywords: [...KEYWORDS],
     alternates: {
@@ -235,9 +235,9 @@ export function buildHomeMetadata(): Metadata {
 
 export function buildSupportMetadata(): Metadata {
   return {
-    title: "Support & Contact - LifeWise India Customer Care",
+    title: { absolute: "LifeWise Support | Contact India Customer Care" },
     description:
-      "Contact LifeWise (Family OS) India support: support@lifewiseee.com, WhatsApp/call +91 63538 91986. Help with medicine reminders, bills, Family Hub, Premium.",
+      "Contact LifeWise India: support@lifewiseee.com or WhatsApp +91 63538 91986. Help with Family Hub, bills, and Premium.",
     keywords: [
       "LifeWise support",
       "LifeWise customer care",
@@ -268,9 +268,9 @@ export function buildSupportMetadata(): Metadata {
 
 export function buildPrivacyMetadata(): Metadata {
   return {
-    title: "Privacy Policy - LifeWise India (DPDP Act 2023)",
+    title: { absolute: "Privacy Policy | LifeWise India (DPDP Act)" },
     description:
-      "LifeWise (com.lifewise) Privacy Policy for the Family Operating System app. How we collect, use, and protect family health data, bill reminders, SMS permissions, WiseAI, and your rights under India's DPDP Act 2023.",
+      "LifeWise privacy policy: how we protect family health, bills & WiseAI data under India's DPDP Act 2023.",
     alternates: { canonical: `${SITE_URL}/privacy-policy` },
     openGraph: {
       title: "LifeWise Privacy Policy - India",
@@ -324,9 +324,9 @@ export function buildNotFoundMetadata(): Metadata {
 
 export function buildTermsMetadata(): Metadata {
   return {
-    title: "Terms & Conditions - LifeWise India",
+    title: { absolute: "Terms & Conditions | LifeWise India" },
     description:
-      "LifeWise Terms and Conditions: app usage rules, Free vs Premium (₹199/month), health disclaimers, WiseAI terms, acceptable use, and governing law in India. Package: com.lifewise.",
+      "LifeWise terms: Free vs Premium ₹199/month, WiseAI use, health disclaimers, and governing law in India.",
     alternates: { canonical: `${SITE_URL}/terms-and-conditions` },
     openGraph: {
       title: "LifeWise Terms & Conditions",

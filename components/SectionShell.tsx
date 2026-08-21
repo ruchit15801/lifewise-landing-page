@@ -8,7 +8,8 @@ export function SectionShell({
   subtitle,
   children,
   className,
-  highlight
+  highlight,
+  titleAs: TitleTag = "h2"
 }: {
   id?: string;
   eyebrow?: string;
@@ -18,6 +19,7 @@ export function SectionShell({
   children: React.ReactNode;
   className?: string;
   highlight?: boolean;
+  titleAs?: "h1" | "h2";
 }) {
   return (
     <section id={id} className={cn("scroll-mt-24 py-8 sm:py-10 lg:py-12", className)}>
@@ -41,9 +43,9 @@ export function SectionShell({
               </span>
             ) : null}
           </div>
-          <h2 className="mt-2 font-display text-[1.35rem] font-semibold tracking-tight text-slate-950 sm:text-3xl dark:text-white">
+          <TitleTag className="mt-2 font-display text-[1.35rem] font-semibold tracking-tight text-slate-950 sm:text-3xl dark:text-white">
             {title}
-          </h2>
+          </TitleTag>
           {subtitle ? (
             <p className="mt-2.5 text-sm leading-relaxed text-slate-700 sm:text-base dark:text-slate-300">
               {subtitle}

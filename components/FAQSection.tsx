@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
@@ -99,23 +99,20 @@ export function FAQSection({
                   </motion.span>
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {open ? (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <div className="border-t border-indigo-100/80 px-4 pb-5 pt-3 sm:px-6 sm:pb-6 sm:pl-[4.5rem]">
-                        <p className="faq-answer max-w-3xl text-[14px] leading-relaxed text-slate-600 dark:text-slate-400 sm:text-[15px]">
-                          {faq.answer}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
+                <div
+                  className={cn(
+                    "grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-out",
+                    open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  )}
+                >
+                  <div className="min-h-0">
+                    <div className="border-t border-indigo-100/80 px-4 pb-5 pt-3 sm:px-6 sm:pb-6 sm:pl-[4.5rem]">
+                      <p className="faq-answer max-w-3xl text-[14px] leading-relaxed text-slate-600 dark:text-slate-400 sm:text-[15px]">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             );
           })}

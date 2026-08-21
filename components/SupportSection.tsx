@@ -217,7 +217,11 @@ function ThemedSelect({
   );
 }
 
-export function SupportSection() {
+export function SupportSection({
+  titleAs = "h2"
+}: {
+  titleAs?: "h1" | "h2";
+}) {
   const [formData, setFormData] = useState(emptyForm);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState("");
@@ -258,8 +262,9 @@ export function SupportSection() {
     <SectionShell
       id="support"
       eyebrow="Support"
-      title="We're here to help."
+      title="LifeWise Support & Contact"
       subtitle="Have an issue setting up the Family Hub or connecting caregivers? Our India-based team is ready to assist you in English and Hindi."
+      titleAs={titleAs}
     >
       <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-12 lg:gap-6">
         <Reveal delay={0.1} className="flex flex-col gap-4 lg:col-span-5">

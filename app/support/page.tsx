@@ -13,7 +13,7 @@ export default function SupportPage() {
     <>
       <JsonLd data={supportPageSchemas()} />
       <main id="main-content" className="pt-4">
-        <SupportSection />
+        <SupportSection titleAs="h1" />
         <FAQSection
           items={SUPPORT_FAQ_ITEMS}
           eyebrow="Support FAQ"

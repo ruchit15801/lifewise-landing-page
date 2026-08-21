@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { LazySection } from "@/components/LazySection";
+import { FAQSection } from "@/components/FAQSection";
 import { scrollToSection } from "@/lib/section-nav";
 import { HAS_APP_REVIEWS } from "@/lib/reviews";
 
@@ -106,13 +107,7 @@ export function HomeSections() {
           }
         />
       ) : null}
-      <LazySection
-        id="faq"
-        minHeight={480}
-        loader={() =>
-          import("@/components/FAQSection").then((m) => ({ default: m.FAQSection }))
-        }
-      />
+      <FAQSection />
       <LazySection
         id="support"
         minHeight={640}
