@@ -7,6 +7,7 @@ import {
   PLAY_SHORT_DESCRIPTION
 } from "@/lib/play-listing";
 import { FAMILY_HUB_MODULES, FREE_PLAN, PREMIUM_PLAN } from "@/lib/landing-data";
+import { APP_AGGREGATE_RATING, APP_REVIEWS } from "@/lib/reviews";
 import {
   CONTACT_EMAIL,
   SITE_NAME,
@@ -14,6 +15,52 @@ import {
   SITE_URL,
   SUPPORT_PHONE
 } from "@/lib/seo";
+
+function aggregateRatingSchema() {
+  if (!APP_AGGREGATE_RATING) return undefined;
+  return {
+    "@type": "AggregateRating",
+    ratingValue: String(APP_AGGREGATE_RATING.ratingValue),
+    reviewCount: String(APP_AGGREGATE_RATING.reviewCount),
+    ratingCount: String(APP_AGGREGATE_RATING.ratingCount),
+    bestRating: String(APP_AGGREGATE_RATING.bestRating),
+    worstRating: String(APP_AGGREGATE_RATING.worstRating)
+  };
+}
+
+function reviewSchemas(itemId: string) {
+  if (APP_REVIEWS.length === 0) return undefined;
+  return APP_REVIEWS.map((review) => ({
+    "@type": "Review",
+    author: {
+      "@type": "Person",
+      name: review.author
+    },
+    datePublished: review.datePublished,
+    name: review.title,
+    reviewBody: review.body,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: String(review.rating),
+      bestRating: "5",
+      worstRating: "1"
+    },
+    itemReviewed: { "@id": itemId }
+  }));
+}
+
+/** Drop undefined keys so empty reviews do not emit invalid schema fields */
+function withReviews<T extends Record<string, unknown>>(schema: T): T {
+  const rating = aggregateRatingSchema();
+  const reviews = reviewSchemas(
+    String(schema["@id"] ?? `${SITE_URL}/#software`)
+  );
+  return {
+    ...schema,
+    ...(rating ? { aggregateRating: rating } : {}),
+    ...(reviews ? { review: reviews } : {})
+  };
+}
 
 const ORG_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -156,7 +203,7 @@ export function websiteSchema() {
 }
 
 export function softwareApplicationSchema() {
-  return {
+  return withReviews({
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "@id": APP_ID,
@@ -222,14 +269,15 @@ export function softwareApplicationSchema() {
       }
     },
     sameAs: [PLAY_STORE_URL].filter(Boolean)
-  };
+  });
 }
 
 export function productSchema() {
-  return {
+  const productId = `${SITE_URL}/#product`;
+  return withReviews({
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": `${SITE_URL}/#product`,
+    "@id": productId,
     name: PLAY_APP_TITLE,
     description: PLAY_SHORT_DESCRIPTION,
     brand: { "@type": "Brand", name: SITE_NAME },
@@ -248,13 +296,14 @@ export function productSchema() {
     },
     isRelatedTo: { "@id": APP_ID },
     sameAs: [PLAY_STORE_URL].filter(Boolean)
-  };
+  });
 }
 
 export function mobileApplicationSchema() {
-  return {
+  return withReviews({
     "@context": "https://schema.org",
     "@type": "MobileApplication",
+    "@id": `${SITE_URL}/#mobile-app`,
     name: PLAY_APP_TITLE,
     alternateName: ["LifeWise", PLAY_PACKAGE_ID],
     operatingSystem: "Android",
@@ -272,7 +321,7 @@ export function mobileApplicationSchema() {
     publisher: { "@id": ORG_ID },
     countriesSupported: "IN",
     sameAs: [PLAY_STORE_URL].filter(Boolean)
-  };
+  });
 }
 
 export function webPageSchema() {
