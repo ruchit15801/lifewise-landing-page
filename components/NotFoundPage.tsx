@@ -3,10 +3,10 @@ import Link from "next/link";
 import {
   ArrowRight,
   Bot,
+  ExternalLink,
   Home,
   LifeBuoy,
   Pill,
-  Receipt,
   Users
 } from "lucide-react";
 import { PLAY_STORE_URL } from "@/lib/stores";
@@ -54,15 +54,18 @@ export function NotFoundPage() {
       />
 
       <div className="relative mx-auto w-full max-w-5xl text-center">
-        <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm dark:border-white/10 dark:bg-slate-800 dark:text-slate-200">
+        <div className="mx-auto mb-7 flex flex-col items-center gap-3">
           <Image
-            src="/icon-192.png"
-            alt=""
-            width={20}
-            height={20}
-            className="h-5 w-5 rounded-full"
+            src="/favicon.png"
+            alt="LifeWise"
+            width={72}
+            height={72}
+            priority
+            className="h-[4.5rem] w-[4.5rem] rounded-[1.35rem] shadow-lg shadow-indigo-500/25 ring-1 ring-black/5 dark:ring-white/10"
           />
-          Official LifeWise site
+          <p className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-300">
+            Official LifeWise site
+          </p>
         </div>
 
         <p
@@ -132,8 +135,8 @@ export function NotFoundPage() {
               rel="noopener noreferrer"
               className="inline-flex shrink-0 items-center gap-1.5 font-bold text-indigo-600 hover:underline dark:text-indigo-300"
             >
-              <Receipt className="h-4 w-4" />
               Open Play Store
+              <ExternalLink className="h-4 w-4" />
             </a>
           </div>
         </div>

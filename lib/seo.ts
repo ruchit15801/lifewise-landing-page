@@ -285,12 +285,12 @@ export function buildPrivacyMetadata(): Metadata {
 }
 
 export function buildNotFoundMetadata(): Metadata {
-  const title = "Page not found (404) | LifeWise Family OS";
+  const title = "Page not found | LifeWise Family OS";
   const description =
-    "This LifeWise page does not exist. Go to the official Family OS site for medicine reminders, bill alerts, Family Hub, WiseAI, or contact support.";
+    "This LifeWise page does not exist. Go home for Family OS, medicine reminders, bills, or contact support.";
 
   return {
-    title,
+    title: { absolute: title },
     description,
     robots: {
       index: false,
