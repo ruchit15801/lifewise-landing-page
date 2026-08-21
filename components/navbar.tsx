@@ -144,7 +144,7 @@ export function Navbar() {
             />
             <span className="absolute inset-0 rounded-full bg-white/85 shadow-sm ring-1 ring-white/90 dark:bg-slate-950/60 dark:ring-white/15" />
             <Image
-              src="/icon-192.png"
+              src="/logo.png"
               alt="LifeWise Logo"
               width={56}
               height={56}

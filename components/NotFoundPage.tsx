@@ -56,12 +56,12 @@ export function NotFoundPage() {
       <div className="relative mx-auto w-full max-w-5xl text-center">
         <div className="mx-auto mb-7 flex flex-col items-center gap-3">
           <Image
-            src="/favicon.png"
+            src="/logo.png"
             alt="LifeWise"
             width={72}
             height={72}
             priority
-            className="h-[4.5rem] w-[4.5rem] rounded-[1.35rem] shadow-lg shadow-indigo-500/25 ring-1 ring-black/5 dark:ring-white/10"
+            className="h-[4.5rem] w-[4.5rem] rounded-full object-contain shadow-lg shadow-indigo-500/25 ring-1 ring-black/5 dark:ring-white/10"
           />
           <p className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-300">
             Official LifeWise site
