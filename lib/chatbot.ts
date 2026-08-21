@@ -3,7 +3,7 @@
  * synonym expansion, fuzzy scoring, FAQ fallback, and context awareness.
  */
 
-import { FAQ_ITEMS } from "@/lib/faqs";
+import { FAQ_ITEMS, SUPPORT_FAQ_ITEMS } from "@/lib/faqs";
 import { SUPPORT_EMAIL, SUPPORT_PHONE_DISPLAY } from "@/lib/support";
 import {
   KNOWLEDGE_BASE,
@@ -160,11 +160,12 @@ export function getChatbotReply(userMessage: string): string {
     return reply;
   }
 
-  // Fall back to FAQ matching
-  let bestFaq = FAQ_ITEMS[0];
+  // Fall back to FAQ matching (landing product + support transactional)
+  const allFaqs = [...FAQ_ITEMS, ...SUPPORT_FAQ_ITEMS];
+  let bestFaq = allFaqs[0];
   let bestFaqScore = 0;
 
-  for (const faq of FAQ_ITEMS) {
+  for (const faq of allFaqs) {
     const s = scoreFaq(userMessage, faq);
     if (s > bestFaqScore) {
       bestFaqScore = s;

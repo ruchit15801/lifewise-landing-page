@@ -1,4 +1,4 @@
-import { FAQ_ITEMS } from "@/lib/faqs";
+import { FAQ_ITEMS, SUPPORT_FAQ_ITEMS, type FaqItem } from "@/lib/faqs";
 import { PLAY_STORE_URL } from "@/lib/stores";
 import {
   PLAY_APP_TITLE,
@@ -355,14 +355,17 @@ export function webPageSchema() {
   };
 }
 
-export function faqPageSchema(pageUrl = `${SITE_URL}/#faq`) {
+export function faqPageSchema(
+  pageUrl = `${SITE_URL}/#faq`,
+  items: FaqItem[] = FAQ_ITEMS
+) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "@id": pageUrl,
     url: pageUrl.includes("#") ? SITE_URL : pageUrl,
     inLanguage: "en-IN",
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {
@@ -574,7 +577,7 @@ export function supportPageSchemas() {
   return [
     contactPageSchema(),
     localBusinessSchema(),
-    faqPageSchema(`${SITE_URL}/support#faq`),
+    faqPageSchema(`${SITE_URL}/support#faq`, SUPPORT_FAQ_ITEMS),
     breadcrumbSchema([
       { name: "Home", path: "/" },
       { name: "Support", path: "/support" }

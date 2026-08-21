@@ -6,21 +6,37 @@ import { ChevronDown, ArrowRight } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/components/cn";
-import { FAQ_ITEMS } from "@/lib/faqs";
+import { FAQ_ITEMS, type FaqItem } from "@/lib/faqs";
 
-export function FAQSection() {
+export function FAQSection({
+  items = FAQ_ITEMS,
+  eyebrow = "FAQ",
+  title = "What LifeWise actually is",
+  subtitle = "Product questions for new visitors — Family OS, Family Hub, caregivers, WiseAI, and Premium. Support contact lives on the Support page.",
+  footerHref = "#support",
+  footerLabel = "Need help? Contact support",
+  footerNote = "Download, billing, and contact questions are answered in Support."
+}: {
+  items?: FaqItem[];
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  footerHref?: string;
+  footerLabel?: string;
+  footerNote?: string;
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <SectionShell
       id="faq"
-      eyebrow="FAQ"
-      title="Real Questions About LifeWise, India's Family App"
-      subtitle="Answers about Papa medicine reminders, electricity bills, Hindi support, Premium Rs. 199, Family Hub, and how to contact our India support team."
+      eyebrow={eyebrow}
+      title={title}
+      subtitle={subtitle}
     >
       <Reveal>
         <div className="mx-auto max-w-4xl space-y-2.5">
-          {FAQ_ITEMS.map((faq, i) => {
+          {items.map((faq, i) => {
             const open = openIndex === i;
             const num = String(i + 1).padStart(2, "0");
 
@@ -106,13 +122,13 @@ export function FAQSection() {
 
           <div className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800/80 bg-slate-50/80 dark:bg-slate-900/60 px-5 py-4 sm:flex-row sm:px-6">
             <p className="text-center text-sm font-medium text-slate-600 dark:text-slate-400 sm:text-left">
-              Still stuck? Our India team helps in English & Hindi.
+              {footerNote}
             </p>
             <a
-              href="#support"
+              href={footerHref}
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-indigo-600 px-4 py-2.5 font-display text-sm font-bold text-white shadow-md shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-500"
             >
-              Contact Support
+              {footerLabel}
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>

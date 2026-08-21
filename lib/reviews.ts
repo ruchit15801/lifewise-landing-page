@@ -1,4 +1,4 @@
-/**
+hve je atyre apde faqs che ana change kai/**
  * Real customer reviews — page UI + Product / SoftwareApplication schema.
  * Google: reviews must be genuine and visible on the page.
  *
@@ -26,12 +26,12 @@ export const HAS_APP_REVIEWS = APP_REVIEWS.length > 0;
 
 export const APP_AGGREGATE_RATING = HAS_APP_REVIEWS
   ? {
-      ratingValue: round1(
-        APP_REVIEWS.reduce((sum, r) => sum + r.rating, 0) / APP_REVIEWS.length
-      ),
-      reviewCount: APP_REVIEWS.length,
-      ratingCount: APP_REVIEWS.length,
-      bestRating: 5 as const,
-      worstRating: 1 as const
-    }
+    ratingValue: round1(
+      APP_REVIEWS.reduce((sum, r) => sum + r.rating, 0) / APP_REVIEWS.length
+    ),
+    reviewCount: APP_REVIEWS.length,
+    ratingCount: APP_REVIEWS.length,
+    bestRating: 5 as const,
+    worstRating: 1 as const
+  }
   : null;
