@@ -1,4 +1,4 @@
-hve je atyre apde faqs che ana change kai/**
+/**
  * Real customer reviews — page UI + Product / SoftwareApplication schema.
  * Google: reviews must be genuine and visible on the page.
  *
