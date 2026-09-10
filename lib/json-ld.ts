@@ -1,5 +1,5 @@
 import { FAQ_ITEMS, SUPPORT_FAQ_ITEMS, type FaqItem } from "@/lib/faqs";
-import { PLAY_STORE_URL } from "@/lib/stores";
+import { APP_STORE_ID, APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
 import {
   PLAY_APP_TITLE,
   PLAY_DISAMBIGUATION,
@@ -96,7 +96,7 @@ export function organizationSchema() {
     },
     image: `${SITE_URL}/og-image.svg`,
     description:
-      "LifeWise (lifewiseee.com) is India's official Family Operating System app for medicine reminders, bill alerts, Family Hub, and WiseAI. Google Play package: com.lifewise. Not affiliated with LifeWise Student Insurance.",
+      "LifeWise (lifewiseee.com) is India's official Family Operating System app for medicine reminders, bill alerts, Family Hub, and WiseAI. Google Play package: com.lifewise. Also on the App Store. Not affiliated with LifeWise Student Insurance.",
     email: CONTACT_EMAIL,
     telephone: SUPPORT_PHONE,
     address: {
@@ -148,7 +148,7 @@ export function organizationSchema() {
       "@type": "Brand",
       name: SITE_NAME
     },
-    sameAs: [PLAY_STORE_URL].filter(Boolean),
+    sameAs: [PLAY_STORE_URL, APP_STORE_URL].filter(Boolean),
     identifier: PLAY_PACKAGE_ID
   };
 }
@@ -188,7 +188,7 @@ export function websiteSchema() {
     ],
     url: SITE_URL,
     description:
-      "Official LifeWise website (lifewiseee.com). Download India's Family Operating System app on Google Play (com.lifewise) for medicine reminders, bill alerts, Family Hub, and WiseAI.",
+      "Official LifeWise website (lifewiseee.com). Download India's Family Operating System app on Google Play (com.lifewise) and the App Store for medicine reminders, bill alerts, Family Hub, and WiseAI.",
     publisher: { "@id": ORG_ID },
     inLanguage: ["en-IN", "en", "hi"],
     potentialAction: {
@@ -217,10 +217,10 @@ export function softwareApplicationSchema() {
     ],
     applicationCategory: "LifestyleApplication",
     applicationSubCategory: "Family Management",
-    operatingSystem: "Android",
+    operatingSystem: "Android, iOS",
     url: SITE_URL,
-    downloadUrl: PLAY_STORE_URL || SITE_URL,
-    installUrl: PLAY_STORE_URL || SITE_URL,
+    downloadUrl: PLAY_STORE_URL || APP_STORE_URL || SITE_URL,
+    installUrl: PLAY_STORE_URL || APP_STORE_URL || SITE_URL,
     screenshot: `${SITE_URL}/og-image.svg`,
     image: `${SITE_URL}/og-image.svg`,
     identifier: PLAY_PACKAGE_ID,
@@ -268,7 +268,7 @@ export function softwareApplicationSchema() {
         name: "India"
       }
     },
-    sameAs: [PLAY_STORE_URL].filter(Boolean)
+    sameAs: [PLAY_STORE_URL, APP_STORE_URL].filter(Boolean)
   });
 }
 
@@ -295,7 +295,7 @@ export function productSchema() {
       url: PLAY_STORE_URL || SITE_URL
     },
     isRelatedTo: { "@id": APP_ID },
-    sameAs: [PLAY_STORE_URL].filter(Boolean)
+    sameAs: [PLAY_STORE_URL, APP_STORE_URL].filter(Boolean)
   });
 }
 
@@ -320,7 +320,32 @@ export function mobileApplicationSchema() {
     },
     publisher: { "@id": ORG_ID },
     countriesSupported: "IN",
-    sameAs: [PLAY_STORE_URL].filter(Boolean)
+    sameAs: [PLAY_STORE_URL, APP_STORE_URL].filter(Boolean)
+  });
+}
+
+export function iosApplicationSchema() {
+  return withReviews({
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "@id": `${SITE_URL}/#ios-app`,
+    name: PLAY_APP_TITLE,
+    alternateName: ["LifeWise", "LifeWise AI Family Hub"],
+    operatingSystem: "iOS",
+    applicationCategory: "LifestyleApplication",
+    url: SITE_URL,
+    downloadUrl: APP_STORE_URL || SITE_URL,
+    installUrl: APP_STORE_URL || SITE_URL,
+    identifier: APP_STORE_ID,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "INR",
+      url: APP_STORE_URL || SITE_URL
+    },
+    publisher: { "@id": ORG_ID },
+    countriesSupported: "IN",
+    sameAs: [APP_STORE_URL].filter(Boolean)
   });
 }
 
@@ -346,6 +371,7 @@ export function webPageSchema() {
     },
     significantLink: [
       PLAY_STORE_URL,
+      APP_STORE_URL,
       `${SITE_URL}/support`,
       `${SITE_URL}/privacy-policy`,
       `${SITE_URL}/terms-and-conditions`,
@@ -561,6 +587,7 @@ export function homePageSchemas() {
   return [
     softwareApplicationSchema(),
     mobileApplicationSchema(),
+    iosApplicationSchema(),
     productSchema(),
     webPageSchema(),
     definedTermSchema(),

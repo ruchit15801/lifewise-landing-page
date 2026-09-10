@@ -9,6 +9,7 @@ import {
   TEL_URL,
   WHATSAPP_URL
 } from "@/lib/seo";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
 
 export function Footer() {
   const yearRange = "2026-27";
@@ -138,11 +139,21 @@ export function Footer() {
               <li>
                 <a
                   className="text-slate-600 dark:text-slate-400 transition-colors hover:text-indigo-600"
-                  href="https://play.google.com/store/apps/details?id=com.lifewise"
+                  href={PLAY_STORE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Google Play
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-slate-600 dark:text-slate-400 transition-colors hover:text-indigo-600"
+                  href={APP_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  App Store
                 </a>
               </li>
             </ul>

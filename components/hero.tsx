@@ -99,8 +99,8 @@ export function Hero() {
               <strong className="font-semibold text-slate-900 dark:text-white">
                 LifeWise is India&apos;s Family Operating System (Family OS)
               </strong>
-              . {PRODUCT_DESCRIPTION} Official Android app on Google Play (
-              <span className="whitespace-nowrap">com.lifewise</span>).
+              . {PRODUCT_DESCRIPTION} Official app on Google Play (
+              <span className="whitespace-nowrap">com.lifewise</span>) and the App Store.
             </p>
           </Reveal>
 

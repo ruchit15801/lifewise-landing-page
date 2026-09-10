@@ -198,13 +198,13 @@ export const SUPPORT_FAQ_ITEMS: FaqItem[] = [
   {
     question: "How do I download the official LifeWise app?",
     answer:
-      "Download LifeWise: Family OS free on Google Play at https://play.google.com/store/apps/details?id=com.lifewise (package com.lifewise). Use only lifewiseee.com or the official Play listing — avoid similarly named insurance apps.",
-    keywords: ["download", "install", "play store", "android", "com.lifewise"]
+      "Download LifeWise: Family OS free on Google Play at https://play.google.com/store/apps/details?id=com.lifewise (package com.lifewise) or on the App Store at https://apps.apple.com/us/app/lifewise-ai-family-hub/id6803865970. Use only lifewiseee.com or the official store listings — avoid similarly named insurance apps.",
+    keywords: ["download", "install", "play store", "app store", "android", "ios", "iphone", "com.lifewise"]
   },
   {
     question: "Is lifewiseee.com the official LifeWise website?",
     answer:
-      "Yes. https://www.lifewiseee.com is the official LifeWise website. The official Android app is LifeWise: Family OS on Google Play (package com.lifewise).",
+      "Yes. https://www.lifewiseee.com is the official LifeWise website. The official app is LifeWise: Family OS on Google Play (package com.lifewise) and LifeWise AI Family Hub on the App Store.",
     keywords: ["official", "lifewiseee", "website", "real lifewise"]
   },
   {

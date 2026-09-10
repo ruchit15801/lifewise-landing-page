@@ -9,7 +9,7 @@ import {
   Pill,
   Users
 } from "lucide-react";
-import { PLAY_STORE_URL } from "@/lib/stores";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
 
 const DESTINATIONS = [
   {
@@ -127,17 +127,28 @@ export function NotFoundPage() {
               <span className="font-semibold text-slate-900 dark:text-white">
                 LifeWise: Family OS
               </span>{" "}
-              is free on Google Play.
+              is free on Google Play and the App Store.
             </p>
-            <a
-              href={PLAY_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-1.5 font-bold text-indigo-600 hover:underline dark:text-indigo-300"
-            >
-              Open Play Store
-              <ExternalLink className="h-4 w-4" />
-            </a>
+            <div className="flex shrink-0 flex-wrap items-center justify-center gap-3 sm:justify-end">
+              <a
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-bold text-indigo-600 hover:underline dark:text-indigo-300"
+              >
+                Open Play Store
+                <ExternalLink className="h-4 w-4" />
+              </a>
+              <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-bold text-indigo-600 hover:underline dark:text-indigo-300"
+              >
+                Open App Store
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

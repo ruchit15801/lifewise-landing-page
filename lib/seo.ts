@@ -6,6 +6,7 @@ import {
   PLAY_SHORT_DESCRIPTION,
   assertPlayListingLimits
 } from "@/lib/play-listing";
+import { APP_STORE_ID, APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
 
 assertPlayListingLimits();
 
@@ -25,7 +26,7 @@ export const DEFAULT_TITLE =
  * Meta description: 70–160 chars. Brand + intent + CTA.
  */
 export const DEFAULT_DESCRIPTION =
-  "Official LifeWise Family OS: Papa medicine reminders, bijli bills, Family Hub & WiseAI. Free on Google Play.";
+  "Official LifeWise Family OS: Papa medicine reminders, bijli bills, Family Hub & WiseAI. Free on Google Play & App Store.";
 
 export const KEYWORDS = [
   ...PLAY_KEYWORDS,
@@ -47,8 +48,11 @@ export const KEYWORDS = [
   "www.lifewiseee.com",
   "com.lifewise",
   "LifeWise Google Play",
+  "LifeWise App Store",
   "download LifeWise app",
   "LifeWise Android app",
+  "LifeWise iOS app",
+  "LifeWise iPhone",
   "LifeWise Play Store",
   // Product intent
   "family management app India",
@@ -85,7 +89,7 @@ export const KEYWORDS = [
 ] as const;
 
 /** @deprecated use lib/stores.ts - re-exported for compatibility */
-export { PLAY_STORE_URL, APP_STORE_URL, STORES_ARE_LIVE } from "@/lib/stores";
+export { PLAY_STORE_URL, APP_STORE_URL, APP_STORE_ID, STORES_ARE_LIVE } from "@/lib/stores";
 
 export { FAQ_ITEMS } from "@/lib/faqs";
 export {
@@ -194,6 +198,7 @@ export function buildRootMetadata(): Metadata {
       target: "all",
       HandheldFriendly: "true",
       "google-play-app": "app-id=com.lifewise",
+      "apple-itunes-app": `app-id=${APP_STORE_ID}`,
       "application-name": PLAY_APP_TITLE
     }
   };
@@ -227,9 +232,12 @@ export function buildHomeMetadata(): Metadata {
       images: [OG_IMAGE.url]
     },
     other: {
-      "al:android:url": "https://play.google.com/store/apps/details?id=com.lifewise",
+      "al:android:url": PLAY_STORE_URL,
       "al:android:package": "com.lifewise",
-      "al:android:app_name": PLAY_APP_TITLE
+      "al:android:app_name": PLAY_APP_TITLE,
+      "al:ios:url": APP_STORE_URL,
+      "al:ios:app_store_id": APP_STORE_ID,
+      "al:ios:app_name": PLAY_APP_TITLE
     }
   };
 }

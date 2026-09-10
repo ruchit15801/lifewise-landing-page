@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
-import { PLAY_APP_TITLE, PLAY_SHORT_DESCRIPTION } from "@/lib/play-listing";
+import { PLAY_APP_TITLE, PLAY_PACKAGE_ID, PLAY_SHORT_DESCRIPTION } from "@/lib/play-listing";
 import { SITE_NAME } from "@/lib/seo";
+import { APP_STORE_ID, APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -49,8 +50,13 @@ export default function manifest(): MetadataRoute.Manifest {
     related_applications: [
       {
         platform: "play",
-        url: "https://play.google.com/store/apps/details?id=com.lifewise",
-        id: "com.lifewise"
+        url: PLAY_STORE_URL,
+        id: PLAY_PACKAGE_ID
+      },
+      {
+        platform: "itunes",
+        url: APP_STORE_URL,
+        id: APP_STORE_ID
       }
     ],
     prefer_related_applications: false

@@ -55,9 +55,14 @@ export function StoreDownloadButtons({
   const playUrl = PLAY_STORE_URL || "#download";
   const appUrl = APP_STORE_URL || "#download";
 
-  const helperText = PLAY_STORE_LIVE
-    ? "Free on Google Play • Made for Indian families"
-    : "Download LifeWise for your family";
+  const helperText =
+    PLAY_STORE_LIVE && APP_STORE_LIVE
+      ? "Free on Google Play & App Store • Made for Indian families"
+      : PLAY_STORE_LIVE
+        ? "Free on Google Play • Made for Indian families"
+        : APP_STORE_LIVE
+          ? "Free on the App Store • Made for Indian families"
+          : "Download LifeWise for your family";
 
   return (
     <div

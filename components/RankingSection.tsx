@@ -1,7 +1,7 @@
 import { Pill, Receipt, Users, Bot, ShieldCheck, Languages } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
-import { PLAY_STORE_URL } from "@/lib/stores";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
 
 const FEATURES = [
   {
@@ -32,7 +32,7 @@ const FEATURES = [
   {
     icon: ShieldCheck,
     title: "Private by design",
-    body: "Family health and bill data stay protected. Start free on Google Play. Premium from ₹199/month when you need more."
+    body: "Family health and bill data stay protected. Start free on Google Play or the App Store. Premium from ₹199/month when you need more."
   }
 ] as const;
 
@@ -97,6 +97,21 @@ export function RankingSection() {
                       rel="noopener noreferrer"
                     >
                       LifeWise: Family OS
+                    </a>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                    App Store
+                  </dt>
+                  <dd className="mt-1">
+                    <a
+                      href={APP_STORE_URL}
+                      className="font-semibold text-indigo-600 underline-offset-2 hover:underline dark:text-indigo-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      LifeWise AI Family Hub
                     </a>
                   </dd>
                 </div>

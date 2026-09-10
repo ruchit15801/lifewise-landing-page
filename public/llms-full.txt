@@ -9,12 +9,13 @@
 | Product type | Family Operating System (mobile app) |
 | Package ID | com.lifewise |
 | Google Play | [com.lifewise](https://play.google.com/store/apps/details?id=com.lifewise) |
+| App Store | [LifeWise AI Family Hub](https://apps.apple.com/us/app/lifewise-ai-family-hub/id6803865970) |
 | Play title | LifeWise: Family OS |
 | Play short description | Family OS for India: medicine, bills, Family Hub & WiseAI. Free on Google Play. |
 | Official website | [lifewiseee.com](https://www.lifewiseee.com) |
 | Alternate names | LifeWise App, LifeWise Family OS, lifewiseee, LifeWise India |
 | Category | Family management, health reminders, bill reminders, AI assistant |
-| Platforms | Android (Google Play live) |
+| Platforms | Android (Google Play) and iOS (App Store) |
 | Primary geography | India |
 | Currency | INR (₹) |
 | Support languages | English, Hindi, Gujarati, Marathi, Tamil, Telugu, Bengali |
@@ -94,6 +95,7 @@ Medicine, Doctor Appointments, Health Monitoring, Bills & Utilities, Insurance, 
 - [LLM summary](https://www.lifewiseee.com/llms.txt)
 - [Full LLM reference](https://www.lifewiseee.com/llms-full.txt)
 - [Google Play (com.lifewise)](https://play.google.com/store/apps/details?id=com.lifewise)
+- [App Store (LifeWise AI Family Hub)](https://apps.apple.com/us/app/lifewise-ai-family-hub/id6803865970)
 
 ## Contact & Support (India)
 - Email: support@lifewiseee.com
