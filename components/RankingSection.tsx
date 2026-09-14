@@ -1,38 +1,38 @@
 import { Pill, Receipt, Users, Bot, ShieldCheck, Languages } from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
-import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
+import { APP_STORE_NAME, APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
 
 const FEATURES = [
   {
+    icon: Users,
+    title: "Family Hub is the product",
+    body: "Every module hangs off a member card. That is the uniqueness: medicines, bills, health, Family Ledger, and location are not a pile of personal lists."
+  },
+  {
     icon: Pill,
-    title: "Medicine reminders",
-    body: "Set reminders for Papa and Mummy in English or Hindi. If a dose is missed, LifeWise alerts the family and caregivers."
+    title: "Medicine with caregiver routing",
+    body: "Set Papa and Mummy reminders in English or Hindi. A missed dose alerts connected caregivers, not only the person who was supposed to take it."
   },
   {
     icon: Receipt,
-    title: "Bill reminders",
-    body: "Track electricity, gas, broadband, rent, and subscriptions. Scan a bill and get a due-date alert before late fees."
-  },
-  {
-    icon: Users,
-    title: "Family Hub",
-    body: "One place for every family member. Health, bills, routines, and documents stay in sync for the whole household."
+    title: "Bills plus Family Ledger",
+    body: "Due dates stay in Bill Management. Who paid and for whom lives in Family Ledger. Scan a bijli bill, get the reminder, then record the spend once."
   },
   {
     icon: Bot,
-    title: "WiseAI",
-    body: "Ask about reminders, expenses, and appointments. Voice reminders understand Hindi, like “Papa ki dawai 8 baje”."
+    title: "WiseAI on family data",
+    body: "Ask about reminders, Family Ledger, and appointments. Voice understands Hindi, like “Papa ki dawai 8 baje”, and writes to that member."
   },
   {
     icon: Languages,
-    title: "Built for India",
-    body: "English, Hindi, Gujarati, Marathi, Tamil, Telugu, and Bengali — so every member can use the app comfortably."
+    title: "Built for Indian households",
+    body: "English, Hindi, Gujarati, Marathi, Tamil, Telugu, and Bengali, so the adult child and the parent can use the same Family Hub."
   },
   {
     icon: ShieldCheck,
-    title: "Private by design",
-    body: "Family health and bill data stay protected. Start free on Google Play or the App Store. Premium from ₹199/month when you need more."
+    title: "Consent and permissions",
+    body: "Health sharing, location sharing, and caregiver access are separate switches. Start free on Google Play or the App Store. Family plan from Rs. 199/month."
   }
 ] as const;
 
@@ -41,8 +41,8 @@ export function RankingSection() {
     <SectionShell
       id="why-lifewise"
       eyebrow="Why LifeWise"
-      title="One Family OS. Everything that matters."
-      subtitle="Medicine, bills, Family Hub, and WiseAI — built for Indian families, in one official app."
+      title="Unique because Family Hub is the product"
+      subtitle="Not a medicine app, not a bill app, not a tracker. Official listing: LifeWise - AI Family Hub on the App Store and Google Play."
     >
       <Reveal>
         <div className="mb-6 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800/90">
@@ -52,15 +52,15 @@ export function RankingSection() {
                 Official product
               </p>
               <h3 className="mt-2 font-display text-xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-2xl">
-                LifeWise: Family OS
+                {APP_STORE_NAME}
               </h3>
               <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                 The official LifeWise app for Indian families. Not insurance.
-                One Family Operating System for medicine reminders, bill alerts,
-                Family Hub, and WiseAI.
+                Family Hub, medicine reminders, bills, Family Ledger, Health
+                Monitoring, and WiseAI in one app.
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
-                {["Medicine", "Bills", "Family Hub", "WiseAI"].map((tag) => (
+                {["Family Hub", "Family Ledger", "Health sync", "WiseAI"].map((tag) => (
                   <span
                     key={tag}
                     className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[12px] font-semibold text-slate-700 dark:border-slate-600 dark:bg-slate-900/60 dark:text-slate-200"
@@ -96,7 +96,7 @@ export function RankingSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      LifeWise: Family OS
+                      {APP_STORE_NAME}
                     </a>
                   </dd>
                 </div>
@@ -111,7 +111,7 @@ export function RankingSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      LifeWise AI Family Hub
+                      {APP_STORE_NAME}
                     </a>
                   </dd>
                 </div>

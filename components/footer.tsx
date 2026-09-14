@@ -43,7 +43,7 @@ export function Footer() {
                 Need help with LifeWise?
               </h2>
               <p className="mt-2 max-w-lg text-[15px] font-medium leading-relaxed text-slate-600 dark:text-slate-400">
-                Medicine reminders, bill alerts, Family Hub setup, Premium billing.
+                Medicine reminders, bill alerts, Family Hub setup, plan billing.
                 Our India support team is ready in English & Hindi to assist you.
               </p>
             </div>
@@ -128,7 +128,7 @@ export function Footer() {
               </li>
               <li>
                 <a className="text-slate-600 dark:text-slate-400 transition-colors hover:text-indigo-600" href="/#pricing">
-                  Pricing (₹199/mo)
+                  Pricing
                 </a>
               </li>
               <li>

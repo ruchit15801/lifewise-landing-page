@@ -13,12 +13,13 @@ import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { DeferredPhoneMock } from "@/components/DeferredPhoneMock";
 import { Reveal } from "@/components/Reveal";
 import { StoreDownloadButtons } from "@/components/StoreDownloadButtons";
-import { PRODUCT_DESCRIPTION, PRODUCT_TAGLINE } from "@/lib/landing-data";
+import { PRODUCT_DESCRIPTION } from "@/lib/landing-data";
+import { APP_STORE_NAME } from "@/lib/stores";
 
 const heroHighlights = [
   {
     label: "Family Hub",
-    detail: "Hero feature",
+    detail: "For the family",
     icon: Users,
     tint:
       "from-indigo-500/20 to-violet-500/10 text-indigo-600 ring-indigo-200/80 dark:from-indigo-400/25 dark:to-violet-500/10 dark:text-indigo-200 dark:ring-indigo-400/35 dark:bg-slate-800/50"
@@ -76,7 +77,7 @@ export function Hero() {
           <Reveal eager blur={false}>
             <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-slate-200/70 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-premium dark:border-indigo-400/25 dark:bg-slate-800 dark:text-slate-100 dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
               <Sparkles className="h-4 w-4 text-primary dark:text-indigo-300" />
-              {PRODUCT_TAGLINE}
+              {APP_STORE_NAME}
               <span className="inline-flex items-center gap-1 rounded-full border border-accent/25 bg-accent/15 px-2 py-0.5 text-[10px] font-bold tracking-wide text-accent dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300">
                 Android
               </span>
@@ -85,7 +86,7 @@ export function Hero() {
 
           <Reveal eager delay={0.05} blur={false}>
             <h1 className="mt-5 font-display text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-slate-950 sm:mt-6 sm:text-5xl lg:text-6xl dark:text-white">
-              <span className="gradient-text">LifeWise: Family OS</span>
+              <span className="gradient-text">{APP_STORE_NAME}</span>
               . One App to Manage Your{" "}
               <span className="text-slate-950 dark:text-white">Entire Family</span>
             </h1>
@@ -97,7 +98,7 @@ export function Hero() {
               className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-200"
             >
               <strong className="font-semibold text-slate-900 dark:text-white">
-                LifeWise is India&apos;s Family Operating System (Family OS)
+                {APP_STORE_NAME} is made for family use
               </strong>
               . {PRODUCT_DESCRIPTION} Official app on Google Play (
               <span className="whitespace-nowrap">com.lifewise</span>) and the App Store.

@@ -80,7 +80,7 @@ export function NotFoundPage() {
         </h1>
         <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base dark:text-slate-300">
           The link is broken or the page never existed. You are still on the
-          official LifeWise: Family OS website — medicine reminders, bill
+          official LifeWise - AI Family Hub website: medicine reminders, bill
           alerts, Family Hub, and WiseAI for Indian families.
         </p>
 
@@ -125,7 +125,7 @@ export function NotFoundPage() {
             <p>
               Looking for the app?{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
-                LifeWise: Family OS
+                LifeWise - AI Family Hub
               </span>{" "}
               is free on Google Play and the App Store.
             </p>

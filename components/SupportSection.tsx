@@ -30,7 +30,7 @@ import {
 const TOPICS = [
   { value: "general", label: "General inquiry", hint: "Anything else" },
   { value: "family-hub", label: "Family Hub setup", hint: "Members & caregivers" },
-  { value: "premium", label: "Premium / billing", hint: "Plans & payments" },
+  { value: "premium", label: "Plans / billing", hint: "Starter, Family, Pro" },
   { value: "technical", label: "App issue / bug", hint: "Crash or error" },
   { value: "medicine", label: "Medicine reminders", hint: "Schedules & alerts" },
   { value: "feedback", label: "Feedback / suggestion", hint: "Ideas for us" }

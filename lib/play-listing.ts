@@ -8,24 +8,24 @@
  * NOTE: If you change the live Play Console title, update PLAY_APP_TITLE here first.
  */
 
-import { PLAY_STORE_URL } from "@/lib/stores";
+import { APP_STORE_NAME, PLAY_STORE_URL } from "@/lib/stores";
 
 /** Android applicationId / Play package name */
 export const PLAY_PACKAGE_ID = "com.lifewise";
 
-/** Exact Play Store listing title (≤30 chars) */
-export const PLAY_APP_TITLE = "LifeWise: Family OS";
+/** Exact Play Store listing title (≤30 chars). Same as App Store name. */
+export const PLAY_APP_TITLE = APP_STORE_NAME;
 
 /** Play short description (≤80 chars) - primary SERP / store snippet keywords */
 export const PLAY_SHORT_DESCRIPTION =
-  "Family OS for India: medicine, bills, Family Hub & WiseAI. Free on Google Play.";
+  "LifeWise - AI Family Hub for India: medicine, bills, Family Hub & WiseAI.";
 
 /**
  * Play full-description opening (keyword-dense, matches website H1 intent).
  * Use for meta description + AEO citation alignment.
  */
 export const PLAY_FULL_DESCRIPTION_LEAD =
-  "LifeWise is India's Family Operating System (Family OS) app. Manage Papa's medicine reminders, electricity (bijli) bills, doctor appointments, insurance, subscriptions, and daily family routines in one Family Hub, with WiseAI, voice reminders, and bill scan OCR. Official app: com.lifewise on Google Play. Website: lifewiseee.com.";
+  "LifeWise - AI Family Hub (lifewise-ai-family-hub) is India's family management app, built for family use. Manage Papa's medicine reminders, electricity (bijli) bills, Health Monitoring with Apple Health / Health Connect, Family Ledger, Family Location, doctor appointments, insurance, subscriptions, and daily routines in one Family Hub, with WiseAI, voice reminders, caregiver alerts, and bill scan OCR. Official app: com.lifewise on Google Play and LifeWise - AI Family Hub on the App Store. Website: lifewiseee.com.";
 
 /** Store category alignment for schema */
 export const PLAY_CATEGORY = "Lifestyle";
@@ -37,16 +37,14 @@ export const PLAY_CATEGORY_SCHEMA = "LifestyleApplication";
  */
 export const PLAY_KEYWORDS = [
   "LifeWise",
-  "LifeWise: Family OS",
-  "LifeWise Family OS",
+  "LifeWise - AI Family Hub",
+  "LifeWise AI Family Hub",
+  "lifewise-ai-family-hub",
   "LifeWise app",
   "LifeWise Android",
   "com.lifewise",
-  "Family OS",
-  "Family Operating System",
-  "Family Operating System app India",
-  "family hub app",
   "Family Hub",
+  "family hub app",
   "medicine reminder",
   "medicine reminder app",
   "medicine reminder app India",
@@ -60,14 +58,21 @@ export const PLAY_KEYWORDS = [
   "bill scan OCR",
   "caregiver app India",
   "family management app",
+  "Family Ledger",
+  "family ledger app",
+  "family location sharing",
+  "Apple Health family",
+  "Health Connect family app",
+  "wearable family health",
   "download LifeWise",
   "LifeWise Google Play",
+  "LifeWise App Store",
   "lifewiseee"
 ] as const;
 
 /** Entity disambiguation - another “LifeWise” exists on Play (insurance) */
 export const PLAY_DISAMBIGUATION =
-  "LifeWise (com.lifewise / lifewiseee.com) is India's Family Operating System for medicine and bill reminders. It is not LifeWise Student Insurance or LifeWise Assurance Company.";
+  "LifeWise (com.lifewise / lifewiseee.com / App Store: LifeWise - AI Family Hub) is a family management app for medicine and bill reminders. It is not LifeWise Student Insurance or LifeWise Assurance Company.";
 
 export const PLAY_STORE_LISTING = {
   packageId: PLAY_PACKAGE_ID,

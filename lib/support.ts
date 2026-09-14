@@ -12,7 +12,7 @@ export const SUPPORT_TOPICS = [
   "Bill & UPI reminders",
   "Family Hub setup",
   "WiseAI assistant",
-  "Premium & billing (Rs. 199/month)",
+  "Plans and billing (Starter, Family, Pro)",
   "Caregiver & family sync",
   "SOS & emergency feature",
   "Partnership / sales",

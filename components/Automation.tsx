@@ -13,7 +13,7 @@ export function Automation() {
       id="automation"
       eyebrow="Smart Automation"
       title="Workflows That Save Time"
-      subtitle="LifeWise isn't just a list. It actively detects bills, categorizes expenses, and routes missed reminders to the right caregiver."
+      subtitle="Missed medicine escalates to caregivers. Bills remind the household. A paid bill can post once to Family Ledger. The Hub keeps working when you are not looking."
     >
       <div className="relative space-y-6">
         
@@ -99,13 +99,14 @@ export function Automation() {
                 </h3>
 
                 <p className="mt-6 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 max-w-sm mb-8">
-                  Set it and forget it. LifeWise automatically escalates missed tasks to caregivers, detects bills from SMS, and auto-categorizes expenses.
+                  Set the member and the module. LifeWise escalates missed tasks to caregivers, can detect bills from SMS when you opt in, and keeps Bill Management separate from Family Ledger.
                 </p>
 
                 <div className="grid gap-4">
                   {[
                     { icon: Share2, t: "Smart Escalation", d: "Alerts caregivers if a critical medicine is missed by 30 mins." },
-                    { icon: Zap, t: "Auto Bill Detection", d: "Opt-in SMS scanning finds upcoming bills and adds them to Hub." }
+                    { icon: Zap, t: "Auto Bill Detection", d: "Opt-in SMS scanning finds upcoming bills and adds them to Hub." },
+                    { icon: Workflow, t: "Bill to Ledger", d: "Mark a bill paid, then optionally add that amount to Family Ledger once." }
                   ].map((x, i) => (
                     <div key={i} className="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 bg-slate-50 dark:border-slate-800/80 dark:bg-slate-900/50">
                       <div className="shrink-0 h-10 w-10 rounded-xl border border-slate-200 bg-white grid place-items-center text-cyan-600 dark:border-slate-700 dark:bg-slate-800 dark:text-cyan-400">

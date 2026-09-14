@@ -12,7 +12,7 @@ export function FAQSection({
   items = FAQ_ITEMS,
   eyebrow = "FAQ",
   title = "What LifeWise actually is",
-  subtitle = "Product questions for new visitors — Family OS, Family Hub, caregivers, WiseAI, and Premium. Support contact lives on the Support page.",
+  subtitle = "What LifeWise is, why Family Hub is unique, Family Ledger, location, wearables, WiseAI, Free limits, and Starter, Family, and Pro plans. Support contact lives on the Support page.",
   footerHref = "#support",
   footerLabel = "Need help? Contact support",
   footerNote = "Download, billing, and contact questions are answered in Support."

@@ -1,11 +1,16 @@
 /**
- * Live store URLs - empty string = that store not published yet.
+ * Live store URLs and official listing names.
+ * App Store is the public product name. Keep Play Console title the same when you next update it.
  */
 export const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.lifewise";
 export const APP_STORE_URL =
   "https://apps.apple.com/us/app/lifewise-ai-family-hub/id6803865970";
 export const APP_STORE_ID = "6803865970";
+/** Exact App Store listing name (slug: lifewise-ai-family-hub) */
+export const APP_STORE_NAME = "LifeWise - AI Family Hub";
+export const APP_STORE_SUBTITLE = "Smart AI Life Assistant";
+export const APP_STORE_SLUG = "lifewise-ai-family-hub";
 
 export const PLAY_STORE_LIVE = PLAY_STORE_URL.length > 0;
 export const APP_STORE_LIVE = APP_STORE_URL.length > 0;

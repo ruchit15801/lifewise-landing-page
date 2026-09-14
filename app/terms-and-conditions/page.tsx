@@ -47,7 +47,7 @@ export default function TermsAndConditionsPage() {
             and bill scan OCR.
           </p>
           <p>
-            Features may vary between Free and Premium plans. We may add, modify, or
+            Features may vary between Free, Starter, Family, and Pro plans. We may add, modify, or
             discontinue features with reasonable notice where practicable.
           </p>
         </LegalSection>
@@ -67,12 +67,18 @@ export default function TermsAndConditionsPage() {
 
         <LegalSection title="4. Subscriptions &amp; payments (INR)">
           <p>
-            <strong>Free plan:</strong> limited family members, modules, and history as
-            described on our Pricing page.
+            <strong>Free plan:</strong> Rs. 0. Limited family members, modules, reminders, history,
+            documents, voice, bill scan, and WiseAI as described on our Pricing page.
           </p>
           <p>
-            <strong>Premium plan:</strong> Rs. 199/month, Rs. 1,499/year, or Family Yearly
-            at Rs. 1,999/year (prices in Indian Rupees, subject to change with notice).
+            <strong>Starter plan:</strong> Rs. 99/month or Rs. 799/year.
+          </p>
+          <p>
+            <strong>Family plan (recommended):</strong> Rs. 199/month or Rs. 1,499/year.
+          </p>
+          <p>
+            <strong>Pro plan:</strong> Rs. 499/month or Rs. 3,999/year (prices in Indian Rupees,
+            subject to change with notice).
           </p>
           <ul className="list-disc space-y-2 pl-5">
             <li>Payments are processed through Google Play, Apple App Store, or authorised payment partners.</li>

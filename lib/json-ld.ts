@@ -1,12 +1,18 @@
 import { FAQ_ITEMS, SUPPORT_FAQ_ITEMS, type FaqItem } from "@/lib/faqs";
-import { APP_STORE_ID, APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
+import { APP_STORE_ID, APP_STORE_NAME, APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
 import {
   PLAY_APP_TITLE,
   PLAY_DISAMBIGUATION,
   PLAY_PACKAGE_ID,
   PLAY_SHORT_DESCRIPTION
 } from "@/lib/play-listing";
-import { FAMILY_HUB_MODULES, FREE_PLAN, PREMIUM_PLAN } from "@/lib/landing-data";
+import {
+  FAMILY_HUB_MODULES,
+  FAMILY_PLAN,
+  FREE_PLAN,
+  PRO_PLAN,
+  STARTER_PLAN
+} from "@/lib/landing-data";
 import { APP_AGGREGATE_RATING, APP_REVIEWS } from "@/lib/reviews";
 import {
   CONTACT_EMAIL,
@@ -62,6 +68,43 @@ function withReviews<T extends Record<string, unknown>>(schema: T): T {
   };
 }
 
+function subscriptionOffers() {
+  const until = "2027-12-31";
+  const offer = (
+    name: string,
+    price: string,
+    description: string,
+    billed: "Month" | "Year"
+  ) => ({
+    "@type": "Offer" as const,
+    name,
+    price,
+    priceCurrency: "INR",
+    priceValidUntil: until,
+    availability: "https://schema.org/InStock",
+    url: `${SITE_URL}/#pricing`,
+    description,
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price,
+      priceCurrency: "INR",
+      billingDuration: 1,
+      billingIncrement: 1,
+      unitCode: billed === "Month" ? "MON" : "ANN"
+    }
+  });
+
+  return [
+    offer("Free", "0", FREE_PLAN.features.join(", "), "Month"),
+    offer("Starter monthly", String(STARTER_PLAN.monthlyInr), STARTER_PLAN.features.join(", "), "Month"),
+    offer("Starter yearly", String(STARTER_PLAN.yearlyInr), STARTER_PLAN.features.join(", "), "Year"),
+    offer("Family monthly", String(FAMILY_PLAN.monthlyInr), FAMILY_PLAN.features.join(", "), "Month"),
+    offer("Family yearly", String(FAMILY_PLAN.yearlyInr), FAMILY_PLAN.features.join(", "), "Year"),
+    offer("Pro monthly", String(PRO_PLAN.monthlyInr), PRO_PLAN.features.join(", "), "Month"),
+    offer("Pro yearly", String(PRO_PLAN.yearlyInr), PRO_PLAN.features.join(", "), "Year")
+  ];
+}
+
 const ORG_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 const APP_ID = `${SITE_URL}/#software`;
@@ -75,10 +118,10 @@ export function organizationSchema() {
     name: SITE_NAME,
     legalName: SITE_NAME,
     alternateName: [
+      "LifeWise - AI Family Hub",
+      "LifeWise AI Family Hub",
+      "lifewise-ai-family-hub",
       "LifeWise App",
-      "LifeWise: Family OS",
-      "LifeWise Family OS",
-      "LifeWise Family Operating System",
       "LifeWise India",
       "LifeWise",
       "lifewise",
@@ -96,7 +139,7 @@ export function organizationSchema() {
     },
     image: `${SITE_URL}/og-image.svg`,
     description:
-      "LifeWise (lifewiseee.com) is India's official Family Operating System app for medicine reminders, bill alerts, Family Hub, and WiseAI. Google Play package: com.lifewise. Also on the App Store. Not affiliated with LifeWise Student Insurance.",
+      "LifeWise (lifewiseee.com) is the official LifeWise - AI Family Hub app for medicine reminders, bill alerts, Family Hub, and WiseAI. Google Play package: com.lifewise. App Store listing: LifeWise - AI Family Hub. Not affiliated with LifeWise Student Insurance.",
     email: CONTACT_EMAIL,
     telephone: SUPPORT_PHONE,
     address: {
@@ -131,13 +174,18 @@ export function organizationSchema() {
     },
     knowsAbout: [
       "LifeWise",
-      "LifeWise Family OS",
-      "Family Operating System",
+      "LifeWise - AI Family Hub",
+      "LifeWise AI Family Hub",
+      "Family Hub",
       "family health management",
       "medicine reminders for parents",
       "bill payment reminders India",
       "caregiver coordination",
       "family expense tracking",
+      "Family Ledger",
+      "Family Location",
+      "Apple Health",
+      "Health Connect",
       "WiseAI",
       "Family Hub",
       "AI life assistant",
@@ -163,7 +211,7 @@ export function localBusinessSchema() {
     image: `${SITE_URL}/logo.png`,
     telephone: SUPPORT_PHONE,
     email: CONTACT_EMAIL,
-    priceRange: "₹0-₹199",
+    priceRange: "INR 0-1999",
     areaServed: {
       "@type": "Country",
       name: "India"
@@ -178,17 +226,17 @@ export function websiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": WEBSITE_ID,
-    name: "LifeWise",
+    name: APP_STORE_NAME,
     alternateName: [
       "LifeWise App",
-      "LifeWise: Family OS",
-      "LifeWise Family OS",
+      "LifeWise AI Family Hub",
+      "lifewise-ai-family-hub",
       "lifewiseee.com",
       "com.lifewise"
     ],
     url: SITE_URL,
     description:
-      "Official LifeWise website (lifewiseee.com). Download India's Family Operating System app on Google Play (com.lifewise) and the App Store for medicine reminders, bill alerts, Family Hub, and WiseAI.",
+      "Official LifeWise website (lifewiseee.com). Download LifeWise - AI Family Hub on Google Play (com.lifewise) and the App Store for medicine reminders, bill alerts, Family Hub, and WiseAI.",
     publisher: { "@id": ORG_ID },
     inLanguage: ["en-IN", "en", "hi"],
     potentialAction: {
@@ -211,8 +259,8 @@ export function softwareApplicationSchema() {
     alternateName: [
       "LifeWise",
       "LifeWise App",
-      "LifeWise Family Operating System",
-      "LifeWise Family OS",
+      "LifeWise AI Family Hub",
+      "lifewise-ai-family-hub",
       PLAY_PACKAGE_ID
     ],
     applicationCategory: "LifestyleApplication",
@@ -227,36 +275,22 @@ export function softwareApplicationSchema() {
     softwareVersion: "1.0",
     description: `${PLAY_SHORT_DESCRIPTION} ${PLAY_DISAMBIGUATION}`,
     featureList: [
-      "Family Hub with 20 modules per member",
+      "Family Hub with member cards and 20 modules per member",
+      "Family Ledger for shared family money",
+      "Consent-based Family Location",
+      "Health Monitoring with Apple Health and Health Connect",
       "WiseAI family assistant",
       "Voice reminders via OpenAI Whisper",
       "Bill scan OCR",
-      "Medicine and bill reminders",
+      "Medicine and bill reminders with caregiver escalation",
       "Caregiver real-time sync",
+      "Smart Automation workflows",
       "Money Leak detection",
       "Emergency SOS",
       "Monthly PDF reports",
       ...FAMILY_HUB_MODULES.slice(0, 8)
     ],
-    offers: [
-      {
-        "@type": "Offer",
-        name: FREE_PLAN.name,
-        price: "0",
-        priceCurrency: "INR",
-        availability: "https://schema.org/InStock",
-        description: FREE_PLAN.features.join(", ")
-      },
-      {
-        "@type": "Offer",
-        name: PREMIUM_PLAN.name,
-        price: "199",
-        priceCurrency: "INR",
-        priceValidUntil: "2027-12-31",
-        availability: "https://schema.org/InStock",
-        description: PREMIUM_PLAN.features.join(", ")
-      }
-    ],
+    offers: subscriptionOffers(),
     author: { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
     countriesSupported: "IN",
@@ -288,9 +322,9 @@ export function productSchema() {
     offers: {
       "@type": "AggregateOffer",
       lowPrice: "0",
-      highPrice: "199",
+      highPrice: "3999",
       priceCurrency: "INR",
-      offerCount: 2,
+      offerCount: 7,
       availability: "https://schema.org/InStock",
       url: PLAY_STORE_URL || SITE_URL
     },
@@ -330,7 +364,7 @@ export function iosApplicationSchema() {
     "@type": "MobileApplication",
     "@id": `${SITE_URL}/#ios-app`,
     name: PLAY_APP_TITLE,
-    alternateName: ["LifeWise", "LifeWise AI Family Hub"],
+    alternateName: ["LifeWise", APP_STORE_NAME, "lifewise-ai-family-hub"],
     operatingSystem: "iOS",
     applicationCategory: "LifestyleApplication",
     url: SITE_URL,
@@ -367,7 +401,7 @@ export function webPageSchema() {
     dateModified: new Date().toISOString().slice(0, 10),
     speakable: {
       "@type": "SpeakableSpecification",
-      cssSelector: ["#lifewise-definition", ".faq-answer", "#why-lifewise h2"]
+      cssSelector: ["#lifewise-definition", ".faq-answer", "#why-lifewise h2", "#features h2", "#family h2"]
     },
     significantLink: [
       PLAY_STORE_URL,
@@ -485,7 +519,7 @@ export function definedTermSchema() {
     name: "Family Operating System",
     alternateName: ["FOS", "Family OS", "LifeWise Family Operating System"],
     description:
-      "A Family Operating System is a mobile app that lets one household manage every member's medicine reminders, bills, health, documents, and daily routines from a single command center. LifeWise is India's Family Operating System at lifewiseee.com.",
+      "A Family Operating System is a mobile app that lets one household manage every member's medicine reminders, bills, health (including Apple Health and Health Connect), Family Ledger, documents, Family Location, and daily routines from a single Family Hub. LifeWise is India's Family Operating System at lifewiseee.com.",
     inDefinedTermSet: {
       "@type": "DefinedTermSet",
       name: "LifeWise product glossary",
@@ -500,52 +534,52 @@ export function featureItemListSchema() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "@id": `${SITE_URL}/#why-lifewise`,
-    name: "Why LifeWise - India Family Operating System features",
+    name: "Why LifeWise - unique Family Operating System features",
     description:
-      "Core reasons Indian families choose LifeWise for medicine reminders, bill alerts, Family Hub, and WiseAI.",
+      "Why Indian families choose LifeWise: Family Hub member cards, caregiver escalation, Family Ledger, consent-based location, health sync, and WiseAI.",
     numberOfItems: 6,
     itemListElement: [
       {
         "@type": "ListItem",
         position: 1,
-        name: "Medicine reminder app for parents",
+        name: "Family Hub member cards",
         description:
-          "Papa and Mummy medicine reminders in English or Hindi with caregiver escalation."
+          "Every medicine, bill, health reading, Family Ledger entry, and location share belongs to a family member, not a personal inbox."
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Electricity & bill reminder India",
+        name: "Medicine reminder with caregiver routing",
         description:
-          "Bijli, gas, broadband, rent, and subscription due-date alerts with bill scan OCR."
+          "Papa and Mummy medicine reminders in English or Hindi with missed-dose alerts to connected caregivers."
       },
       {
         "@type": "ListItem",
         position: 3,
-        name: "Family Hub for Indian households",
+        name: "Bill Management plus Family Ledger",
         description:
-          "Up to 20 modules per family member, shared with caregivers in real time."
+          "Due-date bills stay separate from family money events. Bijli scan OCR and optional ledger posting."
       },
       {
         "@type": "ListItem",
         position: 4,
-        name: "WiseAI family assistant",
+        name: "Health Monitoring and wearables",
         description:
-          "AI assistant for reminders, expenses, and appointments with Hindi voice commands."
+          "Manual logs plus Apple Health and Health Connect on the member card. Family sharing is a separate permission."
       },
       {
         "@type": "ListItem",
         position: 5,
-        name: "Hindi, Gujarati & Indian languages",
+        name: "WiseAI family assistant",
         description:
-          "English, Hindi, Gujarati, Marathi, Tamil, Telugu, and Bengali support."
+          "AI assistant for reminders, Family Ledger, and appointments with Hindi voice commands."
       },
       {
         "@type": "ListItem",
         position: 6,
-        name: "Secure DPDP-aware family app",
+        name: "Consent-based Family Location",
         description:
-          "Official LifeWise at lifewiseee.com. Free plan and Premium from ₹199/month."
+          "Opt-in sharing, Safe Places, pause in one tap. Built for Indian households with Hindi, Gujarati, and more."
       }
     ]
   };
@@ -559,7 +593,7 @@ export function contactPageSchema() {
     url: `${SITE_URL}/support`,
     name: "LifeWise Support & Contact - India",
     description:
-      "Contact LifeWise India customer care by email, WhatsApp, or phone for Family Hub, medicine reminders, bills, and Premium help.",
+      "Contact LifeWise India customer care by email, WhatsApp, or phone for Family Hub, medicine reminders, bills, and billing help.",
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": ORG_ID },
     inLanguage: "en-IN",

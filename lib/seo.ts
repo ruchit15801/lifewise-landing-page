@@ -12,7 +12,7 @@ assertPlayListingLimits();
 
 export const SITE_URL = "https://www.lifewiseee.com";
 export const SITE_NAME = "LifeWise";
-export const SITE_TAGLINE = "Family Operating System";
+export const SITE_TAGLINE = "AI Family Hub";
 export const SITE_LOCALE = "en_IN";
 
 /**
@@ -20,13 +20,13 @@ export const SITE_LOCALE = "en_IN";
  * ~60 chars ideal for Google title display.
  */
 export const DEFAULT_TITLE =
-  "LifeWise: Family OS India | Medicine & Bill Reminders";
+  "LifeWise - AI Family Hub | Medicine & Bill Reminders";
 
 /**
  * Meta description: 70–160 chars. Brand + intent + CTA.
  */
 export const DEFAULT_DESCRIPTION =
-  "Official LifeWise Family OS: Papa medicine reminders, bijli bills, Family Hub & WiseAI. Free on Google Play & App Store.";
+  "Official LifeWise - AI Family Hub for Indian families. Family Hub, medicine & bills, Family Ledger, health sync & WiseAI. Free on Play & App Store.";
 
 export const KEYWORDS = [
   ...PLAY_KEYWORDS,
@@ -40,8 +40,9 @@ export const KEYWORDS = [
   "LifeWise website",
   "what is LifeWise",
   "LifeWise kya hai",
-  "LifeWise Family OS",
-  "LifeWise Family Operating System",
+  "LifeWise - AI Family Hub",
+  "LifeWise AI Family Hub",
+  "lifewise-ai-family-hub",
   "LifeWise India",
   "lifewiseee",
   "lifewiseee.com",
@@ -73,6 +74,11 @@ export const KEYWORDS = [
   "insurance renewal reminder India",
   "subscription tracker app India",
   "family expense tracker India",
+  "Family Ledger app India",
+  "family location sharing app India",
+  "Apple Health family app",
+  "Health Connect family app India",
+  "smartwatch family health app",
   "scan bill OCR app India",
   "WiseAI family assistant",
   "AI reminder app India",
@@ -85,7 +91,10 @@ export const KEYWORDS = [
   "LifeWise customer care India",
   "LifeWise WhatsApp support",
   "DPDP compliant family app",
-  "LifeWise Premium 199"
+  "LifeWise Starter 99",
+  "LifeWise Family plan 199",
+  "LifeWise Pro 499",
+  "LifeWise yearly 1499"
 ] as const;
 
 /** @deprecated use lib/stores.ts - re-exported for compatibility */
@@ -246,7 +255,7 @@ export function buildSupportMetadata(): Metadata {
   return {
     title: { absolute: "LifeWise Support | Contact India Customer Care" },
     description:
-      "Contact LifeWise India: support@lifewiseee.com or WhatsApp +91 63538 91986. Help with Family Hub, bills, and Premium.",
+      "Contact LifeWise India: support@lifewiseee.com or WhatsApp +91 63538 91986. Help with Family Hub, bills, and billing.",
     keywords: [
       "LifeWise support",
       "LifeWise customer care",
@@ -259,7 +268,7 @@ export function buildSupportMetadata(): Metadata {
     openGraph: {
       title: "LifeWise Support - India Customer Care",
       description:
-        "Get help with LifeWise: Family OS for medicine reminders, bills, Family Hub, Premium.",
+        "Get help with LifeWise - AI Family Hub for medicine reminders, bills, Family Hub, and plans.",
       url: `${SITE_URL}/support`,
       type: "website",
       locale: "en_IN",
@@ -293,9 +302,9 @@ export function buildPrivacyMetadata(): Metadata {
 }
 
 export function buildNotFoundMetadata(): Metadata {
-  const title = "Page not found | LifeWise Family OS";
+  const title = "Page not found | LifeWise - AI Family Hub";
   const description =
-    "This LifeWise page does not exist. Go home for Family OS, medicine reminders, bills, or contact support.";
+    "This LifeWise page does not exist. Go home for LifeWise - AI Family Hub, medicine reminders, bills, or contact support.";
 
   return {
     title: { absolute: title },
@@ -335,7 +344,7 @@ export function buildTermsMetadata(): Metadata {
   return {
     title: { absolute: "Terms & Conditions | LifeWise India" },
     description:
-      "LifeWise terms: Free vs Premium ₹199/month, WiseAI use, health disclaimers, and governing law in India.",
+      "LifeWise terms: Free, Starter Rs. 99, Family Rs. 199, Pro Rs. 499, WiseAI use, health disclaimers, and governing law in India.",
     alternates: { canonical: `${SITE_URL}/terms-and-conditions` },
     openGraph: {
       title: "LifeWise Terms & Conditions",

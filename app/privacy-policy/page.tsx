@@ -89,8 +89,8 @@ export default function PrivacyPolicyPage() {
             <li>To create, schedule, and deliver reminders and push notifications.</li>
             <li>To sync data between family members and caregivers in real time.</li>
             <li>To provide WiseAI answers about your family&apos;s reminders, bills, and health summaries.</li>
-            <li>To generate insights, reports, and Money Leak detection (Premium).</li>
-            <li>To process subscriptions and Premium billing in INR.</li>
+            <li>To generate insights, reports, and Money Leak detection (Family and Pro plans).</li>
+            <li>To process subscriptions and plan billing in INR.</li>
             <li>To provide customer support and respond to your requests.</li>
             <li>To comply with applicable Indian laws and protect against fraud or abuse.</li>
           </ul>

@@ -82,7 +82,7 @@ export function HomeSections() {
       />
       <LazySection
         id="pricing"
-        minHeight={720}
+        minHeight={1400}
         loader={() =>
           import("@/components/pricing").then((m) => ({ default: m.Pricing }))
         }

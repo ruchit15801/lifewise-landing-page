@@ -1,19 +1,29 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { FileText, ShieldCheck, CheckCircle2, Bell } from "lucide-react";
+import {
+  FileText,
+  ShieldCheck,
+  CheckCircle2,
+  Bell,
+  Pill,
+  HeartPulse,
+  Receipt,
+  CalendarClock,
+  Wallet,
+  MapPin
+} from "lucide-react";
 import { SectionShell } from "@/components/SectionShell";
 import { Reveal } from "@/components/Reveal";
-import { MODULES } from "@/lib/landing-data";
+import { FAMILY_HUB_CORE_MODULES, MODULES } from "@/lib/landing-data";
 
 export function FamilyHub() {
 
   return (
     <SectionShell
       id="family"
-      eyebrow="The Core Experience"
-      title="One Hub for the Entire Family"
-      subtitle="Stop juggling multiple apps. LifeWise brings your whole family's health, tasks, and bills into one real-time dashboard."
+      eyebrow="Main feature"
+      title="Family Hub: one card per person"
+      subtitle="Family Hub is the hero of LifeWise. Medicines, health, bills, routines, Family Ledger, and Family Location attach to a member, not to a generic inbox. Add someone once, pick their modules, and caregivers stay on the same card."
     >
       <div className="relative space-y-6">
 
@@ -47,7 +57,7 @@ export function FamilyHub() {
                 </h3>
 
                 <p className="mt-6 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 max-w-sm">
-                  Papa, Mummy, children: each with their own profile card and up to 20 modules. Caregivers stay connected in real time via WebSocket sync.
+                  Papa, Mummy, children: each card shows only the modules you enable. Caregivers see the same member in real time. That member-first model is what other reminder, bill, and health apps do not do.
                 </p>
 
                 <div className="mt-10 flex items-center gap-6">
@@ -157,6 +167,38 @@ export function FamilyHub() {
           </div>
         </Reveal>
 
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {FAMILY_HUB_CORE_MODULES.map((mod, i) => {
+            const icons = [Pill, HeartPulse, Receipt, CalendarClock, Wallet, MapPin] as const;
+            const Icon = icons[i] ?? FileText;
+            const tints = [
+              "bg-violet-50 text-violet-600 border-violet-100 dark:bg-violet-500/10 dark:text-violet-400 dark:border-violet-500/20",
+              "bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20",
+              "bg-sky-50 text-sky-600 border-sky-100 dark:bg-sky-500/10 dark:text-sky-400 dark:border-sky-500/20",
+              "bg-amber-50 text-amber-600 border-amber-100 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20",
+              "bg-indigo-50 text-indigo-600 border-indigo-100 dark:bg-indigo-500/10 dark:text-indigo-400 dark:border-indigo-500/20",
+              "bg-rose-50 text-rose-600 border-rose-100 dark:bg-rose-500/10 dark:text-rose-400 dark:border-rose-500/20"
+            ];
+            return (
+              <Reveal key={mod.name} delay={Math.min(i * 0.04, 0.2)}>
+                <article className="h-full rounded-2xl border border-slate-200 bg-white p-5 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90 sm:p-6">
+                  <div
+                    className={`mb-4 grid h-11 w-11 place-items-center rounded-xl border ${tints[i]}`}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h4 className="text-[16px] font-bold text-slate-900 dark:text-white">
+                    {mod.name}
+                  </h4>
+                  <p className="mt-2 text-sm font-medium leading-relaxed text-slate-600 dark:text-slate-400">
+                    {mod.unique}
+                  </p>
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
+
         {/* Feature Highlights Below Hub */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           <Reveal delay={0.1}>
@@ -166,7 +208,7 @@ export function FamilyHub() {
               </div>
               <h4 className="text-[17px] font-bold text-slate-900 dark:text-white mb-2">20 Modules per member</h4>
               <p className="text-sm font-medium leading-relaxed text-slate-600 dark:text-slate-400">
-                Select during setup — each module generates its own reminders for that family member.
+                Choose only what that person needs. Each enabled module creates reminders for that member, including Family Ledger as the family money module.
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {MODULES.slice(0, 10).map((m) => (
@@ -193,7 +235,7 @@ export function FamilyHub() {
               </div>
               <h4 className="text-[17px] font-bold text-slate-900 dark:text-white mb-2">Connected Caregivers</h4>
               <p className="text-sm font-medium leading-relaxed text-slate-600 dark:text-slate-400">
-                Spouse, siblings, or relatives can view, edit, or get full access. Keep everyone on the same page with shared reminders, updates, and tasks. Mark reminders done, add new ones, make changes, and everyone syncs instantly so your family stays organized and nothing important gets missed.
+                Spouse, siblings, or relatives can view, edit, or get full access on that member. Mark a reminder done once and every caregiver sees it. Permissions stay on the Family Hub card, not in a separate chat thread.
               </p>
 
               <div className="mt-5 flex items-center gap-3">

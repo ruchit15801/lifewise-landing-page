@@ -18,10 +18,10 @@ export default function SupportPage() {
           items={SUPPORT_FAQ_ITEMS}
           eyebrow="Support FAQ"
           title="Contact, download, and billing"
-          subtitle="How to reach LifeWise, get the official app, and manage Premium. Product questions — Family OS, Family Hub, WiseAI — are on the home FAQ."
+          subtitle="How to reach LifeWise, get the official app, and manage Starter, Family, or Pro billing. Product questions (Family OS, Family Hub, WiseAI) are on the home FAQ."
           footerHref="/#faq"
           footerLabel="Read product FAQ"
-          footerNote="Want to know what LifeWise is? See the 19 product questions on the home page."
+          footerNote="Want to know what LifeWise is? See the product questions on the home page."
         />
       </main>
     </>

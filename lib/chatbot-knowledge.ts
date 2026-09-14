@@ -20,7 +20,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "explain lifewise", "intro", "introduction", "overview",
       "what app", "kya app", "konsi app", "which app"
     ],
-    response: "LifeWise is India's Family Operating System 🇮🇳. A single mobile app where your entire family's life is organized.\n\n🏠 Manage Papa's medicine reminders\n💡 Track electricity & mobile bills\n🏥 Schedule Mummy's doctor appointments\n📚 Monitor children's study schedules\n👨‍👩‍👧‍👦 Connect caregivers in real-time\n\nAvailable on Google Play and the App Store, with support for Hindi, Gujarati, Marathi, Tamil, Telugu & Bengali.",
+    response: "LifeWise is India's Family Operating System, built for family use.\n\nOne Family Hub where each person has a card:\n• Papa's medicine reminders\n• Electricity and mobile bills\n• Health Monitoring (manual + Apple Health / Health Connect)\n• Family Ledger (who paid, for whom)\n• Family Location with consent\n• WiseAI and caregiver sync\n\nAvailable on Google Play (com.lifewise) and the App Store. Hindi, Gujarati, Marathi, Tamil, Telugu and Bengali.",
     followUp: "Would you like to know about pricing, features, or how to download?"
   },
 
@@ -32,8 +32,8 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "add mummy", "family management", "family member", "profile",
       "member profile", "parivaar", "parivar", "ghar"
     ],
-    response: "Family Hub is LifeWise's hero feature! 🌟\n\nEach family member gets their own profile with up to 20 modules:\n\n💊 Medicine & Health Monitoring\n💰 Bills & Expenses\n🏥 Doctor Appointments\n📄 Insurance & Documents\n🆘 Emergency SOS\n📚 Study & Education\n🚗 Vehicle Maintenance\n🏋️ Fitness & Diet\n🧠 Mental Wellness\n🔧 Home Maintenance\n\nCaregivers (siblings, spouse, relatives) can be invited with View Only, Can Edit, or Full Access permissions. When Papa misses a medicine, all caregivers get alerted within 30 minutes.",
-    followUp: "Want to know how to add a caregiver or set up medicine reminders?"
+    response: "Family Hub is LifeWise's main feature.\n\nEach family member gets a card. Modules attach to that person, not to a generic inbox:\n\n• Medicines + Health Monitoring (Apple Health / Health Connect)\n• Bills (due dates) + Family Ledger (who paid, for whom)\n• Daily Routine, documents, insurance\n• Family Location (consent-based, pause anytime)\n• Up to 20 modules per member\n\nCaregivers get View / Edit / Full Access. If Papa misses a medicine, connected caregivers are alerted within 30 minutes. That member-first model is what makes LifeWise different from a personal reminder or bill app.",
+    followUp: "Want Family Ledger, Family Location, or how to add a caregiver?"
   },
 
   // ── Medicine Reminders ──
@@ -44,8 +44,51 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "papa medicine", "mummy medicine", "health reminder", "dose",
       "dosage", "goli", "aushadh", "dawa", "medical reminder"
     ],
-    response: "Setting up medicine reminders is easy! 💊\n\n📱 Open Family Hub → Select Papa/Mummy\n✅ Enable Medicine module\n💊 Add medicine name, dosage & time (e.g., 8 AM & 8 PM)\n🔔 LifeWise sends push notifications at the right time\n\n🎤 Voice shortcut: Say \"Papa ki medicine 8 baje\" on the Home screen!\n\nPremium users get:\n• Missed-dose alerts to caregivers (within 30 min)\n• Medicine stock tracking\n• Monthly compliance reports",
-    followUp: "Need help with bill reminders or caregiver setup?"
+    response: "Setting up medicine reminders is easy! 💊\n\n📱 Open Family Hub → Select Papa/Mummy\n✅ Enable Medicine module\n💊 Add medicine name, dosage & time (e.g., 8 AM & 8 PM)\n🔔 LifeWise sends push notifications at the right time\n\n🎤 Voice shortcut: Say \"Papa ki medicine 8 baje\" on the Home screen!\n\nFamily and Pro plans add:\n• Missed-dose alerts to caregivers (within 30 min)\n• Medicine stock tracking\n• Monthly compliance reports",
+    followUp: "Need help with bill reminders, Family Ledger, or caregiver setup?"
+  },
+
+  {
+    intent: "uniqueness",
+    triggers: [
+      "unique", "difference", "different", "vs", "versus", "competitor",
+      "why lifewise", "special", "kya alag", "alag", "better than",
+      "splitwise", "life360", "medisafe", "reminder app vs", "what makes"
+    ],
+    response: "LifeWise is unique because it is a Family OS, not one-job apps glued together.\n\n• Family Hub: every task sits on a member card\n• Missed medicines alert caregivers, not only Papa's phone\n• Bills (what is due) stay separate from Family Ledger (who paid)\n• Family Location needs consent and can pause\n• Wearables sync to that member; family sharing is a second permission\n• Smart Automation routes missed tasks and optional bill-to-ledger posting",
+    followUp: "Want details on Family Hub, Family Ledger, or health sync?"
+  },
+
+  {
+    intent: "family_ledger",
+    triggers: [
+      "family ledger", "ledger", "khata", "khatabook", "who paid",
+      "shared expense", "family money", "contribution", "balance",
+      "split expense", "expense tracking"
+    ],
+    response: "Family Ledger is LifeWise's family money module inside Family Hub.\n\nRecord: amount, category, paid by, expense for, payment method, date, optional receipt.\nIt answers who paid and for whom. Bill Management answers what still needs to be paid.\nWhen you mark a bill paid, LifeWise can ask to add that amount to Family Ledger once, so the two records stay linked without duplicating the payment.",
+    followUp: "Want bill scan OCR or Money Leak alerts next?"
+  },
+
+  {
+    intent: "family_location",
+    triggers: [
+      "location", "family location", "gps", "tracking", "safe place",
+      "where is papa", "live location", "share location", "map"
+    ],
+    response: "Family Location is consent-based, not covert tracking.\n\nA member must opt in, pick who can view, and can pause sharing in one tap.\nOptional Safe Places (Home, School, Work) and arrival alerts only if someone turns them on.\nLifeWise does not promise a fixed update every few minutes; phones control background timing.",
+    followUp: "Need Emergency SOS or caregiver permissions?"
+  },
+
+  {
+    intent: "health_wearables",
+    triggers: [
+      "apple health", "healthkit", "health connect", "apple watch",
+      "galaxy watch", "fitbit", "garmin", "wearable", "smartwatch",
+      "steps", "sleep", "heart rate", "bp sync"
+    ],
+    response: "Health Monitoring lives on the family member's card.\n\niOS: Apple Health / HealthKit (Apple Watch and compatible sources)\nAndroid: Health Connect (including Galaxy Watch via Samsung Health when synced)\nYou can still log BP, sugar, and weight by hand.\nConnecting a watch does not auto-share with the whole family. The member chooses LifeWise family sharing separately. Last synced time is shown; updates follow the phone and watch, not a promised every-second feed.",
+    followUp: "Want medicine reminders or Family Hub setup?"
   },
 
   // ── Bills ──
@@ -56,7 +99,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "gas bill", "broadband", "credit card", "rent", "upi",
       "payment", "due date", "utility", "scan bill"
     ],
-    response: "Never miss a bill again! 💡\n\nLifeWise tracks all your bills:\n⚡ Electricity & Gas\n📱 Mobile Recharge\n🌐 Broadband / WiFi\n💳 Credit Card\n🏠 Rent & Maintenance\n\n📅 Set due dates (e.g., every 15th) with reminders days before\n💰 Track amounts in ₹\n📸 Scan Bill feature (Premium): Camera OCR auto-fills bill details!\n\n💡 Money Leak Detection (Premium) flags unused subscriptions and suggests savings.",
+    response: "Never miss a bill again! 💡\n\nLifeWise tracks all your bills:\n⚡ Electricity & Gas\n📱 Mobile Recharge\n🌐 Broadband / WiFi\n💳 Credit Card\n🏠 Rent & Maintenance\n\n📅 Set due dates (e.g., every 15th) with reminders days before\n💰 Track amounts in ₹\n📸 Scan Bill: 3 scans/month on Free, 20 on Starter, unlimited on Family and Pro. Camera OCR auto-fills bill details.\n\nMoney Leak Detection is on the Family and Pro plans. It flags unused subscriptions and suggests savings.",
     followUp: "Want to know about pricing or other features?"
   },
 
@@ -65,10 +108,11 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     intent: "pricing",
     triggers: [
       "price", "pricing", "cost", "kitna", "kharcha", "paisa",
-      "free", "premium", "199", "subscription", "plan", "rupees",
-      "rs", "monthly", "yearly", "payment plan", "kimat", "rate", "kya app free hai", "is it free"
+      "free", "premium", "199", "99", "499", "starter", "family plan", "pro plan",
+      "subscription", "plan", "rupees",
+      "rs", "monthly", "yearly", "payment plan", "kimat", "rate", "kya app free hai", "is it free", "paywall"
     ],
-    response: "LifeWise has a generous free tier + affordable Premium! 💰\n\n🆓 FREE Plan:\n• Up to 3 family members\n• Medicine + Bills modules\n• Basic reminders\n• 1 caregiver per member\n• 7 days history\n\n⭐ PREMIUM (₹199/month):\n• Unlimited family members\n• All 20 modules\n• WiseAI chat assistant\n• Voice reminders\n• Bill scan OCR\n• Monthly PDF reports\n• Money Leak detection\n• 1 GB document storage\n\n💰 YEARLY SAVINGS:\n• Premium Yearly: ₹1,499/year (save ₹889!)\n• Family Yearly: ₹1,999/year (up to 6 accounts)\n\nCancel anytime from Profile → Subscription.",
+    response: "LifeWise has Free plus three paid plans.\n\nFREE Rs. 0:\n• 2 family members, 3 modules each, 10 reminders\n• 7 days expense history, 1 bill per member, 1 document\n• Voice 5/month, bill scan 3/month, WiseAI 5/month\n• Unlimited push notifications, no ads\n\nSTARTER Rs. 99/month or Rs. 799/year (33% off):\n• 4 members, 8 modules, 50 reminders, 3 months history\n• 1 caregiver per member, in-app monthly report (no PDF)\n\nFAMILY Rs. 199/month or Rs. 1,499/year (37% off), recommended:\n• Unlimited members, all 20 modules, Money Leak, SOS\n• Location for up to 6, PDF reports, WiseAI 100/month\n\nPRO Rs. 499/month or Rs. 3,999/year:\n• Everything in Family, unlimited documents, WiseAI 300/month\n• Medicine interaction checker, 5 sub-accounts, 24-hour support\n\nPrices are listed in INR. The website can show USD, EUR, and GBP converted from INR. Cancel from Profile, then Subscription.",
     followUp: "Ready to download, or have questions about specific features?"
   },
 
@@ -92,8 +136,8 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "ai chat", "ask ai", "claude", "chatbot in app", "ai feature",
       "wise ai", "intelligent"
     ],
-    response: "WiseAI is your intelligent family assistant! 🤖✨ (Premium feature)\n\nAsk questions like:\n• \"What reminders does Papa have this week?\"\n• \"How much spent on food this month?\"\n• \"Mummy ki next appointment kab hai?\"\n• \"Which subscriptions are expiring soon?\"\n\n🔒 Privacy-first: Uses your family data securely. Document images are NEVER sent to AI.\n🗣️ Works in Hindi & English\n⚡ Powered by Claude API for accurate, contextual answers.",
-    followUp: "Want to know about Premium pricing or other features?"
+    response: "WiseAI is your family assistant. Limits: 5 messages/month on Free, 30 on Starter, 100 on Family, 300 on Pro.\n\nAsk questions like:\n• \"What reminders does Papa have this week?\"\n• \"How much spent on food this month?\"\n• \"Mummy ki next appointment kab hai?\"\n• \"Which subscriptions are expiring soon?\"\n\nPrivacy-first: uses your family data securely. Document images are NEVER sent to AI.\nWorks in Hindi and English.",
+    followUp: "Want plan limits, or other Family Hub features?"
   },
 
   // ── Language Support ──
@@ -173,8 +217,8 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "insurance", "bima", "policy", "renewal", "netflix",
       "subscription", "ott", "prime", "hotstar", "money leak"
     ],
-    response: "Track all policies & subscriptions! 📋\n\n🏥 Insurance Module:\n• Health, Life, Vehicle & Home policies\n• Renewal reminders: 30/15/7 days before\n• Store policy documents safely\n\n📺 Subscriptions Module:\n• Netflix, Prime, Hotstar & more\n• Auto-renewal tracking\n• Money Leak Detection flags unused subscriptions\n\n💡 Example: \"You're spending extra on food delivery. Potential saving: ₹2,400/month\"\n\nBoth are Premium features.",
-    followUp: "Interested in Premium pricing?"
+    response: "Track all policies & subscriptions! 📋\n\n🏥 Insurance Module:\n• Health, Life, Vehicle & Home policies\n• Renewal reminders: 30/15/7 days before\n• Store policy documents safely\n\n📺 Subscriptions Module:\n• Netflix, Prime, Hotstar & more\n• Auto-renewal tracking\n• Money Leak Detection flags unused subscriptions\n\n💡 Example: \"You're spending extra on food delivery. Potential saving: ₹2,400/month\"\n\nInsurance, subscriptions, and Money Leak sit on paid plans. Money Leak alerts start on Family.",
+    followUp: "Want Starter, Family, or Pro limits?"
   },
 
   // ── Reports ──
@@ -184,8 +228,8 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "report", "pdf", "analytics", "insights", "summary",
       "monthly report", "health report", "compliance", "track"
     ],
-    response: "Get detailed family insights! 📊\n\n📄 Monthly PDF Reports (Premium):\n• Medicine compliance per member\n• Bill payment history\n• Expense breakdown by category\n• Family health summary\n• Missed reminders analysis\n\n📈 Example: \"Papa's medicine compliance: 80% this week\"\n\nReports are auto-generated and can be shared with doctors or family members.",
-    followUp: "Want to know about WiseAI or other Premium features?"
+    response: "Get detailed family insights! 📊\n\n📄 Monthly PDF reports (Family and Pro):\n• Medicine compliance per member\n• Bill payment history\n• Expense breakdown by category\n• Family health summary\n• Missed reminders analysis\n\n📈 Example: \"Papa's medicine compliance: 80% this week\"\n\nReports are auto-generated and can be shared with doctors or family members.",
+    followUp: "Want WiseAI limits or other Family Hub features?"
   },
 
   // ── Target Audience ──
@@ -206,8 +250,8 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "voice", "voice reminder", "speak", "mic", "whisper",
       "bolo", "awaz", "speech"
     ],
-    response: "Set reminders with your voice! 🎤\n\nJust speak naturally on the Home screen:\n\n\"Papa ki medicine 8 baje\"\n\"Mummy ka doctor appointment Friday\"\n\"Bijli ka bill 15 tarikh ko\"\n\n⚡ Whisper AI detects:\n• Which family member\n• Time & date\n• Type of reminder\n\nWorks in Hindi & English. No typing needed!\n\n(Premium feature)",
-    followUp: "Want to know about other Premium features?"
+    response: "Set reminders with your voice! 🎤\n\nJust speak naturally on the Home screen:\n\n\"Papa ki medicine 8 baje\"\n\"Mummy ka doctor appointment Friday\"\n\"Bijli ka bill 15 tarikh ko\"\n\n⚡ Whisper AI detects:\n• Which family member\n• Time & date\n• Type of reminder\n\nWorks in Hindi & English. No typing needed!\n\nFree includes 5 voice reminders per month. Starter 30. Family and Pro are unlimited.",
+    followUp: "Want bill scan or plan limits?"
   },
 
   // ── Scan Bill ──
@@ -217,8 +261,8 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       "scan", "camera", "ocr", "photo bill", "bill photo",
       "capture bill", "scan bill"
     ],
-    response: "Scan bills instantly with your camera! 📸\n\n📱 Tap Scan Bill on Home screen\n📷 Point camera at any bill\n🤖 Google ML Kit OCR extracts:\n• Bill name / provider\n• Amount in ₹\n• Due date\n\n✅ Auto-fills the bill form for any family member. No manual entry needed!\n\n(Premium feature)",
-    followUp: "Interested in other time-saving features?"
+    response: "Scan bills instantly with your camera! 📸\n\n📱 Tap Scan Bill on Home screen\n📷 Point camera at any bill\n🤖 Google ML Kit OCR extracts:\n• Bill name / provider\n• Amount in ₹\n• Due date\n\n✅ Auto-fills the bill form for any family member. No manual entry needed!\n\nFree includes 3 bill scans per month. Starter 20. Family and Pro are unlimited.",
+    followUp: "Want pricing or Family Ledger next?"
   }
 ];
 
@@ -227,6 +271,9 @@ export const SYNONYMS: Record<string, string[]> = {
   "medicine": ["dawai", "tablet", "pill", "goli", "dawa", "aushadh", "med"],
   "bill": ["bijli", "recharge", "payment", "kharcha", "bill"],
   "family": ["parivaar", "parivar", "ghar", "kutumb", "gharwale"],
+  "ledger": ["khata", "khatabook", "expense", "kharcha"],
+  "location": ["gps", "map", "tracking"],
+  "unique": ["alag", "different", "vs"],
   "reminder": ["yaad", "notification", "alert", "remind"],
   "download": ["install", "setup", "get", "lena"],
   "price": ["cost", "kitna", "kimat", "paisa", "rate", "rupees"],

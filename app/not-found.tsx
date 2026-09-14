@@ -12,7 +12,7 @@ function notFoundSchema() {
     "@id": `${SITE_URL}/#not-found`,
     name: "Page not found | LifeWise",
     description:
-      "This LifeWise URL does not exist. Visit the official Family OS homepage or support.",
+      "This LifeWise URL does not exist. Visit the official LifeWise - AI Family Hub homepage or support.",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#organization` },
     inLanguage: "en-IN",

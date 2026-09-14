@@ -30,7 +30,7 @@ const FALLBACK =
 
 const QUICK_REPLIES = [
   "What is LifeWise?",
-  "Premium pricing ₹",
+  "Plan pricing ₹",
   "Medicine reminder setup",
   "Family Hub features",
   "Download the app"

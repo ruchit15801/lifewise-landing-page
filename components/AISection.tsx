@@ -33,7 +33,7 @@ export function AISection() {
               <div className="flex flex-col justify-center">
                 <div className="inline-flex items-center gap-2 rounded-full border border-purple-200 bg-purple-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-purple-700 w-fit mb-8 dark:border-purple-500/30 dark:bg-purple-500/10 dark:text-purple-400">
                   <Sparkles className="h-3 w-3" />
-                  Premium Feature
+                  Included with limits
                 </div>
 
                 <h3 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
@@ -79,7 +79,7 @@ export function AISection() {
                       </div>
                       <div>
                         <div className="text-sm font-bold text-slate-900 dark:text-white">WiseAI Assistant</div>
-                        <div className="text-[10px] text-slate-500 font-medium">Online • Premium</div>
+                        <div className="text-[10px] text-slate-500 font-medium">Online • WiseAI</div>
                       </div>
                     </div>
 

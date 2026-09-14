@@ -17,7 +17,7 @@ export type SitemapRoute = {
 export const INDEXABLE_ROUTES: SitemapRoute[] = [
   {
     path: "/",
-    label: "LifeWise App - Official Family OS India | Medicine & Bill Reminder",
+    label: "LifeWise - AI Family Hub | Official India app, Family Hub & reminders",
     changeFrequency: "weekly",
     priority: 1
   },

@@ -56,7 +56,7 @@ export function LifeScore() {
       id="health"
       eyebrow="Health Screen"
       title="Family Health Summary"
-      subtitle="Track medicine compliance, health readings, and upcoming appointments across the whole family in a single glance."
+      subtitle="Track medicine compliance, BP and sugar, plus Apple Health and Health Connect sync on that family member's card."
     >
       <div className="relative space-y-4">
         
@@ -90,13 +90,14 @@ export function LifeScore() {
                 </h3>
 
                 <p className="mt-6 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 max-w-sm">
-                  Get a unified view of your family&apos;s health. Track medicine compliance, monitor BP/sugar trends, and get notified when a dose is missed.
+                  Health lives on the member card. Log BP or sugar by hand, or connect Apple Health / Health Connect so a compatible watch writes to the same Family Hub profile caregivers already use.
                 </p>
 
                 <div className="mt-8 grid gap-4 text-left">
                   {[
                     { icon: Pill, t: "Medicine compliance", d: "Track daily medicine taken vs missed." },
-                    { icon: Activity, t: "Health readings", d: "BP, sugar, weight trends over 30 days." },
+                    { icon: Activity, t: "Health readings", d: "BP, sugar, weight, steps, and sleep when the source provides them." },
+                    { icon: HeartPulse, t: "Wearable sync", d: "Apple Health, Health Connect, compatible watches. Family sharing is a separate permission." },
                   ].map((x, i) => (
                     <motion.div
                       key={x.t}

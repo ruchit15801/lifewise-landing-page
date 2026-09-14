@@ -14,7 +14,7 @@ export function ReminderSection() {
       id="reminders"
       eyebrow="Task Management"
       title="Never miss what matters."
-      subtitle="From daily medicines to yearly insurance premiums, LifeWise tracks it all in one unified task list."
+      subtitle="Medicine, bills, and routines from every Family Hub module land in one list. Filter by person or by module."
     >
       <div className="relative space-y-6">
         

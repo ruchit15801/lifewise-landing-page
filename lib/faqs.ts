@@ -14,12 +14,23 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "What is LifeWise?",
     answer:
-      "LifeWise is India's Family Operating System (Family OS) — a single mobile app that lets one person manage medicine reminders, bills, insurance, health, documents and daily routines for their entire family, not just themselves. Instead of using 5 different apps for Papa's medicine, Mummy's doctor visits, electricity bills and insurance renewals, everything lives inside one Family Hub, and every family member can see and act on it together.",
+      "LifeWise - AI Family Hub is a family management app for Indian households: one mobile app that lets one person manage medicine reminders, bills, insurance, health, Family Ledger, documents and daily routines for their entire family, not just themselves. Instead of using 5 different apps for Papa's medicine, Mummy's doctor visits, electricity bills and insurance renewals, everything lives inside one Family Hub, and every family member can see and act on it together.",
     keywords: [
       "what is lifewise",
       "lifewise app kya hai",
       "family os",
       "family operating system"
+    ]
+  },
+  {
+    question: "What makes LifeWise unique compared to other family or reminder apps?",
+    answer:
+      "LifeWise is unique because it is a Family Operating System built around Family Hub: every medicine, bill, health reading, routine, Family Ledger entry, and location share belongs to a family member, not to a personal inbox. Other apps usually do one job for one person. LifeWise keeps the household on one member-card model, with caregiver alerts, real-time sync, Smart Automation for missed tasks, and Indian-language voice.",
+    keywords: [
+      "lifewise unique",
+      "lifewise vs reminder app",
+      "best family management app india",
+      "family operating system vs to do app"
     ]
   },
   {
@@ -39,9 +50,40 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
     keywords: ["family hub app india", "family hub meaning", "family hub"]
   },
   {
+    question: "What is Family Ledger in LifeWise?",
+    answer:
+      "Family Ledger is LifeWise's family money module: who paid, what was spent, who it was for, contributions, and optional balances. It is different from Bill Management, which only tracks what still needs to be paid and when. When a bill is marked paid, LifeWise can offer to add that amount to Family Ledger once, so the obligation and the money event stay linked without being duplicated.",
+    keywords: [
+      "family ledger app india",
+      "family expense tracker india",
+      "shared family expenses app"
+    ]
+  },
+  {
+    question: "Does LifeWise share family location, and is it tracking?",
+    answer:
+      "Family Location is a consent-based Family Hub module, not covert tracking. A member must opt in, choose who can view, and can pause sharing in one tap. Optional Safe Places (Home, School, Work) and arrival alerts exist only when someone turns them on. LifeWise does not promise a fixed update every few minutes, because phone operating systems control background timing.",
+    keywords: [
+      "family location sharing app india",
+      "consent based family location",
+      "family safety location app"
+    ]
+  },
+  {
+    question: "Can LifeWise sync Apple Watch, Galaxy Watch, or Health Connect?",
+    answer:
+      "Yes, Health Monitoring on a member card can read permitted data from Apple Health on iOS and Health Connect on Android, including compatible watches and bands that already write into those hubs. Manual logging still works if a device is not connected. Connecting a watch does not automatically share health data with the whole family; the member still chooses family sharing separately.",
+    keywords: [
+      "apple health family app india",
+      "health connect family",
+      "smartwatch family health app",
+      "wearable family tracker"
+    ]
+  },
+  {
     question: "What are the 20 modules inside LifeWise, and do I need to use all of them?",
     answer:
-      "LifeWise offers 20 modules per family member — Medicine Tracking, Doctor Appointments, Health Monitoring, Emergency SOS, Bill Management, Insurance, Subscription Tracking, Expense Tracking, Daily Routine, Call & Check-in, Travel & Visits, Diet & Meal Planning, Medicine Stock Tracker, Important Documents, Fitness Tracking, Study & Education, Mental Health & Wellness, Vehicle Management, Home Maintenance, and a fully Custom module. You choose only what applies — for example, Papa might only need Medicine + Bills + Insurance, while your college-going daughter might only need Study + Expense Tracking.",
+      "LifeWise offers 20 modules per family member — Medicine Tracking, Doctor Appointments, Health Monitoring, Emergency SOS, Bill Management, Insurance, Subscription Tracking, Family Ledger, Daily Routine, Call & Check-in, Travel & Visits, Diet & Meal Planning, Medicine Stock Tracker, Important Documents, Fitness Tracking, Study & Education, Mental Health & Wellness, Vehicle Management, Home Maintenance, and a fully Custom module. Family Location is a Family Hub tool with its own consent flow. You choose only what applies — Papa might only need Medicine + Bills + Insurance, while a student might only need Study + Family Ledger.",
     keywords: [
       "lifewise modules",
       "family management app features india",
@@ -61,7 +103,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "What is WiseAI and what can I actually ask it?",
     answer:
-      'WiseAI is LifeWise\'s built-in AI chat assistant, powered by Claude, that understands your family\'s data and answers in plain language. You can type or say things like "What reminders does Papa have this week?", "How much have we spent on food this month?", or "Mummy ki next doctor appointment kab hai?" and WiseAI replies instantly using your actual family data — it can even create a reminder for you directly from a chat message.',
+      'WiseAI is LifeWise\'s built-in AI chat assistant, powered by Claude, that understands your family\'s data and answers in plain language. You can type or say things like "What reminders does Papa have this week?", "How much have we spent on food this month?", or "Mummy ki next doctor appointment kab hai?" and WiseAI replies using your actual family data. Limits are 5 messages per month on Free, 30 on Starter, 100 on Family, and 300 on Pro.',
     keywords: ["wiseai family assistant", "ai reminder app india", "wiseai"]
   },
   {
@@ -107,7 +149,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: 'What is "Money Leak Alert" and how does it actually save money?',
     answer:
-      'Money Leak Alert is an AI feature that scans your family\'s recurring spending and flags waste you\'d otherwise miss — like paying for Netflix, Prime, and Hotstar together, or multiple food-delivery subscriptions. It shows the exact potential saving, for example "Rs. 3,600/year if you cancel one," so you can act on it in one tap instead of manually auditing every subscription yourself.',
+      'Money Leak Alert is a Family and Pro feature that scans your family\'s recurring spending and flags waste you\'d otherwise miss, like paying for Netflix, Prime, and Hotstar together, or multiple food-delivery subscriptions. It shows the exact potential saving, for example "Rs. 3,600/year if you cancel one," so you can act on it in one tap instead of manually auditing every subscription yourself.',
     keywords: [
       "family expense tracker india",
       "subscription tracker app india",
@@ -117,7 +159,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "Can one app really handle both Papa's medicines and my own bill payments?",
     answer:
-      "Yes — that's the core idea of LifeWise. Every family member gets their own profile with only the modules relevant to them, so Papa's card can show Medicine + Insurance while your own card shows Bills + Expense Tracking + Subscriptions, all inside the same Family Hub, under one login, one Home screen, and one set of notifications.",
+      "Yes. That is the core idea of LifeWise. Every family member gets their own profile with only the modules relevant to them, so Papa's card can show Medicine + Insurance while your own card shows Bills + Family Ledger + Subscriptions, all inside the same Family Hub, under one login, one Home screen, and one set of notifications.",
     keywords: ["best family management app india", "one app family"]
   },
   {
@@ -153,13 +195,49 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
     ]
   },
   {
-    question: "What do I get for free, and what does LifeWise Premium (Rs. 199/month) add?",
+    question: "What do I get for free, and what are the LifeWise paid plans?",
     answer:
-      "The free plan covers up to 3 family members with Medicine + Bills modules, basic reminders, and 1 caregiver per member. Premium, at Rs. 199/month (or Rs. 1,499/year), unlocks unlimited family members, all 20 modules, unlimited caregivers, full history and export, WiseAI chat, voice reminders, bill scan OCR, monthly PDF reports, and Money Leak detection — everything needed to run the whole family, not just one or two people.",
+      "LifeWise has a Free plan plus three paid subscriptions: Starter, Family, and Pro. Free is Rs. 0 and includes 2 family members, 3 modules per member, 10 reminders, 7 days of expense history, 1 bill per member, 1 Aadhaar or PAN document, 5 voice uses, 3 bill scans, and 5 WiseAI messages per month, with unlimited push notifications and no ads. Starter is Rs. 99/month or Rs. 799/year (33% off) for 4 members and 8 modules. Family is the recommended plan at Rs. 199/month or Rs. 1,499/year (37% off) with unlimited members, all 20 modules, Money Leak, location for up to 6 people, SOS, and PDF reports. Pro is Rs. 499/month or Rs. 3,999/year for unlimited documents, 300 WiseAI messages, medicine interaction checks, and 5 sub-accounts. Listed prices are INR. The pricing section can show USD, EUR, and GBP converted from INR. Stores bill in your local currency.",
     keywords: [
-      "lifewise premium 199",
+      "lifewise free plan",
+      "lifewise starter 99",
+      "lifewise family plan 199",
+      "lifewise pro 499",
+      "lifewise yearly 1499",
       "is lifewise free to use in india",
-      "premium"
+      "family os pricing usd"
+    ]
+  },
+  {
+    question: "When does LifeWise show a paywall on the Free plan?",
+    answer:
+      "LifeWise uses hard limits, not a broken Free app. The paywall appears when you try to add a 3rd family member, a 4th module on any member, an 11th reminder, history older than 7 days, a 2nd document, a 6th voice reminder in the month, a 4th bill scan, or a 6th WiseAI message. PDF export, monthly reports, bank statement import, and budget limits are paid-plan features. The idea is you need more after regular use, typically within the first one to two months.",
+    keywords: [
+      "lifewise free limits",
+      "lifewise paywall",
+      "lifewise upgrade",
+      "freemium family app india"
+    ]
+  },
+  {
+    question: "What is the difference between LifeWise Starter, Family, and Pro?",
+    answer:
+      "Starter (Rs. 99/month) is for a couple or small family: 4 members, 8 modules, 50 reminders, 3 months of history, and 1 caregiver per member, with no PDF export or location sharing. Family (Rs. 199/month, recommended) is the complete Family plan: unlimited members and modules, 12 months of history, Money Leak, location for up to 6 members, SOS, PDF reports, and 100 WiseAI messages per month. Pro (Rs. 499/month) adds unlimited documents, 300 WiseAI messages, doctor-ready annual health PDF, medicine interaction checker, WhatsApp reminders (beta), priority 24-hour support, and 5 sub-accounts.",
+    keywords: [
+      "lifewise starter vs family",
+      "lifewise family vs pro",
+      "lifewise recommended plan",
+      "lifewise subscription comparison"
+    ]
+  },
+  {
+    question: "Can I pay for LifeWise yearly instead of monthly?",
+    answer:
+      "Yes. Starter yearly is Rs. 799 (33% off versus Rs. 99 each month). Family yearly is Rs. 1,499 (37% off versus Rs. 199 each month). Pro yearly is Rs. 3,999 versus Rs. 499 each month. Free stays Rs. 0. Manage or cancel from Profile, then Subscription in the app. Stores bill in your local currency.",
+    keywords: [
+      "lifewise yearly plan",
+      "lifewise annual subscription",
+      "lifewise 799 1499 3999"
     ]
   },
   {
@@ -198,13 +276,13 @@ export const SUPPORT_FAQ_ITEMS: FaqItem[] = [
   {
     question: "How do I download the official LifeWise app?",
     answer:
-      "Download LifeWise: Family OS free on Google Play at https://play.google.com/store/apps/details?id=com.lifewise (package com.lifewise) or on the App Store at https://apps.apple.com/us/app/lifewise-ai-family-hub/id6803865970. Use only lifewiseee.com or the official store listings — avoid similarly named insurance apps.",
+      "Download LifeWise - AI Family Hub free on Google Play at https://play.google.com/store/apps/details?id=com.lifewise (package com.lifewise) or on the App Store at https://apps.apple.com/us/app/lifewise-ai-family-hub/id6803865970. Use only lifewiseee.com or the official store listings. Avoid similarly named insurance apps.",
     keywords: ["download", "install", "play store", "app store", "android", "ios", "iphone", "com.lifewise"]
   },
   {
     question: "Is lifewiseee.com the official LifeWise website?",
     answer:
-      "Yes. https://www.lifewiseee.com is the official LifeWise website. The official app is LifeWise: Family OS on Google Play (package com.lifewise) and LifeWise AI Family Hub on the App Store.",
+      "Yes. https://www.lifewiseee.com is the official LifeWise website. The official app is LifeWise - AI Family Hub on the App Store (lifewise-ai-family-hub) and on Google Play (package com.lifewise).",
     keywords: ["official", "lifewiseee", "website", "real lifewise"]
   },
   {
@@ -214,9 +292,9 @@ export const SUPPORT_FAQ_ITEMS: FaqItem[] = [
     keywords: ["lifewise insurance", "student insurance", "different"]
   },
   {
-    question: "How do I cancel Premium or manage billing?",
+    question: "How do I cancel a LifeWise plan or manage billing?",
     answer:
-      "Open LifeWise → Profile → Subscription to view, change, or cancel Premium. Plans are billed in INR (Rs. 199/month or Rs. 1,499/year). For a payment issue, email support@lifewiseee.com or WhatsApp +91 63538 91986.",
+      "Open LifeWise, then Profile, then Subscription to view, change, or cancel Starter, Family, or Pro. Listed prices are INR (Starter Rs. 99/month or Rs. 799/year, Family Rs. 199/month or Rs. 1,499/year, Pro Rs. 499/month or Rs. 3,999/year). For a payment issue, email support@lifewiseee.com or WhatsApp +91 63538 91986.",
     keywords: ["cancel", "billing", "subscription", "payment", "refund"]
   },
   {
