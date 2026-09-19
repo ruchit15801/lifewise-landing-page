@@ -196,7 +196,14 @@ export function organizationSchema() {
       "@type": "Brand",
       name: SITE_NAME
     },
-    sameAs: [PLAY_STORE_URL, APP_STORE_URL].filter(Boolean),
+    sameAs: [
+      PLAY_STORE_URL,
+      APP_STORE_URL,
+      "https://x.com/lifewiseeapp",
+      "https://discord.gg/XFzhXWBan",
+      "https://www.instagram.com/lifewiseapp/",
+      "https://www.youtube.com/@LifeWiseApp"
+    ].filter(Boolean),
     identifier: PLAY_PACKAGE_ID
   };
 }
@@ -302,7 +309,13 @@ export function softwareApplicationSchema() {
         name: "India"
       }
     },
-    sameAs: [PLAY_STORE_URL, APP_STORE_URL].filter(Boolean)
+    sameAs: [
+      PLAY_STORE_URL,
+      APP_STORE_URL,
+      "https://x.com/lifewiseeapp",
+      "https://www.instagram.com/lifewiseapp/",
+      "https://www.youtube.com/@LifeWiseApp"
+    ].filter(Boolean)
   });
 }
 
@@ -354,7 +367,13 @@ export function mobileApplicationSchema() {
     },
     publisher: { "@id": ORG_ID },
     countriesSupported: "IN",
-    sameAs: [PLAY_STORE_URL, APP_STORE_URL].filter(Boolean)
+    sameAs: [
+      PLAY_STORE_URL,
+      APP_STORE_URL,
+      "https://x.com/lifewiseeapp",
+      "https://www.instagram.com/lifewiseapp/",
+      "https://www.youtube.com/@LifeWiseApp"
+    ].filter(Boolean)
   });
 }
 
