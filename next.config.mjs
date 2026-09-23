@@ -44,6 +44,13 @@ const nextConfig = {
           { key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=86400" },
           { key: "Content-Type", value: "text/plain; charset=utf-8" }
         ]
+      },
+      {
+        source: "/apk/(.*)",
+        headers: [
+          { key: "Content-Disposition", value: "attachment" },
+          { key: "Content-Type", value: "application/vnd.android.package-archive" }
+        ]
       }
     ];
   }
