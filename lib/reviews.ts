@@ -1,5 +1,5 @@
 /**
- * Real customer reviews — page UI + Product / SoftwareApplication schema.
+ * Real customer reviews  page UI + Product / SoftwareApplication schema.
  * Google: reviews must be genuine and visible on the page.
  *
  * Paste your real reviews below. Leave empty until you have them.
@@ -15,7 +15,7 @@ export type AppReview = {
   datePublished: string;
 };
 
-/** TODO: Owner will provide real reviews — do not invent. */
+/** TODO: Owner will provide real reviews  do not invent. */
 export const APP_REVIEWS: AppReview[] = [];
 
 function round1(n: number) {

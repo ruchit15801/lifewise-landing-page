@@ -152,7 +152,7 @@ export function FamilyHub() {
                     </div>
                   </div>
 
-                  {/* Sync pill — centered under card, ~10px gap + comfortable padding */}
+                  {/* Sync pill  centered under card, ~10px gap + comfortable padding */}
                   <div className="mt-[30px] flex justify-center">
                     <div className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-emerald-200 bg-white px-4 py-2.5 shadow-md dark:border-emerald-500/20 dark:bg-emerald-950/80 dark:backdrop-blur-md">
                       <div className="h-2 w-2 shrink-0 rounded-full bg-emerald-500 animate-pulse" />

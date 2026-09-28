@@ -5,7 +5,7 @@ import { ArrowUp } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/components/cn";
 
-/** Sits left of the chat FAB — same bottom row, no overlap. */
+/** Sits left of the chat FAB  same bottom row, no overlap. */
 export function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 

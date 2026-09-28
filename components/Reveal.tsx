@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/components/cn";
 
-/** Lightweight reveal — no Framer Motion (keeps TBT / hydration clean). */
+/** Lightweight reveal  no Framer Motion (keeps TBT / hydration clean). */
 export function Reveal({
   children,
   delay = 0,

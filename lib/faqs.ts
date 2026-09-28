@@ -7,7 +7,7 @@ export type FaqItem = {
 };
 
 /**
- * Home / landing FAQ — product-understanding questions.
+ * Home / landing FAQ  product-understanding questions.
  * First sentence of each answer is a complete standalone snippet for AEO.
  */
 export const LANDING_FAQ_ITEMS: FaqItem[] = [
@@ -36,7 +36,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "How is LifeWise different from a normal medicine reminder or to-do app?",
     answer:
-      "A normal reminder app only reminds you. LifeWise reminds the right person and every caregiver connected to them — so if Papa misses his 8 PM tablet, his son and daughter both get notified, not just Papa. Most reminder apps are single-user; LifeWise is built around a family of members, each with their own profile, modules, and history, connected through one Family Hub.",
+      "A normal reminder app only reminds you. LifeWise reminds the right person and every caregiver connected to them  so if Papa misses his 8 PM tablet, his son and daughter both get notified, not just Papa. Most reminder apps are single-user; LifeWise is built around a family of members, each with their own profile, modules, and history, connected through one Family Hub.",
     keywords: [
       "medicine reminder app india",
       "family app vs reminder app",
@@ -46,7 +46,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: 'What is "Family Hub" in LifeWise and why is it the main feature?',
     answer:
-      "Family Hub is the screen where every family member — Papa, Mummy, kids, spouse — gets their own card with their own medicines, bills, health data and documents attached to them. Every other feature in LifeWise (reminders, insights, WiseAI) pulls its data from Family Hub, which is why it's the star-badged, primary tab in the app. You add a member once, choose what you want to track for them, and their entire life fits on one card.",
+      "Family Hub is the screen where every family member  Papa, Mummy, kids, spouse  gets their own card with their own medicines, bills, health data and documents attached to them. Every other feature in LifeWise (reminders, insights, WiseAI) pulls its data from Family Hub, which is why it's the star-badged, primary tab in the app. You add a member once, choose what you want to track for them, and their entire life fits on one card.",
     keywords: ["family hub app india", "family hub meaning", "family hub"]
   },
   {
@@ -83,7 +83,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "What are the 20 modules inside LifeWise, and do I need to use all of them?",
     answer:
-      "LifeWise offers 20 modules per family member — Medicine Tracking, Doctor Appointments, Health Monitoring, Emergency SOS, Bill Management, Insurance, Subscription Tracking, Family Ledger, Daily Routine, Call & Check-in, Travel & Visits, Diet & Meal Planning, Medicine Stock Tracker, Important Documents, Fitness Tracking, Study & Education, Mental Health & Wellness, Vehicle Management, Home Maintenance, and a fully Custom module. Family Location is a Family Hub tool with its own consent flow. You choose only what applies — Papa might only need Medicine + Bills + Insurance, while a student might only need Study + Family Ledger.",
+      "LifeWise offers 20 modules per family member  Medicine Tracking, Doctor Appointments, Health Monitoring, Emergency SOS, Bill Management, Insurance, Subscription Tracking, Family Ledger, Daily Routine, Call & Check-in, Travel & Visits, Diet & Meal Planning, Medicine Stock Tracker, Important Documents, Fitness Tracking, Study & Education, Mental Health & Wellness, Vehicle Management, Home Maintenance, and a fully Custom module. Family Location is a Family Hub tool with its own consent flow. You choose only what applies  Papa might only need Medicine + Bills + Insurance, while a student might only need Study + Family Ledger.",
     keywords: [
       "lifewise modules",
       "family management app features india",
@@ -93,7 +93,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: 'How does the caregiver / "connected member" system work?',
     answer:
-      'When you add a family member, LifeWise asks "who should manage or receive alerts for this person?" — you can connect one or more caregivers (son, daughter, spouse) to that member. Every reminder for that person is then sent to both the member and every connected caregiver, and when any one of them marks it done, it updates instantly for everyone else. This means if you and your sibling both look after Mummy, you\'re never both wondering whether her BP medicine was taken.',
+      'When you add a family member, LifeWise asks "who should manage or receive alerts for this person?"  you can connect one or more caregivers (son, daughter, spouse) to that member. Every reminder for that person is then sent to both the member and every connected caregiver, and when any one of them marks it done, it updates instantly for everyone else. This means if you and your sibling both look after Mummy, you\'re never both wondering whether her BP medicine was taken.',
     keywords: [
       "caregiver app india",
       "caregiver reminder app",
@@ -109,7 +109,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "Can I add a reminder just by speaking in Hindi or Gujarati?",
     answer:
-      'Yes — LifeWise has a Voice Reminder feature where you tap the mic icon and simply say something like "Papa ko kal subah 8 baje medicine leni hai," and the app automatically detects the family member, the task, and the time, then creates the reminder for you to confirm. It\'s built for how Indian families actually talk, not just typed English commands.',
+      'Yes  LifeWise has a Voice Reminder feature where you tap the mic icon and simply say something like "Papa ko kal subah 8 baje medicine leni hai," and the app automatically detects the family member, the task, and the time, then creates the reminder for you to confirm. It\'s built for how Indian families actually talk, not just typed English commands.',
     keywords: [
       "voice reminder app hindi",
       "hindi medicine reminder app",
@@ -119,7 +119,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "Can LifeWise read a bill automatically instead of me typing it?",
     answer:
-      "Yes — the Scan Bill feature lets you photograph any bijli, gas, water, or mobile bill, and LifeWise uses OCR to automatically read the bill name, amount, and due date, then pre-fills the form for you. You just confirm which family member the bill belongs to and save — no manual typing of amounts or dates.",
+      "Yes  the Scan Bill feature lets you photograph any bijli, gas, water, or mobile bill, and LifeWise uses OCR to automatically read the bill name, amount, and due date, then pre-fills the form for you. You just confirm which family member the bill belongs to and save  no manual typing of amounts or dates.",
     keywords: [
       "scan bill ocr app india",
       "electricity bill reminder",
@@ -129,7 +129,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "What happens if a family member misses a reminder?",
     answer:
-      'If a reminder isn\'t marked done within 30 minutes of its scheduled time, LifeWise automatically marks it "Missed" and instantly alerts every connected caregiver — so you find out the same day, not a week later. Missed reminders are also shown in red across the Home screen and Reminders tab, and a daily summary notification tells you exactly how many reminders were missed that day.',
+      'If a reminder isn\'t marked done within 30 minutes of its scheduled time, LifeWise automatically marks it "Missed" and instantly alerts every connected caregiver  so you find out the same day, not a week later. Missed reminders are also shown in red across the Home screen and Reminders tab, and a daily summary notification tells you exactly how many reminders were missed that day.',
     keywords: [
       "medicine reminder app for parents",
       "missed medicine alert",
@@ -139,7 +139,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "If my sibling and I both manage Mummy's account, do we see the same updates instantly?",
     answer:
-      "Yes — LifeWise uses real-time sync, so when one caregiver marks a reminder as done, it updates on every other connected caregiver's phone within seconds, without anyone needing to refresh the app. This is what makes LifeWise a true shared family system rather than separate individual reminder lists.",
+      "Yes  LifeWise uses real-time sync, so when one caregiver marks a reminder as done, it updates on every other connected caregiver's phone within seconds, without anyone needing to refresh the app. This is what makes LifeWise a true shared family system rather than separate individual reminder lists.",
     keywords: [
       "family sync app india",
       "shared family reminder app",
@@ -165,7 +165,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "Is LifeWise suitable for elderly parents who aren't comfortable with technology?",
     answer:
-      'Yes — LifeWise is designed so that an adult child (25–45) can set up and manage everything on behalf of an elderly parent, while the parent simply receives simple notifications like "Papa ki BP Tablet lene ka time ho gaya" and taps one button to mark it done. Parents don\'t need to configure anything themselves — the heavy setup is done by whoever is caring for them.',
+      'Yes  LifeWise is designed so that an adult child (25–45) can set up and manage everything on behalf of an elderly parent, while the parent simply receives simple notifications like "Papa ki BP Tablet lene ka time ho gaya" and taps one button to mark it done. Parents don\'t need to configure anything themselves  the heavy setup is done by whoever is caring for them.',
     keywords: [
       "senior medicine reminder app",
       "dawai reminder app",
@@ -175,19 +175,19 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "What is the Emergency SOS feature and how does it work?",
     answer:
-      "Emergency SOS lets any family member trigger help in one action — shaking the phone three times or long-pressing the SOS button — which instantly sends an SMS and call alert with their location to up to 5 saved emergency contacts. It also generates a shareable digital medical card with blood group, allergies, existing conditions, and current medications, so first responders have critical information immediately.",
+      "Emergency SOS lets any family member trigger help in one action  shaking the phone three times or long-pressing the SOS button  which instantly sends an SMS and call alert with their location to up to 5 saved emergency contacts. It also generates a shareable digital medical card with blood group, allergies, existing conditions, and current medications, so first responders have critical information immediately.",
     keywords: ["sos emergency feature family app", "emergency sos"]
   },
   {
     question: "Does LifeWise work without internet?",
     answer:
-      "Yes — LifeWise caches your last-fetched reminders and family data on your device, so you can view existing reminders and mark them done even when you're offline. Any actions you take offline are queued and automatically synced to the server and to your caregivers the moment your connection returns.",
+      "Yes  LifeWise caches your last-fetched reminders and family data on your device, so you can view existing reminders and mark them done even when you're offline. Any actions you take offline are queued and automatically synced to the server and to your caregivers the moment your connection returns.",
     keywords: ["offline family app india", "offline reminders"]
   },
   {
     question: "Is my family's health, financial, and personal data safe with LifeWise?",
     answer:
-      "Yes — LifeWise stores your family's data securely with encrypted authentication (JWT + Firebase Auth), documents stored on secure AWS S3 storage, and access limited to only the caregivers you personally connect to each member. Sensitive items like document images are never sent to the WiseAI assistant, and you control exactly who can view or edit each family member's information through Family Permissions.",
+      "Yes  LifeWise stores your family's data securely with encrypted authentication (JWT + Firebase Auth), documents stored on secure AWS S3 storage, and access limited to only the caregivers you personally connect to each member. Sensitive items like document images are never sent to the WiseAI assistant, and you control exactly who can view or edit each family member's information through Family Permissions.",
     keywords: [
       "dpdp compliant family app",
       "family data privacy india",
@@ -243,7 +243,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
   {
     question: "Which languages does LifeWise support?",
     answer:
-      "LifeWise supports English, Hindi, Gujarati, Marathi, Tamil, Telugu, and Bengali across the app, and both Voice Reminder and WiseAI chat understand natural Hindi/Gujarati phrasing — not just formal typed English — so it fits how Indian families actually speak to each other.",
+      "LifeWise supports English, Hindi, Gujarati, Marathi, Tamil, Telugu, and Bengali across the app, and both Voice Reminder and WiseAI chat understand natural Hindi/Gujarati phrasing  not just formal typed English  so it fits how Indian families actually speak to each other.",
     keywords: [
       "family app hindi gujarati",
       "lifewise hindi gujarati support",
@@ -251,7 +251,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
     ]
   },
   {
-    question: "Who is LifeWise actually built for — only parents, or everyone in the family?",
+    question: "Who is LifeWise actually built for  only parents, or everyone in the family?",
     answer:
       "LifeWise is built for four kinds of users in one family: the adult child (25–45) who manages Papa and Mummy's medicines and bills; the senior parent (55+) who just receives and taps reminders; the caregiver spouse or sibling who shares the responsibility; and young adults or students who use it for their own expenses and study schedules. It's one app the whole family uses together, each person using only what's relevant to them.",
     keywords: [
@@ -263,7 +263,7 @@ export const LANDING_FAQ_ITEMS: FaqItem[] = [
 ];
 
 /**
- * /support FAQ — transactional help only (contact, download, official site).
+ * /support FAQ  transactional help only (contact, download, official site).
  * Do not repeat landing product FAQs here.
  */
 export const SUPPORT_FAQ_ITEMS: FaqItem[] = [
@@ -305,5 +305,5 @@ export const SUPPORT_FAQ_ITEMS: FaqItem[] = [
   }
 ];
 
-/** Home FAQ alias — chatbot / SEO consumers that mean the landing set */
+/** Home FAQ alias  chatbot / SEO consumers that mean the landing set */
 export const FAQ_ITEMS = LANDING_FAQ_ITEMS;

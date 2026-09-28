@@ -87,7 +87,7 @@ async function main() {
   fs.writeFileSync(path.join(outPublic, "favicon.ico"), ico);
   fs.writeFileSync(path.join(outApp, "favicon.ico"), ico);
   console.log("wrote public/favicon.ico + app/favicon.ico", `(${ico.length} bytes)`);
-  console.log("done — all favicons from public/favicon.png");
+  console.log("done  all favicons from public/favicon.png");
 }
 
 main().catch((err) => {

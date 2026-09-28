@@ -102,7 +102,7 @@ export default function PrivacyPolicyPage() {
             sleep, water etc.), medicines, doses, stock and appointments. If you connect{" "}
             <strong>Apple Health</strong> (HealthKit) or <strong>Health Connect</strong>, we read
             only the data types you approve, together with source and timestamp. Health data is used
-            to show your own trends and configurable alerts — never for advertising or sold. Sharing
+            to show your own trends and configurable alerts  never for advertising or sold. Sharing
             with caregivers is a separate LifeWise permission that you control.
           </p>
 
@@ -287,9 +287,9 @@ export default function PrivacyPolicyPage() {
             settings. Optional capture features can be turned off at any time.
           </p>
           <p>
-            Depending on where you live — including under India&apos;s{" "}
+            Depending on where you live  including under India&apos;s{" "}
             <strong>Digital Personal Data Protection Act, 2023</strong>, and GDPR/CCPA where
-            applicable — you may have additional rights. Contact{" "}
+            applicable  you may have additional rights. Contact{" "}
             <a href={`mailto:${LEGAL_CONTACT_EMAIL}`} className="font-semibold text-primary hover:underline">
               {LEGAL_CONTACT_EMAIL}
             </a>{" "}

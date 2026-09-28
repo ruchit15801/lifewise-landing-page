@@ -30,10 +30,12 @@ export function HomeSections() {
         }
       />
       <LazySection
-        id="family"
-        minHeight={640}
+        id="family-hub-features"
+        minHeight={900}
         loader={() =>
-          import("@/components/FamilyHub").then((m) => ({ default: m.FamilyHub }))
+          import("@/components/FamilyHubFeatures").then((m) => ({
+            default: m.FamilyHubFeatures,
+          }))
         }
       />
       <LazySection

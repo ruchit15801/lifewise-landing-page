@@ -9,12 +9,13 @@ import { cn } from "@/components/cn";
 import { scrollToSection } from "@/lib/section-nav";
 
 const navItems = [
-  { href: "#family", label: "Family Hub" },
+  { href: "#family-hub-features", label: "Family Hub" },
   { href: "#features", label: "Features" },
   { href: "#pricing", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
   { href: "#support", label: "Support" }
 ];
+
 
 export function Navbar() {
   const [open, setOpen] = useState(false);

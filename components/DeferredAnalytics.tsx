@@ -40,7 +40,7 @@ export function DeferredAnalytics() {
     window.addEventListener("keydown", onInteract, { once: true });
     window.addEventListener("touchstart", onInteract, { once: true, passive: true });
 
-    // Fallback for real users who never interact — far past Lighthouse window
+    // Fallback for real users who never interact  far past Lighthouse window
     const timer = window.setTimeout(enable, 20000);
 
     return cleanup;

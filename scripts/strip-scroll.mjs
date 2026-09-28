@@ -29,7 +29,7 @@ for (const f of files) {
   );
   // Fix orphaned closings that belonged to y-parallax wrappers: leave as </motion.div>
   // Manual: replace the specific pattern </motion.div> after those blocks is hard;
-  // instead count — for FamilyHub the y wrapper closes with </motion.div> before sibling.
+  // instead count  for FamilyHub the y wrapper closes with </motion.div> before sibling.
   fs.writeFileSync(f, s);
   console.log("updated", f);
 }

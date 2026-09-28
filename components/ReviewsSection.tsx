@@ -172,7 +172,7 @@ export function ReviewsSection() {
               </div>
             </div>
             <p className="max-w-xs text-sm leading-relaxed text-indigo-100/95 sm:text-right">
-              Medicine, bills, and Family Hub — one Family OS families actually
+              Medicine, bills, and Family Hub  one Family OS families actually
               stick with.
             </p>
           </div>

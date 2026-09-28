@@ -171,7 +171,7 @@ LifeWise offers 20 modules per member including Family Ledger. Family Location i
 Connect one or more caregivers to a member. Every reminder goes to the member and every connected caregiver; marking done updates everyone instantly.
 
 ### What is WiseAI?
-WiseAI is LifeWise's built-in AI chat assistant that answers from your family data — for example "Mummy ki next doctor appointment kab hai?" — and can create a reminder from chat.
+WiseAI is LifeWise's built-in AI chat assistant that answers from your family data  for example "Mummy ki next doctor appointment kab hai?"  and can create a reminder from chat.
 
 ### Can I add a reminder by speaking Hindi or Gujarati?
 Yes. Voice Reminder: say "Papa ko kal subah 8 baje medicine leni hai" and LifeWise detects member, task, and time.
@@ -210,5 +210,5 @@ Free Rs. 0: 2 members, 3 modules, 10 reminders, 7 days history, limited voice/OC
 English, Hindi, Gujarati, Marathi, Tamil, Telugu, and Bengali. Voice Reminder and WiseAI understand natural Hindi/Gujarati.
 
 ### Who is LifeWise built for?
-Adult children managing parents, seniors receiving reminders, caregiver siblings/spouses, and students tracking expenses and study — one app, each person using only what is relevant.
+Adult children managing parents, seniors receiving reminders, caregiver siblings/spouses, and students tracking expenses and study  one app, each person using only what is relevant.
 

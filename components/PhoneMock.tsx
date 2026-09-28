@@ -152,7 +152,7 @@ function HomeContent() {
       {/* Main Card */}
       <div className="rounded-[20px] bg-indigo-50/40 p-4 shadow-sm border border-indigo-100/50 mx-1 relative overflow-hidden">
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-        
+
         <div className="flex justify-between items-start relative z-10">
           <div>
             <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">This Month</div>
@@ -274,13 +274,13 @@ function FamilyContent() {
 
   return (
     <div className="space-y-4 pb-4">
-      <ScreenHeader 
-        title="Family Hub" 
+      <ScreenHeader
+        title="Family Hub"
         subtitle="Manage medicines, health, bills & more"
         rightIcon={Users}
         rightAction={Plus}
       />
-      
+
       <div className="space-y-3 px-1 mt-2">
         {members.map((m, i) => (
           <div key={i} className="rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm flex flex-col hover:border-indigo-100 transition-colors">
@@ -323,8 +323,8 @@ function FamilyContent() {
 function RemindersContent() {
   return (
     <div className="space-y-4 pb-4">
-      <ScreenHeader 
-        title="Reminders" 
+      <ScreenHeader
+        title="Reminders"
         subtitle="Bills, subscriptions & payments"
         rightIcon={Settings}
         rightAction={Plus}
@@ -437,11 +437,11 @@ function RemindersContent() {
 function ReportsContent() {
   return (
     <div className="space-y-4 pb-4">
-      <ScreenHeader 
-        title="Reports" 
+      <ScreenHeader
+        title="Reports"
         subtitle="Last 6 months • vs prev 6 months"
       />
-      
+
       <div className="px-1 flex justify-end -mt-10 mb-5 z-20 relative">
         <div className="flex h-8 items-center gap-1.5 rounded-xl bg-indigo-600 px-3.5 text-[11px] font-bold text-white shadow-sm active:scale-95 transition-transform">
           <FileText className="h-3.5 w-3.5" /> PDF Report
@@ -463,13 +463,13 @@ function ReportsContent() {
               <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">Total Spending</div>
               <div className="text-[34px] font-black text-slate-900 tracking-tighter mt-0.5 leading-none">₹3.4L</div>
               <div className="text-[10px] text-slate-400 mt-2.5 leading-relaxed font-medium">
-                Spent +₹3.1L vs Previous 6 months<br/>
+                Spent +₹3.1L vs Previous 6 months<br />
                 Reminders +1 • LifeScore -46
               </div>
             </div>
             <div className="flex h-[76px] w-[76px] flex-col items-center justify-center rounded-full bg-indigo-100/60 border-2 border-indigo-200">
               <span className="text-[22px] font-black text-indigo-600 leading-none">52</span>
-              <span className="text-[7px] font-bold text-indigo-400 mt-1 uppercase text-center leading-tight">Estimated<br/>Score</span>
+              <span className="text-[7px] font-bold text-indigo-400 mt-1 uppercase text-center leading-tight">Estimated<br />Score</span>
             </div>
           </div>
 
@@ -524,7 +524,7 @@ function ProfileContent() {
   return (
     <div className="space-y-4 pb-4">
       <ScreenHeader title="Profile" />
-      
+
       <div className="px-1 mt-2">
         <div className="flex items-center gap-3.5 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm">
           <div
@@ -600,11 +600,11 @@ const TAB_CONTENT: Record<TabId, () => JSX.Element> = {
 function SolidArrow({ direction, className }: { direction: "left" | "right", className?: string }) {
   // SVG Arrow points from Widget -> Phone
   return (
-    <svg 
-      className={cn("absolute top-1/2 -translate-y-1/2 pointer-events-none -z-10", className, direction === "left" ? "left-full" : "right-full")} 
-      width="32" 
-      height="12" 
-      viewBox="0 0 32 12" 
+    <svg
+      className={cn("absolute top-1/2 -translate-y-1/2 pointer-events-none -z-10", className, direction === "left" ? "left-full" : "right-full")}
+      width="32"
+      height="12"
+      viewBox="0 0 32 12"
       overflow="visible"
     >
       <defs>
@@ -633,12 +633,12 @@ export function PhoneMock({ className }: { className?: string }) {
 
   return (
     <div className={cn("relative mx-auto w-full max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem] pt-4 pb-2 sm:pt-6 sm:pb-6", className)}>
-      
-      {/* Background glow (static — avoids infinite main-thread work) */}
+
+      {/* Background glow (static  avoids infinite main-thread work) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] -z-20 pointer-events-none" aria-hidden="true">
-        <div 
+        <div
           className="absolute inset-0 rounded-full opacity-80"
-          style={{ 
+          style={{
             background: "radial-gradient(circle at center, rgba(79,70,229,0.08) 0%, rgba(79,70,229,0) 70%)",
           }}
         />
@@ -646,73 +646,73 @@ export function PhoneMock({ className }: { className?: string }) {
 
       {/* Desktop floating chips with arrows (space beside phone) */}
       <div className="pointer-events-none absolute inset-0 z-20 hidden md:block" aria-hidden="true">
-          
-          <AnimatePresence mode="popLayout">
-            {TAB_WIDGETS[activeTab].map((widget) => {
-              const Icon = widget.icon;
-              return (
-                <motion.div
-                  key={widget.id}
-                  className={cn("absolute", widget.posClasses)}
-                  initial={{
-                    opacity: 0,
-                    scale: widget.isDynamic ? 0.94 : 1,
-                    x: widget.arrow === "left" ? 16 : -16
-                  }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.15 } }}
-                  transition={{
-                    opacity: { duration: 0.28, delay: widget.delay },
-                    scale: { type: "spring", stiffness: 280, damping: 24, delay: widget.delay },
-                    x: { type: "spring", stiffness: 220, damping: 22, delay: widget.delay }
-                  }}
+
+        <AnimatePresence mode="popLayout">
+          {TAB_WIDGETS[activeTab].map((widget) => {
+            const Icon = widget.icon;
+            return (
+              <motion.div
+                key={widget.id}
+                className={cn("absolute", widget.posClasses)}
+                initial={{
+                  opacity: 0,
+                  scale: widget.isDynamic ? 0.94 : 1,
+                  x: widget.arrow === "left" ? 16 : -16
+                }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.15 } }}
+                transition={{
+                  opacity: { duration: 0.28, delay: widget.delay },
+                  scale: { type: "spring", stiffness: 280, damping: 24, delay: widget.delay },
+                  x: { type: "spring", stiffness: 220, damping: 22, delay: widget.delay }
+                }}
+              >
+                <div
+                  className={cn(
+                    "flex w-max items-center gap-3 rounded-[18px] border p-3",
+                    "transform-gpu [backface-visibility:hidden]",
+                    widget.wrapperClass || "border-white bg-white shadow-xl"
+                  )}
                 >
+                  {widget.arrow === "left" && <SolidArrow direction="left" />}
+                  {widget.arrow === "right" && <SolidArrow direction="right" />}
+
                   <div
                     className={cn(
-                      "flex w-max items-center gap-3 rounded-[18px] border p-3",
-                      "transform-gpu [backface-visibility:hidden]",
-                      widget.wrapperClass || "border-white bg-white shadow-xl"
+                      "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border shadow-inner",
+                      widget.colorClass
                     )}
                   >
-                    {widget.arrow === "left" && <SolidArrow direction="left" />}
-                    {widget.arrow === "right" && <SolidArrow direction="right" />}
-
+                    <Icon
+                      className="h-5 w-5"
+                      fill={widget.isDynamic ? "none" : "currentColor"}
+                    />
+                  </div>
+                  <div className="pr-2 [text-rendering:geometricPrecision] antialiased">
                     <div
                       className={cn(
-                        "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border shadow-inner",
-                        widget.colorClass
+                        "text-[10px] font-bold uppercase tracking-wider",
+                        widget.isDynamic ? "text-indigo-500" : "text-slate-400"
                       )}
                     >
-                      <Icon
-                        className="h-5 w-5"
-                        fill={widget.isDynamic ? "none" : "currentColor"}
-                      />
+                      {widget.title}
                     </div>
-                    <div className="pr-2 [text-rendering:geometricPrecision] antialiased">
-                      <div
-                        className={cn(
-                          "text-[10px] font-bold uppercase tracking-wider",
-                          widget.isDynamic ? "text-indigo-500" : "text-slate-400"
-                        )}
-                      >
-                        {widget.title}
-                      </div>
-                      <div
-                        className={cn(
-                          "mt-0.5 text-[12px] font-black",
-                          widget.isDynamic ? "text-indigo-900" : "text-slate-800"
-                        )}
-                      >
-                        {widget.subtitle}
-                      </div>
+                    <div
+                      className={cn(
+                        "mt-0.5 text-[12px] font-black",
+                        widget.isDynamic ? "text-indigo-900" : "text-slate-800"
+                      )}
+                    >
+                      {widget.subtitle}
                     </div>
                   </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
+                </div>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
 
-        </div>
+      </div>
 
       {/* Main Phone Mockup */}
       <div
@@ -723,7 +723,7 @@ export function PhoneMock({ className }: { className?: string }) {
           <div className="relative h-full w-full rounded-[2.85rem] bg-black p-[6px] shadow-inner">
             {/* Phone Screen Container */}
             <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[2.5rem] bg-[#FAFAFA]">
-              
+
               {/* Dynamic Island */}
               <div className="pointer-events-none absolute left-1/2 top-2.5 z-40 -translate-x-1/2">
                 <div className="h-7 w-28 rounded-full bg-black flex items-center justify-between px-2.5">
@@ -746,7 +746,7 @@ export function PhoneMock({ className }: { className?: string }) {
               </div>
 
               <div className="relative flex min-h-0 flex-1 flex-col px-3 pb-2 pt-12 z-10 w-full">
-                
+
                 {/* Tab Content */}
                 <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden relative w-full">
                   <AnimatePresence mode="wait">
@@ -767,7 +767,7 @@ export function PhoneMock({ className }: { className?: string }) {
                 {/* Bottom Navigation */}
                 <nav className="shrink-0 w-full rounded-[1.25rem] bg-white p-1.5 shadow-[0_0_20px_rgb(0,0,0,0.05)] border border-slate-100 relative z-20 mt-1">
                   <div className="flex justify-between items-center px-1 relative">
-                    <div 
+                    <div
                       className="absolute left-[4px] top-0 bottom-0 rounded-xl bg-indigo-500 transition-transform duration-300 ease-out"
                       style={{
                         transform: `translateX(${TABS.findIndex(t => t.id === activeTab) * 100}%)`,
@@ -775,7 +775,7 @@ export function PhoneMock({ className }: { className?: string }) {
                         willChange: "transform",
                       }}
                     />
-                    
+
                     {TABS.map((tab) => {
                       const Icon = tab.icon;
                       const isActive = activeTab === tab.id;
