@@ -228,7 +228,7 @@ const MODS: Mod[] = [
       <div className="flex items-center gap-2.5 rounded-xl border border-slate-100 bg-pink-500 p-2 text-white shadow-sm">
         <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 font-bold text-[10px]">M</div>
         <div>
-          <div className="text-[11px] font-bold">"I'm OK" 👋</div>
+          <div className="text-[11px] font-bold">&quot;I&apos;m OK&quot; 👋</div>
           <div className="text-[9px] font-medium opacity-80">Mom · Sent 10 mins ago</div>
         </div>
       </div>
@@ -395,7 +395,7 @@ function SmartCard({ feat, i }: { feat: typeof SMART[0]; i: number }) {
         <div className={`rounded-xl border p-2.5 ${feat.bg} ${feat.br}`}>
           <div className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1.5">Live Example</div>
           <p className="text-[10px] font-semibold text-slate-700 dark:text-slate-200">
-            <span className="opacity-50">You: </span>"{feat.q}"
+            <span className="opacity-50">You: </span>&quot;{feat.q}&quot;
           </p>
           <p className={`text-[10px] font-bold mt-1 ${feat.tc}`}>
             <span className="opacity-50">LifeWise: </span>{feat.a}
@@ -419,7 +419,7 @@ function PhoneMockup() {
   useEffect(() => {
     const id = setInterval(() => setTick(p => (p + 1) % members.length), 2200);
     return () => clearInterval(id);
-  }, []);
+  }, [members.length]);
   return (
     <div className="relative mx-auto w-[260px] sm:w-[290px]">
       {/* Shell */}
