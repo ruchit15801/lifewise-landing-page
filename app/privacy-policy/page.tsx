@@ -15,22 +15,27 @@ export default function PrivacyPolicyPage() {
           path: "/privacy-policy",
           name: "Privacy Policy",
           description:
-            "LifeWise privacy policy for the Family Operating System app: data collection, SMS permissions, family health data, WiseAI, and your rights under Indian DPDP Act 2023."
+            "LifeWise privacy policy for the Family Operating System app (com.lifewise): location data, health data, financial data, SMS/Gmail permissions, WiseAI, and your rights under India\u2019s DPDP Act 2023."
         })}
       />
       <LegalPageShell
         title="Privacy Policy"
-        subtitle={`This Privacy Policy explains how ${LEGAL_ENTITY.product} ("we", "us", "our") collects, uses, stores, and protects your personal and family data when you use the LifeWise mobile application and website at ${LEGAL_ENTITY.domain}.`}
+        subtitle={`This Privacy Policy explains how ${LEGAL_ENTITY.company} (\u201cwe\u201d, \u201cus\u201d, \u201cour\u201d) collects, uses, stores, and protects your personal and family data when you use the ${LEGAL_ENTITY.product} mobile application (package com.lifewise) and website ${LEGAL_ENTITY.domain}.`}
       >
+        {/* Summary */}
+        <div className="glass p-5 sm:p-6 border-l-4 border-primary text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+          <strong className="text-slate-900 dark:text-white">Summary.</strong>{" "}
+          LifeWise is a family operating system for health, money, reminders, documents and safety.
+          We collect only what a feature needs. Location is shared only after you turn it on, only
+          from your own phone, and you can stop in one tap. We never sell personal data and we
+          never use it for advertising.
+        </div>
+
+        {/* 1 */}
         <LegalSection title="1. Who we are">
           <p>
-            <strong>LifeWise</strong> is a Family Operating System mobile application
-            operated for users in India through the official website{" "}
-            <strong>{LEGAL_ENTITY.domain}</strong>. We help families manage medicine
-            reminders, bills, health records, documents, insurance, and daily routines.
-          </p>
-          <p>
-            For privacy-related questions, contact us at{" "}
+            LifeWise is operated by <strong>{LEGAL_ENTITY.company}</strong>,{" "}
+            {LEGAL_ENTITY.address}. For privacy questions or requests, write to{" "}
             <a href={`mailto:${LEGAL_CONTACT_EMAIL}`} className="font-semibold text-primary hover:underline">
               {LEGAL_CONTACT_EMAIL}
             </a>
@@ -38,162 +43,306 @@ export default function PrivacyPolicyPage() {
           </p>
         </LegalSection>
 
+        {/* 2 */}
         <LegalSection title="2. Information we collect">
-          <p>Depending on how you use LifeWise, we may collect:</p>
+          <h3 className="font-semibold text-slate-900 dark:text-white">2.1 Account and profile</h3>
+          <p>
+            Name, email or phone number, sign-in identifiers (Firebase Authentication), profile
+            photo, language, and the family members you add (name, relation, age, avatar) with
+            the modules you enable for them.
+          </p>
+
+          <h3 className="font-semibold text-slate-900 dark:text-white mt-4">
+            2.2 Location data (precise and approximate)
+          </h3>
+          <p>
+            Used only by the <strong>Family Location</strong> and <strong>Work &amp; Shifts</strong>{" "}
+            features, and only after you enable them and grant the OS permission.
+          </p>
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <strong>Account information:</strong> name, email address, phone number,
-              profile photo, and login credentials (or Google/Apple sign-in identifiers).
+              <strong>What:</strong> latitude and longitude, accuracy, timestamp, speed, heading,
+              movement mode (stationary / walking / bike / car), battery percentage and charging
+              state, your Safe Places (Home, Work, School etc.), arrival/leave/stay events, and a
+              route history trail.
             </li>
             <li>
-              <strong>Family member profiles:</strong> names, relations, age, date of
-              birth, blood group, phone numbers, and module selections you add in Family
-              Hub.
+              <strong>Foreground:</strong> shown as live map, ETA and route while the app is open.
             </li>
             <li>
-              <strong>Health &amp; reminder data:</strong> medicine schedules, doctor
-              appointments, health readings (BP, sugar, weight, etc.), reminder
-              completion status, and caregiver actions.
+              <strong>Background:</strong> when you enable sharing, geofence reminders, crash
+              detection or automatic work clock in/out, location may be read while the app is
+              closed or not in use. Android shows a persistent notification and iOS shows the
+              location indicator. A prominent in-app disclosure appears before the system permission
+              prompt.
             </li>
             <li>
-              <strong>Financial &amp; bill data:</strong> bill names, due dates,
-              approximate amounts, payment history, expenses, subscriptions, and
-              insurance policy details you enter or scan.
+              <strong>Why:</strong> to show your location to viewers you choose, send
+              arrival/departure and low-battery alerts, detect a possible crash and notify emergency
+              contacts (optional auto-SOS), and record work hours at a job site you define.
             </li>
             <li>
-              <strong>Documents:</strong> files you upload (Aadhaar, PAN, passport,
-              medical records, etc.) stored securely in cloud storage.
+              <strong>Your control:</strong> sharing is Self-only (this phone can never share
+              another person&apos;s live location). You choose who can view and for how long.
+              Pause or stop in one tap. Enabling Work &amp; Shifts does not turn on Family Location
+              sharing. Work location is used on your device and is not exported in CSV files.
             </li>
             <li>
-              <strong>SMS data (optional permission):</strong> only bill and payment-related
-              SMS content to detect due dates and amounts, not for advertising.
+              <strong>Retention:</strong> route history is kept only for your plan&apos;s history
+              window (days) and then deleted. Stopping sharing stops new collection.
+            </li>
+            <li>We do not sell location data or use it for ads.</li>
+          </ul>
+
+          <h3 className="font-semibold text-slate-900 dark:text-white mt-4">
+            2.3 Health and fitness data
+          </h3>
+          <p>
+            Manually logged vitals (blood pressure, sugar, weight, heart rate, oxygen, steps,
+            sleep, water etc.), medicines, doses, stock and appointments. If you connect{" "}
+            <strong>Apple Health</strong> (HealthKit) or <strong>Health Connect</strong>, we read
+            only the data types you approve, together with source and timestamp. Health data is used
+            to show your own trends and configurable alerts — never for advertising or sold. Sharing
+            with caregivers is a separate LifeWise permission that you control.
+          </p>
+
+          <h3 className="font-semibold text-slate-900 dark:text-white mt-4">
+            2.4 Financial and payment information
+          </h3>
+          <p>
+            Expenses, bills, subscriptions, Family Money ledger entries, budgets and savings funds
+            that you enter, import or scan. Optional payment capture reads notifications from
+            allow-listed UPI apps (Google Pay, PhonePe, Paytm, BHIM) or text you paste/share.
+            We store only structured fields (amount, merchant, date, masked payee, reference hash)
+            and <strong>never store or upload raw notification or message text</strong>. Captured
+            payments go to a &ldquo;Needs your OK&rdquo; queue before posting. Bank statements you
+            import are parsed on our server for categorization and not kept after the transactions
+            you approve. We do not store card numbers, UPI PINs or bank passwords.
+          </p>
+
+          <h3 className="font-semibold text-slate-900 dark:text-white mt-4">
+            2.5 Documents and files
+          </h3>
+          <p>
+            Insurance policies, IDs, passports, vehicle documents and receipts you upload or
+            import (including via DigiLocker). Stored in encrypted cloud storage, visible only to
+            you and people you authorize.
+          </p>
+
+          <h3 className="font-semibold text-slate-900 dark:text-white mt-4">
+            2.6 Camera, photos, microphone and speech
+          </h3>
+          <p>
+            Camera and gallery are used for scanning bills, documents and receipts (OCR). Microphone
+            and speech are used for voice expense entry and voice reminders. Access is requested
+            only when you use these features.
+          </p>
+
+          <h3 className="font-semibold text-slate-900 dark:text-white mt-4">
+            2.7 Email, SMS and notification access (optional)
+          </h3>
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              <strong>Gmail:</strong> read-only access (<code>gmail.readonly</code>) limited to
+              transactional senders to detect bills and tickets. Email bodies are used for
+              classification only and are not stored on our servers. Our use of Google user data
+              follows the Google API Services User Data Policy, including the Limited Use
+              requirements.
             </li>
             <li>
-              <strong>Voice &amp; camera inputs:</strong> audio for voice reminders and
-              images for bill scan OCR, processed to create reminders.
+              <strong>SMS (Android):</strong> where enabled, transactional SMS may be read to
+              detect expenses after you accept a separate disclosure. SMS content is used only for
+              expense detection and is not shared.
             </li>
             <li>
-              <strong>WiseAI chat:</strong> text queries you send. Family context is
-              injected securely; document images are never sent to AI providers.
+              <strong>Notification access (Android):</strong> if you enable it, payment
+              notifications from allow-listed apps are read as described in §2.4.
             </li>
             <li>
-              <strong>Device &amp; usage data:</strong> device type, OS version, app
-              version, crash logs, notification tokens (FCM), and anonymised feature usage
-              to improve reliability.
+              <strong>Clipboard and share sheet:</strong> content is read only when you open the
+              app or share to LifeWise, and can be turned off in settings.
             </li>
           </ul>
+
+          <h3 className="font-semibold text-slate-900 dark:text-white mt-4">
+            2.8 Device, usage and diagnostics
+          </h3>
+          <p>
+            Device model, OS version, app version, platform, time zone, push token, feature usage
+            counts, crash and performance logs, and a device fingerprint used to prevent referral
+            fraud.
+          </p>
+
+          <h3 className="font-semibold text-slate-900 dark:text-white mt-4">2.9 Purchases</h3>
+          <p>
+            Subscriptions are processed by Apple or Google and managed through RevenueCat. We
+            receive plan status and an anonymous purchase identifier, not your card details.
+          </p>
+
+          <h3 className="font-semibold text-slate-900 dark:text-white mt-4">2.10 Biometrics</h3>
+          <p>
+            App Lock uses your device&apos;s fingerprint/face/PIN prompt. The check happens in the
+            operating system. We never receive or store biometric data or your device PIN.
+          </p>
         </LegalSection>
 
-        <LegalSection title="3. How we use your information">
+        {/* 3 */}
+        <LegalSection title="3. How we use information">
           <ul className="list-disc space-y-2 pl-5">
-            <li>To create, schedule, and deliver reminders and push notifications.</li>
-            <li>To sync data between family members and caregivers in real time.</li>
-            <li>To provide WiseAI answers about your family&apos;s reminders, bills, and health summaries.</li>
-            <li>To generate insights, reports, and Money Leak detection (Family and Pro plans).</li>
-            <li>To process subscriptions and plan billing in INR.</li>
-            <li>To provide customer support and respond to your requests.</li>
-            <li>To comply with applicable Indian laws and protect against fraud or abuse.</li>
+            <li>Provide the features you turn on and sync them across your authorized family devices.</li>
+            <li>Send reminders, alerts and notifications you enabled.</li>
+            <li>Scan documents and voice input, and power the WiseAI assistant using your app data as context.</li>
+            <li>Security, fraud prevention, debugging and improving reliability.</li>
+            <li>Process purchases and referral rewards; comply with law.</li>
           </ul>
           <p className="font-semibold text-slate-900 dark:text-white">
-            We do not sell your personal data or family health data to third parties.
+            We do not sell personal data, do not show third-party ads, and do not use health,
+            location or financial data for advertising.
           </p>
         </LegalSection>
 
-        <LegalSection title="4. SMS &amp; permissions">
+        {/* 4 */}
+        <LegalSection title="4. Data sharing">
+          <h3 className="font-semibold text-slate-900 dark:text-white">4.1 Within your family</h3>
           <p>
-            LifeWise may request permission to read SMS messages solely to detect bill,
-            electricity, mobile recharge, subscription, and bank payment alerts so we can
-            remind you before due dates. You can deny this permission and still use the app
-            by entering bills manually.
+            Data is visible to another family member or caregiver only if you (or the account
+            owner) granted them access to that specific module. Location, health and money are
+            permissioned separately.
           </p>
+
+          <h3 className="font-semibold text-slate-900 dark:text-white mt-4">4.2 Service providers</h3>
+          <p>Processors acting on our instructions:</p>
+          <div className="overflow-x-auto mt-3">
+            <table className="w-full min-w-[520px] border-collapse text-sm">
+              <thead>
+                <tr className="bg-slate-100 dark:bg-slate-800">
+                  <th className="border border-slate-200 dark:border-slate-700 px-3 py-2 text-left font-semibold">Provider</th>
+                  <th className="border border-slate-200 dark:border-slate-700 px-3 py-2 text-left font-semibold">Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Google Firebase", "Authentication, push notifications (FCM)"],
+                  ["Amazon Web Services (S3, Lightsail, Amplify)", "Hosting, file and document storage"],
+                  ["MongoDB", "Database"],
+                  ["RevenueCat, Apple, Google Play", "Subscriptions and billing"],
+                  ["OpenAI, Google Vision / Gemini", "OCR, document/voice understanding, WiseAI (only the content you submit to that feature)"],
+                  ["Twilio, Resend", "SMS/OTP and email delivery"],
+                  ["Frankfurter (ECB rates), map and flight-status providers", "Exchange rates, maps, live transit (no personal identifiers)"],
+                ].map(([provider, purpose]) => (
+                  <tr key={provider} className="even:bg-slate-50 dark:even:bg-slate-800/40">
+                    <td className="border border-slate-200 dark:border-slate-700 px-3 py-2 align-top font-medium">{provider}</td>
+                    <td className="border border-slate-200 dark:border-slate-700 px-3 py-2 align-top">{purpose}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="font-semibold text-slate-900 dark:text-white mt-4">4.3 Legal and safety</h3>
           <p>
-            We may also request notification, camera, microphone, contacts (for SOS), and
-            biometric permissions, each only for the stated feature. You can revoke
-            permissions in your device settings at any time.
+            We may disclose information if required by law, to protect someone&apos;s safety, or
+            in a business transfer, with notice to you.
           </p>
         </LegalSection>
 
-        <LegalSection title="5. Data sharing">
-          <p>We share data only when necessary:</p>
+        {/* 5 */}
+        <LegalSection title="5. Retention and deletion">
           <ul className="list-disc space-y-2 pl-5">
+            <li>Data is kept while your account is active. Location history follows your plan&apos;s retention window.</li>
             <li>
-              <strong>Caregivers you authorise:</strong> family members you connect with
-              View Only, Can Edit, or Full Access permissions.
+              Disabling a module hides it but keeps history so you can re-enable it; you can delete
+              that data at any time.
             </li>
             <li>
-              <strong>Service providers:</strong> cloud hosting, push notifications
-              (Firebase FCM), secure storage (e.g. AWS S3), analytics, and AI APIs, bound
-              by confidentiality and data-processing agreements.
+              <strong>Delete your account and data:</strong> in the app go to{" "}
+              <em>Settings &rarr; Delete account</em>, or email{" "}
+              <a href={`mailto:${LEGAL_CONTACT_EMAIL}`} className="font-semibold text-primary hover:underline">
+                {LEGAL_CONTACT_EMAIL}
+              </a>{" "}
+              from your registered address. We delete or anonymize personal data within 30 days,
+              except records we must keep by law.
             </li>
             <li>
-              <strong>Legal requirements:</strong> if required by Indian law, court order,
-              or government authority.
+              Disconnecting Apple Health / Health Connect stops new imports; you may also delete
+              imported data.
             </li>
           </ul>
         </LegalSection>
 
-        <LegalSection title="6. Data storage &amp; security">
+        {/* 6 */}
+        <LegalSection title="6. Security">
           <p>
-            Data is stored on secure servers with encryption in transit (HTTPS/TLS). We
-            apply access controls, least-privilege principles, and industry-standard
-            security practices. Document uploads are stored in encrypted cloud storage.
-          </p>
-          <p>
-            While we take reasonable measures to protect your data, no system is 100%
-            secure. Please use a strong password and enable biometric lock in the app.
+            Encryption in transit (HTTPS/TLS) and at rest for stored files, access checks on every
+            family API call, and least-privilege access for our staff. No system is perfectly
+            secure, so please protect your device and use App Lock.
           </p>
         </LegalSection>
 
-        <LegalSection title="7. Data retention &amp; deletion">
-          <ul className="list-disc space-y-2 pl-5">
-            <li>Active account data is retained while your account is in use.</li>
-            <li>Deleted family members are soft-deleted for up to 30 days, then permanently removed on request.</li>
-            <li>You may export your family data as JSON from Profile settings.</li>
-            <li>You may request full account and data deletion by emailing {LEGAL_CONTACT_EMAIL}.</li>
-          </ul>
-        </LegalSection>
-
-        <LegalSection title="8. Your rights (India)">
+        {/* 7 */}
+        <LegalSection title="7. Your choices and rights">
           <p>
-            Under applicable Indian law, including the Digital Personal Data Protection Act,
-            2023, you may have the right to access, correct, erase, and withdraw consent
-            for certain processing. To exercise these rights, contact{" "}
+            You can view, correct, export or delete your data, and withdraw any permission
+            (Location, Health, Camera, Microphone, Notifications, Gmail, SMS) in-app or in device
+            settings. Optional capture features can be turned off at any time.
+          </p>
+          <p>
+            Depending on where you live — including under India&apos;s{" "}
+            <strong>Digital Personal Data Protection Act, 2023</strong>, and GDPR/CCPA where
+            applicable — you may have additional rights. Contact{" "}
             <a href={`mailto:${LEGAL_CONTACT_EMAIL}`} className="font-semibold text-primary hover:underline">
               {LEGAL_CONTACT_EMAIL}
-            </a>
-            . We will respond within a reasonable timeframe.
+            </a>{" "}
+            to exercise them.
           </p>
         </LegalSection>
 
-        <LegalSection title="9. Children &amp; seniors">
+        {/* 8 */}
+        <LegalSection title="8. Children">
           <p>
-            LifeWise is designed for family use. Parents or adult caregivers are responsible
-            for adding minor family members and managing their data. Senior members using the
-            app should do so with assistance from family caregivers where needed.
+            LifeWise is intended for adults. Parents or guardians may add a child as a family member
+            and manage that child&apos;s data. We do not knowingly allow children under 13 to create
+            their own account. Contact us to remove data collected in error.
           </p>
         </LegalSection>
 
+        {/* 9 */}
+        <LegalSection title="9. International transfers">
+          <p>
+            Your data may be processed on servers outside your country. We use providers that apply
+            appropriate safeguards.
+          </p>
+        </LegalSection>
+
+        {/* 10 */}
         <LegalSection title="10. Changes to this policy">
           <p>
-            We may update this Privacy Policy from time to time. We will post the updated
-            version on {LEGAL_ENTITY.domain} with a revised &quot;Last updated&quot; date.
-            Continued use of LifeWise after changes constitutes acceptance of the updated
-            policy.
+            We will post updates here with a new date and notify you in-app for material changes.
+            Continued use of LifeWise after changes constitutes acceptance of the updated policy.
           </p>
         </LegalSection>
 
+        {/* 11 */}
         <LegalSection title="11. Contact us">
           <p>
-            LifeWise Privacy Team
+            {LEGAL_ENTITY.company}
+            <br />
+            {LEGAL_ENTITY.address}
             <br />
             Email:{" "}
             <a href={`mailto:${LEGAL_CONTACT_EMAIL}`} className="font-semibold text-primary hover:underline">
               {LEGAL_CONTACT_EMAIL}
             </a>
             <br />
-            Website: {LEGAL_ENTITY.website}
-            <br />
-            Country: {LEGAL_ENTITY.country}
+            Website:{" "}
+            <a
+              href={`https://${LEGAL_ENTITY.domain}`}
+              className="font-semibold text-primary hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {LEGAL_ENTITY.domain}
+            </a>
           </p>
         </LegalSection>
       </LegalPageShell>
