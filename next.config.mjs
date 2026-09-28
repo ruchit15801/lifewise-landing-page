@@ -7,10 +7,27 @@ const nextConfig = {
   compress: true,
   async redirects() {
     return [
+      // Redirect bare domain → www
       {
         source: "/:path*",
         has: [{ type: "host", value: "lifewiseee.com" }],
         destination: "https://www.lifewiseee.com/:path*",
+        permanent: true
+      },
+      // Alternate privacy policy routes → canonical
+      {
+        source: "/privacy",
+        destination: "/privacy-policy",
+        permanent: true
+      },
+      {
+        source: "/app/privacy-policy",
+        destination: "/privacy-policy",
+        permanent: true
+      },
+      {
+        source: "/app/privacy",
+        destination: "/privacy-policy",
         permanent: true
       }
     ];
