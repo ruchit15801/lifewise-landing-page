@@ -8,7 +8,7 @@ import {
   Mic, Camera, Zap, CreditCard, Globe, Users, Lock, Activity,
   TrendingUp, CheckCircle2, ChevronRight, Sparkles, Timer,
   RefreshCw, BatteryMedium, Navigation, AlertTriangle, PiggyBank,
-  QrCode, BarChart3, Star,
+  QrCode, BarChart3, Star, Info, Play, CheckSquare, Clock, ArrowRight
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -20,69 +20,274 @@ interface Mod {
   label: string;
   group: ModuleGroup;
   icon: React.ComponentType<{ className?: string }>;
-  // tailwind classes
   iconBg: string;
   iconBorder: string;
   iconColor: string;
-  badgeBg: string;
-  badgeBorder: string;
-  badgeText: string;
-  exBg: string;
-  exBorder: string;
-  exText: string;
   tagline: string;
-  example: string;
+  exampleUI: React.ReactNode;
+}
+
+// ─── Mini UI Helpers for Hover Examples ───────────────────────────────────────
+
+function MiniTask({ title, subtitle, member, initials, color, done }: { title: string; subtitle: string; member: string; initials: string; color: string; done?: boolean }) {
+  return (
+    <div className="flex items-center gap-2.5 rounded-xl border border-slate-100 bg-slate-50 p-2 shadow-sm dark:border-slate-700/50 dark:bg-slate-800/50">
+      <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${color}`}>
+        {initials}
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="truncate text-[11px] font-bold text-slate-900 dark:text-white leading-tight">{title}</div>
+        <div className="flex items-center gap-1 mt-0.5">
+          <span className="text-[9px] font-medium text-slate-500 dark:text-slate-400">{subtitle}</span>
+          <span className="text-[8px] text-slate-300 dark:text-slate-600">•</span>
+          <span className="text-[9px] font-bold text-slate-600 dark:text-slate-300">{member}</span>
+        </div>
+      </div>
+      <div className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${done ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-slate-300 bg-white dark:border-slate-600 dark:bg-slate-700'}`}>
+        {done && <CheckCircle2 className="h-3 w-3" />}
+      </div>
+    </div>
+  );
+}
+
+function MiniAlert({ title, desc, icon: Icon, color, bg, pulse, action }: { title: string; desc: string; icon: any; color: string; bg: string; pulse?: boolean; action?: string }) {
+  return (
+    <div className="flex flex-col gap-1.5 rounded-xl border border-slate-100 bg-white p-2 shadow-sm dark:border-slate-700/50 dark:bg-slate-800/80">
+      <div className="flex items-start gap-2">
+        <div className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg ${bg} ${color}`}>
+          <Icon className={`h-3.5 w-3.5 ${pulse ? 'animate-pulse' : ''}`} />
+        </div>
+        <div className="flex-1">
+          <div className="text-[11px] font-bold text-slate-900 dark:text-white leading-tight">{title}</div>
+          <div className="text-[9px] font-medium text-slate-500 dark:text-slate-400 leading-snug">{desc}</div>
+        </div>
+      </div>
+      {action && (
+        <div className="mt-0.5 w-full rounded-md bg-slate-50 py-1 text-center text-[9px] font-bold text-indigo-600 dark:bg-slate-700/50 dark:text-indigo-400">
+          {action}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MiniDataCard({ topL, topR, main, sub, icon: Icon, color }: { topL: string; topR?: string; main: string; sub: string; icon: any; color: string }) {
+  return (
+    <div className="relative overflow-hidden rounded-xl border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-2.5 shadow-sm dark:border-slate-700/50 dark:from-slate-800 dark:to-slate-800/80">
+      <div className="flex items-center justify-between mb-1.5">
+        <div className="flex items-center gap-1.5">
+          <Icon className={`h-3 w-3 ${color}`} />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500">{topL}</span>
+        </div>
+        {topR && <span className="text-[9px] font-bold text-slate-400">{topR}</span>}
+      </div>
+      <div className="text-[14px] font-black text-slate-900 dark:text-white leading-none mb-1">{main}</div>
+      <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">{sub}</div>
+    </div>
+  );
 }
 
 // ─── Module Data ──────────────────────────────────────────────────────────────
 
 const GROUP_PILL: Record<ModuleGroup, string> = {
-  Care: "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/25",
-  Money: "bg-amber-50  text-amber-700  border-amber-200  dark:bg-amber-500/10  dark:text-amber-400  dark:border-amber-500/25",
-  Daily: "bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-500/10 dark:text-violet-400 dark:border-violet-500/25",
-  Home: "bg-rose-50   text-rose-700   border-rose-200   dark:bg-rose-500/10   dark:text-rose-400   dark:border-rose-500/25",
+  Care: "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/30",
+  Money: "bg-amber-50  text-amber-700  border-amber-200  dark:bg-amber-500/10  dark:text-amber-400  dark:border-amber-500/30",
+  Daily: "bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-500/10 dark:text-violet-400 dark:border-violet-500/30",
+  Home: "bg-rose-50   text-rose-700   border-rose-200   dark:bg-rose-500/10   dark:text-rose-400   dark:border-rose-500/30",
 };
-
-function m(
-  key: string, label: string, group: ModuleGroup,
-  icon: Mod["icon"],
-  c: { ic: string; ib: string; ibr: string; bb: string; bbr: string; bt: string; eb: string; ebr: string; et: string },
-  tagline: string, example: string,
-): Mod {
-  return { key, label, group, icon, iconBg: c.ib, iconBorder: c.ibr, iconColor: c.ic, badgeBg: c.bb, badgeBorder: c.bbr, badgeText: c.bt, exBg: c.eb, exBorder: c.ebr, exText: c.et, tagline, example };
-}
 
 const MODS: Mod[] = [
   // ── Care ──────────────────────────────────────────────────────────────────
-  m("medicines", "Medicines", "Care", Pill, { ic: "text-violet-600 dark:text-violet-400", ib: "bg-violet-50 dark:bg-violet-500/10", ibr: "border-violet-200 dark:border-violet-500/20", bb: "bg-violet-50 dark:bg-violet-500/10", bbr: "border-violet-200 dark:border-violet-500/20", bt: "text-violet-700 dark:text-violet-300", eb: "bg-violet-50/70 dark:bg-violet-500/5", ebr: "border-violet-100 dark:border-violet-500/15", et: "text-violet-700 dark:text-violet-300" }, "Dose schedule + caregiver mark-done", "Papa's Metformin 500mg at 8 AM & 8 PM  caregiver confirms remotely"),
-  m("stock", "Med Stock", "Care", Activity, { ic: "text-rose-600 dark:text-rose-400", ib: "bg-rose-50 dark:bg-rose-500/10", ibr: "border-rose-200 dark:border-rose-500/20", bb: "bg-rose-50 dark:bg-rose-500/10", bbr: "border-rose-200 dark:border-rose-500/20", bt: "text-rose-700 dark:text-rose-300", eb: "bg-rose-50/70 dark:bg-rose-500/5", ebr: "border-rose-100 dark:border-rose-500/15", et: "text-rose-700 dark:text-rose-300" }, "Low-stock alerts → pharmacy deep links", "5 tablets left → 'Metformin running low. Refill from Apollo?'"),
-  m("appointments", "Appointments", "Care", CalendarClock, { ic: "text-sky-600 dark:text-sky-400", ib: "bg-sky-50 dark:bg-sky-500/10", ibr: "border-sky-200 dark:border-sky-500/20", bb: "bg-sky-50 dark:bg-sky-500/10", bbr: "border-sky-200 dark:border-sky-500/20", bt: "text-sky-700 dark:text-sky-300", eb: "bg-sky-50/70 dark:bg-sky-500/5", ebr: "border-sky-100 dark:border-sky-500/15", et: "text-sky-700 dark:text-sky-300" }, "Doctor visits, follow-ups & reminders", "Mom's cardio checkup Oct 5 → reminder 1 day + 1 hour before"),
-  m("health", "Health", "Care", HeartPulse, { ic: "text-emerald-600 dark:text-emerald-400", ib: "bg-emerald-50 dark:bg-emerald-500/10", ibr: "border-emerald-200 dark:border-emerald-500/20", bb: "bg-emerald-50 dark:bg-emerald-500/10", bbr: "border-emerald-200 dark:border-emerald-500/20", bt: "text-emerald-700 dark:text-emerald-300", eb: "bg-emerald-50/70 dark:bg-emerald-500/5", ebr: "border-emerald-100 dark:border-emerald-500/15", et: "text-emerald-700 dark:text-emerald-300" }, "Vitals + Apple Health / Health Connect sync", "Apple Watch syncs heart rate 72 bpm → 'Synced 3 min ago'"),
-  m("emergency", "Emergency", "Care", ShieldCheck, { ic: "text-red-600 dark:text-red-400", ib: "bg-red-50 dark:bg-red-500/10", ibr: "border-red-200 dark:border-red-500/20", bb: "bg-red-50 dark:bg-red-500/10", bbr: "border-red-200 dark:border-red-500/20", bt: "text-red-700 dark:text-red-300", eb: "bg-red-50/70 dark:bg-red-500/5", ebr: "border-red-100 dark:border-red-500/15", et: "text-red-700 dark:text-red-300" }, "SOS circle, Medical ID (never paywalled)", "Crash detected → 'Possible crash. Send SOS?' → Ruchit notified"),
-  m("diet", "Diet & Food", "Care", UtensilsCrossed, { ic: "text-orange-600 dark:text-orange-400", ib: "bg-orange-50 dark:bg-orange-500/10", ibr: "border-orange-200 dark:border-orange-500/20", bb: "bg-orange-50 dark:bg-orange-500/10", bbr: "border-orange-200 dark:border-orange-500/20", bt: "text-orange-700 dark:text-orange-300", eb: "bg-orange-50/70 dark:bg-orange-500/5", ebr: "border-orange-100 dark:border-orange-500/15", et: "text-orange-700 dark:text-orange-300" }, "Meal logging + offline kcal lookup", "Log 'Poha' → 180 kcal + emoji auto-matched from Indian food DB"),
-  m("fitness", "Fitness", "Care", Dumbbell, { ic: "text-lime-600 dark:text-lime-400", ib: "bg-lime-50 dark:bg-lime-500/10", ibr: "border-lime-200 dark:border-lime-500/20", bb: "bg-lime-50 dark:bg-lime-500/10", bbr: "border-lime-200 dark:border-lime-500/20", bt: "text-lime-700 dark:text-lime-300", eb: "bg-lime-50/70 dark:bg-lime-500/5", ebr: "border-lime-100 dark:border-lime-500/15", et: "text-lime-700 dark:text-lime-300" }, "Workouts, streaks & automation nudges", "No workout in 5 days → 'Nudge Aarav?' push sent to family"),
-  m("wellness", "Wellness", "Care", Brain, { ic: "text-fuchsia-600 dark:text-fuchsia-400", ib: "bg-fuchsia-50 dark:bg-fuchsia-500/10", ibr: "border-fuchsia-200 dark:border-fuchsia-500/20", bb: "bg-fuchsia-50 dark:bg-fuchsia-500/10", bbr: "border-fuchsia-200 dark:border-fuchsia-500/20", bt: "text-fuchsia-700 dark:text-fuchsia-300", eb: "bg-fuchsia-50/70 dark:bg-fuchsia-500/5", ebr: "border-fuchsia-100 dark:border-fuchsia-500/15", et: "text-fuchsia-700 dark:text-fuchsia-300" }, "Mood tracking + self-care reminders", "Daily mood check-in + 'Remember to breathe' reminder at 10 PM"),
+  {
+    key: "medicines", label: "Medicines", group: "Care", icon: Pill,
+    iconBg: "bg-violet-50 dark:bg-violet-500/10", iconBorder: "border-violet-200 dark:border-violet-500/20", iconColor: "text-violet-600 dark:text-violet-400",
+    tagline: "Dose schedule + caregiver mark-done",
+    exampleUI: <MiniTask title="Metformin 500mg" subtitle="8:00 PM" member="Papa" initials="P" color="bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-400" done={true} />
+  },
+  {
+    key: "stock", label: "Med Stock", group: "Care", icon: Activity,
+    iconBg: "bg-rose-50 dark:bg-rose-500/10", iconBorder: "border-rose-200 dark:border-rose-500/20", iconColor: "text-rose-600 dark:text-rose-400",
+    tagline: "Low-stock alerts → pharmacy deep links",
+    exampleUI: <MiniAlert title="Metformin Low" desc="Only 5 tablets left." icon={Activity} color="text-rose-600" bg="bg-rose-100 dark:bg-rose-500/20" pulse action="Refill from Apollo 1mg" />
+  },
+  {
+    key: "appointments", label: "Appointments", group: "Care", icon: CalendarClock,
+    iconBg: "bg-sky-50 dark:bg-sky-500/10", iconBorder: "border-sky-200 dark:border-sky-500/20", iconColor: "text-sky-600 dark:text-sky-400",
+    tagline: "Doctor visits, follow-ups & reminders",
+    exampleUI: <MiniTask title="Cardio Checkup" subtitle="Tomorrow, 10:00 AM" member="Mummy" initials="M" color="bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400" />
+  },
+  {
+    key: "health", label: "Health", group: "Care", icon: HeartPulse,
+    iconBg: "bg-emerald-50 dark:bg-emerald-500/10", iconBorder: "border-emerald-200 dark:border-emerald-500/20", iconColor: "text-emerald-600 dark:text-emerald-400",
+    tagline: "Vitals + Apple Health / Health Connect sync",
+    exampleUI: <MiniDataCard topL="Apple Watch" topR="Just now" main="72 bpm" sub="Resting Heart Rate" icon={HeartPulse} color="text-emerald-500" />
+  },
+  {
+    key: "emergency", label: "Emergency", group: "Care", icon: ShieldCheck,
+    iconBg: "bg-red-50 dark:bg-red-500/10", iconBorder: "border-red-200 dark:border-red-500/20", iconColor: "text-red-600 dark:text-red-400",
+    tagline: "SOS circle, Medical ID (never paywalled)",
+    exampleUI: <MiniAlert title="Possible Crash Detected" desc="High-speed impact registered." icon={AlertTriangle} color="text-red-600" bg="bg-red-100 dark:bg-red-500/20" pulse action="Slide to send SOS" />
+  },
+  {
+    key: "diet", label: "Diet & Food", group: "Care", icon: UtensilsCrossed,
+    iconBg: "bg-orange-50 dark:bg-orange-500/10", iconBorder: "border-orange-200 dark:border-orange-500/20", iconColor: "text-orange-600 dark:text-orange-400",
+    tagline: "Meal logging + offline kcal lookup",
+    exampleUI: <MiniDataCard topL="Breakfast" topR="Mummy" main="Poha 🍲" sub="~180 kcal logged" icon={UtensilsCrossed} color="text-orange-500" />
+  },
+  {
+    key: "fitness", label: "Fitness", group: "Care", icon: Dumbbell,
+    iconBg: "bg-lime-50 dark:bg-lime-500/10", iconBorder: "border-lime-200 dark:border-lime-500/20", iconColor: "text-lime-600 dark:text-lime-400",
+    tagline: "Workouts, streaks & automation nudges",
+    exampleUI: <MiniAlert title="Streak Lost" desc="No workout in 5 days for Aarav." icon={Dumbbell} color="text-lime-600" bg="bg-lime-100 dark:bg-lime-500/20" action="Send a Nudge" />
+  },
+  {
+    key: "wellness", label: "Wellness", group: "Care", icon: Brain,
+    iconBg: "bg-fuchsia-50 dark:bg-fuchsia-500/10", iconBorder: "border-fuchsia-200 dark:border-fuchsia-500/20", iconColor: "text-fuchsia-600 dark:text-fuchsia-400",
+    tagline: "Mood tracking + self-care reminders",
+    exampleUI: <MiniAlert title="Daily Check-in" desc="How are you feeling today?" icon={Brain} color="text-fuchsia-600" bg="bg-fuchsia-100 dark:bg-fuchsia-500/20" action="Log Mood 😊" />
+  },
   // ── Money ─────────────────────────────────────────────────────────────────
-  m("bills", "Bills", "Money", Receipt, { ic: "text-amber-600 dark:text-amber-400", ib: "bg-amber-50 dark:bg-amber-500/10", ibr: "border-amber-200 dark:border-amber-500/20", bb: "bg-amber-50 dark:bg-amber-500/10", bbr: "border-amber-200 dark:border-amber-500/20", bt: "text-amber-700 dark:text-amber-300", eb: "bg-amber-50/70 dark:bg-amber-500/5", ebr: "border-amber-100 dark:border-amber-500/15", et: "text-amber-700 dark:text-amber-300" }, "Due bills, separate from Family Money", "Electricity ₹2,400 due 15 Oct → Mark Paid → 'Add to Family Money?'"),
-  m("subscriptions", "Subscriptions", "Money", CreditCard, { ic: "text-indigo-600 dark:text-indigo-400", ib: "bg-indigo-50 dark:bg-indigo-500/10", ibr: "border-indigo-200 dark:border-indigo-500/20", bb: "bg-indigo-50 dark:bg-indigo-500/10", bbr: "border-indigo-200 dark:border-indigo-500/20", bt: "text-indigo-700 dark:text-indigo-300", eb: "bg-indigo-50/70 dark:bg-indigo-500/5", ebr: "border-indigo-100 dark:border-indigo-500/15", et: "text-indigo-700 dark:text-indigo-300" }, "OTT & renewal tracking per member", "Netflix ₹649/mo renewal on 20th → alert 3 days before"),
-  m("expenses", "Family Money", "Money", Wallet, { ic: "text-teal-600 dark:text-teal-400", ib: "bg-teal-50 dark:bg-teal-500/10", ibr: "border-teal-200 dark:border-teal-500/20", bb: "bg-teal-50 dark:bg-teal-500/10", bbr: "border-teal-200 dark:border-teal-500/20", bt: "text-teal-700 dark:text-teal-300", eb: "bg-teal-50/70 dark:bg-teal-500/5", ebr: "border-teal-100 dark:border-teal-500/15", et: "text-teal-700 dark:text-teal-300" }, "Shared khata, splits, settle. Auto-capture.", "Dad ₹10,000 groceries + Ruchit ₹2,000 dinner = ₹12,000 family"),
-  m("insurance", "Insurance & Docs", "Money", FileText, { ic: "text-blue-600 dark:text-blue-400", ib: "bg-blue-50 dark:bg-blue-500/10", ibr: "border-blue-200 dark:border-blue-500/20", bb: "bg-blue-50 dark:bg-blue-500/10", bbr: "border-blue-200 dark:border-blue-500/20", bt: "text-blue-700 dark:text-blue-300", eb: "bg-blue-50/70 dark:bg-blue-500/5", ebr: "border-blue-100 dark:border-blue-500/15", et: "text-blue-700 dark:text-blue-300" }, "Vault + Quick Card + family coverage glance", "Mom's health insurance expires Nov 15 → 30 / 7 / 1-day alerts"),
-  m("digitalKeys", "Digital Keys", "Money", Key, { ic: "text-yellow-600 dark:text-yellow-400", ib: "bg-yellow-50 dark:bg-yellow-500/10", ibr: "border-yellow-200 dark:border-yellow-500/20", bb: "bg-yellow-50 dark:bg-yellow-500/10", bbr: "border-yellow-200 dark:border-yellow-500/20", bt: "text-yellow-700 dark:text-yellow-300", eb: "bg-yellow-50/70 dark:bg-yellow-500/5", ebr: "border-yellow-100 dark:border-yellow-500/15", et: "text-yellow-700 dark:text-yellow-300" }, "Wifi, gate codes, household secrets", "Home WiFi, gate OTP, society code  encrypted & family-shared"),
+  {
+    key: "bills", label: "Bills", group: "Money", icon: Receipt,
+    iconBg: "bg-amber-50 dark:bg-amber-500/10", iconBorder: "border-amber-200 dark:border-amber-500/20", iconColor: "text-amber-600 dark:text-amber-400",
+    tagline: "Due bills, separate from Family Money",
+    exampleUI: (
+      <div className="flex items-center justify-between rounded-xl border border-slate-100 bg-white p-2.5 shadow-sm dark:border-slate-700/50 dark:bg-slate-800">
+        <div>
+          <div className="text-[11px] font-bold text-slate-900 dark:text-white">Electricity Bill</div>
+          <div className="text-[10px] font-black text-amber-600 dark:text-amber-400 mt-0.5">₹2,400 <span className="font-medium text-slate-500">· Due Oct 15</span></div>
+        </div>
+        <div className="rounded-lg bg-indigo-600 px-3 py-1.5 text-[9px] font-bold text-white">Pay UPI</div>
+      </div>
+    )
+  },
+  {
+    key: "subscriptions", label: "Subscriptions", group: "Money", icon: CreditCard,
+    iconBg: "bg-indigo-50 dark:bg-indigo-500/10", iconBorder: "border-indigo-200 dark:border-indigo-500/20", iconColor: "text-indigo-600 dark:text-indigo-400",
+    tagline: "OTT & renewal tracking per member",
+    exampleUI: <MiniDataCard topL="Netflix" topR="Ruchit" main="₹649/mo" sub="Renews in 3 days" icon={Play} color="text-red-500" />
+  },
+  {
+    key: "expenses", label: "Family Money", group: "Money", icon: Wallet,
+    iconBg: "bg-teal-50 dark:bg-teal-500/10", iconBorder: "border-teal-200 dark:border-teal-500/20", iconColor: "text-teal-600 dark:text-teal-400",
+    tagline: "Shared khata, splits, settle. Auto-capture.",
+    exampleUI: (
+      <div className="rounded-xl border border-slate-100 bg-gradient-to-r from-teal-500 to-emerald-500 p-2.5 text-white shadow-sm">
+        <div className="text-[9px] font-black uppercase tracking-widest opacity-80 mb-1">Total Khata</div>
+        <div className="text-[16px] font-black mb-1">₹12,000</div>
+        <div className="flex justify-between text-[8px] font-medium opacity-90">
+          <span>Dad: ₹10k (Groceries)</span>
+          <span>Ruchit: ₹2k</span>
+        </div>
+      </div>
+    )
+  },
+  {
+    key: "insurance", label: "Insurance & Docs", group: "Money", icon: FileText,
+    iconBg: "bg-blue-50 dark:bg-blue-500/10", iconBorder: "border-blue-200 dark:border-blue-500/20", iconColor: "text-blue-600 dark:text-blue-400",
+    tagline: "Vault + Quick Card + family coverage glance",
+    exampleUI: <MiniAlert title="Mom's Health Insurance" desc="Policy expires in 30 days." icon={ShieldCheck} color="text-blue-600" bg="bg-blue-100 dark:bg-blue-500/20" action="Renew Policy" />
+  },
+  {
+    key: "digitalKeys", label: "Digital Keys", group: "Money", icon: Key,
+    iconBg: "bg-yellow-50 dark:bg-yellow-500/10", iconBorder: "border-yellow-200 dark:border-yellow-500/20", iconColor: "text-yellow-600 dark:text-yellow-400",
+    tagline: "Wifi, gate codes, household secrets",
+    exampleUI: (
+      <div className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-900 p-2.5 shadow-sm dark:bg-black">
+        <div>
+          <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Home WiFi</div>
+          <div className="text-[12px] font-bold text-white mt-0.5">LifeWise_5G</div>
+        </div>
+        <div className="rounded-lg bg-white/20 px-3 py-1.5 text-[9px] font-bold text-white">Copy Pwd</div>
+      </div>
+    )
+  },
   // ── Daily ─────────────────────────────────────────────────────────────────
-  m("routine", "Daily Routine", "Daily", RefreshCw, { ic: "text-cyan-600 dark:text-cyan-400", ib: "bg-cyan-50 dark:bg-cyan-500/10", ibr: "border-cyan-200 dark:border-cyan-500/20", bb: "bg-cyan-50 dark:bg-cyan-500/10", bbr: "border-cyan-200 dark:border-cyan-500/20", bt: "text-cyan-700 dark:text-cyan-300", eb: "bg-cyan-50/70 dark:bg-cyan-500/5", ebr: "border-cyan-100 dark:border-cyan-500/15", et: "text-cyan-700 dark:text-cyan-300" }, "Timed routines with completion tracking", "Mom: 7AM Walk → 8AM Medicine → 9PM Sleep. Caregiver sees ✓"),
-  m("tasks", "Tasks", "Daily", CheckCircle2, { ic: "text-green-600 dark:text-green-400", ib: "bg-green-50 dark:bg-green-500/10", ibr: "border-green-200 dark:border-green-500/20", bb: "bg-green-50 dark:bg-green-500/10", bbr: "border-green-200 dark:border-green-500/20", bt: "text-green-700 dark:text-green-300", eb: "bg-green-50/70 dark:bg-green-500/5", ebr: "border-green-100 dark:border-green-500/15", et: "text-green-700 dark:text-green-300" }, "Custom tasks + reminders across modules", "Get Aarav's school report → reminder on 10th at 9 AM"),
-  m("checkin", "Check-in", "Daily", Bell, { ic: "text-pink-600 dark:text-pink-400", ib: "bg-pink-50 dark:bg-pink-500/10", ibr: "border-pink-200 dark:border-pink-500/20", bb: "bg-pink-50 dark:bg-pink-500/10", bbr: "border-pink-200 dark:border-pink-500/20", bt: "text-pink-700 dark:text-pink-300", eb: "bg-pink-50/70 dark:bg-pink-500/5", ebr: "border-pink-100 dark:border-pink-500/15", et: "text-pink-700 dark:text-pink-300" }, "I'm OK tap + scheduled call reminders", "Mom taps 'I'm OK' → Ruchit notified. No call needed."),
-  m("work", "Work & Shifts", "Daily", Briefcase, { ic: "text-slate-700 dark:text-slate-300", ib: "bg-slate-100 dark:bg-slate-700/40", ibr: "border-slate-300 dark:border-slate-600/40", bb: "bg-slate-100 dark:bg-slate-700/40", bbr: "border-slate-300 dark:border-slate-600/40", bt: "text-slate-700 dark:text-slate-300", eb: "bg-slate-50/70 dark:bg-slate-700/20", ebr: "border-slate-200 dark:border-slate-600/20", et: "text-slate-700 dark:text-slate-300" }, "Clock in/out, away prompt, week totals, CSV", "Clock in 9:02 AM → away 6:15 PM → 'Shift over' → 9h 13min"),
-  m("travel", "Travel & Visits", "Daily", Plane, { ic: "text-violet-600 dark:text-violet-400", ib: "bg-violet-50 dark:bg-violet-500/10", ibr: "border-violet-200 dark:border-violet-500/20", bb: "bg-violet-50 dark:bg-violet-500/10", bbr: "border-violet-200 dark:border-violet-500/20", bt: "text-violet-700 dark:text-violet-300", eb: "bg-violet-50/70 dark:bg-violet-500/5", ebr: "border-violet-100 dark:border-violet-500/15", et: "text-violet-700 dark:text-violet-300" }, "Visits + Family Trips readiness checklist", "Dad's Dubai flight 10 Oct → countdown + visa: eVisa (ready)"),
-  m("study", "Study", "Daily", BookOpen, { ic: "text-blue-600 dark:text-blue-400", ib: "bg-blue-50 dark:bg-blue-500/10", ibr: "border-blue-200 dark:border-blue-500/20", bb: "bg-blue-50 dark:bg-blue-500/10", bbr: "border-blue-200 dark:border-blue-500/20", bt: "text-blue-700 dark:text-blue-300", eb: "bg-blue-50/70 dark:bg-blue-500/5", ebr: "border-blue-100 dark:border-blue-500/15", et: "text-blue-700 dark:text-blue-300" }, "Homework, exams & education deadlines", "Aarav's Math exam 15 Oct → 3-day advance reminders"),
+  {
+    key: "routine", label: "Daily Routine", group: "Daily", icon: RefreshCw,
+    iconBg: "bg-cyan-50 dark:bg-cyan-500/10", iconBorder: "border-cyan-200 dark:border-cyan-500/20", iconColor: "text-cyan-600 dark:text-cyan-400",
+    tagline: "Timed routines with completion tracking",
+    exampleUI: (
+      <div className="flex flex-col gap-1.5 rounded-xl border border-slate-100 bg-white p-2 shadow-sm dark:border-slate-700/50 dark:bg-slate-800">
+        <div className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-500" /><span className="text-[10px] font-semibold text-slate-500 line-through">7:00 AM Walk</span></div>
+        <div className="flex items-center gap-2"><Clock className="h-3 w-3 text-amber-500" /><span className="text-[10px] font-bold text-slate-900 dark:text-white">8:00 AM Meds</span></div>
+      </div>
+    )
+  },
+  {
+    key: "tasks", label: "Tasks", group: "Daily", icon: CheckSquare,
+    iconBg: "bg-green-50 dark:bg-green-500/10", iconBorder: "border-green-200 dark:border-green-500/20", iconColor: "text-green-600 dark:text-green-400",
+    tagline: "Custom tasks + reminders across modules",
+    exampleUI: <MiniTask title="School Report Card" subtitle="Due 10th · 9:00 AM" member="Aarav" initials="A" color="bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400" />
+  },
+  {
+    key: "checkin", label: "Check-in", group: "Daily", icon: Bell,
+    iconBg: "bg-pink-50 dark:bg-pink-500/10", iconBorder: "border-pink-200 dark:border-pink-500/20", iconColor: "text-pink-600 dark:text-pink-400",
+    tagline: "I'm OK tap + scheduled call reminders",
+    exampleUI: (
+      <div className="flex items-center gap-2.5 rounded-xl border border-slate-100 bg-pink-500 p-2 text-white shadow-sm">
+        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 font-bold text-[10px]">M</div>
+        <div>
+          <div className="text-[11px] font-bold">"I'm OK" 👋</div>
+          <div className="text-[9px] font-medium opacity-80">Mom · Sent 10 mins ago</div>
+        </div>
+      </div>
+    )
+  },
+  {
+    key: "work", label: "Work & Shifts", group: "Daily", icon: Briefcase,
+    iconBg: "bg-slate-100 dark:bg-slate-700/40", iconBorder: "border-slate-300 dark:border-slate-600/40", iconColor: "text-slate-700 dark:text-slate-300",
+    tagline: "Clock in/out, away prompt, week totals, CSV",
+    exampleUI: <MiniDataCard topL="Shift Active" topR="Ruchit" main="09h 13m" sub="Clocked in at 9:02 AM" icon={Briefcase} color="text-slate-500" />
+  },
+  {
+    key: "travel", label: "Travel & Visits", group: "Daily", icon: Plane,
+    iconBg: "bg-violet-50 dark:bg-violet-500/10", iconBorder: "border-violet-200 dark:border-violet-500/20", iconColor: "text-violet-600 dark:text-violet-400",
+    tagline: "Visits + Family Trips readiness checklist",
+    exampleUI: <MiniDataCard topL="Dubai Trip" topR="Oct 10" main="IndiGo 6E 204" sub="Visa: Ready ✅" icon={Plane} color="text-violet-500" />
+  },
+  {
+    key: "study", label: "Study", group: "Daily", icon: BookOpen,
+    iconBg: "bg-blue-50 dark:bg-blue-500/10", iconBorder: "border-blue-200 dark:border-blue-500/20", iconColor: "text-blue-600 dark:text-blue-400",
+    tagline: "Homework, exams & education deadlines",
+    exampleUI: <MiniTask title="Math Final Exam" subtitle="In 3 days" member="Aarav" initials="A" color="bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400" />
+  },
   // ── Home ──────────────────────────────────────────────────────────────────
-  m("vehicles", "Vehicles", "Home", Car, { ic: "text-orange-600 dark:text-orange-400", ib: "bg-orange-50 dark:bg-orange-500/10", ibr: "border-orange-200 dark:border-orange-500/20", bb: "bg-orange-50 dark:bg-orange-500/10", bbr: "border-orange-200 dark:border-orange-500/20", bt: "text-orange-700 dark:text-orange-300", eb: "bg-orange-50/70 dark:bg-orange-500/5", ebr: "border-orange-100 dark:border-orange-500/15", et: "text-orange-700 dark:text-orange-300" }, "RC, insurance, PUC, EMI & service records", "Scan RC → MH12AB1234 · Swift · Insurance exp 20 Dec auto-filled"),
-  m("homeMaintenance", "Home Maint.", "Home", Home, { ic: "text-emerald-600 dark:text-emerald-400", ib: "bg-emerald-50 dark:bg-emerald-500/10", ibr: "border-emerald-200 dark:border-emerald-500/20", bb: "bg-emerald-50 dark:bg-emerald-500/10", bbr: "border-emerald-200 dark:border-emerald-500/20", bt: "text-emerald-700 dark:text-emerald-300", eb: "bg-emerald-50/70 dark:bg-emerald-500/5", ebr: "border-emerald-100 dark:border-emerald-500/15", et: "text-emerald-700 dark:text-emerald-300" }, "AMC, appliance reminders, service schedule", "AC service due 1 Nov → reminder 3 days before + Detail Assist tips"),
-  m("location", "Family Location", "Home", MapPin, { ic: "text-rose-600 dark:text-rose-400", ib: "bg-rose-50 dark:bg-rose-500/10", ibr: "border-rose-200 dark:border-rose-500/20", bb: "bg-rose-50 dark:bg-rose-500/10", bbr: "border-rose-200 dark:border-rose-500/20", bt: "text-rose-700 dark:text-rose-300", eb: "bg-rose-50/70 dark:bg-rose-500/5", ebr: "border-rose-100 dark:border-rose-500/15", et: "text-rose-700 dark:text-rose-300" }, "Consent map, battery monitor & vehicle pin", "Aarav at 45 km/h → car pin glides on map, battery 32% chip shown"),
+  {
+    key: "vehicles", label: "Vehicles", group: "Home", icon: Car,
+    iconBg: "bg-orange-50 dark:bg-orange-500/10", iconBorder: "border-orange-200 dark:border-orange-500/20", iconColor: "text-orange-600 dark:text-orange-400",
+    tagline: "RC, insurance, PUC, EMI & service records",
+    exampleUI: <MiniDataCard topL="MH12AB1234" topR="Swift" main="RC Active ✓" sub="Insurance exp Dec 20" icon={Car} color="text-orange-500" />
+  },
+  {
+    key: "homeMaintenance", label: "Home Maint.", group: "Home", icon: Home,
+    iconBg: "bg-emerald-50 dark:bg-emerald-500/10", iconBorder: "border-emerald-200 dark:border-emerald-500/20", iconColor: "text-emerald-600 dark:text-emerald-400",
+    tagline: "AMC, appliance reminders, service schedule",
+    exampleUI: <MiniAlert title="AC Service Due" desc="Scheduled for Nov 1." icon={Home} color="text-emerald-600" bg="bg-emerald-100 dark:bg-emerald-500/20" action="View Detail Assist" />
+  },
+  {
+    key: "location", label: "Family Location", group: "Home", icon: MapPin,
+    iconBg: "bg-rose-50 dark:bg-rose-500/10", iconBorder: "border-rose-200 dark:border-rose-500/20", iconColor: "text-rose-600 dark:text-rose-400",
+    tagline: "Consent map, battery monitor & vehicle pin",
+    exampleUI: (
+      <div className="flex items-center gap-2.5 rounded-xl border border-rose-100 bg-rose-50/50 p-2 shadow-sm dark:border-rose-500/20 dark:bg-rose-500/10">
+        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-100 font-bold text-[10px] text-amber-700 dark:bg-amber-500/20 dark:text-amber-400">A</div>
+        <div className="flex-1">
+          <div className="text-[11px] font-bold text-slate-900 dark:text-white">Aarav</div>
+          <div className="flex items-center gap-1.5 mt-0.5">
+            <span className="text-[9px] font-medium text-slate-500">45 km/h 🚗</span>
+            <span className="text-[8px] text-slate-300">•</span>
+            <span className="text-[9px] font-medium text-slate-500 flex items-center gap-0.5"><BatteryMedium className="h-2.5 w-2.5 text-green-500" /> 32%</span>
+          </div>
+        </div>
+        <div className="h-5 w-5 rounded-full bg-rose-100 flex items-center justify-center dark:bg-rose-500/20"><MapPin className="h-3 w-3 text-rose-500" /></div>
+      </div>
+    )
+  },
 ];
 
 const SMART = [
-  { id: "wiseai", icon: Sparkles, label: "WiseAI Assistant", grad: "from-violet-500 to-indigo-600", tc: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-500/10", br: "border-violet-200 dark:border-violet-500/20", tagline: "In-app AI scoped only to LifeWise data", points: ["Spending insights on demand", "30+ deep-link actions", "Bills, health & family context", "Never leaves the app"], q: "Who spent the most this month?", a: "Dad  ₹15,200 (groceries + transport)" },
+  { id: "wiseai", icon: Sparkles, label: "WiseAI Assistant", grad: "from-violet-500 to-indigo-600", tc: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-500/10", br: "border-violet-200 dark:border-violet-500/20", tagline: "In-app AI scoped only to LifeWise data", points: ["Spending insights on demand", "30+ deep-link actions", "Bills, health & family context", "Never leaves the app"], q: "Who spent the most this month?", a: "Dad — ₹15,200 (groceries + transport)" },
   { id: "voice", icon: Mic, label: "Voice Entry", grad: "from-rose-500 to-pink-600", tc: "text-rose-600 dark:text-rose-400", bg: "bg-rose-50 dark:bg-rose-500/10", br: "border-rose-200 dark:border-rose-500/20", tagline: "Speak expenses in Hindi/English", points: ["Mixed Hindi-English NLP", "Auto-prefills add form", "Expense, bill, task, reminder", "No typing needed on the go"], q: "₹500 Swiggy food for family yesterday", a: "Amount ₹500 · Food · For Family · Yesterday" },
   { id: "capture", icon: Camera, label: "Smart Capture (OCR)", grad: "from-amber-500 to-orange-500", tc: "text-amber-600 dark:text-amber-400", bg: "bg-amber-50 dark:bg-amber-500/10", br: "border-amber-200 dark:border-amber-500/20", tagline: "One camera → any module, prefilled", points: ["Bill, medicine, RC, ticket", "Server OCR + confidence score", "Auto-routes to correct add form", "Partial data + review banner"], q: "Scan electricity bill", a: "Bill ₹2,400 · Due 15 Oct · fields auto-filled" },
   { id: "autofetch", icon: Zap, label: "Auto-Fetch Inbox", grad: "from-teal-500 to-cyan-500", tc: "text-teal-600 dark:text-teal-400", bg: "bg-teal-50 dark:bg-teal-500/10", br: "border-teal-200 dark:border-teal-500/20", tagline: "Gmail, clipboard & share-sheet", points: ["Train booking auto-detected", "3 confirms → HIGH_TRUST mode", "7-day auto-expire unactioned", "Zero SMS read (Play policy clean)"], q: "Train confirmation email arrives", a: "Confirm chip: 'Add trip?' → countdown created" },
@@ -91,14 +296,14 @@ const SMART = [
 ];
 
 const EXTRA = [
-  { icon: Lock, label: "App Lock", desc: "Face ID / Fingerprint / device PIN. LifeWise stores zero PIN  OS owns it.", ic: "text-indigo-600 dark:text-indigo-400", ib: "bg-indigo-50 dark:bg-indigo-500/10", ibr: "border-indigo-200 dark:border-indigo-500/20" },
+  { icon: Lock, label: "App Lock", desc: "Face ID / Fingerprint / device PIN. LifeWise stores zero PIN — OS owns it.", ic: "text-indigo-600 dark:text-indigo-400", ib: "bg-indigo-50 dark:bg-indigo-500/10", ibr: "border-indigo-200 dark:border-indigo-500/20" },
   { icon: Globe, label: "Multi-Currency", desc: "All amounts stored in INR. Display in any currency via Frankfurter ECB rates.", ic: "text-teal-600 dark:text-teal-400", ib: "bg-teal-50 dark:bg-teal-500/10", ibr: "border-teal-200 dark:border-teal-500/20" },
   { icon: Users, label: "Caregiver Scopes", desc: "Per-module permissions per member. Server enforces limits. Pending invites = 1 slot.", ic: "text-violet-600 dark:text-violet-400", ib: "bg-violet-50 dark:bg-violet-500/10", ibr: "border-violet-200 dark:border-violet-500/20" },
   { icon: BatteryMedium, label: "Battery Monitor", desc: "≤25% warning · ≤15% low · ≤10% critical push. Never paywalled for family.", ic: "text-green-600 dark:text-green-400", ib: "bg-green-50 dark:bg-green-500/10", ibr: "border-green-200 dark:border-green-500/20" },
   { icon: Navigation, label: "Vehicle Pin Glide", desc: "Speed-matched walk/bike/car pin glides at real GPS speed, rotates with heading.", ic: "text-blue-600 dark:text-blue-400", ib: "bg-blue-50 dark:bg-blue-500/10", ibr: "border-blue-200 dark:border-blue-500/20" },
   { icon: AlertTriangle, label: "Crash Auto-SOS", desc: "Sustained high speed → hard stop → banner + optional auto-notify emergency contacts.", ic: "text-red-600 dark:text-red-400", ib: "bg-red-50 dark:bg-red-500/10", ibr: "border-red-200 dark:border-red-500/20" },
   { icon: PiggyBank, label: "Safety Net Funds", desc: "Shared savings pools: medical, education, wedding. Approve withdrawals in-app.", ic: "text-amber-600 dark:text-amber-400", ib: "bg-amber-50 dark:bg-amber-500/10", ibr: "border-amber-200 dark:border-amber-500/20" },
-  { icon: QrCode, label: "UPI Pay", desc: "Pay bills via GPay / PhonePe / Paytm / UPI chooser  one tap from the bill card.", ic: "text-orange-600 dark:text-orange-400", ib: "bg-orange-50 dark:bg-orange-500/10", ibr: "border-orange-200 dark:border-orange-500/20" },
+  { icon: QrCode, label: "UPI Pay", desc: "Pay bills via GPay / PhonePe / Paytm / UPI chooser — one tap from the bill card.", ic: "text-orange-600 dark:text-orange-400", ib: "bg-orange-50 dark:bg-orange-500/10", ibr: "border-orange-200 dark:border-orange-500/20" },
   { icon: BarChart3, label: "Life Score", desc: "0–100 score: budget 50% + bills paid 30% + money leaks 20%. Same on Home & Reports.", ic: "text-slate-700 dark:text-slate-300", ib: "bg-slate-100 dark:bg-slate-700/40", ibr: "border-slate-300 dark:border-slate-600/40" },
 ];
 
@@ -115,9 +320,13 @@ const TABS = [
 function ModuleCard({ mod }: { mod: Mod }) {
   const Icon = mod.icon;
   return (
-    <article className="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:border-slate-300 dark:border-slate-700/60 dark:bg-slate-800/90 dark:hover:border-slate-600 h-full">
+    <article className="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:border-indigo-300 dark:border-slate-700/60 dark:bg-slate-800/90 dark:hover:border-indigo-500/50 dark:hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)] h-full overflow-hidden">
+      
+      {/* Background glow on hover */}
+      <div className={`absolute inset-0 -z-10 bg-gradient-to-br ${GROUP_PILL[mod.group].split(' ')[0]} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+
       {/* Top: icon + group pill */}
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-3 relative z-10">
         <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-transform duration-300 group-hover:scale-110 ${mod.iconBg} ${mod.iconBorder}`}>
           <Icon className={`h-5 w-5 ${mod.iconColor}`} />
         </div>
@@ -127,17 +336,19 @@ function ModuleCard({ mod }: { mod: Mod }) {
       </div>
 
       {/* Label + tagline */}
-      <h4 className="text-[13px] font-bold text-slate-900 dark:text-white leading-tight">{mod.label}</h4>
-      <p className="mt-1 text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-snug flex-1">{mod.tagline}</p>
+      <div className="relative z-10 flex-1 flex flex-col">
+        <h4 className="text-[13px] font-bold text-slate-900 dark:text-white leading-tight">{mod.label}</h4>
+        <p className="mt-1 text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-snug flex-1">{mod.tagline}</p>
+      </div>
 
-      {/* Example  always in DOM, slides in on hover */}
-      <div className={`mt-3 overflow-hidden transition-all duration-300 ${
-        // We use max-h trick; always rendered so no layout jump
-        "max-h-0 opacity-0 group-hover:max-h-20 group-hover:opacity-100"
-        }`}>
-        <p className={`text-[10px] font-semibold leading-relaxed rounded-lg px-2.5 py-2 border ${mod.exBg} ${mod.exBorder} ${mod.exText}`}>
-          <span className="opacity-55">e.g. </span>{mod.example}
-        </p>
+      {/* Jordan-Logic UI Example — slides in on hover with actual UI mockup */}
+      <div className={`relative z-10 mt-3 overflow-hidden transition-all duration-400 ease-out ${
+        "max-h-0 opacity-0 translate-y-4 group-hover:max-h-32 group-hover:opacity-100 group-hover:translate-y-0"
+      }`}>
+        <div className="pt-2 border-t border-slate-100 dark:border-slate-700/50">
+          {/* Display actual miniature UI instead of plain text */}
+          {mod.exampleUI}
+        </div>
       </div>
     </article>
   );
@@ -306,7 +517,7 @@ export function FamilyHubFeatures() {
         {/* ── Section Identity ───────────────────────────────────── */}
         <div className="mb-12 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-start">
           <div>
-            {/* Eyebrow  makes it unmistakably "Family Hub" */}
+            {/* Eyebrow — makes it unmistakably "Family Hub" */}
             <div className="flex items-center gap-2 mb-4">
               <div className="flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 dark:border-indigo-500/30 dark:bg-indigo-500/10">
                 <div className="h-1.5 w-1.5 rounded-full bg-indigo-500 animate-pulse" />
@@ -318,7 +529,7 @@ export function FamilyHubFeatures() {
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.08]">
-              Family Hub {" "}
+              Family Hub —{" "}
               <br className="hidden sm:block" />
               <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">
                 every module,
@@ -328,7 +539,7 @@ export function FamilyHubFeatures() {
             </h2>
 
             <p className="mt-4 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 max-w-lg">
-              Each Family Hub member card shows only the modules you enable. Pick what Papa needs, what Mummy needs  everything else stays hidden. Caregivers see the same card in real time.
+              Each Family Hub member card shows only the modules you enable. Pick what Papa needs, what Mummy needs — everything else stays hidden. Caregivers see the same card in real time.
             </p>
 
             {/* Stat pills */}
@@ -347,7 +558,7 @@ export function FamilyHubFeatures() {
             </div>
           </div>
 
-          {/* Phone  right column */}
+          {/* Phone — right column */}
           <div className="flex justify-center lg:justify-end">
             <PhoneMockup />
           </div>
@@ -373,7 +584,7 @@ export function FamilyHubFeatures() {
         </div>
 
         {/* ── Module Grid ───────────────────────────────────────── */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-14">
           {visible.map((mod, i) => (
             <div key={mod.key}
               className="transition-all duration-300"
@@ -393,7 +604,7 @@ export function FamilyHubFeatures() {
             <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Tap a card to expand</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {SMART.map((f, i) => <SmartCard key={f.id} feat={f} i={i} />)}
           </div>
         </div>
@@ -407,7 +618,7 @@ export function FamilyHubFeatures() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {EXTRA.map((f, i) => {
               const Icon = f.icon;
               return (
@@ -443,7 +654,7 @@ export function FamilyHubFeatures() {
                 Save once. Every caregiver<br />sees it instantly.
               </h3>
               <p className="text-[13px] text-slate-600 dark:text-slate-400 leading-relaxed">
-                Family socket rooms push every change  ledger, health, location, bills  to all authorized family clients. No refresh. No delay.
+                Family socket rooms push every change — ledger, health, location, bills — to all authorized family clients. No refresh. No delay.
               </p>
             </div>
 
