@@ -287,7 +287,7 @@ const MODS: Mod[] = [
 ];
 
 const SMART = [
-  { id: "wiseai", icon: Sparkles, label: "WiseAI Assistant", grad: "from-violet-500 to-indigo-600", tc: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-500/10", br: "border-violet-200 dark:border-violet-500/20", tagline: "In-app AI scoped only to LifeWise data", points: ["Spending insights on demand", "30+ deep-link actions", "Bills, health & family context", "Never leaves the app"], q: "Who spent the most this month?", a: "Dad — ₹15,200 (groceries + transport)" },
+  { id: "wiseai", icon: Sparkles, label: "WiseAI Assistant", grad: "from-violet-500 to-indigo-600", tc: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-500/10", br: "border-violet-200 dark:border-violet-500/20", tagline: "In-app AI scoped only to LifeWise data", points: ["Spending insights on demand", "30+ deep-link actions", "Bills, health & family context", "Never leaves the app"], q: "Who spent the most this month?", a: "Dad  ₹15,200 (groceries + transport)" },
   { id: "voice", icon: Mic, label: "Voice Entry", grad: "from-rose-500 to-pink-600", tc: "text-rose-600 dark:text-rose-400", bg: "bg-rose-50 dark:bg-rose-500/10", br: "border-rose-200 dark:border-rose-500/20", tagline: "Speak expenses in Hindi/English", points: ["Mixed Hindi-English NLP", "Auto-prefills add form", "Expense, bill, task, reminder", "No typing needed on the go"], q: "₹500 Swiggy food for family yesterday", a: "Amount ₹500 · Food · For Family · Yesterday" },
   { id: "capture", icon: Camera, label: "Smart Capture (OCR)", grad: "from-amber-500 to-orange-500", tc: "text-amber-600 dark:text-amber-400", bg: "bg-amber-50 dark:bg-amber-500/10", br: "border-amber-200 dark:border-amber-500/20", tagline: "One camera → any module, prefilled", points: ["Bill, medicine, RC, ticket", "Server OCR + confidence score", "Auto-routes to correct add form", "Partial data + review banner"], q: "Scan electricity bill", a: "Bill ₹2,400 · Due 15 Oct · fields auto-filled" },
   { id: "autofetch", icon: Zap, label: "Auto-Fetch Inbox", grad: "from-teal-500 to-cyan-500", tc: "text-teal-600 dark:text-teal-400", bg: "bg-teal-50 dark:bg-teal-500/10", br: "border-teal-200 dark:border-teal-500/20", tagline: "Gmail, clipboard & share-sheet", points: ["Train booking auto-detected", "3 confirms → HIGH_TRUST mode", "7-day auto-expire unactioned", "Zero SMS read (Play policy clean)"], q: "Train confirmation email arrives", a: "Confirm chip: 'Add trip?' → countdown created" },
@@ -296,14 +296,14 @@ const SMART = [
 ];
 
 const EXTRA = [
-  { icon: Lock, label: "App Lock", desc: "Face ID / Fingerprint / device PIN. LifeWise stores zero PIN — OS owns it.", ic: "text-indigo-600 dark:text-indigo-400", ib: "bg-indigo-50 dark:bg-indigo-500/10", ibr: "border-indigo-200 dark:border-indigo-500/20" },
+  { icon: Lock, label: "App Lock", desc: "Face ID / Fingerprint / device PIN. LifeWise stores zero PIN  OS owns it.", ic: "text-indigo-600 dark:text-indigo-400", ib: "bg-indigo-50 dark:bg-indigo-500/10", ibr: "border-indigo-200 dark:border-indigo-500/20" },
   { icon: Globe, label: "Multi-Currency", desc: "All amounts stored in INR. Display in any currency via Frankfurter ECB rates.", ic: "text-teal-600 dark:text-teal-400", ib: "bg-teal-50 dark:bg-teal-500/10", ibr: "border-teal-200 dark:border-teal-500/20" },
   { icon: Users, label: "Caregiver Scopes", desc: "Per-module permissions per member. Server enforces limits. Pending invites = 1 slot.", ic: "text-violet-600 dark:text-violet-400", ib: "bg-violet-50 dark:bg-violet-500/10", ibr: "border-violet-200 dark:border-violet-500/20" },
   { icon: BatteryMedium, label: "Battery Monitor", desc: "≤25% warning · ≤15% low · ≤10% critical push. Never paywalled for family.", ic: "text-green-600 dark:text-green-400", ib: "bg-green-50 dark:bg-green-500/10", ibr: "border-green-200 dark:border-green-500/20" },
   { icon: Navigation, label: "Vehicle Pin Glide", desc: "Speed-matched walk/bike/car pin glides at real GPS speed, rotates with heading.", ic: "text-blue-600 dark:text-blue-400", ib: "bg-blue-50 dark:bg-blue-500/10", ibr: "border-blue-200 dark:border-blue-500/20" },
   { icon: AlertTriangle, label: "Crash Auto-SOS", desc: "Sustained high speed → hard stop → banner + optional auto-notify emergency contacts.", ic: "text-red-600 dark:text-red-400", ib: "bg-red-50 dark:bg-red-500/10", ibr: "border-red-200 dark:border-red-500/20" },
   { icon: PiggyBank, label: "Safety Net Funds", desc: "Shared savings pools: medical, education, wedding. Approve withdrawals in-app.", ic: "text-amber-600 dark:text-amber-400", ib: "bg-amber-50 dark:bg-amber-500/10", ibr: "border-amber-200 dark:border-amber-500/20" },
-  { icon: QrCode, label: "UPI Pay", desc: "Pay bills via GPay / PhonePe / Paytm / UPI chooser — one tap from the bill card.", ic: "text-orange-600 dark:text-orange-400", ib: "bg-orange-50 dark:bg-orange-500/10", ibr: "border-orange-200 dark:border-orange-500/20" },
+  { icon: QrCode, label: "UPI Pay", desc: "Pay bills via GPay / PhonePe / Paytm / UPI chooser  one tap from the bill card.", ic: "text-orange-600 dark:text-orange-400", ib: "bg-orange-50 dark:bg-orange-500/10", ibr: "border-orange-200 dark:border-orange-500/20" },
   { icon: BarChart3, label: "Life Score", desc: "0–100 score: budget 50% + bills paid 30% + money leaks 20%. Same on Home & Reports.", ic: "text-slate-700 dark:text-slate-300", ib: "bg-slate-100 dark:bg-slate-700/40", ibr: "border-slate-300 dark:border-slate-600/40" },
 ];
 
@@ -321,7 +321,7 @@ function ModuleCard({ mod }: { mod: Mod }) {
   const Icon = mod.icon;
   return (
     <article className="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:border-indigo-300 dark:border-slate-700/60 dark:bg-slate-800/90 dark:hover:border-indigo-500/50 dark:hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)] h-full overflow-hidden">
-      
+
       {/* Background glow on hover */}
       <div className={`absolute inset-0 -z-10 bg-gradient-to-br ${GROUP_PILL[mod.group].split(' ')[0]} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
 
@@ -341,10 +341,9 @@ function ModuleCard({ mod }: { mod: Mod }) {
         <p className="mt-1 text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-snug flex-1">{mod.tagline}</p>
       </div>
 
-      {/* Jordan-Logic UI Example — slides in on hover with actual UI mockup */}
-      <div className={`relative z-10 mt-3 overflow-hidden transition-all duration-400 ease-out ${
-        "max-h-0 opacity-0 translate-y-4 group-hover:max-h-32 group-hover:opacity-100 group-hover:translate-y-0"
-      }`}>
+      {/* Jordan-Logic UI Example  slides in on hover with actual UI mockup */}
+      <div className={`relative z-10 mt-3 overflow-hidden transition-all duration-400 ease-out ${"max-h-0 opacity-0 translate-y-4 group-hover:max-h-32 group-hover:opacity-100 group-hover:translate-y-0"
+        }`}>
         <div className="pt-2 border-t border-slate-100 dark:border-slate-700/50">
           {/* Display actual miniature UI instead of plain text */}
           {mod.exampleUI}
@@ -517,19 +516,23 @@ export function FamilyHubFeatures() {
         {/* ── Section Identity ───────────────────────────────────── */}
         <div className="mb-12 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-start">
           <div>
-            {/* Eyebrow — makes it unmistakably "Family Hub" */}
-            <div className="flex items-center gap-2 mb-4">
-              <div className="flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 dark:border-indigo-500/30 dark:bg-indigo-500/10">
-                <div className="h-1.5 w-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-widest text-indigo-700 dark:text-indigo-400">Family Hub</span>
+            {/* Eyebrow  makes it unmistakably "Family Hub" */}
+            <div className="mb-4 flex flex-wrap items-center gap-2">
+              <div className="inline-flex h-8 shrink-0 items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 dark:border-indigo-500/30 dark:bg-indigo-500/10">
+                <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500" />
+                <span className="whitespace-nowrap text-[11px] font-bold leading-none tracking-wide text-indigo-700 dark:text-indigo-300">
+                  Family Hub
+                </span>
               </div>
-              <div className="rounded-full border border-slate-200 bg-white px-3 py-1 dark:border-slate-700 dark:bg-slate-800">
-                <span className="text-[10px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-400">22 Shipped Modules</span>
+              <div className="inline-flex h-8 shrink-0 items-center rounded-full border border-slate-200 bg-white px-3 dark:border-slate-600 dark:bg-slate-800">
+                <span className="whitespace-nowrap text-[11px] font-bold leading-none tracking-wide text-slate-700 dark:text-slate-200">
+                  22 modules
+                </span>
               </div>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.08]">
-              Family Hub —{" "}
+              Family Hub {" "}
               <br className="hidden sm:block" />
               <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">
                 every module,
@@ -539,7 +542,7 @@ export function FamilyHubFeatures() {
             </h2>
 
             <p className="mt-4 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 max-w-lg">
-              Each Family Hub member card shows only the modules you enable. Pick what Papa needs, what Mummy needs — everything else stays hidden. Caregivers see the same card in real time.
+              Each Family Hub member card shows only the modules you enable. Pick what Papa needs, what Mummy needs  everything else stays hidden. Caregivers see the same card in real time.
             </p>
 
             {/* Stat pills */}
@@ -558,7 +561,7 @@ export function FamilyHubFeatures() {
             </div>
           </div>
 
-          {/* Phone — right column */}
+          {/* Phone  right column */}
           <div className="flex justify-center lg:justify-end">
             <PhoneMockup />
           </div>
@@ -571,8 +574,8 @@ export function FamilyHubFeatures() {
             return (
               <button key={t.id} onClick={() => setTab(t.id)}
                 className={`flex shrink-0 items-center gap-1.5 rounded-full border px-4 py-2 text-[11px] font-bold transition-all duration-200 ${active
-                    ? "border-indigo-400 bg-indigo-600 text-white shadow-md shadow-indigo-500/20"
-                    : "border-slate-200 bg-white text-slate-600 hover:border-indigo-200 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800/80 dark:text-slate-300"
+                  ? "border-indigo-400 bg-indigo-600 text-white shadow-md shadow-indigo-500/20"
+                  : "border-slate-200 bg-white text-slate-600 hover:border-indigo-200 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800/80 dark:text-slate-300"
                   }`}>
                 {t.label}
                 <span className={`rounded-full px-1.5 py-0.5 text-[9px] font-black ${active ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-400"}`}>

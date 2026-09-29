@@ -18,7 +18,7 @@ type Loader = () => Promise<{ default: ComponentType }>;
 export function LazySection({
   id,
   loader,
-  rootMargin = "200px 0px",
+  rootMargin = "900px 0px",
   fallback = null,
   minHeight
 }: {
@@ -78,7 +78,20 @@ export function LazySection({
       id={pendingId}
       style={minHeight ? { minHeight } : undefined}
     >
-      {Comp ? <Comp /> : fallback}
+      {Comp ? (
+        <Comp />
+      ) : (
+        fallback ?? (
+          <div className="mx-auto w-full max-w-6xl animate-pulse px-4 py-16" aria-hidden>
+            <div className="h-4 w-28 rounded-full bg-slate-200 dark:bg-slate-700" />
+            <div className="mt-4 h-8 w-2/3 max-w-md rounded-xl bg-slate-200 dark:bg-slate-700" />
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <div className="h-28 rounded-2xl bg-slate-200/80 dark:bg-slate-800" />
+              <div className="h-28 rounded-2xl bg-slate-200/80 dark:bg-slate-800" />
+            </div>
+          </div>
+        )
+      )}
     </div>
   );
 }

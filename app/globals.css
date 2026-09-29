@@ -13,7 +13,7 @@ html.dark {
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     /* Hide page scrollbar; scroll still works (wheel / touch / keys) */
@@ -30,7 +30,7 @@ html.dark {
   body {
     @apply antialiased transition-colors duration-300;
     @apply bg-lightBg text-slate-950 font-sans;
-    overflow-x: hidden;
+    overflow-x: clip;
     min-height: 100dvh;
     padding-bottom: env(safe-area-inset-bottom, 0px);
     -ms-overflow-style: none;

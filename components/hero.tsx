@@ -56,7 +56,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="top" className="relative overflow-hidden">
+    <section id="top" className="relative">
       <AnimatedBackground />
       <div
         aria-hidden
@@ -86,7 +86,9 @@ export function Hero() {
 
           <Reveal eager delay={0.05} blur={false}>
             <h1 className="mt-5 font-display text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-slate-950 sm:mt-6 sm:text-5xl lg:text-6xl dark:text-white">
-              <span className="gradient-text">{APP_STORE_NAME}</span>
+              <span className="text-indigo-600 dark:text-indigo-300 lg:gradient-text">
+                {APP_STORE_NAME}
+              </span>
               . One App to Manage Your{" "}
               <span className="text-slate-950 dark:text-white">Entire Family</span>
             </h1>
@@ -123,7 +125,7 @@ export function Hero() {
               {heroHighlights.map(({ label, detail, icon: Icon, tint }) => (
                 <div
                   key={label}
-                  className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${tint} p-3 ring-1 backdrop-blur-xl transition hover:-translate-y-0.5 sm:p-3.5`}
+                  className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${tint} bg-white/80 p-3 ring-1 transition hover:-translate-y-0.5 dark:bg-slate-900/70 sm:p-3.5`}
                 >
                   <div
                     aria-hidden

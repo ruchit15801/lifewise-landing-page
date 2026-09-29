@@ -45,11 +45,15 @@ export function Reveal({
     return () => io.disconnect();
   }, [eager]);
 
+  if (eager) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <div
       ref={ref}
       className={cn(
-        "transition-[opacity,transform] duration-500 ease-out will-change-transform",
+        "transition-[opacity,transform] duration-500 ease-out",
         visible ? "translate-y-0 opacity-100" : "opacity-0",
         className
       )}
