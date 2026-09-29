@@ -654,16 +654,16 @@ export function FamilyHubFeatures() {
                 Save once. Every caregiver<br />sees it instantly.
               </h3>
               <p className="text-[13px] text-slate-600 dark:text-slate-400 leading-relaxed">
-                Family socket rooms push every change — ledger, health, location, bills — to all authorized family clients. No refresh. No delay.
+                Add an expense, a bill, a health reading, or a location update once. Everyone who is allowed to see that family gets it on their own phone. No pull to refresh.
               </p>
             </div>
 
             <div className="flex flex-col gap-2">
               {[
-                { n: "01", t: "Ruchit saves ₹2,000 expense", c: "text-violet-700 bg-violet-50 border-violet-100 dark:bg-violet-500/10 dark:border-violet-500/15 dark:text-violet-300" },
-                { n: "02", t: "POST → DB commit → socket emit", c: "text-slate-600 bg-slate-50 border-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300" },
-                { n: "03", t: "Family socket room receives", c: "text-indigo-700 bg-indigo-50 border-indigo-100 dark:bg-indigo-500/10 dark:border-indigo-500/15 dark:text-indigo-300" },
-                { n: "04", t: "All caregivers' UI refreshes ✓", c: "text-emerald-700 bg-emerald-50 border-emerald-100 dark:bg-emerald-500/10 dark:border-emerald-500/15 dark:text-emerald-300" },
+                { n: "01", t: "Ruchit saves a ₹2,000 expense", c: "text-violet-700 bg-violet-50 border-violet-100 dark:bg-violet-500/10 dark:border-violet-500/15 dark:text-violet-300" },
+                { n: "02", t: "LifeWise saves it for the family", c: "text-slate-600 bg-slate-50 border-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300" },
+                { n: "03", t: "Papa and caregivers get it on their phones", c: "text-indigo-700 bg-indigo-50 border-indigo-100 dark:bg-indigo-500/10 dark:border-indigo-500/15 dark:text-indigo-300" },
+                { n: "04", t: "Everyone sees the same update, right away", c: "text-emerald-700 bg-emerald-50 border-emerald-100 dark:bg-emerald-500/10 dark:border-emerald-500/15 dark:text-emerald-300" },
               ].map(item => (
                 <div key={item.n} className={`flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-[11px] font-bold ${item.c}`}>
                   <span className="shrink-0 font-black text-[9px] opacity-40">{item.n}</span>
