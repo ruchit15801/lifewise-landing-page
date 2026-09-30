@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/components/cn";
 import { scrollToSection } from "@/lib/section-nav";
 
@@ -107,7 +106,7 @@ export function Navbar() {
         {isActive ? (
           <span
             aria-hidden
-            className="absolute inset-0 rounded-full border border-indigo-200/80 bg-indigo-100/90 dark:border-indigo-400/30 dark:bg-indigo-500/20"
+            className="absolute inset-0 rounded-full border border-indigo-200/80 bg-indigo-100/90"
           />
         ) : null}
         <span className="relative z-10">{item.label}</span>
@@ -121,7 +120,7 @@ export function Navbar() {
         className={cn(
           "fixed inset-x-0 top-0 z-[100] transition-all duration-500",
           isScrolled
-            ? "border-b border-white/50 bg-white/55 py-1 shadow-[0_8px_40px_rgba(15,23,42,0.08)] backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/55 dark:shadow-[0_8px_40px_rgba(0,0,0,0.35)]"
+            ? "border-b border-white/50 bg-white/55 py-1 shadow-[0_8px_40px_rgba(15,23,42,0.08)] backdrop-blur-2xl"
             : "border-b border-transparent bg-transparent py-2"
         )}
       >
@@ -133,7 +132,7 @@ export function Navbar() {
           >
             <span
               aria-hidden
-              className="absolute -inset-1 rounded-full opacity-90 blur-[14px] dark:opacity-100"
+              className="absolute -inset-1 rounded-full opacity-90 blur-[14px]"
               style={{
                 background:
                   "conic-gradient(from 0deg, #ff0080, #ff8c00, #40e0d0, #8a2be2, #ff0080)"
@@ -141,9 +140,9 @@ export function Navbar() {
             />
             <span
               aria-hidden
-              className="pointer-events-none absolute -inset-3 rounded-full bg-indigo-400/20 blur-xl dark:bg-indigo-400/25"
+              className="pointer-events-none absolute -inset-3 rounded-full bg-indigo-400/20 blur-xl"
             />
-            <span className="absolute inset-0 rounded-full bg-white/85 shadow-sm ring-1 ring-white/90 dark:bg-slate-950/60 dark:ring-white/15" />
+            <span className="absolute inset-0 rounded-full bg-white/85 shadow-sm ring-1 ring-white/90" />
             <Image
               src="/logo.png"
               alt="LifeWise Logo"
@@ -162,8 +161,8 @@ export function Navbar() {
               className={cn(
                 "pointer-events-auto flex items-center gap-1 rounded-full border p-1.5 shadow-sm backdrop-blur-xl transition-colors",
                 isScrolled
-                  ? "border-slate-200/70 bg-white/55 dark:border-white/10 dark:bg-white/5"
-                  : "border-slate-200/80 bg-white/75 dark:border-white/10 dark:bg-slate-950/40"
+                  ? "border-slate-200/70 bg-white/55"
+                  : "border-slate-200/80 bg-white/75"
               )}
             >
               {navItems.map((item) => (
@@ -173,8 +172,8 @@ export function Navbar() {
                     className={cn(
                       "relative inline-flex px-4 py-2 font-display text-[13px] font-semibold tracking-wide transition-colors",
                       active === item.href
-                        ? "text-indigo-700 dark:text-indigo-300"
-                        : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+                        ? "text-indigo-700"
+                        : "text-slate-600 hover:text-slate-900"
                     )}
                   />
                 </li>
@@ -185,7 +184,7 @@ export function Navbar() {
           <div className="relative z-20 ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
             <span
               aria-hidden
-              className="pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full bg-indigo-400/15 blur-2xl dark:bg-indigo-400/20"
+              className="pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full bg-indigo-400/15 blur-2xl"
             />
             <a
               href="#download"
@@ -197,14 +196,11 @@ export function Navbar() {
             >
               Download Free
             </a>
-            <div className="relative hidden lg:block">
-              <ThemeToggle className="bg-white/80 shadow-[0_0_24px_rgba(109,93,246,0.18)] dark:bg-white/10 dark:shadow-[0_0_28px_rgba(129,140,248,0.22)]" />
-            </div>
 
             <button
               type="button"
               onClick={() => setOpen((p) => !p)}
-              className="relative grid h-11 w-11 place-items-center rounded-xl border border-slate-200/80 bg-white/80 text-slate-700 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 dark:text-slate-200 lg:hidden"
+              className="relative grid h-11 w-11 place-items-center rounded-xl border border-slate-200/80 bg-white/80 text-slate-700 shadow-sm backdrop-blur-md lg:hidden"
               aria-label="Toggle menu"
               aria-expanded={open}
             >
@@ -217,11 +213,11 @@ export function Navbar() {
       {open ? (
         <>
           <div
-            className="fixed inset-0 z-[80] bg-slate-900/35 backdrop-blur-sm dark:bg-slate-950/50 lg:hidden"
+            className="fixed inset-0 z-[80] bg-slate-900/35 backdrop-blur-sm lg:hidden"
             onClick={() => setOpen(false)}
             aria-hidden
           />
-          <div className="fixed inset-x-3 top-[4.75rem] z-[90] overflow-hidden rounded-[1.75rem] border border-white/60 bg-white/85 p-5 shadow-2xl backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/90 sm:inset-x-4 sm:p-6 lg:hidden">
+          <div className="fixed inset-x-3 top-[4.75rem] z-[90] overflow-hidden rounded-[1.75rem] border border-white/60 bg-white/85 p-5 shadow-2xl backdrop-blur-2xl sm:inset-x-4 sm:p-6 lg:hidden">
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <NavLink
@@ -231,18 +227,11 @@ export function Navbar() {
                   className={cn(
                     "relative rounded-2xl px-5 py-3.5 font-display text-base font-semibold transition-colors",
                     active === item.href
-                      ? "bg-indigo-50 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300"
-                      : "text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-200 dark:hover:bg-white/5 dark:hover:text-white"
+                      ? "bg-indigo-50 text-indigo-700"
+                      : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                   )}
                 />
               ))}
-              <div className="my-3 h-px w-full bg-slate-200/80 dark:bg-white/10" />
-              <div className="flex items-center justify-between px-2">
-                <span className="text-sm font-semibold text-slate-600 dark:text-slate-300">
-                  Appearance
-                </span>
-                <ThemeToggle />
-              </div>
               <a
                 href="#download"
                 onClick={(e) => {
