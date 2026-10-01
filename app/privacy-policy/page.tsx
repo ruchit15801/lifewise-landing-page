@@ -77,6 +77,15 @@ export default function PrivacyPolicyPage() {
               prompt.
             </li>
             <li>
+              <strong>How to turn it on:</strong>{" "}
+              <em>Settings &rarr; App permissions &rarr; Allow location</em> (or{" "}
+              <em>Family Location &rarr; Enable</em>). A full-screen disclosure appears immediately
+              before the Android prompt and states that precise location may be collected even when
+              the app is closed or not in use. Choose &ldquo;Allow all the time&rdquo; for
+              background use. <em>No thanks</em> / <em>Back</em> is a decline; no OS prompt is
+              shown.
+            </li>
+            <li>
               <strong>Why:</strong> to show your location to viewers you choose, send
               arrival/departure and low-battery alerts, detect a possible crash and notify emergency
               contacts (optional auto-SOS), and record work hours at a job site you define.
@@ -113,8 +122,9 @@ export default function PrivacyPolicyPage() {
             Expenses, bills, subscriptions, Family Money ledger entries, budgets and savings funds
             that you enter, import or scan. Optional payment capture reads notifications from
             allow-listed UPI apps (Google Pay, PhonePe, Paytm, BHIM) or text you paste/share.
-            We store only structured fields (amount, merchant, date, masked payee, reference hash)
-            and <strong>never store or upload raw notification or message text</strong>. Captured
+            Optional payment capture (notification access) stores only structured fields (amount,
+            merchant, date, masked payee, reference hash). Raw payment-notification text is never
+            stored or uploaded. Android SMS sync is separate and is described in §2.7. Captured
             payments go to a &ldquo;Needs your OK&rdquo; queue before posting. Bank statements you
             import are parsed on our server for categorization and not kept after the transactions
             you approve. We do not store card numbers, UPI PINs or bank passwords.
@@ -150,9 +160,19 @@ export default function PrivacyPolicyPage() {
               requirements.
             </li>
             <li>
-              <strong>SMS (Android):</strong> where enabled, transactional SMS may be read to
-              detect expenses after you accept a separate disclosure. SMS content is used only for
-              expense detection and is not shared.
+              <strong>SMS (Android, optional &mdash; READ_SMS):</strong> After you tap{" "}
+              <em>Settings &rarr; App permissions &rarr; Allow SMS</em>, LifeWise shows a
+              full-screen disclosure, then the Android SMS permission. If you agree, we read bank
+              and UPI transaction SMS on this phone so those payments can sync as expenses to your
+              family&apos;s other LifeWise devices (cross-device sync). We collect SMS log data
+              that looks like bank or UPI alerts. We upload parsed fields (merchant, amount, date)
+              plus a short SMS excerpt to{" "}
+              <a href="https://api.lifewiseee.com" className="font-semibold text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://api.lifewiseee.com</a>.
+              We do not sell SMS data and we do not use it for advertising. You can decline{" "}
+              <em>Don&apos;t allow</em> and still add expenses by hand, scan, voice or statement
+              import. Emergency SOS does not need SEND_SMS: it opens the system SMS composer with
+              a help message and location for contacts you saved. RECEIVE_SMS / SEND_SMS /
+              WRITE_SMS are not used.
             </li>
             <li>
               <strong>Notification access (Android):</strong> if you enable it, payment

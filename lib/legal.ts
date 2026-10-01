@@ -1,7 +1,7 @@
 import { SITE_NAME, SITE_URL, SUPPORT_EMAIL } from "@/lib/seo";
 
 export const LEGAL_EFFECTIVE_DATE = "28 September 2026";
-export const LEGAL_LAST_UPDATED = "28 September 2026";
+export const LEGAL_LAST_UPDATED = "1 October 2026";
 export const LEGAL_CONTACT_EMAIL = SUPPORT_EMAIL;
 export const LEGAL_JURISDICTION = "India";
 export const LEGAL_GOVERNING_LAW =
