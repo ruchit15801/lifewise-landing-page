@@ -8,3 +8,5 @@ node_modules/
 .agents/
 .gemini/
 .adapters   
+.gsd  
+GSD-STYLE.md
