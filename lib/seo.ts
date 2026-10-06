@@ -112,10 +112,18 @@ export {
 export const CONTACT_EMAIL = "support@lifewiseee.com";
 
 const OG_IMAGE = {
-  url: "/og-image.svg",
+  url: "/og-image.png",
   width: 1200,
   height: 630,
-  alt: `${PLAY_APP_TITLE} - medicine reminder, bill reminder & Family Hub for Indian families`
+  alt: `LifeWise - AI Family Hub | Medicine & Bill Reminders for Indian Families`
+};
+
+const OG_IMAGE_ABSOLUTE = {
+  url: `${SITE_URL}/og-image.png`,
+  width: 1200,
+  height: 630,
+  alt: `LifeWise - AI Family Hub | Medicine & Bill Reminders for Indian Families`,
+  type: "image/png"
 };
 
 export function buildRootMetadata(): Metadata {
@@ -174,13 +182,13 @@ export function buildRootMetadata(): Metadata {
       title: DEFAULT_TITLE,
       description: DEFAULT_DESCRIPTION,
       countryName: "India",
-      images: [OG_IMAGE]
+      images: [OG_IMAGE_ABSOLUTE]
     },
     twitter: {
       card: "summary_large_image",
       title: DEFAULT_TITLE,
       description: DEFAULT_DESCRIPTION,
-      images: [OG_IMAGE.url]
+      images: [OG_IMAGE_ABSOLUTE.url]
     },
     icons: {
       icon: [
@@ -232,13 +240,13 @@ export function buildHomeMetadata(): Metadata {
       url: `${SITE_URL}/`,
       type: "website",
       locale: "en_IN",
-      images: [OG_IMAGE]
+      images: [OG_IMAGE_ABSOLUTE]
     },
     twitter: {
       card: "summary_large_image",
       title: DEFAULT_TITLE,
       description: DEFAULT_DESCRIPTION,
-      images: [OG_IMAGE.url]
+      images: [OG_IMAGE_ABSOLUTE.url]
     },
     other: {
       "al:android:url": PLAY_STORE_URL,
