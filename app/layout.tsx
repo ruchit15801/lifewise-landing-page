@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Sora } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeContext";
 import { Navbar } from "@/components/navbar";
@@ -16,14 +15,14 @@ import { buildRootMetadata, SITE_URL } from "@/lib/seo";
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-sans"
 });
 
 const sora = Sora({
   subsets: ["latin"],
   display: "swap",
-  weight: ["600", "700"],
+  weight: ["600", "700", "800"],
   variable: "--font-display"
 });
 
@@ -46,29 +45,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN" suppressHydrationWarning>
+    <html lang="en-IN" className={`${plusJakarta.variable} ${sora.variable}`} suppressHydrationWarning>
       <head>
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site summary" />
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="Full LLM reference for LifeWise" />
         <link rel="author" href={`${SITE_URL}/llms.txt`} />
+        <script
+          id="lifewise-theme-init"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('lifewise-theme');document.documentElement.classList.toggle('dark',(t||'light')==='dark');}catch(e){}})();`
+          }}
+        />
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </head>
-      <JsonLd data={[organizationSchema(), websiteSchema()]} />
-      <Script
-        id="lifewise-theme-init"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function () {
-              try {
-                var t = localStorage.getItem('lifewise-theme');
-                var theme = t ? t : 'light';
-                document.documentElement.classList.toggle('dark', theme === 'dark');
-              } catch (e) {}
-            })();
-          `
-        }}
-      />
-      <body className={`${plusJakarta.variable} ${sora.variable} font-sans`}>
+      <body className={`${plusJakarta.className} font-sans`}>
         <SkipToContent />
         <ThemeProvider>
           <Navbar />

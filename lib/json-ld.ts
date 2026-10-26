@@ -420,7 +420,7 @@ export function webPageSchema() {
     dateModified: new Date().toISOString().slice(0, 10),
     speakable: {
       "@type": "SpeakableSpecification",
-      cssSelector: ["#lifewise-definition", ".faq-answer", "#why-lifewise h2", "#features h2", "#family h2"]
+      cssSelector: ["#lifewise-definition", ".faq-answer", "#problems h2", "#who-its-for h2", "#why-lifewise h2"]
     },
     significantLink: [
       PLAY_STORE_URL,

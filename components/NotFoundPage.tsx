@@ -13,21 +13,21 @@ import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
 
 const DESTINATIONS = [
   {
-    href: "/#family",
-    title: "Family Hub",
-    body: "One place for every family member.",
+    href: "/#problems",
+    title: "The problem",
+    body: "Family moments LifeWise actually fixes.",
     icon: Users
   },
   {
-    href: "/#reminders",
-    title: "Medicine & bills",
-    body: "Reminders for Papa, Mummy, and utilities.",
+    href: "/#who-its-for",
+    title: "Who it's for",
+    body: "Parents, caregivers, and families living apart.",
     icon: Pill
   },
   {
-    href: "/#ai",
-    title: "WiseAI",
-    body: "Ask about reminders, expenses, and appointments.",
+    href: "/#pricing",
+    title: "Pricing",
+    body: "Start free. Upgrade when the family needs more.",
     icon: Bot
   },
   {

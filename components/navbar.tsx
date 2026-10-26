@@ -8,8 +8,9 @@ import { cn } from "@/components/cn";
 import { scrollToSection } from "@/lib/section-nav";
 
 const navItems = [
-  { href: "#family-hub-features", label: "Family Hub" },
-  { href: "#features", label: "Features" },
+  { href: "#problems", label: "The problem" },
+  { href: "#who-its-for", label: "Who it's for" },
+  { href: "#in-the-app", label: "In the app" },
   { href: "#pricing", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
   { href: "#support", label: "Support" }
@@ -18,7 +19,7 @@ const navItems = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("#features");
+  const [active, setActive] = useState<string>("#problems");
   const [isScrolled, setIsScrolled] = useState(false);
 
   const sectionIds = useMemo(
@@ -33,7 +34,7 @@ export function Navbar() {
       setIsScrolled(window.scrollY > 12);
 
       const marker = window.innerHeight * 0.32;
-      let crossed = sectionIds[0] ?? "#features";
+      let crossed = sectionIds[0] ?? "#problems";
 
       for (const id of sectionIds) {
         const el = document.querySelector(id) as HTMLElement | null;

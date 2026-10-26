@@ -22,7 +22,7 @@ export function SectionShell({
   titleAs?: "h1" | "h2";
 }) {
   return (
-    <section id={id} className={cn("scroll-mt-24 py-8 sm:py-10 lg:py-12", className)}>
+    <section id={id} className={cn("scroll-mt-24 py-6 sm:py-8", className)}>
       <div className="section-max">
         <div
           className={cn(
@@ -52,7 +52,7 @@ export function SectionShell({
             </p>
           ) : null}
         </div>
-        <div className="mt-5 sm:mt-6">{children}</div>
+        <div className="mt-4">{children}</div>
       </div>
     </section>
   );

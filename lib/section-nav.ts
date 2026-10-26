@@ -1,5 +1,23 @@
 const loaders: Array<{ id: string; load: () => Promise<void> }> = [];
 
+/** Old feature-section hashes still land on the emotion-first home flow. */
+const SECTION_ALIASES: Record<string, string> = {
+  "#features": "#in-the-app",
+  "#family": "#in-the-app",
+  "#family-hub-features": "#in-the-app",
+  "#reminders": "#in-the-app",
+  "#ai": "#problems",
+  "#reports": "#problems",
+  "#health": "#problems",
+  "#senior-mode": "#who-its-for",
+  "#automation": "#problems"
+};
+
+export function resolveSectionHash(hash: string) {
+  const id = hash.startsWith("#") ? hash : `#${hash}`;
+  return SECTION_ALIASES[id] ?? id;
+}
+
 export function registerLazySection(id: string, load: () => Promise<void>) {
   const entry = { id, load };
   loaders.push(entry);
@@ -17,7 +35,7 @@ function paint() {
 
 /** Load deferred home sections, then smooth-scroll to the hash target. */
 export async function scrollToSection(hash: string) {
-  const id = hash.startsWith("#") ? hash : `#${hash}`;
+  const id = resolveSectionHash(hash);
   await Promise.all(loaders.map((item) => item.load()));
   await paint();
 

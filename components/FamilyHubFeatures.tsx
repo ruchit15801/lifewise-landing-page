@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Pill, HeartPulse, Receipt, CalendarClock, Wallet, MapPin,
   ShieldCheck, Bell, FileText, Briefcase, Plane, Home, Car,
@@ -415,10 +415,6 @@ function PhoneMockup() {
     { name: "Aarav", age: "24y", i: "A", c: "bg-amber-500/15 text-amber-600 border-amber-300 dark:border-amber-500/30 dark:text-amber-400", dot: "bg-amber-500", st: "At work · 45 km/h 🚗", alert: false },
     { name: "Ruchit", age: "28y", i: "R", c: "bg-violet-500/15 text-violet-600 border-violet-300 dark:border-violet-500/30 dark:text-violet-400", dot: "bg-violet-500", st: "Bill due · 15 Oct", alert: true },
   ];
-  useEffect(() => {
-    const id = setInterval(() => setTick(p => (p + 1) % members.length), 2200);
-    return () => clearInterval(id);
-  }, [members.length]);
   return (
     <div className="relative mx-auto w-[260px] sm:w-[290px]">
       {/* Shell */}
@@ -457,14 +453,19 @@ function PhoneMockup() {
         {/* Members */}
         <div className="p-2.5 space-y-1.5">
           {members.map((mb, idx) => (
-            <div key={mb.name} className={`flex items-center gap-2 rounded-xl border p-2 transition-all duration-500 ${idx === tick ? "border-indigo-200 bg-indigo-50/80 dark:border-indigo-500/30 dark:bg-indigo-500/10" : "border-slate-100 bg-slate-50/80 dark:border-slate-700/40 dark:bg-slate-800/40"}`}>
+            <button
+              type="button"
+              key={mb.name}
+              onClick={() => setTick(idx)}
+              className={`flex w-full items-center gap-2 rounded-xl border p-2 text-left transition-all duration-300 ${idx === tick ? "border-indigo-200 bg-indigo-50/80 dark:border-indigo-500/30 dark:bg-indigo-500/10" : "border-slate-100 bg-slate-50/80 dark:border-slate-700/40 dark:bg-slate-800/40"}`}
+            >
               <div className={`h-7 w-7 shrink-0 rounded-full border flex items-center justify-center font-bold text-[10px] ${mb.c}`}>{mb.i}</div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1"><span className="text-[11px] font-bold text-slate-900 dark:text-white">{mb.name}</span><span className="text-[8px] text-slate-400">{mb.age}</span></div>
                 <div className={`text-[9px] font-medium truncate ${mb.alert ? "text-amber-600 dark:text-amber-400" : "text-slate-500 dark:text-slate-400"}`}>{mb.st}</div>
               </div>
-              <div className={`h-1.5 w-1.5 rounded-full shrink-0 ${mb.alert ? "bg-amber-500 animate-pulse" : mb.dot}`} />
-            </div>
+              <div className={`h-1.5 w-1.5 rounded-full shrink-0 ${mb.alert ? "bg-amber-500" : mb.dot}`} />
+            </button>
           ))}
         </div>
         {/* Bottom nav */}
@@ -501,7 +502,7 @@ export function FamilyHubFeatures() {
   return (
     <section
       id="family-hub-features"
-      className="relative scroll-mt-24 py-14 sm:py-20 overflow-hidden"
+      className="relative scroll-mt-24 overflow-hidden py-6 sm:py-8"
     >
       {/* Ambient glows */}
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -514,10 +515,10 @@ export function FamilyHubFeatures() {
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
 
         {/* ── Section Identity ───────────────────────────────────── */}
-        <div className="mb-12 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-start">
+        <div className="mb-4 grid grid-cols-1 items-start gap-5 lg:grid-cols-[1fr_auto]">
           <div>
             {/* Eyebrow  makes it unmistakably "Family Hub" */}
-            <div className="mb-4 flex flex-wrap items-center gap-2">
+            <div className="mb-2 flex flex-wrap items-center gap-2">
               <div className="inline-flex h-8 shrink-0 items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 dark:border-indigo-500/30 dark:bg-indigo-500/10">
                 <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500" />
                 <span className="whitespace-nowrap text-[11px] font-bold leading-none tracking-wide text-indigo-700 dark:text-indigo-300">
@@ -531,7 +532,7 @@ export function FamilyHubFeatures() {
               </div>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.08]">
+            <h2 className="font-display text-[1.35rem] font-semibold leading-[1.15] tracking-tight text-slate-900 sm:text-3xl dark:text-white">
               Family Hub {" "}
               <br className="hidden sm:block" />
               <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">
@@ -541,7 +542,7 @@ export function FamilyHubFeatures() {
               one card per person.
             </h2>
 
-            <p className="mt-4 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 max-w-lg">
+            <p className="mt-2 max-w-lg text-sm leading-relaxed text-slate-600 dark:text-slate-400">
               Each Family Hub member card shows only the modules you enable. Pick what Papa needs, what Mummy needs  everything else stays hidden. Caregivers see the same card in real time.
             </p>
 

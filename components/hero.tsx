@@ -1,54 +1,42 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
+  CheckCircle2,
+  Pill,
+  Receipt,
   Sparkles,
-  Users,
-  LayoutGrid,
-  Bot,
-  Mic
+  Users
 } from "lucide-react";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { DeferredPhoneMock } from "@/components/DeferredPhoneMock";
 import { Reveal } from "@/components/Reveal";
 import { StoreDownloadButtons } from "@/components/StoreDownloadButtons";
-import { PRODUCT_DESCRIPTION } from "@/lib/landing-data";
 import { APP_STORE_NAME } from "@/lib/stores";
 
-const heroHighlights = [
+const heroProblems = [
   {
-    label: "Family Hub",
-    detail: "For the family",
-    icon: Users,
-    tint:
-      "from-indigo-500/20 to-violet-500/10 text-indigo-600 ring-indigo-200/80 dark:from-indigo-400/25 dark:to-violet-500/10 dark:text-indigo-200 dark:ring-indigo-400/35 dark:bg-slate-800/50"
+    problem: "Papa forgot his BP tablet again",
+    solution: "He gets a reminder, you get an alert if he misses it",
+    icon: Pill
   },
   {
-    label: "20 modules",
-    detail: "Per member",
-    icon: LayoutGrid,
-    tint:
-      "from-sky-500/20 to-cyan-500/10 text-sky-600 ring-sky-200/80 dark:from-sky-400/25 dark:to-cyan-500/10 dark:text-sky-200 dark:ring-sky-400/35 dark:bg-slate-800/50"
+    problem: "Late fee on the electricity bill",
+    solution: "Scan the bill once, get reminded before the due date",
+    icon: Receipt
   },
   {
-    label: "WiseAI",
-    detail: "Family assistant",
-    icon: Bot,
-    tint:
-      "from-fuchsia-500/20 to-rose-500/10 text-fuchsia-600 ring-fuchsia-200/80 dark:from-fuchsia-400/25 dark:to-rose-500/10 dark:text-fuchsia-200 dark:ring-fuchsia-400/35 dark:bg-slate-800/50"
-  },
-  {
-    label: "Voice + OCR",
-    detail: "Bill scan",
-    icon: Mic,
-    tint:
-      "from-emerald-500/20 to-teal-500/10 text-emerald-600 ring-emerald-200/80 dark:from-emerald-400/25 dark:to-teal-500/10 dark:text-emerald-200 dark:ring-emerald-400/35 dark:bg-slate-800/50"
+    problem: "\"Did anyone call Mummy?\" in the family group",
+    solution: "Everyone sees the same updates in one Family Hub",
+    icon: Users
   }
 ] as const;
 
 export function Hero() {
   const [storeVariant, setStoreVariant] = useState<"hero" | "light">("light");
+  const [openProblem, setOpenProblem] = useState(0);
 
   useEffect(() => {
     const stored = window.localStorage.getItem("lifewise-theme");
@@ -67,7 +55,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-x-0 top-0 h-[70%] bg-gradient-to-b from-indigo-500/10 via-transparent to-transparent dark:from-indigo-400/20"
       />
 
-      <div className="relative mx-auto grid min-h-[calc(82vh-4rem)] w-full max-w-[98rem] grid-cols-1 items-center gap-7 px-4 pb-8 pt-24 sm:px-6 lg:min-h-[calc(88vh-4rem)] lg:grid-cols-[1fr_1.2fr] lg:gap-10 lg:px-8 lg:pb-10 lg:pt-28 xl:px-12">
+      <div className="relative mx-auto grid w-full max-w-[98rem] grid-cols-1 items-center gap-4 px-4 pb-4 pt-20 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:gap-6 lg:px-8 lg:pb-6 lg:pt-20 xl:px-12">
         <div className="relative max-w-[38rem] xl:max-w-[44rem]">
           <div
             aria-hidden
@@ -85,70 +73,101 @@ export function Hero() {
           </Reveal>
 
           <Reveal eager delay={0.05} blur={false}>
-            <h1 className="mt-5 font-display text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-slate-950 sm:mt-6 sm:text-5xl lg:text-6xl dark:text-white">
+            <h1 className="mt-4 font-display text-[1.75rem] font-semibold leading-[1.15] tracking-tight text-slate-950 sm:mt-5 sm:text-4xl lg:text-[2.85rem] dark:text-white">
+              Your family has too much to remember.{" "}
               <span className="text-indigo-600 dark:text-indigo-300 lg:gradient-text">
-                {APP_STORE_NAME}
+                LifeWise remembers it for you.
               </span>
-              . One App to Manage Your{" "}
-              <span className="text-slate-950 dark:text-white">Entire Family</span>
             </h1>
           </Reveal>
 
           <Reveal eager delay={0.1} blur={false}>
             <p
               id="lifewise-definition"
-              className="mt-5 text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-200"
+              className="mt-3.5 text-base leading-relaxed text-slate-700 sm:text-[17px] dark:text-slate-200"
             >
               <strong className="font-semibold text-slate-900 dark:text-white">
-                {APP_STORE_NAME} is made for family use
-              </strong>
-              . {PRODUCT_DESCRIPTION} Official app on Google Play (
+                {APP_STORE_NAME}
+              </strong>{" "}
+              keeps medicines, bills, health and documents for every family member in one app,
+              and alerts the right person when something is missed. Official app on Google Play (
               <span className="whitespace-nowrap">com.lifewise</span>) and the App Store.
             </p>
           </Reveal>
 
           <Reveal eager delay={0.15} blur={false}>
-            <div className="mt-7">
-              <StoreDownloadButtons variant={storeVariant} />
-              <a
-                href="#family"
-                className="btn-secondary mt-4 inline-flex w-full dark:border-white/15 dark:bg-slate-800/80 dark:text-white dark:hover:bg-slate-700 sm:w-auto"
-              >
-                Explore Family Hub
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
+            <ul className="mt-4 space-y-2" aria-label="Problems LifeWise solves">
+              {heroProblems.map(({ problem, solution, icon: Icon }, i) => {
+                const open = openProblem === i;
+                return (
+                  <li key={problem}>
+                    <button
+                      type="button"
+                      onClick={() => setOpenProblem(i)}
+                      className={`flex w-full items-start gap-3 rounded-2xl border p-3 text-left shadow-sm transition ${
+                        open
+                          ? "border-emerald-300 bg-emerald-50/90 dark:border-emerald-400/30 dark:bg-emerald-400/10"
+                          : "border-slate-200/80 bg-white/90 hover:border-rose-200 dark:border-white/10 dark:bg-slate-900/70"
+                      }`}
+                    >
+                      <span
+                        className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl ${
+                          open
+                            ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-400/20 dark:text-emerald-200"
+                            : "bg-rose-50 text-rose-600 dark:bg-rose-400/15 dark:text-rose-200"
+                        }`}
+                      >
+                        {open ? (
+                          <CheckCircle2 className="h-[18px] w-[18px]" strokeWidth={2.4} />
+                        ) : (
+                          <Icon className="h-[18px] w-[18px]" strokeWidth={2.4} />
+                        )}
+                      </span>
+                      <span className="min-w-0 text-sm leading-snug">
+                        <span
+                          className={`block font-medium ${
+                            open
+                              ? "text-slate-500 line-through decoration-rose-400/80 dark:text-slate-400"
+                              : "text-slate-900 dark:text-white"
+                          }`}
+                        >
+                          {problem}
+                        </span>
+                        <AnimatePresence initial={false}>
+                          {open ? (
+                            <motion.span
+                              key="sol"
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="mt-0.5 block overflow-hidden font-semibold text-emerald-800 dark:text-emerald-200"
+                            >
+                              {solution}
+                            </motion.span>
+                          ) : (
+                            <span className="mt-0.5 block text-[12px] font-semibold text-rose-600 dark:text-rose-300">
+                              Tap to see the LifeWise fix
+                            </span>
+                          )}
+                        </AnimatePresence>
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
           </Reveal>
 
-          <Reveal eager delay={0.2}>
-            <div className="mt-8 grid grid-cols-2 gap-2.5 sm:gap-3">
-              {heroHighlights.map(({ label, detail, icon: Icon, tint }) => (
-                <div
-                  key={label}
-                  className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${tint} bg-white/80 p-3 ring-1 transition hover:-translate-y-0.5 dark:bg-slate-900/70 sm:p-3.5`}
-                >
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute -right-4 -top-4 h-16 w-16 rounded-full bg-white/50 blur-2xl transition group-hover:bg-white/70 dark:bg-white/10 dark:group-hover:bg-white/20"
-                  />
-                  <div className="relative z-10 flex items-center gap-2.5 sm:gap-3">
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/90 shadow-sm ring-1 ring-black/5 dark:bg-slate-700/90 dark:ring-white/15 sm:h-10 sm:w-10">
-                      <Icon
-                        className="h-4 w-4 sm:h-[18px] sm:w-[18px]"
-                        strokeWidth={2.4}
-                      />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block font-display text-[12px] font-bold leading-tight text-slate-900 dark:text-white sm:text-[13px]">
-                        {label}
-                      </span>
-                      <span className="mt-0.5 block text-[10px] font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-300 sm:text-[11px]">
-                        {detail}
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              ))}
+          <Reveal eager delay={0.2} blur={false}>
+            <div className="mt-5">
+              <StoreDownloadButtons variant={storeVariant} />
+              <a
+                href="#problems"
+                className="btn-secondary mt-3 inline-flex w-full dark:border-white/15 dark:bg-slate-800/80 dark:text-white dark:hover:bg-slate-700 sm:w-auto"
+              >
+                See how it helps your family
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
           </Reveal>
         </div>

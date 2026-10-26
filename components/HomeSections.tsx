@@ -23,68 +23,33 @@ export function HomeSections() {
   return (
     <div className="relative bg-slate-50 text-slate-950 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-50 [&_section]:scroll-mt-24">
       <LazySection
-        id="features"
-        minHeight={480}
+        id="problems"
+        minHeight={420}
         loader={() =>
-          import("@/components/features").then((m) => ({ default: m.Features }))
-        }
-      />
-      <LazySection
-        id="family-hub-features"
-        minHeight={900}
-        loader={() =>
-          import("@/components/FamilyHubFeatures").then((m) => ({
-            default: m.FamilyHubFeatures,
+          import("@/components/ProblemSolution").then((m) => ({
+            default: m.ProblemSolution
           }))
         }
       />
       <LazySection
-        id="reminders"
-        minHeight={560}
+        id="who-its-for"
+        minHeight={400}
         loader={() =>
-          import("@/components/ReminderSection").then((m) => ({
-            default: m.ReminderSection
+          import("@/components/WhoItsFor").then((m) => ({ default: m.WhoItsFor }))
+        }
+      />
+      <LazySection
+        id="in-the-app"
+        minHeight={520}
+        loader={() =>
+          import("@/components/FeatureShowcase").then((m) => ({
+            default: m.FeatureShowcase
           }))
-        }
-      />
-      <LazySection
-        id="ai"
-        minHeight={560}
-        loader={() =>
-          import("@/components/AISection").then((m) => ({ default: m.AISection }))
-        }
-      />
-      <LazySection
-        id="reports"
-        minHeight={520}
-        loader={() =>
-          import("@/components/Reports").then((m) => ({ default: m.Reports }))
-        }
-      />
-      <LazySection
-        id="health"
-        minHeight={520}
-        loader={() =>
-          import("@/components/LifeScore").then((m) => ({ default: m.LifeScore }))
-        }
-      />
-      <LazySection
-        id="senior-mode"
-        minHeight={560}
-        loader={() =>
-          import("@/components/SeniorMode").then((m) => ({ default: m.SeniorMode }))
-        }
-      />
-      <LazySection
-        id="automation"
-        minHeight={480}
-        loader={() =>
-          import("@/components/Automation").then((m) => ({ default: m.Automation }))
         }
       />
       <LazySection
         id="pricing"
-        minHeight={1400}
+        minHeight={900}
         loader={() =>
           import("@/components/pricing").then((m) => ({ default: m.Pricing }))
         }

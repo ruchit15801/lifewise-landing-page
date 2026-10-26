@@ -16,7 +16,7 @@ export function Features() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {UNIQUENESS_OFFERS.map((item, i) => (
           <Reveal key={item.title} delay={Math.min(i * 0.05, 0.25)}>
-            <article className="flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-6 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90 sm:p-7">
+            <article className="flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-4 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90 sm:p-5">
               <p className="font-display text-[11px] font-bold uppercase tracking-[0.16em] text-indigo-600 dark:text-indigo-300">
                 vs {item.vs}
               </p>
@@ -31,9 +31,9 @@ export function Features() {
         ))}
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
         <Reveal delay={0.1}>
-          <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
+          <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
             <div
               className="absolute inset-0 opacity-[0.03] dark:opacity-[0.08]"
               style={{
@@ -44,7 +44,7 @@ export function Features() {
             <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-violet-500/10 blur-[60px] transition-colors group-hover:bg-violet-500/20" />
 
             <div className="relative z-10 flex-1">
-              <div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl border border-violet-100 bg-violet-50 text-violet-600 dark:border-violet-500/20 dark:bg-violet-500/10 dark:text-violet-400">
+              <div className="mb-3 grid h-11 w-11 place-items-center rounded-2xl border border-violet-100 bg-violet-50 text-violet-600 dark:border-violet-500/20 dark:bg-violet-500/10 dark:text-violet-400">
                 <Mic className="h-7 w-7" />
               </div>
               <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
@@ -56,7 +56,7 @@ export function Features() {
               </p>
             </div>
 
-            <div className="relative z-10 mt-8 border-t border-slate-100 pt-8 dark:border-slate-800/60">
+            <div className="relative z-10 mt-4 border-t border-slate-100 pt-4 dark:border-slate-800/60">
               <div className="mx-auto w-full max-w-[240px] rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60">
                 <div className="mb-3 flex items-center gap-3">
                   <div className="relative">
@@ -79,7 +79,7 @@ export function Features() {
         </Reveal>
 
         <Reveal delay={0.2}>
-          <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
+          <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
             <div
               className="absolute inset-0 opacity-[0.03] dark:opacity-[0.08]"
               style={{
@@ -90,7 +90,7 @@ export function Features() {
             <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-sky-500/10 blur-[60px] transition-colors group-hover:bg-sky-500/20" />
 
             <div className="relative z-10 flex-1">
-              <div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl border border-sky-100 bg-sky-50 text-sky-600 dark:border-sky-500/20 dark:bg-sky-500/10 dark:text-sky-400">
+              <div className="mb-3 grid h-11 w-11 place-items-center rounded-2xl border border-sky-100 bg-sky-50 text-sky-600 dark:border-sky-500/20 dark:bg-sky-500/10 dark:text-sky-400">
                 <ScanLine className="h-7 w-7" />
               </div>
               <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
@@ -102,7 +102,7 @@ export function Features() {
               </p>
             </div>
 
-            <div className="relative z-10 mt-8 border-t border-slate-100 pt-8 dark:border-slate-800/60">
+            <div className="relative z-10 mt-4 border-t border-slate-100 pt-4 dark:border-slate-800/60">
               <div className="mx-auto w-full max-w-[240px] rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60">
                 <div className="relative mb-3 h-24 w-full overflow-hidden rounded-xl border border-slate-300 bg-slate-200 dark:border-slate-700 dark:bg-slate-800">
                   <div className="absolute left-0 top-0 h-1 w-full animate-[scan_2s_ease-in-out_infinite] bg-sky-500 shadow-[0_0_15px_rgba(14,165,233,0.8)]" />
@@ -124,7 +124,7 @@ export function Features() {
         </Reveal>
 
         <Reveal delay={0.3}>
-          <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
+          <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 transition-colors dark:border-slate-800/60 dark:bg-slate-800/90">
             <div
               className="absolute inset-0 opacity-[0.03] dark:opacity-[0.08]"
               style={{
@@ -135,7 +135,7 @@ export function Features() {
             <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-rose-500/10 blur-[60px] transition-colors group-hover:bg-rose-500/20" />
 
             <div className="relative z-10 flex-1">
-              <div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl border border-rose-100 bg-rose-50 text-rose-600 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-400">
+              <div className="mb-3 grid h-11 w-11 place-items-center rounded-2xl border border-rose-100 bg-rose-50 text-rose-600 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-400">
                 <Bot className="h-7 w-7" />
               </div>
               <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
@@ -147,7 +147,7 @@ export function Features() {
               </p>
             </div>
 
-            <div className="relative z-10 mt-8 border-t border-slate-100 pt-8 dark:border-slate-800/60">
+            <div className="relative z-10 mt-4 border-t border-slate-100 pt-4 dark:border-slate-800/60">
               <div className="mx-auto w-full max-w-[240px] space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60">
                 <div className="flex justify-end">
                   <div className="rounded-xl rounded-tr-sm bg-slate-200 px-3 py-2 text-[10px] font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">

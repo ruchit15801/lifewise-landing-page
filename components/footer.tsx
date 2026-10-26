@@ -180,13 +180,13 @@ export function Footer() {
             <div className="font-display text-[15px] font-bold text-slate-900 dark:text-white">Product</div>
             <ul className="space-y-2.5 text-[14px] font-medium sm:text-[15px]">
               <li>
-                <a className="text-slate-600 dark:text-slate-400 transition-colors hover:text-indigo-600" href="/#family">
-                  Family Hub
+                <a className="text-slate-600 dark:text-slate-400 transition-colors hover:text-indigo-600" href="/#problems">
+                  The problem
                 </a>
               </li>
               <li>
-                <a className="text-slate-600 dark:text-slate-400 transition-colors hover:text-indigo-600" href="/#ai">
-                  WiseAI
+                <a className="text-slate-600 dark:text-slate-400 transition-colors hover:text-indigo-600" href="/#who-its-for">
+                  Who it&apos;s for
                 </a>
               </li>
               <li>

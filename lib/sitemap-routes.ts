@@ -4,7 +4,7 @@ import { SITE_URL } from "@/lib/seo";
  * Every public, indexable URL for lifewiseee.com.
  * Update this file when adding new pages - sitemap.xml is generated from here.
  *
- * Homepage sections (#family, #faq, #pricing, #download) live on `/` - do not add
+ * Homepage sections (#problems, #faq, #pricing, #download) live on `/` - do not add
  * hash URLs to the sitemap; Google indexes one URL per page.
  */
 export type SitemapRoute = {
