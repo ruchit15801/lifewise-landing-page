@@ -350,14 +350,14 @@ export function buildNotFoundMetadata(): Metadata {
 
 export function buildTermsMetadata(): Metadata {
   return {
-    title: { absolute: "Terms & Conditions | LifeWise India" },
+    title: { absolute: "Terms of Service & Trader Disclosure | LifeWise" },
     description:
-      "LifeWise terms: Free, Starter Rs. 99, Family Rs. 199, Pro Rs. 499, WiseAI use, health disclaimers, and governing law in India.",
+      "Official Terms of Service and Trader Disclosure for LifeWise Family Operating System by Axoryte Infosoft. Subscriptions, acceptable use, disclaimers, and consumer rights.",
     alternates: { canonical: `${SITE_URL}/terms-and-conditions` },
     openGraph: {
-      title: "LifeWise Terms & Conditions",
+      title: "LifeWise Terms of Service & Trader Disclosure",
       description:
-        "Terms of use for the LifeWise Family Operating System mobile app in India.",
+        "Official Terms of Service and Trader Disclosure for the LifeWise Family Operating System mobile app and website.",
       url: `${SITE_URL}/terms-and-conditions`,
       images: [OG_IMAGE]
     },

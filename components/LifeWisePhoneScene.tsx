@@ -37,7 +37,16 @@ export type PhoneScreen =
   | { type: "bill"; name: string; amount: string; due: string; paid?: boolean }
   | { type: "hub"; people: { name: string; note: string; ok: boolean }[] }
   | { type: "checkin"; person: string; ok?: boolean }
-  | { type: "ai"; question: string; answer: string };
+  | { type: "ai"; question: string; answer: string }
+  | {
+      type: "report";
+      spend: string;
+      score: number;
+      rows: { label: string; value: string }[];
+      pdf?: boolean;
+    }
+  | { type: "score"; value: number; budget: string; bills: string; leaks: string }
+  | { type: "scan"; label: string; amount?: string; due?: string; ready?: boolean };
 
 export function screenBeat(screen: PhoneScreen): { icon: LucideIcon; label: string } {
   switch (screen.type) {
@@ -55,6 +64,12 @@ export function screenBeat(screen: PhoneScreen): { icon: LucideIcon; label: stri
       return { icon: Users, label: "Family Hub live" };
     case "ai":
       return { icon: MessageCircle, label: "WiseAI" };
+    case "report":
+      return { icon: PieChart, label: screen.pdf ? "PDF report ready" : "This month’s report" };
+    case "score":
+      return { icon: CheckCircle2, label: `Life Score ${screen.value}` };
+    case "scan":
+      return { icon: Camera, label: screen.ready ? "Amount and due filled" : "Scan the bill" };
     default:
       return { icon: CheckCircle2, label: screen.ok ? `${screen.person} is OK` : `Waiting on ${screen.person}` };
   }
@@ -143,10 +158,10 @@ function Chrome({ clock, children, dark }: { clock: string; children: ReactNode;
       <div className="absolute -left-[3px] top-24 h-8 w-[3px] rounded-l-sm bg-slate-700" />
       <div className="absolute -left-[3px] top-36 h-12 w-[3px] rounded-l-sm bg-slate-700" />
       <div className="absolute -right-[3px] top-32 h-16 w-[3px] rounded-r-sm bg-slate-700" />
-      <div className="relative overflow-hidden rounded-[2.15rem] bg-slate-950 p-[8px] shadow-[0_24px_50px_rgba(15,23,42,0.32)] ring-1 ring-black/50">
+      <div className="relative overflow-hidden rounded-[2.15rem] bg-slate-950 p-[8px] shadow-[0_18px_40px_rgba(15,23,42,0.28)] ring-1 ring-black/50">
         <div
           className={cn(
-            "relative flex h-[500px] flex-col overflow-hidden rounded-[1.65rem]",
+            "relative flex h-[460px] flex-col overflow-hidden rounded-[1.65rem]",
             dark ? "bg-slate-950" : "bg-white"
           )}
         >
@@ -398,6 +413,89 @@ function ScreenBody({ screen }: { screen: PhoneScreen }) {
                 <LiveDot tone={p.ok ? "ok" : "wait"} />
               </div>
             ))}
+          </div>
+        </div>
+      </AppShell>
+    );
+  }
+
+  if (screen.type === "report") {
+    return (
+      <AppShell tab="reports" title="Reports" subtitle="October · family">
+        <div className="flex h-full flex-col gap-2 pb-2">
+          <div className="rounded-2xl bg-white p-3 ring-1 ring-slate-200">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Spend</p>
+            <div className="mt-1 flex items-end justify-between">
+              <p className="font-display text-[26px] font-semibold leading-none text-slate-900">{screen.spend}</p>
+              <p className="text-right text-[11px] font-semibold text-indigo-600">
+                Life Score
+                <span className="block text-[18px] font-black text-slate-900">{screen.score}</span>
+              </p>
+            </div>
+            {screen.pdf ? (
+              <p className="mt-2 rounded-xl bg-slate-950 py-2 text-center text-[11px] font-bold text-white">
+                PDF ready · share with family
+              </p>
+            ) : (
+              <p className="mt-2 text-[11px] font-semibold text-slate-500">Building this month’s PDF…</p>
+            )}
+          </div>
+          {screen.rows.map((row) => (
+            <div key={row.label} className="flex items-center justify-between rounded-2xl bg-white px-3 py-2 ring-1 ring-slate-200">
+              <span className="text-[12px] font-semibold text-slate-700">{row.label}</span>
+              <span className="text-[12px] font-bold text-slate-900">{row.value}</span>
+            </div>
+          ))}
+        </div>
+      </AppShell>
+    );
+  }
+
+  if (screen.type === "score") {
+    return (
+      <AppShell tab="reports" title="Life Score" subtitle="Value of the household">
+        <div className="flex h-full flex-col items-center pb-2">
+          <div className="grid h-[132px] w-[132px] place-items-center rounded-full border-[10px] border-indigo-600 bg-white">
+            <span className="text-center">
+              <span className="block font-display text-[36px] font-semibold leading-none text-slate-900">
+                {screen.value}
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">/ 100</span>
+            </span>
+          </div>
+          <p className="mt-3 text-[12px] font-semibold text-slate-500">Budget 50 · Bills 30 · Leaks 20</p>
+          <div className="mt-3 w-full space-y-1.5">
+            {[
+              { l: "Budget kept", v: screen.budget },
+              { l: "Bills on time", v: screen.bills },
+              { l: "Money leaks", v: screen.leaks }
+            ].map((row) => (
+              <div key={row.l} className="flex items-center justify-between rounded-xl bg-white px-3 py-2 ring-1 ring-slate-200">
+                <span className="text-[12px] font-semibold text-slate-700">{row.l}</span>
+                <span className="text-[12px] font-bold text-slate-900">{row.v}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </AppShell>
+    );
+  }
+
+  if (screen.type === "scan") {
+    return (
+      <AppShell tab="reminders" title="Scan bill" subtitle="Photo → due date">
+        <div className="flex h-full flex-col pb-2">
+          <div className="relative flex flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl bg-slate-900 text-white">
+            <div className="absolute inset-6 rounded-xl border border-white/35" />
+            <Camera className="h-8 w-8 text-white/80" />
+            <p className="mt-2 px-4 text-center text-[13px] font-semibold">{screen.label}</p>
+            {screen.ready ? <LiveDot tone="ok" /> : <LiveDot tone="wait" />}
+          </div>
+          <div className="mt-2 rounded-2xl bg-white px-3 py-2 ring-1 ring-slate-200">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Converted</p>
+            <p className="text-[13px] font-semibold text-slate-900">
+              {screen.ready ? `${screen.amount} · due ${screen.due}` : "Reading amount and due date…"}
+            </p>
           </div>
         </div>
       </AppShell>

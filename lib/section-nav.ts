@@ -6,11 +6,11 @@ const SECTION_ALIASES: Record<string, string> = {
   "#family": "#in-the-app",
   "#family-hub-features": "#in-the-app",
   "#reminders": "#in-the-app",
-  "#ai": "#problems",
-  "#reports": "#problems",
-  "#health": "#problems",
+  "#ai": "#in-the-app",
+  "#reports": "#in-the-app",
+  "#health": "#in-the-app",
   "#senior-mode": "#who-its-for",
-  "#automation": "#problems"
+  "#automation": "#in-the-app"
 };
 
 export function resolveSectionHash(hash: string) {

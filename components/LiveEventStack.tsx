@@ -87,7 +87,7 @@ export function LiveEventStack({
     <div
       ref={ref}
       className={cn("flex flex-col gap-2", clickable && "cursor-pointer", className)}
-      aria-hidden={playing || reduce}
+      aria-hidden={Boolean(playing || reduce)}
       role={clickable ? "button" : undefined}
       tabIndex={clickable ? 0 : undefined}
       onClick={clickable ? advance : undefined}

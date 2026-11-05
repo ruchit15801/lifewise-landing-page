@@ -40,7 +40,7 @@ export function HomeSections() {
       />
       <LazySection
         id="in-the-app"
-        minHeight={520}
+        minHeight={380}
         loader={() =>
           import("@/components/FeatureShowcase").then((m) => ({
             default: m.FeatureShowcase

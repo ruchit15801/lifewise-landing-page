@@ -29,6 +29,32 @@ const nextConfig = {
         source: "/app/privacy",
         destination: "/privacy-policy",
         permanent: true
+      },
+      // Alternate terms of service routes → canonical
+      {
+        source: "/terms",
+        destination: "/terms-and-conditions",
+        permanent: true
+      },
+      {
+        source: "/tos",
+        destination: "/terms-and-conditions",
+        permanent: true
+      },
+      {
+        source: "/terms-of-service",
+        destination: "/terms-and-conditions",
+        permanent: true
+      },
+      {
+        source: "/app/terms",
+        destination: "/terms-and-conditions",
+        permanent: true
+      },
+      {
+        source: "/app/terms-and-conditions",
+        destination: "/terms-and-conditions",
+        permanent: true
       }
     ];
   },
