@@ -33,7 +33,7 @@
     "header"
   ],
   "agent_auth": {
-    "skill": "https://www.lifewiseee.com/.well-known/agent-skills/family-management/SKILL.md",
+    "skill": "https://www.lifewiseee.com/auth.md",
     "register_uri": "https://www.lifewiseee.com/api/agent/register",
     "methods": [
       {
@@ -75,4 +75,3 @@
     ]
   }
 }
-

@@ -21,13 +21,27 @@ export function GET() {
         protocol: "mcp/1.0"
       }
     ],
-    capabilities: [
-      "family_management",
-      "medicine_reminders",
-      "bill_tracking",
-      "expense_logging",
-      "agentic_commerce",
-      "payments"
+    capabilities: {
+      streaming: false,
+      pushNotifications: false,
+      extensions: [
+        {
+          uri: "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+          required: true,
+          params: {
+            roles: ["merchant"]
+          }
+        }
+      ]
+    },
+    extensions: [
+      {
+        uri: "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+        required: true,
+        params: {
+          roles: ["merchant"]
+        }
+      }
     ],
     skills: [
       {
@@ -42,15 +56,6 @@ export function GET() {
         description:
           "Purchase or renew LifeWise Starter, Family, and Pro subscription plans via Agent Payments Protocol."
       }
-    ],
-    extensions: [
-      {
-        uri: "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
-        required: true,
-        params: {
-          roles: ["merchant"]
-        }
-      }
     ]
   };
 
@@ -62,4 +67,3 @@ export function GET() {
     }
   });
 }
-

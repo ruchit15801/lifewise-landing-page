@@ -61,6 +61,12 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem('lifewise-theme');document.documentElement.classList.toggle('dark',(t||'light')==='dark');}catch(e){}})();`
           }}
         />
+        <script
+          id="webmcp-sync-init"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){function r(c){if(!c||typeof c.registerTool!=='function')return;try{c.registerTool({name:'search_lifewise_features',description:'Search LifeWise features, Family Hub, medicine reminders, and bills',inputSchema:{type:'object',properties:{query:{type:'string'}},required:['query']},execute:function(a){return{result:'LifeWise features matching '+(a&&a.query||'')};}});c.registerTool({name:'get_subscription_pricing',description:'Retrieve LifeWise subscription plan prices (Free, Starter, Family, Pro)',inputSchema:{type:'object',properties:{plan:{type:'string'}}},execute:function(){return{plans:{free:0,starter:99,family:199,pro:499}};}});}if(typeof navigator!=='undefined'&&navigator.modelContext)r(navigator.modelContext);if(typeof document!=='undefined'&&document.modelContext)r(document.modelContext);if(typeof window!=='undefined'){window.addEventListener('DOMContentLoaded',function(){if(typeof navigator!=='undefined'&&navigator.modelContext)r(navigator.modelContext);if(typeof document!=='undefined'&&document.modelContext)r(document.modelContext);});}})();`
+          }}
+        />
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </head>
       <body className={`${plusJakarta.className} font-sans`}>

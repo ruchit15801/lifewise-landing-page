@@ -28,7 +28,7 @@ export function GET() {
     token_endpoint_auth_methods_supported: ["client_secret_post", "private_key_jwt", "none"],
     bearer_methods_supported: ["header"],
     agent_auth: {
-      skill: "https://www.lifewiseee.com/.well-known/agent-skills/family-management/SKILL.md",
+      skill: "https://www.lifewiseee.com/auth.md",
       register_uri: "https://www.lifewiseee.com/api/agent/register",
       methods: [
         {
@@ -63,4 +63,3 @@ export function GET() {
     }
   });
 }
-
