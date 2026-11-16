@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { DeferredAnalytics } from "@/components/DeferredAnalytics";
 import { DeferredChatbot } from "@/components/DeferredChatbot";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { WebMcpProvider } from "@/components/WebMcpProvider";
 import { organizationSchema, websiteSchema } from "@/lib/json-ld";
 import { buildRootMetadata, SITE_URL } from "@/lib/seo";
 
@@ -49,6 +50,10 @@ export default function RootLayout({
       <head>
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site summary" />
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="Full LLM reference for LifeWise" />
+        <link rel="alternate" type="text/markdown" href="/?format=markdown" title="Markdown for Agents" />
+        <link rel="api-catalog" type="application/linkset+json" href="/.well-known/api-catalog" />
+        <link rel="service-desc" type="application/openapi+json" href="/openapi.json" />
+        <link rel="service-doc" href="/docs" />
         <link rel="author" href={`${SITE_URL}/llms.txt`} />
         <script
           id="lifewise-theme-init"
@@ -59,6 +64,7 @@ export default function RootLayout({
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </head>
       <body className={`${plusJakarta.className} font-sans`}>
+        <WebMcpProvider />
         <SkipToContent />
         <ThemeProvider>
           <Navbar />

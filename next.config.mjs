@@ -65,7 +65,61 @@ const nextConfig = {
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" }
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Content-Signal", value: "ai-train=no, search=yes, ai-input=no" },
+          {
+            key: "Link",
+            value:
+              '</.well-known/api-catalog>; rel="api-catalog", </openapi.json>; rel="service-desc"; type="application/openapi+json", </docs>; rel="service-doc", </llms.txt>; rel="describedby"'
+          }
+        ]
+      },
+      {
+        source: "/.well-known/api-catalog",
+        headers: [
+          { key: "Content-Type", value: "application/linkset+json; charset=utf-8" },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Cache-Control", value: "public, max-age=3600" }
+        ]
+      },
+      {
+        source: "/.well-known/ucp",
+        headers: [
+          { key: "Content-Type", value: "application/json; charset=utf-8" },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Cache-Control", value: "public, max-age=3600" }
+        ]
+      },
+      {
+        source: "/.well-known/(.*)",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Cache-Control", value: "public, max-age=3600" }
+        ]
+      },
+      {
+        source: "/robots.txt",
+        headers: [
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
+          { key: "Content-Signal", value: "ai-train=no, search=yes, ai-input=no" },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Cache-Control", value: "public, max-age=86400" }
+        ]
+      },
+      {
+        source: "/auth.md",
+        headers: [
+          { key: "Content-Type", value: "text/markdown; charset=utf-8" },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Cache-Control", value: "public, max-age=3600" }
+        ]
+      },
+      {
+        source: "/openapi.json",
+        headers: [
+          { key: "Content-Type", value: "application/openapi+json; charset=utf-8" },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Cache-Control", value: "public, max-age=3600" }
         ]
       },
       {

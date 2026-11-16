@@ -1,0 +1,47 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://www.lifewiseee.com/api",
+      "service-desc": [
+        {
+          "href": "https://www.lifewiseee.com/openapi.json",
+          "type": "application/openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://www.lifewiseee.com/docs",
+          "type": "text/html"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://www.lifewiseee.com/api/health",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://lifewiseee.com/api",
+      "service-desc": [
+        {
+          "href": "https://lifewiseee.com/openapi.json",
+          "type": "application/openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://lifewiseee.com/docs",
+          "type": "text/html"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://lifewiseee.com/api/health",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}
+

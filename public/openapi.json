@@ -1,0 +1,112 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "LifeWise Family Operating System API",
+    "version": "1.0.0",
+    "description": "API for LifeWise AI Family Hub, medicine reminders, bill tracking, family ledger, and subscription checkout."
+  },
+  "servers": [
+    {
+      "url": "https://www.lifewiseee.com/api",
+      "description": "Production API Server"
+    }
+  ],
+  "x-service-info": {
+    "categories": [
+      "family",
+      "health",
+      "finance",
+      "productivity",
+      "ai-agent"
+    ]
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "API Service Health Status",
+        "operationId": "getHealth",
+        "responses": {
+          "200": {
+            "description": "Service is operational",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subscribe/starter": {
+      "post": {
+        "summary": "Subscribe to LifeWise Starter Plan",
+        "operationId": "subscribeStarter",
+        "description": "Purchase or renew the LifeWise Starter subscription plan (Rs. 99/month)",
+        "x-payment-info": {
+          "intent": "charge",
+          "method": "stripe",
+          "amount": 9900,
+          "currency": "INR",
+          "description": "LifeWise Starter Plan Monthly Subscription"
+        },
+        "responses": {
+          "200": {
+            "description": "Subscription initiated"
+          }
+        }
+      }
+    },
+    "/subscribe/family": {
+      "post": {
+        "summary": "Subscribe to LifeWise Family Plan",
+        "operationId": "subscribeFamily",
+        "description": "Purchase or renew the LifeWise Family subscription plan (Rs. 199/month)",
+        "x-payment-info": {
+          "intent": "charge",
+          "method": "stripe",
+          "amount": 19900,
+          "currency": "INR",
+          "description": "LifeWise Family Plan Monthly Subscription (Recommended)"
+        },
+        "responses": {
+          "200": {
+            "description": "Subscription initiated"
+          }
+        }
+      }
+    },
+    "/subscribe/pro": {
+      "post": {
+        "summary": "Subscribe to LifeWise Pro Plan",
+        "operationId": "subscribePro",
+        "description": "Purchase or renew the LifeWise Pro subscription plan (Rs. 499/month)",
+        "x-payment-info": {
+          "intent": "charge",
+          "method": "stripe",
+          "amount": 49900,
+          "currency": "INR",
+          "description": "LifeWise Pro Plan Monthly Subscription"
+        },
+        "responses": {
+          "200": {
+            "description": "Subscription initiated"
+          }
+        }
+      }
+    }
+  }
+}
+

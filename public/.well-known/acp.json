@@ -1,0 +1,20 @@
+{
+  "protocol": {
+    "name": "acp",
+    "version": "1.0.0"
+  },
+  "api_base_url": "https://www.lifewiseee.com/api",
+  "transports": [
+    "https",
+    "http"
+  ],
+  "capabilities": {
+    "services": [
+      "subscription_checkout",
+      "plan_inquiry",
+      "order_status",
+      "payments"
+    ]
+  }
+}
+

@@ -1,0 +1,77 @@
+export const dynamic = "force-static";
+
+export function GET() {
+  const content = `# LifeWise robots.txt
+# https://www.lifewiseee.com
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Content Signals (https://contentsignals.org/)
+Content-Signal: ai-train=no, search=yes, ai-input=no
+
+# Explicit AI Agent policies
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+
+User-agent: Anthropic-AI
+Allow: /
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+
+User-agent: Applebot
+Allow: /
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+
+User-agent: meta-externalagent
+Allow: /
+Disallow: /api/
+
+User-agent: Bytespider
+Allow: /
+Disallow: /api/
+
+User-agent: CCBot
+Allow: /
+Disallow: /api/
+
+Sitemap: https://www.lifewiseee.com/sitemap.xml
+Host: https://www.lifewiseee.com
+`;
+
+  return new Response(content, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=86400, stale-while-revalidate=86400",
+      "Content-Signal": "ai-train=no, search=yes, ai-input=no",
+      "Access-Control-Allow-Origin": "*"
+    }
+  });
+}
+

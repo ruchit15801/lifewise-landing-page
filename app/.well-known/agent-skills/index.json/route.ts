@@ -1,0 +1,27 @@
+import { NextResponse } from "next/server";
+
+export const dynamic = "force-static";
+
+export function GET() {
+  const data = {
+    $schema: "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+    skills: [
+      {
+        name: "family-management",
+        type: "skill-md",
+        description: "Manage family hub, medicines, bills, expenses, and routines in LifeWise.",
+        url: "https://www.lifewiseee.com/.well-known/agent-skills/family-management/SKILL.md",
+        digest: "sha256:2c1c3c769ab702cf109765e01e39e81789de499dc139a799a1596edd39463ca6"
+      }
+    ]
+  };
+
+  return NextResponse.json(data, {
+    status: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Cache-Control": "public, max-age=3600"
+    }
+  });
+}
+

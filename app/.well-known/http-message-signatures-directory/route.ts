@@ -1,0 +1,27 @@
+import { NextResponse } from "next/server";
+
+export const dynamic = "force-static";
+
+const jwks = {
+  keys: [
+    {
+      kty: "RSA",
+      n: "wLDlLGSzi9yjD0Ur7vZuO6rfkwTmW0oUPRnELgMuFKCFTS3UNUUJ9LOn1waPmBuOpjRAnXBZMj3GWnCsYkDpnoEeusKlUbUX-r1IyLLyBD4zTcMmDT_OmLgpIkyfBSTGhDhcJR9WDgRt18rdPB4e7VQKfgviCSSpJ407wQMTZSkCX_YLA_zZw5Poml7a8N659qg6PtG3vIRHoksOIOFO7aoMx2KMktOyVB5sB9t3J7e1m7eqxSL-fikxCD9cB67n8yeh0JP1NefAb8oq4cG73QptCVnDFiDeUfEfRpSqUvvYyIwLBKyc2vct3I2t3SJcwLcgOTuOnNmqEAQJ2c_niQ",
+      e: "AQAB",
+      kid: "lifewise-bot-2026",
+      use: "sig",
+      alg: "RS256"
+    }
+  ]
+};
+
+export function GET() {
+  return NextResponse.json(jwks, {
+    status: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Cache-Control": "public, max-age=86400"
+    }
+  });
+}
+
