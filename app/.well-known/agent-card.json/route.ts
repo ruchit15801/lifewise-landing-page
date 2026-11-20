@@ -23,6 +23,7 @@ export function GET() {
     capabilities: {
       streaming: false,
       pushNotifications: false,
+      ap2Supported: true,
       extensions: [
         {
           uri: "https://ap2-protocol.org/specs/v0.1",
@@ -45,7 +46,7 @@ export function GET() {
           }
         },
         {
-          uri: "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+          uri: "https://github.com/google-agentic-commerce/AP2",
           name: "ap2",
           required: true,
           params: {
@@ -55,6 +56,7 @@ export function GET() {
         }
       ]
     },
+    ap2Supported: true,
     extensions: [
       {
         uri: "https://ap2-protocol.org/specs/v0.1",
@@ -77,7 +79,7 @@ export function GET() {
         }
       },
       {
-        uri: "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+        uri: "https://github.com/google-agentic-commerce/AP2",
         name: "ap2",
         required: true,
         params: {

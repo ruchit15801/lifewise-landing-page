@@ -21,9 +21,7 @@ export function GET() {
   return NextResponse.json(payload, {
     status: 402,
     headers: {
-      "Payment-Required": payloadStr,
       "payment-required": payloadStr,
-      "X-PAYMENT-REQUIRED": payloadStr,
       "WWW-Authenticate": 'x402 realm="LifeWise API", token="base:usdc"',
       "Access-Control-Allow-Origin": "*",
       "Cache-Control": "no-store"

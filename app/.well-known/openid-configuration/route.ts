@@ -27,7 +27,7 @@ export function GET() {
       auth_md: "https://www.lifewiseee.com/auth.md",
       register_uri: "https://www.lifewiseee.com/api/agent/register",
       registration_endpoint: "https://www.lifewiseee.com/api/agent/register",
-      identity_types_supported: ["identity_assertion", "anonymous"],
+      identity_types_supported: ["identity_assertion", "anonymous", "verified_email"],
       identity_assertion: {
         assertion_types_supported: [
           "urn:ietf:params:oauth:token-type:id-jag",
@@ -39,6 +39,11 @@ export function GET() {
         events_supported: ["revocation"]
       },
       anonymous: {
+        credential_types_supported: ["bearer", "bearer_token"],
+        claim_uri: "https://www.lifewiseee.com/api/agent/claim"
+      },
+      verified_email: {
+        assertion_types_supported: ["verified_email"],
         credential_types_supported: ["bearer", "bearer_token"],
         claim_uri: "https://www.lifewiseee.com/api/agent/claim"
       }
