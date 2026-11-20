@@ -133,8 +133,8 @@ export function DownloadCTA() {
             </h2>
 
             <p className="mb-8 max-w-xl text-base font-medium leading-relaxed text-indigo-100 sm:text-lg">
-              Join thousands of Indian families using {SITE_NAME} to manage
-              medicines, bills, and daily routines securely in one place.
+              Install {SITE_NAME} to manage medicines, bills, and daily routines
+              for your family — securely, in one place.
             </p>
 
             <div className="mb-8 flex w-full max-w-md flex-col items-center">
@@ -142,6 +142,7 @@ export function DownloadCTA() {
                 variant="dark"
                 align="center"
                 className="w-full"
+                location="footer"
               />
             </div>
 

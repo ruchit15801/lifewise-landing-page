@@ -148,6 +148,13 @@ const nextConfig = {
           { key: "Content-Disposition", value: "attachment" },
           { key: "Content-Type", value: "application/vnd.android.package-archive" }
         ]
+      },
+      {
+        source: "/videos/(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=86400" },
+          { key: "Accept-Ranges", value: "bytes" }
+        ]
       }
     ];
   }

@@ -7,8 +7,8 @@
     "node": ">=20.11.0"
   },
   "scripts": {
-    "dev": "cross-env NEXT_IGNORE_INCORRECT_LOCKFILE=1 next dev",
-    "build": "cross-env NEXT_IGNORE_INCORRECT_LOCKFILE=1 next build",
+    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 NEXT_IGNORE_INCORRECT_LOCKFILE=1 next dev",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 NEXT_IGNORE_INCORRECT_LOCKFILE=1 next build",
     "start": "next start",
     "lint": "next lint",
     "icons": "node scripts/generate-favicons.mjs"

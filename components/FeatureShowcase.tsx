@@ -251,7 +251,12 @@ const features: Feature[] = [
   }
 ];
 
-export function FeatureShowcase() {
+export function FeatureShowcase({
+  embedded = false
+}: {
+  /** When true, nest under FeatureFocus without duplicating #in-the-app */
+  embedded?: boolean;
+}) {
   const [active, setActive] = useState(features[0].key);
   const [run, setRun] = useState(0);
   const [step, setStep] = useState(0);
@@ -264,10 +269,14 @@ export function FeatureShowcase() {
 
   return (
     <SectionShell
-      id="in-the-app"
+      id={embedded ? "all-features" : "in-the-app"}
       className="py-4 sm:py-6"
-      eyebrow="Inside the app"
-      title="The main features. Then reports, automation, and the full loop."
+      eyebrow={embedded ? "All features" : "Inside the app"}
+      title={
+        embedded
+          ? "Every module. Pick one — the phone shows the loop."
+          : "The main features. Then reports, automation, and the full loop."
+      }
       subtitle="Hub, medicines, bills, money, check-in, WiseAI — plus Reports, Automation, Life Score, Conversion, and end-to-end. Pick one. The phone is the product."
     >
       <div

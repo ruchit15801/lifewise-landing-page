@@ -180,11 +180,38 @@ html.dark {
     }
   }
 
+  @keyframes beforeAfterPulse {
+    0%,
+    100% {
+      transform: translateX(0);
+      opacity: 0.85;
+    }
+    50% {
+      transform: translateX(4px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes featureDrift {
+    0%,
+    100% {
+      transform: scale(1.02) translateY(0);
+    }
+    50% {
+      transform: scale(1.06) translateY(-1.5%);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-shimmer-bg,
     .animate-floaty,
     .animate-shimmer,
     .animate-pulse {
+      animation: none !important;
+    }
+
+    .motion-safe\:animate-\[beforeAfterPulse_1\.6s_ease-in-out_infinite\],
+    .motion-safe\:animate-\[featureDrift_8s_ease-in-out_infinite\] {
       animation: none !important;
     }
   }

@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  ArrowRight,
   CheckCircle2,
   Pill,
+  Play,
   Receipt,
   Sparkles,
   Users
@@ -13,8 +13,47 @@ import {
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { DeferredPhoneMock } from "@/components/DeferredPhoneMock";
 import { Reveal } from "@/components/Reveal";
-import { StoreDownloadButtons } from "@/components/StoreDownloadButtons";
+import { SmartInstallCTA } from "@/components/SmartInstallCTA";
+import { VideoModal } from "@/components/VideoModal";
+import { trackHeroView } from "@/lib/analytics";
+import {
+  detectHeroLang,
+  saveHeroLang,
+  type HeroLang
+} from "@/lib/hero-locale";
+import { APP_AGGREGATE_RATING, HAS_APP_REVIEWS } from "@/lib/reviews";
+import { DISPLAY_RATING } from "@/lib/social-proof";
 import { APP_STORE_NAME } from "@/lib/stores";
+
+const COPY: Record<
+  HeroLang,
+  {
+    label: string;
+    headline: string;
+    subline: string;
+  }
+> = {
+  gu: {
+    label: "ગુજરાતી",
+    headline: "Papa ni dava bhulai gai? Have tamne turant khabar padse.",
+    subline:
+      "LifeWise Papa ne yaad apase, ane miss thay to tame alert melso. Dava, bills ane family — ek app ma."
+  },
+  hi: {
+    label: "हिंदी",
+    headline: "Papa ने दवाई भूल गई? अब आपको तुरंत खबर पड़ेगी।",
+    subline:
+      "LifeWise Papa को याद दिलाता है, और miss होने पर आपको alert भेजता है। दवाई, बिल और परिवार — एक ऐप में।"
+  },
+  en: {
+    label: "EN",
+    headline: "Papa forgot his medicine? You'll know right away.",
+    subline:
+      "LifeWise reminds Papa, and alerts you if he misses it. Medicines, bills and family in one app."
+  }
+};
+
+const LANGS: HeroLang[] = ["en", "hi", "gu"];
 
 const heroProblems = [
   {
@@ -28,20 +67,49 @@ const heroProblems = [
     icon: Receipt
   },
   {
-    problem: "\"Did anyone call Mummy?\" in the family group",
+    problem: '"Did anyone call Mummy?" in the family group',
     solution: "Everyone sees the same updates in one Family Hub",
     icon: Users
   }
 ] as const;
 
+function trustLine() {
+  const bits = ["No card needed", "Android & iPhone", "7 Indian languages"];
+  if (HAS_APP_REVIEWS && APP_AGGREGATE_RATING) {
+    bits.push(`Rated ${APP_AGGREGATE_RATING.ratingValue} on Play Store`);
+  } else {
+    bits.push(`Rated ${DISPLAY_RATING.label}`);
+  }
+  return bits.join(" · ");
+}
+
 export function Hero() {
-  const [storeVariant, setStoreVariant] = useState<"hero" | "light">("light");
+  const [lang, setLang] = useState<HeroLang>("en");
+  const [langReady, setLangReady] = useState(false);
   const [openProblem, setOpenProblem] = useState(0);
+  const [videoOpen, setVideoOpen] = useState(false);
+  const closeVideo = useCallback(() => setVideoOpen(false), []);
+  const openVideo = useCallback(() => setVideoOpen(true), []);
+
+  const pickLang = useCallback((next: HeroLang) => {
+    setLang(next);
+    saveHeroLang(next);
+  }, []);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem("lifewise-theme");
-    setStoreVariant(stored === "dark" ? "hero" : "light");
+    trackHeroView();
+    let cancelled = false;
+    void detectHeroLang().then((detected) => {
+      if (cancelled) return;
+      setLang(detected);
+      setLangReady(true);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
+
+  const copy = COPY[lang];
 
   return (
     <section id="top" className="relative">
@@ -63,21 +131,47 @@ export function Hero() {
           />
 
           <Reveal eager blur={false}>
-            <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-slate-200/70 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-premium dark:border-indigo-400/25 dark:bg-slate-800 dark:text-slate-100 dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-              <Sparkles className="h-4 w-4 text-primary dark:text-indigo-300" />
-              {APP_STORE_NAME}
-              <span className="inline-flex items-center gap-1 rounded-full border border-accent/25 bg-accent/15 px-2 py-0.5 text-[10px] font-bold tracking-wide text-accent dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300">
-                Android
-              </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-slate-200/70 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-premium dark:border-indigo-400/25 dark:bg-slate-800 dark:text-slate-100 dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
+                <Sparkles className="h-4 w-4 text-primary dark:text-indigo-300" />
+                {APP_STORE_NAME}
+                <span className="inline-flex items-center gap-1 rounded-full border border-accent/25 bg-accent/15 px-2 py-0.5 text-[10px] font-bold tracking-wide text-accent dark:border-emerald-400/30 dark:bg-emerald-400/15 dark:text-emerald-300">
+                  Android + iPhone
+                </span>
+              </div>
+
+              <div
+                className={`inline-flex rounded-full border border-slate-200/80 bg-white/90 p-1 shadow-sm transition-opacity dark:border-white/10 dark:bg-slate-900/80 ${
+                  langReady ? "opacity-100" : "opacity-80"
+                }`}
+                role="group"
+                aria-label="Headline language"
+              >
+                {LANGS.map((code) => {
+                  const active = lang === code;
+                  return (
+                    <button
+                      key={code}
+                      type="button"
+                      onClick={() => pickLang(code)}
+                      aria-pressed={active}
+                      className={`min-h-[32px] rounded-full px-2.5 text-[11px] font-semibold transition ${
+                        active
+                          ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950"
+                          : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+                      }`}
+                    >
+                      {COPY[code].label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </Reveal>
 
           <Reveal eager delay={0.05} blur={false}>
             <h1 className="mt-4 font-display text-[1.75rem] font-semibold leading-[1.15] tracking-tight text-slate-950 sm:mt-5 sm:text-4xl lg:text-[2.85rem] dark:text-white">
-              Your family has too much to remember.{" "}
-              <span className="text-indigo-600 dark:text-indigo-300 lg:gradient-text">
-                LifeWise remembers it for you.
-              </span>
+              {copy.headline}
             </h1>
           </Reveal>
 
@@ -86,12 +180,7 @@ export function Hero() {
               id="lifewise-definition"
               className="mt-3.5 text-base leading-relaxed text-slate-700 sm:text-[17px] dark:text-slate-200"
             >
-              <strong className="font-semibold text-slate-900 dark:text-white">
-                {APP_STORE_NAME}
-              </strong>{" "}
-              keeps medicines, bills, health and documents for every family member in one app,
-              and alerts the right person when something is missed. Official app on Google Play (
-              <span className="whitespace-nowrap">com.lifewise</span>) and the App Store.
+              {copy.subline}
             </p>
           </Reveal>
 
@@ -118,7 +207,10 @@ export function Hero() {
                         }`}
                       >
                         {open ? (
-                          <CheckCircle2 className="h-[18px] w-[18px]" strokeWidth={2.4} />
+                          <CheckCircle2
+                            className="h-[18px] w-[18px]"
+                            strokeWidth={2.4}
+                          />
                         ) : (
                           <Icon className="h-[18px] w-[18px]" strokeWidth={2.4} />
                         )}
@@ -160,15 +252,25 @@ export function Hero() {
 
           <Reveal eager delay={0.2} blur={false}>
             <div className="mt-5">
-              <StoreDownloadButtons variant={storeVariant} />
-              <a
-                href="#problems"
-                className="btn-secondary mt-3 inline-flex w-full dark:border-white/15 dark:bg-slate-800/80 dark:text-white dark:hover:bg-slate-700 sm:w-auto"
-              >
-                See how it helps your family
-                <ArrowRight className="h-4 w-4" />
-              </a>
+              <SmartInstallCTA
+                location="hero"
+                label="Install Free"
+                showDesktopStores
+                secondary={
+                  <button
+                    type="button"
+                    onClick={openVideo}
+                    className="btn-secondary inline-flex w-full dark:border-white/15 dark:bg-slate-800/80 dark:text-white dark:hover:bg-slate-700 sm:w-auto"
+                  >
+                    <Play className="h-4 w-4 fill-current" aria-hidden />
+                    Watch 20-sec demo
+                  </button>
+                }
+              />
             </div>
+            <p className="mt-3 text-[12px] font-medium leading-snug text-slate-600 dark:text-slate-300">
+              {trustLine()}
+            </p>
           </Reveal>
         </div>
 
@@ -181,9 +283,22 @@ export function Hero() {
             aria-hidden
             className="pointer-events-none absolute -inset-4 rounded-[3rem] bg-white/25 blur-2xl dark:bg-slate-200/10"
           />
-          <DeferredPhoneMock className="relative z-10 max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem]" />
+          <div className="relative z-10 max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem]">
+            <DeferredPhoneMock className="relative z-10 max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem]" />
+            <button
+              type="button"
+              onClick={openVideo}
+              aria-label="Watch LifeWise demo video"
+              className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full bg-white/95 px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-lg ring-1 ring-slate-200/80 backdrop-blur transition hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:bg-slate-900/90 dark:text-white dark:ring-white/10"
+            >
+              <Play className="h-4 w-4 fill-current text-indigo-600 dark:text-indigo-300" />
+              Watch demo
+            </button>
+          </div>
         </div>
       </div>
+
+      <VideoModal open={videoOpen} onClose={closeVideo} />
     </section>
   );
 }

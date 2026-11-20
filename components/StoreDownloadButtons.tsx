@@ -1,7 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
 import { cn } from "@/components/cn";
+import {
+  trackCtaClick,
+  trackStoreRedirect,
+  type CtaLocation
+} from "@/lib/analytics";
+import { buildStoreUrl, readUtmParams } from "@/lib/store-links";
 import {
   APP_STORE_LIVE,
   APP_STORE_URL,
@@ -40,20 +47,33 @@ export function StoreDownloadButtons({
   variant = "light",
   className,
   showSoonBadge = true,
-  align = "start"
+  align = "start",
+  location = "footer"
 }: {
   variant?: Variant;
   className?: string;
   /** kept for API compatibility - unused */
   showSoonBadge?: boolean;
   align?: "start" | "center";
+  location?: CtaLocation;
 }) {
   const useWhiteAppStoreBadge = variant === "dark" || variant === "hero";
   const centered = align === "center";
   void showSoonBadge;
 
-  const playUrl = PLAY_STORE_URL || "#download";
-  const appUrl = APP_STORE_URL || "#download";
+  const [utm, setUtm] = useState<Record<string, string>>({});
+  useEffect(() => {
+    setUtm(readUtmParams());
+  }, []);
+
+  const playUrl = useMemo(
+    () => (PLAY_STORE_LIVE ? buildStoreUrl("android", utm) : PLAY_STORE_URL || "#download"),
+    [utm]
+  );
+  const appUrl = useMemo(
+    () => (APP_STORE_LIVE ? buildStoreUrl("ios", utm) : APP_STORE_URL || "#download"),
+    [utm]
+  );
 
   const helperText =
     PLAY_STORE_LIVE && APP_STORE_LIVE
@@ -63,6 +83,16 @@ export function StoreDownloadButtons({
         : APP_STORE_LIVE
           ? "Free on the App Store • Made for Indian families"
           : "Download LifeWise for your family";
+
+  const onPlay = () => {
+    trackCtaClick(location, "android");
+    trackStoreRedirect("android", location);
+  };
+  const onApp = () => {
+    if (!APP_STORE_LIVE) return;
+    trackCtaClick(location, "ios");
+    trackStoreRedirect("ios", location);
+  };
 
   return (
     <div
@@ -82,6 +112,7 @@ export function StoreDownloadButtons({
           href={playUrl}
           target={PLAY_STORE_LIVE ? "_blank" : undefined}
           rel={PLAY_STORE_LIVE ? "noopener noreferrer" : undefined}
+          onClick={onPlay}
           aria-label="Get LifeWise on Google Play"
           className={cn(
             "group relative inline-flex shrink-0 transition-transform hover:-translate-y-0.5 active:translate-y-0",
@@ -99,10 +130,11 @@ export function StoreDownloadButtons({
         <a
           href={appUrl}
           onClick={(e) => {
-            // Keep button visible; link will be added later in lib/stores.ts
             if (!APP_STORE_LIVE) {
               e.preventDefault();
+              return;
             }
+            onApp();
           }}
           target={APP_STORE_LIVE ? "_blank" : undefined}
           rel={APP_STORE_LIVE ? "noopener noreferrer" : undefined}

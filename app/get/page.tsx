@@ -1,25 +1,36 @@
 ﻿"use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-
-const IOS_URL =
-  "https://apps.apple.com/in/app/lifewise-ai-family-hub/id6803865970";
-const ANDROID_URL =
-  "https://play.google.com/store/apps/details?id=com.lifewise";
+import { buildStoreUrl, readUtmParams } from "@/lib/store-links";
+import { trackCtaClick, trackStoreRedirect } from "@/lib/analytics";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
 
 export default function GetPage() {
+  const [utm, setUtm] = useState<Record<string, string>>({});
+
   useEffect(() => {
+    const params = readUtmParams();
+    setUtm(params);
     const ua = navigator.userAgent || "";
     if (/iPhone|iPad|iPod/i.test(ua)) {
-      // iOS — go straight to App Store, no delay
-      window.location.replace(IOS_URL);
+      trackStoreRedirect("ios", "get");
+      window.location.replace(buildStoreUrl("ios", params));
     } else if (/Android/i.test(ua)) {
-      // Android — go straight to Play Store, no delay
-      window.location.replace(ANDROID_URL);
+      trackStoreRedirect("android", "get");
+      window.location.replace(buildStoreUrl("android", params));
     }
     // Desktop / unknown: stay on page and show both buttons
   }, []);
+
+  const iosUrl = useMemo(
+    () => (Object.keys(utm).length ? buildStoreUrl("ios", utm) : APP_STORE_URL),
+    [utm]
+  );
+  const androidUrl = useMemo(
+    () => (Object.keys(utm).length ? buildStoreUrl("android", utm) : PLAY_STORE_URL),
+    [utm]
+  );
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-5 py-12 text-center bg-lightBg dark:bg-darkBg transition-colors duration-300">
@@ -79,9 +90,13 @@ export default function GetPage() {
       <div className="flex flex-col gap-4 w-full max-w-xs">
         {/* App Store */}
         <a
-          href={IOS_URL}
+          href={iosUrl}
           id="btn-appstore"
           aria-label="Download LifeWise on the App Store"
+          onClick={() => {
+            trackCtaClick("get", "ios");
+            trackStoreRedirect("ios", "get");
+          }}
           className="group flex items-center gap-3 rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-white/8 backdrop-blur-xl shadow-premium px-5 py-4 text-slate-900 dark:text-white font-semibold text-[0.95rem] no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0"
           style={{ backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
         >
@@ -108,9 +123,13 @@ export default function GetPage() {
 
         {/* Play Store */}
         <a
-          href={ANDROID_URL}
+          href={androidUrl}
           id="btn-playstore"
           aria-label="Get LifeWise on Google Play"
+          onClick={() => {
+            trackCtaClick("get", "android");
+            trackStoreRedirect("android", "get");
+          }}
           className="group flex items-center gap-3 rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-white/8 backdrop-blur-xl shadow-premium px-5 py-4 text-slate-900 dark:text-white font-semibold text-[0.95rem] no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0"
           style={{ backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
         >

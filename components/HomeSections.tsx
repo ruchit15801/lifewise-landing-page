@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { LazySection } from "@/components/LazySection";
 import { FAQSection } from "@/components/FAQSection";
+import { StickyInstallBar } from "@/components/StickyInstallBar";
 import { scrollToSection } from "@/lib/section-nav";
 import { HAS_APP_REVIEWS } from "@/lib/reviews";
 
@@ -23,11 +24,11 @@ export function HomeSections() {
   return (
     <div className="relative bg-slate-50 text-slate-950 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-50 [&_section]:scroll-mt-24">
       <LazySection
-        id="problems"
-        minHeight={420}
+        id="offer"
+        minHeight={360}
         loader={() =>
-          import("@/components/ProblemSolution").then((m) => ({
-            default: m.ProblemSolution
+          import("@/components/OfferStrip").then((m) => ({
+            default: m.OfferStrip
           }))
         }
       />
@@ -40,10 +41,19 @@ export function HomeSections() {
       />
       <LazySection
         id="in-the-app"
-        minHeight={380}
+        minHeight={520}
         loader={() =>
-          import("@/components/FeatureShowcase").then((m) => ({
-            default: m.FeatureShowcase
+          import("@/components/FeatureFocus").then((m) => ({
+            default: m.FeatureFocus
+          }))
+        }
+      />
+      <LazySection
+        id="social-proof"
+        minHeight={360}
+        loader={() =>
+          import("@/components/SocialProof").then((m) => ({
+            default: m.SocialProof
           }))
         }
       />
@@ -93,6 +103,7 @@ export function HomeSections() {
           }))
         }
       />
+      <StickyInstallBar />
     </div>
   );
 }
