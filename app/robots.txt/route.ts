@@ -61,6 +61,7 @@ Allow: /
 Disallow: /api/
 
 Sitemap: https://www.lifewiseee.com/sitemap.xml
+Agentmap: https://www.lifewiseee.com/.well-known/ai-catalog.json
 Host: https://www.lifewiseee.com
 `;
 

@@ -3,12 +3,11 @@ import { NextResponse } from "next/server";
 export const dynamic = "force-static";
 
 export function GET() {
-  const data = {
+  const card = {
     $schema: "https://a2a-protocol.org/latest/schemas/agent-card.json",
     name: "LifeWise Agent",
     version: "1.0.0",
-    description:
-      "LifeWise AI Family Operating System autonomous agent for family health, bill tracking, finances, schedules, and subscription management.",
+    description: "LifeWise AI Family Operating System autonomous agent for family health, bill tracking, finances, schedules, and subscription management.",
     supportedInterfaces: [
       {
         url: "https://www.lifewiseee.com/api/agent",
@@ -26,9 +25,31 @@ export function GET() {
       pushNotifications: false,
       extensions: [
         {
-          uri: "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+          uri: "https://ap2-protocol.org/specs/v0.1",
+          name: "ap2",
+          description: "Agent Payments Protocol (AP2) extension for secure transaction handling",
           required: true,
           params: {
+            role: "merchant",
+            roles: ["merchant"]
+          }
+        },
+        {
+          uri: "https://protocol.agentpayments.org/extensions/ap2",
+          name: "ap2",
+          description: "Agent Payments Protocol (AP2) extension",
+          required: true,
+          params: {
+            role: "merchant",
+            roles: ["merchant"]
+          }
+        },
+        {
+          uri: "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+          name: "ap2",
+          required: true,
+          params: {
+            role: "merchant",
             roles: ["merchant"]
           }
         }
@@ -36,9 +57,31 @@ export function GET() {
     },
     extensions: [
       {
-        uri: "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+        uri: "https://ap2-protocol.org/specs/v0.1",
+        name: "ap2",
+        description: "Agent Payments Protocol (AP2) extension for secure transaction handling",
         required: true,
         params: {
+          role: "merchant",
+          roles: ["merchant"]
+        }
+      },
+      {
+        uri: "https://protocol.agentpayments.org/extensions/ap2",
+        name: "ap2",
+        description: "Agent Payments Protocol (AP2) extension",
+        required: true,
+        params: {
+          role: "merchant",
+          roles: ["merchant"]
+        }
+      },
+      {
+        uri: "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+        name: "ap2",
+        required: true,
+        params: {
+          role: "merchant",
           roles: ["merchant"]
         }
       }
@@ -47,21 +90,20 @@ export function GET() {
       {
         id: "family-management",
         name: "LifeWise Family Management",
-        description:
-          "Organize family hub, medicine reminders, routine notifications, and safety features."
+        description: "Organize family hub, medicine reminders, routine notifications, and safety features."
       },
       {
         id: "subscription-purchase",
         name: "LifeWise Subscription Checkout",
-        description:
-          "Purchase or renew LifeWise Starter, Family, and Pro subscription plans via Agent Payments Protocol."
+        description: "Purchase or renew LifeWise Starter, Family, and Pro subscription plans via Agent Payments Protocol."
       }
     ]
   };
 
-  return NextResponse.json(data, {
+  return NextResponse.json(card, {
     status: 200,
     headers: {
+      "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
       "Cache-Control": "public, max-age=3600"
     }

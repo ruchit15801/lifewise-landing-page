@@ -20,24 +20,64 @@
     "pushNotifications": false,
     "extensions": [
       {
-        "uri": "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+        "uri": "https://ap2-protocol.org/specs/v0.1",
+        "name": "ap2",
+        "description": "Agent Payments Protocol (AP2) extension for secure transaction handling",
         "required": true,
         "params": {
-          "roles": [
-            "merchant"
-          ]
+          "role": "merchant",
+          "roles": ["merchant"]
+        }
+      },
+      {
+        "uri": "https://protocol.agentpayments.org/extensions/ap2",
+        "name": "ap2",
+        "description": "Agent Payments Protocol (AP2) extension",
+        "required": true,
+        "params": {
+          "role": "merchant",
+          "roles": ["merchant"]
+        }
+      },
+      {
+        "uri": "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+        "name": "ap2",
+        "required": true,
+        "params": {
+          "role": "merchant",
+          "roles": ["merchant"]
         }
       }
     ]
   },
   "extensions": [
     {
-      "uri": "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+      "uri": "https://ap2-protocol.org/specs/v0.1",
+      "name": "ap2",
+      "description": "Agent Payments Protocol (AP2) extension for secure transaction handling",
       "required": true,
       "params": {
-        "roles": [
-          "merchant"
-        ]
+        "role": "merchant",
+        "roles": ["merchant"]
+      }
+    },
+    {
+      "uri": "https://protocol.agentpayments.org/extensions/ap2",
+      "name": "ap2",
+      "description": "Agent Payments Protocol (AP2) extension",
+      "required": true,
+      "params": {
+        "role": "merchant",
+        "roles": ["merchant"]
+      }
+    },
+    {
+      "uri": "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+      "name": "ap2",
+      "required": true,
+      "params": {
+        "role": "merchant",
+        "roles": ["merchant"]
       }
     }
   ],

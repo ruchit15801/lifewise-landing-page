@@ -29,29 +29,24 @@ export function GET() {
     bearer_methods_supported: ["header"],
     agent_auth: {
       skill: "https://www.lifewiseee.com/auth.md",
+      auth_md: "https://www.lifewiseee.com/auth.md",
       register_uri: "https://www.lifewiseee.com/api/agent/register",
-      methods: [
-        {
-          type: "anonymous",
-          identity_types_supported: ["anonymous"],
-          credential_types_supported: ["bearer_token"],
-          claim_uri: "https://www.lifewiseee.com/api/agent/claim"
-        },
-        {
-          type: "verified_email",
-          assertion_types_supported: ["verified_email"],
-          credential_types_supported: ["bearer_token"],
-          claim_uri: "https://www.lifewiseee.com/api/agent/claim"
-        },
-        {
-          type: "identity_assertion",
-          identity_types_supported: ["identity_assertion"],
-          assertion_types_supported: ["urn:ietf:params:oauth:token-type:id-jag"],
-          credential_types_supported: ["bearer_token"],
-          revocation_uri: "https://www.lifewiseee.com/api/agent/revoke",
-          events_supported: ["revocation"]
-        }
-      ]
+      registration_endpoint: "https://www.lifewiseee.com/api/agent/register",
+      identity_types_supported: ["identity_assertion", "anonymous"],
+      identity_assertion: {
+        assertion_types_supported: [
+          "urn:ietf:params:oauth:token-type:id-jag",
+          "verified_email"
+        ],
+        credential_types_supported: ["bearer", "bearer_token"],
+        claim_uri: "https://www.lifewiseee.com/api/agent/claim",
+        revocation_uri: "https://www.lifewiseee.com/api/agent/revoke",
+        events_supported: ["revocation"]
+      },
+      anonymous: {
+        credential_types_supported: ["bearer", "bearer_token"],
+        claim_uri: "https://www.lifewiseee.com/api/agent/claim"
+      }
     }
   };
 

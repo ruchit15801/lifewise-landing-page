@@ -1,29 +1,34 @@
 import { NextResponse } from "next/server";
 
 export function GET() {
-  return NextResponse.json(
-    {
-      status: 402,
-      title: "Payment Required",
-      detail: "Payment required to access agentic API v1 operations via x402 protocol",
-      payment: {
-        version: "1.0.0",
+  const payload = {
+    x402Version: 1,
+    accepts: [
+      {
+        scheme: "exact",
         network: "base",
         currency: "USDC",
-        recipient: "0x0000000000000000000000000000000000000000",
-        amount: "1.00",
-        facilitator: "https://x402.org/facilitator"
+        amount: "10000",
+        recipient: "0x2e9f1a2636a0E5728a38F3c3757C4c30c5123d6a",
+        facilitator: "https://facilitator.x402.org"
       }
-    },
-    {
-      status: 402,
-      headers: {
-        "WWW-Authenticate": 'x402 realm="LifeWise API v1", token="base:usdc"',
-        "Access-Control-Allow-Origin": "*",
-        "Cache-Control": "no-store"
-      }
+    ],
+    resource: "https://www.lifewiseee.com/api/v1"
+  };
+
+  const payloadStr = JSON.stringify(payload);
+
+  return NextResponse.json(payload, {
+    status: 402,
+    headers: {
+      "Payment-Required": payloadStr,
+      "payment-required": payloadStr,
+      "X-PAYMENT-REQUIRED": payloadStr,
+      "WWW-Authenticate": 'x402 realm="LifeWise API", token="base:usdc"',
+      "Access-Control-Allow-Origin": "*",
+      "Cache-Control": "no-store"
     }
-  );
+  });
 }
 
 export function POST() {

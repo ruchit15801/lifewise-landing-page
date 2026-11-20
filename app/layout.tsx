@@ -52,6 +52,7 @@ export default function RootLayout({
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="Full LLM reference for LifeWise" />
         <link rel="alternate" type="text/markdown" href="/?format=markdown" title="Markdown for Agents" />
         <link rel="api-catalog" type="application/linkset+json" href="/.well-known/api-catalog" />
+        <link rel="ai-catalog" type="application/json" href="/.well-known/ai-catalog.json" />
         <link rel="service-desc" type="application/openapi+json" href="/openapi.json" />
         <link rel="service-doc" href="/docs" />
         <link rel="author" href={`${SITE_URL}/llms.txt`} />
