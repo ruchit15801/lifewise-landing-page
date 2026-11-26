@@ -7,6 +7,7 @@ interface HeroTypewriterProps {
   className?: string;
   cursorClassName?: string;
   speed?: number;
+  startDelay?: number;
   showCursor?: boolean;
   onComplete?: () => void;
 }
@@ -27,7 +28,8 @@ export function HeroTypewriter({
   text,
   className = "",
   cursorClassName = "",
-  speed = 24,
+  speed = 65,
+  startDelay = 220,
   showCursor = true,
   onComplete
 }: HeroTypewriterProps) {
@@ -56,27 +58,33 @@ export function HeroTypewriter({
     setIsTyping(true);
 
     let currentIndex = 0;
-    const interval = window.setInterval(() => {
-      currentIndex += 1;
-      setDisplayedCount(currentIndex);
+    let intervalId: number | undefined;
 
-      if (currentIndex >= items.length) {
-        window.clearInterval(interval);
-        setIsTyping(false);
-        onCompleteRef.current?.();
-      }
-    }, speed);
+    const delayId = window.setTimeout(() => {
+      intervalId = window.setInterval(() => {
+        currentIndex += 1;
+        setDisplayedCount(currentIndex);
+
+        if (currentIndex >= items.length) {
+          if (intervalId !== undefined) window.clearInterval(intervalId);
+          setIsTyping(false);
+          onCompleteRef.current?.();
+        }
+      }, speed);
+    }, startDelay);
 
     return () => {
-      window.clearInterval(interval);
+      window.clearTimeout(delayId);
+      if (intervalId !== undefined) window.clearInterval(intervalId);
     };
-  }, [text, speed]);
+  }, [text, speed, startDelay]);
 
   const output = graphemes.current.slice(0, displayedCount).join("");
 
   return (
     <span className={`inline ${className}`}>
-      <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 bg-clip-text text-transparent dark:from-emerald-400 dark:via-teal-300 dark:to-indigo-300">
+      {/* Expand inline background-clip box slightly so Gujarati/Hindi top & bottom matras never clip */}
+      <span className="inline py-[0.22em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 bg-clip-text text-transparent dark:from-emerald-400 dark:via-teal-300 dark:to-indigo-300">
         {output}
       </span>
       {showCursor && (

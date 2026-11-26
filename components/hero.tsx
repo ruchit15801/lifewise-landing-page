@@ -30,7 +30,7 @@ import { DISPLAY_RATING } from "@/lib/social-proof";
 import { APP_STORE_NAME } from "@/lib/stores";
 
 const LANGS: HeroLang[] = ["en", "hi", "gu"];
-const SCENARIO_INTERVAL_MS = 5500;
+const SCENARIO_INTERVAL_MS = 6200;
 
 function trustLine() {
   const bits = ["No card needed", "Android & iPhone", "7 Indian languages"];
@@ -89,6 +89,7 @@ export function Hero() {
   }, []);
 
   const currentScenario = HERO_SCENARIOS[activeScenario] || HERO_SCENARIOS[0];
+  const isIndic = lang === "gu" || lang === "hi";
 
   return (
     <section id="top" className="relative">
@@ -168,15 +169,26 @@ export function Hero() {
                   transition={{ duration: 0.28, ease: "easeOut" }}
                   className="col-start-1 row-start-1 flex flex-col justify-start"
                 >
-                  <h1 className="font-display text-[1.7rem] font-semibold leading-[1.14] tracking-tight text-slate-950 sm:text-4xl lg:text-[2.35rem] xl:text-[2.75rem] dark:text-white">
+                  <h1
+                    className={`font-display font-semibold tracking-tight text-slate-950 dark:text-white ${
+                      isIndic
+                        ? "text-[1.45rem] leading-[1.38] sm:text-[2rem] lg:text-[2.15rem] xl:text-[2.45rem]"
+                        : "text-[1.7rem] leading-[1.14] sm:text-4xl lg:text-[2.35rem] xl:text-[2.75rem]"
+                    }`}
+                  >
                     <span className="block text-slate-900 dark:text-white">
                       {currentScenario.question[lang]}
                     </span>
-                    <span className="block mt-1 font-bold">
+                    <span
+                      className={`block font-bold ${
+                        isIndic ? "mt-2 sm:mt-2.5" : "mt-1"
+                      }`}
+                    >
                       <HeroTypewriter
                         key={`${activeScenario}-${lang}-typewriter`}
                         text={currentScenario.resolution[lang]}
-                        speed={24}
+                        speed={65}
+                        startDelay={220}
                       />
                     </span>
                   </h1>
