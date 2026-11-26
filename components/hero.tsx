@@ -187,7 +187,7 @@ export function Hero() {
 
           {/* Dynamic Subline: Grid-Stacked Layout (Zero Layout Shift) */}
           <Reveal eager delay={0.1} blur={false}>
-            <div className="relative mt-2 sm:mt-2.5 grid grid-cols-1 grid-rows-1 min-h-[3.2rem] sm:min-h-[3.1rem] items-start">
+            <div className="relative mt-1 sm:mt-1.5 grid grid-cols-1 grid-rows-1 min-h-[3.2rem] sm:min-h-[3.1rem] items-start">
               <AnimatePresence initial={false}>
                 <motion.p
                   key={`${activeScenario}-${lang}-subline`}
