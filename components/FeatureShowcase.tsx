@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   BellRing,
   Bot,
@@ -11,6 +12,7 @@ import {
   Receipt,
   RotateCcw,
   ScanLine,
+  ShieldCheck,
   Users,
   Wallet,
   Workflow
@@ -260,7 +262,8 @@ export function FeatureShowcase({
   const [active, setActive] = useState(features[0].key);
   const [run, setRun] = useState(0);
   const [step, setStep] = useState(0);
-  const feature = features.find((f) => f.key === active) ?? features[0];
+  const activeIndex = Math.max(features.findIndex((f) => f.key === active), 0);
+  const feature = features[activeIndex] ?? features[0];
   const Icon = feature.icon;
 
   useEffect(() => {
@@ -270,7 +273,7 @@ export function FeatureShowcase({
   return (
     <SectionShell
       id={embedded ? "all-features" : "in-the-app"}
-      className="py-4 sm:py-6"
+      className="py-6 sm:py-8"
       eyebrow={embedded ? "All features" : "Inside the app"}
       title={
         embedded
@@ -279,13 +282,15 @@ export function FeatureShowcase({
       }
       subtitle="Hub, medicines, bills, money, check-in, WiseAI — plus Reports, Automation, Life Score, Conversion, and end-to-end. Pick one. The phone is the product."
     >
+      {/* Feature Selector Pill Bar */}
       <div
         role="tablist"
         aria-label="Main LifeWise features"
-        className="-mx-4 mb-2 flex gap-1.5 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0"
+        className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0"
       >
         {features.map((f) => {
           const selected = f.key === active;
+          const TabIcon = f.icon;
           return (
             <button
               key={f.key}
@@ -297,98 +302,148 @@ export function FeatureShowcase({
                 setRun(0);
               }}
               className={cn(
-                "inline-flex min-h-[34px] shrink-0 items-center rounded-lg border px-2.5 text-[12px] font-semibold transition",
+                "inline-flex min-h-[38px] shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all duration-150",
                 selected
-                  ? "border-slate-950 bg-slate-950 text-white dark:border-white dark:bg-white dark:text-slate-950"
-                  : "border-slate-200 bg-white text-slate-700 hover:border-slate-400 dark:border-white/10 dark:bg-slate-900/70 dark:text-slate-200"
+                  ? "border-indigo-600 bg-indigo-600 text-white shadow-md shadow-indigo-600/20 dark:border-indigo-500 dark:bg-indigo-500"
+                  : "border-slate-200/80 bg-white/90 text-slate-700 shadow-sm hover:border-indigo-300 hover:bg-indigo-50/50 hover:text-indigo-700 dark:border-white/10 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-indigo-400/30 dark:hover:text-indigo-300"
               )}
             >
-              {f.title}
+              <TabIcon
+                className={cn(
+                  "h-3.5 w-3.5 shrink-0",
+                  selected ? "text-indigo-100" : "text-indigo-600 dark:text-indigo-400"
+                )}
+                aria-hidden
+              />
+              <span>{f.title}</span>
             </button>
           );
         })}
       </div>
 
+      {/* Main Feature Preview Card */}
       <Reveal>
-        <div className="grid gap-3 rounded-2xl border border-slate-200/70 bg-[#FAF8F5] p-3 lg:grid-cols-[1fr_auto] lg:items-start dark:border-white/10 dark:bg-slate-950">
-          <div className="flex min-h-0 flex-col">
-            <div className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-slate-950 text-white dark:bg-white dark:text-slate-950">
-                <Icon className="h-4 w-4" />
-              </span>
-              <h3 className="font-display text-lg font-semibold text-slate-900 dark:text-white">
-                {feature.title}
-              </h3>
-            </div>
-            <p className="mt-2 text-sm font-semibold leading-snug text-slate-900 dark:text-white">
-              {feature.point}
-            </p>
-            <p className="mt-1 text-[13px] leading-snug text-slate-600 dark:text-slate-300">{feature.detail}</p>
-
-            <ol className="mt-3 flex flex-col gap-1">
-              {feature.screens.map((screen, i) => {
-                const beat = screenBeat(screen);
-                const BeatIcon = beat.icon;
-                const on = i === step;
-                const passed = i < step;
-                return (
-                  <li
-                    key={`${feature.key}-${beat.label}-${i}`}
-                    className={cn(
-                      "flex items-center gap-2 rounded-xl border px-2.5 py-1.5 text-[13px]",
-                      on
-                        ? "border-slate-900 bg-white dark:border-white dark:bg-slate-900"
-                        : passed
-                          ? "border-emerald-200/80 bg-white/70 dark:border-emerald-400/20"
-                          : "border-transparent bg-white/50 dark:bg-slate-900/40"
-                    )}
-                  >
-                    <span
-                      className={cn(
-                        "grid h-7 w-7 shrink-0 place-items-center rounded-lg",
-                        on
-                          ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950"
-                          : passed
-                            ? "bg-emerald-700 text-white"
-                            : "bg-white text-slate-500 dark:bg-slate-800"
-                      )}
-                    >
-                      <BeatIcon className="h-3.5 w-3.5" />
-                    </span>
-                    <span className="min-w-0 flex-1 font-medium text-slate-800 dark:text-slate-100">
-                      {beat.label}
-                    </span>
-                    {on ? (
-                      <span className="h-1.5 w-1.5 shrink-0 animate-ping rounded-full bg-slate-900 dark:bg-white" />
-                    ) : passed ? (
-                      <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-700" />
-                    ) : (
-                      <span className="text-[10px] font-semibold text-slate-400">{i + 1}</span>
-                    )}
-                  </li>
-                );
-              })}
-            </ol>
-
-            <button
-              type="button"
-              onClick={() => setRun((n) => n + 1)}
-              className="mt-3 inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-semibold text-white dark:bg-white dark:text-slate-950"
+        <div
+          role="tabpanel"
+          className="mt-4 overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 shadow-premium backdrop-blur dark:border-white/10 dark:bg-slate-900/80"
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={feature.key}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              className="grid gap-6 p-5 sm:p-7 lg:grid-cols-[1.12fr_0.88fr] lg:items-center lg:gap-8"
             >
-              <RotateCcw className="h-4 w-4" />
-              Replay this feature
-            </button>
-          </div>
+              {/* Left Column: Details & Step Timeline */}
+              <div className="flex min-h-0 flex-col">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-200/70 dark:bg-indigo-500/15 dark:text-indigo-300 dark:ring-indigo-400/25">
+                      <Icon className="h-5 w-5" aria-hidden />
+                    </span>
+                    <div>
+                      <h3 className="font-display text-xl font-bold tracking-tight text-slate-900 sm:text-2xl dark:text-white">
+                        {feature.title}
+                      </h3>
+                      <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400">
+                        Live phone walkthrough
+                      </p>
+                    </div>
+                  </div>
+                  <span className="shrink-0 rounded-full border border-slate-200/80 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600 dark:border-white/10 dark:bg-slate-800 dark:text-slate-300">
+                    {activeIndex + 1} / {features.length}
+                  </span>
+                </div>
 
-          <div className="flex justify-center lg:justify-end">
-            <LifeWisePhoneScene
-              sceneKey={`${feature.key}-${run}`}
-              screens={feature.screens}
-              playing
-              interval={2800}
-              onStep={setStep}
-            />
-          </div>
+                <p className="mt-4 text-base font-semibold leading-snug text-slate-900 sm:text-[17px] dark:text-white">
+                  {feature.point}
+                </p>
+
+                <div className="mt-3 flex items-start gap-2.5 rounded-2xl border border-emerald-200/70 bg-emerald-50/70 px-3.5 py-2.5 text-[13px] leading-snug text-slate-700 dark:border-emerald-400/20 dark:bg-emerald-950/25 dark:text-slate-200">
+                  <ShieldCheck
+                    className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400"
+                    aria-hidden
+                  />
+                  <span>{feature.detail}</span>
+                </div>
+
+                {/* Live Phone Steps */}
+                <div className="mt-4">
+                  <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-400">
+                    Screen loop steps
+                  </p>
+                  <ol className="flex flex-col gap-2">
+                    {feature.screens.map((screen, i) => {
+                      const beat = screenBeat(screen);
+                      const BeatIcon = beat.icon;
+                      const on = i === step;
+                      const passed = i < step;
+                      return (
+                        <li
+                          key={`${feature.key}-${beat.label}-${i}`}
+                          className={cn(
+                            "flex items-center gap-3 rounded-2xl border px-3.5 py-2.5 text-sm transition-all duration-200",
+                            on
+                              ? "border-indigo-200 bg-indigo-50/90 shadow-sm dark:border-indigo-400/30 dark:bg-indigo-500/15"
+                              : passed
+                                ? "border-emerald-200/70 bg-emerald-50/60 dark:border-emerald-400/20 dark:bg-emerald-500/10"
+                                : "border-slate-200/70 bg-slate-50/75 dark:border-white/10 dark:bg-slate-800/45"
+                          )}
+                        >
+                          <span
+                            className={cn(
+                              "grid h-8 w-8 shrink-0 place-items-center rounded-xl transition-colors",
+                              on
+                                ? "bg-indigo-600 text-white shadow-sm dark:bg-indigo-500"
+                                : passed
+                                  ? "bg-emerald-600 text-white"
+                                  : "bg-white text-slate-500 ring-1 ring-slate-200/70 dark:bg-slate-900 dark:text-slate-300 dark:ring-white/10"
+                            )}
+                          >
+                            <BeatIcon className="h-4 w-4" aria-hidden />
+                          </span>
+                          <span className="min-w-0 flex-1 font-medium text-slate-800 dark:text-slate-100">
+                            {beat.label}
+                          </span>
+                          {on ? (
+                            <span className="h-2 w-2 shrink-0 animate-ping rounded-full bg-indigo-500" />
+                          ) : passed ? (
+                            <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                          ) : (
+                            <span className="text-[11px] font-semibold text-slate-400">{i + 1}</span>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </div>
+
+                <div className="mt-5">
+                  <button
+                    type="button"
+                    onClick={() => setRun((n) => n + 1)}
+                    className="btn-primary inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold shadow-md shadow-indigo-600/20 sm:w-auto"
+                  >
+                    <RotateCcw className="h-4 w-4" aria-hidden />
+                    Replay {feature.title}
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Interactive Phone Canvas */}
+              <div className="flex items-center justify-center rounded-2xl border border-slate-100 bg-gradient-to-br from-slate-50 via-indigo-50/40 to-emerald-50/30 px-4 py-5 dark:border-white/5 dark:from-slate-800/50 dark:via-indigo-950/20 dark:to-slate-900/50">
+                <LifeWisePhoneScene
+                  sceneKey={`${feature.key}-${run}`}
+                  screens={feature.screens}
+                  playing
+                  interval={2800}
+                  onStep={setStep}
+                />
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </Reveal>
     </SectionShell>

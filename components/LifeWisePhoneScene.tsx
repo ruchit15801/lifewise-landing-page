@@ -61,9 +61,12 @@ export function screenBeat(screen: PhoneScreen): { icon: LucideIcon; label: stri
     case "bill":
       return { icon: Receipt, label: screen.paid ? `${screen.name} paid` : `${screen.name} due` };
     case "hub":
-      return { icon: Users, label: "Family Hub live" };
+      return {
+        icon: Users,
+        label: screen.people[0]?.name === "Food" ? "Household spending live" : "Family Hub live"
+      };
     case "ai":
-      return { icon: MessageCircle, label: "WiseAI" };
+      return { icon: MessageCircle, label: screen.question };
     case "report":
       return { icon: PieChart, label: screen.pdf ? "PDF report ready" : "This month’s report" };
     case "score":
