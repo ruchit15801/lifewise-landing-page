@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Maximize2, Pause, Play, Volume2, VolumeX } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
@@ -8,12 +9,13 @@ import { VideoModal } from "@/components/VideoModal";
 import { trackVideo75, trackVideoPlay } from "@/lib/analytics";
 
 const DEMO_SRC = "/videos/lifewise-demo.mp4";
-const DEMO_POSTER = "/app-screens/home.png";
+const DEMO_POSTER = "/videos/lifewise-demo-poster.jpg";
 
 export function DemoVideoSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [showPoster, setShowPoster] = useState(true);
   const [muted, setMuted] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const playedRef = useRef(false);
@@ -48,6 +50,7 @@ export function DemoVideoSection() {
 
   const onPlay = useCallback(() => {
     setPlaying(true);
+    setShowPoster(false);
     if (playedRef.current) return;
     playedRef.current = true;
     trackVideoPlay();
@@ -94,7 +97,7 @@ export function DemoVideoSection() {
           <div className="relative aspect-video w-full bg-slate-900">
             <video
               ref={videoRef}
-              className="h-full w-full object-contain"
+              className="h-full w-full object-cover"
               poster={DEMO_POSTER}
               playsInline
               muted={muted}
@@ -102,20 +105,49 @@ export function DemoVideoSection() {
               onPlay={onPlay}
               onPause={onPause}
               onTimeUpdate={onTimeUpdate}
-              onEnded={() => setPlaying(false)}
+              onEnded={() => {
+                setPlaying(false);
+                setShowPoster(true);
+              }}
             >
               {shouldLoad ? <source src={DEMO_SRC} type="video/mp4" /> : null}
             </video>
+
+            {showPoster ? (
+              <Image
+                src={DEMO_POSTER}
+                alt="LifeWise — Your Money. Your Life. Your Family. One Place."
+                fill
+                sizes="(max-width: 1024px) 100vw, 1152px"
+                className="pointer-events-none object-cover"
+              />
+            ) : null}
 
             {!playing ? (
               <button
                 type="button"
                 onClick={() => void togglePlay()}
                 aria-label="Play LifeWise demo"
-                className="absolute inset-0 grid place-items-center bg-gradient-to-t from-slate-950/70 via-slate-950/25 to-transparent"
+                className={
+                  showPoster
+                    ? "group absolute inset-0 flex items-end justify-center bg-transparent pb-3 transition-colors hover:bg-slate-950/[0.03] sm:pb-5"
+                    : "group absolute inset-0 grid place-items-center bg-gradient-to-t from-slate-950/65 via-slate-950/20 to-transparent"
+                }
               >
-                <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950 shadow-xl ring-1 ring-white/40 transition hover:scale-[1.03]">
-                  <Play className="h-5 w-5 fill-current text-indigo-600" />
+                <span
+                  className={
+                    showPoster
+                      ? "inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 px-4 py-2 text-xs font-bold text-white shadow-[0_12px_30px_rgba(79,70,229,0.35)] ring-2 ring-white/90 transition group-hover:scale-[1.04] sm:px-6 sm:py-3 sm:text-sm"
+                      : "inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950 shadow-xl ring-1 ring-white/40 transition group-hover:scale-[1.03]"
+                  }
+                >
+                  <Play
+                    className={
+                      showPoster
+                        ? "h-4 w-4 fill-current text-white sm:h-5 sm:w-5"
+                        : "h-5 w-5 fill-current text-indigo-600"
+                    }
+                  />
                   Play demo
                 </span>
               </button>

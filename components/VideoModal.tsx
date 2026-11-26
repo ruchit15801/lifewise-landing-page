@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 import { trackVideo75, trackVideoPlay } from "@/lib/analytics";
 
 const DEMO_SRC = "/videos/lifewise-demo.mp4";
-const DEMO_POSTER = "/app-screens/home.png";
+const DEMO_POSTER = "/videos/lifewise-demo-poster.jpg";
 
 export function VideoModal({
   open,
