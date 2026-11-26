@@ -4,14 +4,13 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   CheckCircle2,
-  Pill,
+  Pause,
   Play,
-  Receipt,
-  Sparkles,
-  Users
+  Sparkles
 } from "lucide-react";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { DeferredPhoneMock } from "@/components/DeferredPhoneMock";
+import { HeroTypewriter } from "@/components/HeroTypewriter";
 import { Reveal } from "@/components/Reveal";
 import { SmartInstallCTA } from "@/components/SmartInstallCTA";
 import { VideoModal } from "@/components/VideoModal";
@@ -21,57 +20,17 @@ import {
   saveHeroLang,
   type HeroLang
 } from "@/lib/hero-locale";
+import {
+  HERO_LANG_LABELS,
+  HERO_SCENARIOS,
+  HERO_TAP_HINT
+} from "@/lib/hero-scenarios";
 import { APP_AGGREGATE_RATING, HAS_APP_REVIEWS } from "@/lib/reviews";
 import { DISPLAY_RATING } from "@/lib/social-proof";
 import { APP_STORE_NAME } from "@/lib/stores";
 
-const COPY: Record<
-  HeroLang,
-  {
-    label: string;
-    headline: string;
-    subline: string;
-  }
-> = {
-  gu: {
-    label: "ગુજરાતી",
-    headline: "Papa ni dava bhulai gai? Have tamne turant khabar padse.",
-    subline:
-      "LifeWise Papa ne yaad apase, ane miss thay to tame alert melso. Dava, bills ane family — ek app ma."
-  },
-  hi: {
-    label: "हिंदी",
-    headline: "Papa ने दवाई भूल गई? अब आपको तुरंत खबर पड़ेगी।",
-    subline:
-      "LifeWise Papa को याद दिलाता है, और miss होने पर आपको alert भेजता है। दवाई, बिल और परिवार — एक ऐप में।"
-  },
-  en: {
-    label: "EN",
-    headline: "Papa forgot his medicine? You'll know right away.",
-    subline:
-      "LifeWise reminds Papa, and alerts you if he misses it. Medicines, bills and family in one app."
-  }
-};
-
 const LANGS: HeroLang[] = ["en", "hi", "gu"];
-
-const heroProblems = [
-  {
-    problem: "Papa forgot his BP tablet again",
-    solution: "He gets a reminder, you get an alert if he misses it",
-    icon: Pill
-  },
-  {
-    problem: "Late fee on the electricity bill",
-    solution: "Scan the bill once, get reminded before the due date",
-    icon: Receipt
-  },
-  {
-    problem: '"Did anyone call Mummy?" in the family group',
-    solution: "Everyone sees the same updates in one Family Hub",
-    icon: Users
-  }
-] as const;
+const SCENARIO_INTERVAL_MS = 5500;
 
 function trustLine() {
   const bits = ["No card needed", "Android & iPhone", "7 Indian languages"];
@@ -86,8 +45,10 @@ function trustLine() {
 export function Hero() {
   const [lang, setLang] = useState<HeroLang>("en");
   const [langReady, setLangReady] = useState(false);
-  const [openProblem, setOpenProblem] = useState(0);
+  const [activeScenario, setActiveScenario] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
+
   const closeVideo = useCallback(() => setVideoOpen(false), []);
   const openVideo = useCallback(() => setVideoOpen(true), []);
 
@@ -96,6 +57,24 @@ export function Hero() {
     saveHeroLang(next);
   }, []);
 
+  const selectScenario = useCallback((index: number) => {
+    setActiveScenario(index);
+  }, []);
+
+  // Auto-cycle through problem-solution scenarios
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = window.setInterval(() => {
+      setActiveScenario((prev) => (prev + 1) % HERO_SCENARIOS.length);
+    }, SCENARIO_INTERVAL_MS);
+
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, [isPaused]);
+
+  // Initial language detection
   useEffect(() => {
     trackHeroView();
     let cancelled = false;
@@ -109,7 +88,7 @@ export function Hero() {
     };
   }, []);
 
-  const copy = COPY[lang];
+  const currentScenario = HERO_SCENARIOS[activeScenario] || HERO_SCENARIOS[0];
 
   return (
     <section id="top" className="relative">
@@ -130,6 +109,7 @@ export function Hero() {
             className="pointer-events-none absolute -left-10 -top-8 hidden h-56 w-56 rounded-full bg-indigo-400/20 blur-3xl dark:block"
           />
 
+          {/* Top Bar: Store Badge & Language Toggle */}
           <Reveal eager blur={false}>
             <div className="flex flex-wrap items-center gap-2">
               <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-slate-200/70 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-premium dark:border-indigo-400/25 dark:bg-slate-800 dark:text-slate-100 dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
@@ -140,6 +120,7 @@ export function Hero() {
                 </span>
               </div>
 
+              {/* Language Switcher */}
               <div
                 className={`inline-flex rounded-full border border-slate-200/80 bg-white/90 p-1 shadow-sm transition-opacity dark:border-white/10 dark:bg-slate-900/80 ${
                   langReady ? "opacity-100" : "opacity-80"
@@ -161,95 +142,233 @@ export function Hero() {
                           : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
                       }`}
                     >
-                      {COPY[code].label}
+                      {HERO_LANG_LABELS[code]}
                     </button>
                   );
                 })}
               </div>
+
+              {/* Active Category Badge */}
+              <span className="inline-flex items-center gap-1 rounded-full border border-indigo-200/60 bg-indigo-50/70 px-2.5 py-1 text-[11px] font-semibold text-indigo-700 dark:border-indigo-400/20 dark:bg-indigo-400/10 dark:text-indigo-300">
+                <currentScenario.icon className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
+                {currentScenario.badge[lang]}
+              </span>
             </div>
           </Reveal>
 
+          {/* Dynamic Headline with Typewriter Resolution */}
           <Reveal eager delay={0.05} blur={false}>
-            <h1 className="mt-4 font-display text-[1.75rem] font-semibold leading-[1.15] tracking-tight text-slate-950 sm:mt-5 sm:text-4xl lg:text-[2.85rem] dark:text-white">
-              {copy.headline}
-            </h1>
+            <div className="mt-4 min-h-[5.4rem] sm:min-h-[6.2rem] lg:min-h-[7.2rem] flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                <motion.h1
+                  key={`${activeScenario}-${lang}-heading`}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ type: "spring", stiffness: 360, damping: 28 }}
+                  className="font-display text-[1.75rem] font-semibold leading-[1.18] tracking-tight text-slate-950 sm:text-4xl lg:text-[2.75rem] dark:text-white"
+                >
+                  <span className="block text-slate-900 dark:text-white">
+                    {currentScenario.question[lang]}
+                  </span>
+                  <span className="block mt-1 font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 bg-clip-text text-transparent dark:from-emerald-400 dark:via-teal-300 dark:to-indigo-300">
+                    <HeroTypewriter
+                      key={`${activeScenario}-${lang}-typewriter`}
+                      text={currentScenario.resolution[lang]}
+                      speed={32}
+                    />
+                  </span>
+                </motion.h1>
+              </AnimatePresence>
+            </div>
           </Reveal>
 
+          {/* Dynamic Subline */}
           <Reveal eager delay={0.1} blur={false}>
-            <p
-              id="lifewise-definition"
-              className="mt-3.5 text-base leading-relaxed text-slate-700 sm:text-[17px] dark:text-slate-200"
-            >
-              {copy.subline}
-            </p>
+            <div className="mt-3 min-h-[2.8rem] sm:min-h-[3.2rem]">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={`${activeScenario}-${lang}-subline`}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.18 }}
+                  id="lifewise-definition"
+                  className="text-base leading-relaxed text-slate-700 sm:text-[17px] dark:text-slate-200"
+                >
+                  {currentScenario.subline[lang]}
+                </motion.p>
+              </AnimatePresence>
+            </div>
           </Reveal>
 
+          {/* Interactive Problem-Solution Rotating Showcase */}
           <Reveal eager delay={0.15} blur={false}>
-            <ul className="mt-4 space-y-2" aria-label="Problems LifeWise solves">
-              {heroProblems.map(({ problem, solution, icon: Icon }, i) => {
-                const open = openProblem === i;
-                return (
-                  <li key={problem}>
-                    <button
-                      type="button"
-                      onClick={() => setOpenProblem(i)}
-                      className={`flex w-full items-start gap-3 rounded-2xl border p-3 text-left shadow-sm transition ${
-                        open
-                          ? "border-emerald-300 bg-emerald-50/90 dark:border-emerald-400/30 dark:bg-emerald-400/10"
-                          : "border-slate-200/80 bg-white/90 hover:border-rose-200 dark:border-white/10 dark:bg-slate-900/70"
-                      }`}
-                    >
-                      <span
-                        className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl ${
+            <div
+              className="mt-4 rounded-2xl border border-slate-200/80 bg-white/90 p-3 shadow-premium backdrop-blur dark:border-white/10 dark:bg-slate-900/80"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              {/* Showcase Header Controls */}
+              <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-white/5 text-xs">
+                <div className="flex items-center gap-2 font-semibold text-slate-700 dark:text-slate-200">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span>Problems LifeWise Solves</span>
+                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                    {activeScenario + 1} of {HERO_SCENARIOS.length}
+                  </span>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setIsPaused(!isPaused)}
+                  aria-label={isPaused ? "Resume auto-cycling" : "Pause auto-cycling"}
+                  className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition px-2 py-0.5 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800"
+                >
+                  {isPaused ? (
+                    <>
+                      <Play className="h-3 w-3 fill-current text-emerald-600 dark:text-emerald-400" />
+                      <span>Paused</span>
+                    </>
+                  ) : (
+                    <>
+                      <Pause className="h-3 w-3 fill-current text-slate-400" />
+                      <span>Auto-cycling</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Scenario Cards */}
+              <ul className="mt-2.5 space-y-2" aria-label="Problems LifeWise solves">
+                {HERO_SCENARIOS.map((item, i) => {
+                  const open = activeScenario === i;
+                  const Icon = item.icon;
+
+                  return (
+                    <li key={item.id} className="relative">
+                      <button
+                        type="button"
+                        onClick={() => selectScenario(i)}
+                        className={`relative flex w-full items-start gap-3 rounded-xl border p-3 text-left transition overflow-hidden ${
                           open
-                            ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-400/20 dark:text-emerald-200"
-                            : "bg-rose-50 text-rose-600 dark:bg-rose-400/15 dark:text-rose-200"
+                            ? "border-emerald-300/90 bg-emerald-50/80 dark:border-emerald-400/30 dark:bg-emerald-950/20 shadow-sm"
+                            : "border-slate-200/70 bg-white/70 hover:border-slate-300 dark:border-white/5 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-800/60"
                         }`}
                       >
-                        {open ? (
-                          <CheckCircle2
-                            className="h-[18px] w-[18px]"
-                            strokeWidth={2.4}
-                          />
-                        ) : (
-                          <Icon className="h-[18px] w-[18px]" strokeWidth={2.4} />
+                        {/* Progress Bar for Active Card */}
+                        {open && (
+                          <div
+                            aria-hidden
+                            className="absolute inset-x-0 top-0 h-1 bg-emerald-200/40 dark:bg-emerald-900/30 overflow-hidden"
+                          >
+                            <motion.div
+                              key={`${activeScenario}-${isPaused}`}
+                              className="h-full bg-emerald-500 dark:bg-emerald-400"
+                              initial={{ width: "0%" }}
+                              animate={{ width: isPaused ? undefined : "100%" }}
+                              transition={{
+                                duration: SCENARIO_INTERVAL_MS / 1000,
+                                ease: "linear"
+                              }}
+                            />
+                          </div>
                         )}
-                      </span>
-                      <span className="min-w-0 text-sm leading-snug">
+
+                        {/* Icon */}
                         <span
-                          className={`block font-medium ${
+                          className={`grid h-9 w-9 shrink-0 place-items-center rounded-lg transition ${
                             open
-                              ? "text-slate-500 line-through decoration-rose-400/80 dark:text-slate-400"
-                              : "text-slate-900 dark:text-white"
+                              ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-400/20 dark:text-emerald-200"
+                              : "bg-rose-50 text-rose-600 dark:bg-rose-400/15 dark:text-rose-200"
                           }`}
                         >
-                          {problem}
-                        </span>
-                        <AnimatePresence initial={false}>
                           {open ? (
-                            <motion.span
-                              key="sol"
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="mt-0.5 block overflow-hidden font-semibold text-emerald-800 dark:text-emerald-200"
-                            >
-                              {solution}
-                            </motion.span>
+                            <CheckCircle2
+                              className="h-[18px] w-[18px]"
+                              strokeWidth={2.4}
+                            />
                           ) : (
-                            <span className="mt-0.5 block text-[12px] font-semibold text-rose-600 dark:text-rose-300">
-                              Tap to see the LifeWise fix
-                            </span>
+                            <Icon className="h-[18px] w-[18px]" strokeWidth={2.2} />
                           )}
-                        </AnimatePresence>
-                      </span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
+                        </span>
+
+                        {/* Text Container */}
+                        <span className="min-w-0 flex-1 text-sm leading-snug">
+                          <span
+                            className={`block font-medium transition ${
+                              open
+                                ? "text-slate-600 line-through decoration-rose-400/80 dark:text-slate-300"
+                                : "text-slate-900 dark:text-white"
+                            }`}
+                          >
+                            {item.problem[lang]}
+                          </span>
+
+                          <AnimatePresence initial={false}>
+                            {open ? (
+                              <motion.div
+                                key="solution-block"
+                                initial={{ opacity: 0, height: 0, y: -4 }}
+                                animate={{ opacity: 1, height: "auto", y: 0 }}
+                                exit={{ opacity: 0, height: 0, y: -4 }}
+                                transition={{
+                                  type: "spring",
+                                  stiffness: 350,
+                                  damping: 28
+                                }}
+                                className="mt-1 overflow-hidden"
+                              >
+                                <div className="flex items-start gap-1.5 font-semibold text-emerald-800 dark:text-emerald-200">
+                                  <span className="inline-flex items-center rounded bg-emerald-600 px-1.5 py-0.5 text-[10px] font-bold text-white dark:bg-emerald-500">
+                                    {item.fixLabel[lang]}
+                                  </span>
+                                  <span className="text-sm leading-snug">
+                                    {item.solution[lang]}
+                                  </span>
+                                </div>
+                              </motion.div>
+                            ) : (
+                              <span className="mt-0.5 block text-[11px] font-semibold text-rose-600/90 dark:text-rose-300/90">
+                                {HERO_TAP_HINT[lang]}
+                              </span>
+                            )}
+                          </AnimatePresence>
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              {/* Dots and Navigation */}
+              <div className="mt-2.5 flex items-center justify-between border-t border-slate-100 pt-2 text-xs dark:border-white/5">
+                <div className="flex items-center gap-1.5">
+                  {HERO_SCENARIOS.map((item, i) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => selectScenario(i)}
+                      aria-label={`Show ${item.badge[lang]}`}
+                      className={`h-2 rounded-full transition-all ${
+                        activeScenario === i
+                          ? "w-6 bg-emerald-500 dark:bg-emerald-400"
+                          : "w-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <span className="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400">
+                  {currentScenario.badge[lang]}
+                </span>
+              </div>
+            </div>
           </Reveal>
 
+          {/* Install CTA & Trust Line */}
           <Reveal eager delay={0.2} blur={false}>
             <div className="mt-5">
               <SmartInstallCTA
@@ -274,6 +393,7 @@ export function Hero() {
           </Reveal>
         </div>
 
+        {/* Right Column: Interactive Phone Mock */}
         <div className="relative justify-self-center noise lg:justify-self-center">
           <div
             aria-hidden
