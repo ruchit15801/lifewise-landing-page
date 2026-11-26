@@ -61,7 +61,7 @@ export function Hero() {
     setActiveScenario(index);
   }, []);
 
-  // Auto-cycle through problem-solution scenarios
+  // Auto-cycle through the 3 core problem-solution scenarios
   useEffect(() => {
     if (isPaused) return;
 
@@ -156,45 +156,47 @@ export function Hero() {
             </div>
           </Reveal>
 
-          {/* Dynamic Headline with Typewriter Resolution */}
+          {/* Dynamic Headline: Grid-Stacked Layout (Zero Layout Shift) */}
           <Reveal eager delay={0.05} blur={false}>
-            <div className="mt-4 min-h-[5.4rem] sm:min-h-[6.2rem] lg:min-h-[7.2rem] flex flex-col justify-center">
-              <AnimatePresence mode="wait">
-                <motion.h1
+            <div className="relative mt-4 sm:mt-5 grid grid-cols-1 grid-rows-1 min-h-[5.8rem] sm:min-h-[6.6rem] lg:min-h-[7.4rem] items-center">
+              <AnimatePresence initial={false}>
+                <motion.div
                   key={`${activeScenario}-${lang}-heading`}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ type: "spring", stiffness: 360, damping: 28 }}
-                  className="font-display text-[1.75rem] font-semibold leading-[1.18] tracking-tight text-slate-950 sm:text-4xl lg:text-[2.75rem] dark:text-white"
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.28, ease: "easeOut" }}
+                  className="col-start-1 row-start-1 flex flex-col justify-center"
                 >
-                  <span className="block text-slate-900 dark:text-white">
-                    {currentScenario.question[lang]}
-                  </span>
-                  <span className="block mt-1 font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 bg-clip-text text-transparent dark:from-emerald-400 dark:via-teal-300 dark:to-indigo-300">
-                    <HeroTypewriter
-                      key={`${activeScenario}-${lang}-typewriter`}
-                      text={currentScenario.resolution[lang]}
-                      speed={32}
-                    />
-                  </span>
-                </motion.h1>
+                  <h1 className="font-display text-[1.7rem] font-semibold leading-[1.2] tracking-tight text-slate-950 sm:text-4xl lg:text-[2.75rem] dark:text-white">
+                    <span className="block text-slate-900 dark:text-white">
+                      {currentScenario.question[lang]}
+                    </span>
+                    <span className="block mt-1 font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 bg-clip-text text-transparent dark:from-emerald-400 dark:via-teal-300 dark:to-indigo-300">
+                      <HeroTypewriter
+                        key={`${activeScenario}-${lang}-typewriter`}
+                        text={currentScenario.resolution[lang]}
+                        speed={26}
+                      />
+                    </span>
+                  </h1>
+                </motion.div>
               </AnimatePresence>
             </div>
           </Reveal>
 
-          {/* Dynamic Subline */}
+          {/* Dynamic Subline: Grid-Stacked Layout (Zero Layout Shift) */}
           <Reveal eager delay={0.1} blur={false}>
-            <div className="mt-3 min-h-[2.8rem] sm:min-h-[3.2rem]">
-              <AnimatePresence mode="wait">
+            <div className="relative mt-3 grid grid-cols-1 grid-rows-1 min-h-[3.2rem] sm:min-h-[3rem] items-center">
+              <AnimatePresence initial={false}>
                 <motion.p
                   key={`${activeScenario}-${lang}-subline`}
-                  initial={{ opacity: 0, y: 6 }}
+                  initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.18 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.24, ease: "easeOut" }}
                   id="lifewise-definition"
-                  className="text-base leading-relaxed text-slate-700 sm:text-[17px] dark:text-slate-200"
+                  className="col-start-1 row-start-1 text-base leading-relaxed text-slate-700 sm:text-[17px] dark:text-slate-200"
                 >
                   {currentScenario.subline[lang]}
                 </motion.p>
@@ -202,14 +204,14 @@ export function Hero() {
             </div>
           </Reveal>
 
-          {/* Interactive Problem-Solution Rotating Showcase */}
+          {/* Interactive Problem-Solution Showcase: Rock-Solid Fixed Height */}
           <Reveal eager delay={0.15} blur={false}>
             <div
               className="mt-4 rounded-2xl border border-slate-200/80 bg-white/90 p-3 shadow-premium backdrop-blur dark:border-white/10 dark:bg-slate-900/80"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              {/* Showcase Header Controls */}
+              {/* Header Bar */}
               <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-white/5 text-xs">
                 <div className="flex items-center gap-2 font-semibold text-slate-700 dark:text-slate-200">
                   <span className="relative flex h-2 w-2">
@@ -242,7 +244,7 @@ export function Hero() {
                 </button>
               </div>
 
-              {/* Scenario Cards */}
+              {/* 3 Scenario Cards: Uniform Consistent Height to Prevent Any Layout Jump */}
               <ul className="mt-2.5 space-y-2" aria-label="Problems LifeWise solves">
                 {HERO_SCENARIOS.map((item, i) => {
                   const open = activeScenario === i;
@@ -253,13 +255,13 @@ export function Hero() {
                       <button
                         type="button"
                         onClick={() => selectScenario(i)}
-                        className={`relative flex w-full items-start gap-3 rounded-xl border p-3 text-left transition overflow-hidden ${
+                        className={`relative flex w-full items-start gap-3 rounded-xl border p-3 text-left transition-all duration-200 overflow-hidden ${
                           open
                             ? "border-emerald-300/90 bg-emerald-50/80 dark:border-emerald-400/30 dark:bg-emerald-950/20 shadow-sm"
                             : "border-slate-200/70 bg-white/70 hover:border-slate-300 dark:border-white/5 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-800/60"
                         }`}
                       >
-                        {/* Progress Bar for Active Card */}
+                        {/* Progress Bar on Active Card */}
                         {open && (
                           <div
                             aria-hidden
@@ -280,7 +282,7 @@ export function Hero() {
 
                         {/* Icon */}
                         <span
-                          className={`grid h-9 w-9 shrink-0 place-items-center rounded-lg transition ${
+                          className={`grid h-9 w-9 shrink-0 place-items-center rounded-lg transition-colors duration-200 ${
                             open
                               ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-400/20 dark:text-emerald-200"
                               : "bg-rose-50 text-rose-600 dark:bg-rose-400/15 dark:text-rose-200"
@@ -296,10 +298,10 @@ export function Hero() {
                           )}
                         </span>
 
-                        {/* Text Container */}
+                        {/* Text Container: Guaranteed Constant Height across Active & Inactive states */}
                         <span className="min-w-0 flex-1 text-sm leading-snug">
                           <span
-                            className={`block font-medium transition ${
+                            className={`block font-medium transition-colors duration-200 ${
                               open
                                 ? "text-slate-600 line-through decoration-rose-400/80 dark:text-slate-300"
                                 : "text-slate-900 dark:text-white"
@@ -308,35 +310,39 @@ export function Hero() {
                             {item.problem[lang]}
                           </span>
 
-                          <AnimatePresence initial={false}>
-                            {open ? (
-                              <motion.div
-                                key="solution-block"
-                                initial={{ opacity: 0, height: 0, y: -4 }}
-                                animate={{ opacity: 1, height: "auto", y: 0 }}
-                                exit={{ opacity: 0, height: 0, y: -4 }}
-                                transition={{
-                                  type: "spring",
-                                  stiffness: 350,
-                                  damping: 28
-                                }}
-                                className="mt-1 overflow-hidden"
-                              >
-                                <div className="flex items-start gap-1.5 font-semibold text-emerald-800 dark:text-emerald-200">
-                                  <span className="inline-flex items-center rounded bg-emerald-600 px-1.5 py-0.5 text-[10px] font-bold text-white dark:bg-emerald-500">
+                          {/* Stable Fixed-Height Slot: Seamlessly cross-fades Solution and Tap Hint */}
+                          <div className="relative mt-1 min-h-[2.4rem] sm:min-h-[2.1rem] flex items-center">
+                            <AnimatePresence initial={false} mode="wait">
+                              {open ? (
+                                <motion.div
+                                  key="solution"
+                                  initial={{ opacity: 0, y: 3 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: -3 }}
+                                  transition={{ duration: 0.18, ease: "easeOut" }}
+                                  className="flex items-start gap-1.5 font-semibold text-emerald-800 dark:text-emerald-200 text-xs sm:text-sm leading-snug"
+                                >
+                                  <span className="shrink-0 rounded bg-emerald-600 px-1.5 py-0.5 text-[9px] font-bold text-white dark:bg-emerald-500">
                                     {item.fixLabel[lang]}
                                   </span>
-                                  <span className="text-sm leading-snug">
+                                  <span className="leading-tight">
                                     {item.solution[lang]}
                                   </span>
-                                </div>
-                              </motion.div>
-                            ) : (
-                              <span className="mt-0.5 block text-[11px] font-semibold text-rose-600/90 dark:text-rose-300/90">
-                                {HERO_TAP_HINT[lang]}
-                              </span>
-                            )}
-                          </AnimatePresence>
+                                </motion.div>
+                              ) : (
+                                <motion.div
+                                  key="hint"
+                                  initial={{ opacity: 0, y: 3 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: -3 }}
+                                  transition={{ duration: 0.18, ease: "easeOut" }}
+                                  className="flex items-center text-[11px] font-semibold text-rose-600/90 dark:text-rose-300/90"
+                                >
+                                  <span>{HERO_TAP_HINT[lang]}</span>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
                         </span>
                       </button>
                     </li>
