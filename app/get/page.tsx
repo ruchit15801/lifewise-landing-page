@@ -34,7 +34,7 @@ export default function GetPage() {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-5 py-12 text-center bg-lightBg dark:bg-darkBg transition-colors duration-300">
-      {/* Ambient glow — matches site style */}
+      {/* Ambient glow  matches site style */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10"
@@ -82,7 +82,7 @@ export default function GetPage() {
       </h1>
 
       <p className="text-base text-slate-500 dark:text-slate-400 max-w-xs leading-relaxed mb-10">
-        Your AI-powered family hub — health, schedules &amp; memories in one
+        Your AI-powered family hub  health, schedules &amp; memories in one
         place.
       </p>
 
@@ -141,10 +141,10 @@ export default function GetPage() {
             viewBox="0 0 24 24"
             fill="none"
           >
-            <path d="M3.18 23.76c.32.18.68.22 1.04.1l11.8-6.81-2.56-2.56-10.28 9.27z" fill="#EA4335"/>
-            <path d="M21.54 10.27 18.1 8.3 15.2 11l2.9 2.9 3.44-1.99c.98-.57.98-1.58 0-2.64z" fill="#FBBC05"/>
-            <path d="M4.22.14C3.86.02 3.5.06 3.18.24L13.46 10.5l2.56-2.56L4.22.14z" fill="#4285F4"/>
-            <path d="M3.18.24C2.46.65 2 1.42 2 2.35v19.3c0 .93.46 1.7 1.18 2.11l.06.04 10.82-10.8v-.26L3.24.2l-.06.04z" fill="#34A853"/>
+            <path d="M3.18 23.76c.32.18.68.22 1.04.1l11.8-6.81-2.56-2.56-10.28 9.27z" fill="#EA4335" />
+            <path d="M21.54 10.27 18.1 8.3 15.2 11l2.9 2.9 3.44-1.99c.98-.57.98-1.58 0-2.64z" fill="#FBBC05" />
+            <path d="M4.22.14C3.86.02 3.5.06 3.18.24L13.46 10.5l2.56-2.56L4.22.14z" fill="#4285F4" />
+            <path d="M3.18.24C2.46.65 2 1.42 2 2.35v19.3c0 .93.46 1.7 1.18 2.11l.06.04 10.82-10.8v-.26L3.24.2l-.06.04z" fill="#34A853" />
           </svg>
           <span className="flex flex-col text-left">
             <span className="text-[0.7rem] font-normal text-slate-500 dark:text-slate-400 leading-none mb-0.5">

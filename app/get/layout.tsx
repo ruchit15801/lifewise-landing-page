@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * Standalone layout for /get — inherits <html> + theme-init script from the
+ * Standalone layout for /get  inherits <html> + theme-init script from the
  * root layout automatically (Next.js App Router nesting), but skips Navbar
  * and Footer so mobile users never see any flash before being redirected.
  */

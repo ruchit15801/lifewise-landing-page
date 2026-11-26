@@ -31,7 +31,7 @@ export function isHeroLang(value: string | null | undefined): value is HeroLang 
   return value === "gu" || value === "hi" || value === "en";
 }
 
-/** Manual override from language toggle — sticky across visits. */
+/** Manual override from language toggle  sticky across visits. */
 export function readSavedHeroLang(): HeroLang | null {
   if (typeof window === "undefined") return null;
   try {
@@ -104,7 +104,7 @@ async function fetchIpGeo(): Promise<GeoPayload | null> {
   const controller = new AbortController();
   const timer = window.setTimeout(() => controller.abort(), 2800);
   try {
-    // ipwho.is — no API key, CORS-friendly
+    // ipwho.is  no API key, CORS-friendly
     const res = await fetch("https://ipwho.is/", {
       signal: controller.signal,
       cache: "no-store"

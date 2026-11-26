@@ -86,9 +86,9 @@ export function SmartInstallCTA({
           className={cn(
             "inline-flex w-full items-center justify-center gap-2 font-semibold transition active:translate-y-0 sm:w-auto",
             variant === "primary" &&
-              "btn-primary shadow-lg shadow-indigo-500/25 hover:-translate-y-0.5",
+            "btn-primary shadow-lg shadow-indigo-500/25 hover:-translate-y-0.5",
             variant === "bar" &&
-              "min-h-[48px] rounded-xl bg-primary px-4 py-3 text-sm text-white",
+            "min-h-[48px] rounded-xl bg-primary px-4 py-3 text-sm text-white",
             size === "lg" && variant === "primary" && "min-h-[52px] px-6 text-[15px]",
             size === "md" && "min-h-[44px] px-5 text-sm"
           )}
@@ -162,7 +162,7 @@ export function SmartInstallCTA({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={qrCodeUrl(qrTarget, 128)}
-              alt="Scan to open LifeWise get page — auto opens App Store or Play Store"
+              alt="Scan to open LifeWise get page  auto opens App Store or Play Store"
               width={64}
               height={64}
               className="h-16 w-16 rounded-md bg-white"

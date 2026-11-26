@@ -1,6 +1,6 @@
 /**
  * On-page social proof for the landing conversion section.
- * Not wired into JSON-LD Product reviews — keep schema reviews empty until
+ * Not wired into JSON-LD Product reviews  keep schema reviews empty until
  * genuine Play Store / App Store reviews are pasted into lib/reviews.ts.
  */
 
@@ -27,7 +27,7 @@ export const SOCIAL_STATS = [
 export const SOCIAL_QUOTES = [
   {
     quote:
-      "Papa misses fewer BP tablets now. If he skips one, I get the alert on my phone — no more guessing in WhatsApp.",
+      "Papa misses fewer BP tablets now. If he skips one, I get the alert on my phone  no more guessing in WhatsApp.",
     name: "Priya Mehta",
     city: "Ahmedabad",
     rating: 5 as const
@@ -41,7 +41,7 @@ export const SOCIAL_QUOTES = [
   },
   {
     quote:
-      "Family Hub shows who checked on Mummy. Everyone is on the same page — less chaos in the family group.",
+      "Family Hub shows who checked on Mummy. Everyone is on the same page  less chaos in the family group.",
     name: "Ananya Iyer",
     city: "Bengaluru",
     rating: 4 as const

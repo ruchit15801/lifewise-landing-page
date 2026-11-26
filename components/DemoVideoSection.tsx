@@ -164,7 +164,7 @@ export function DemoVideoSection() {
       id="demo"
       eyebrow="20-sec demo"
       title="See LifeWise in one short film."
-      subtitle="Papa's reminder, bill scan, Family Hub — watch how the day changes."
+      subtitle="Papa's reminder, bill scan, Family Hub watch how the day changes."
       className="py-5 sm:py-7"
     >
       <Reveal>
@@ -197,12 +197,11 @@ export function DemoVideoSection() {
 
             <Image
               src={DEMO_POSTER}
-              alt="LifeWise — Your Money. Your Life. Your Family. One Place."
+              alt="LifeWise  Your Money. Your Life. Your Family. One Place."
               fill
               sizes="(max-width: 1024px) 100vw, 1152px"
-              className={`pointer-events-none object-cover transition-opacity duration-500 ${
-                showPoster ? "opacity-100" : "opacity-0"
-              }`}
+              className={`pointer-events-none object-cover transition-opacity duration-500 ${showPoster ? "opacity-100" : "opacity-0"
+                }`}
             />
 
             {!playing ? (

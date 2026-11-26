@@ -11,24 +11,24 @@ const rows: {
   after: string;
   icon: LucideIcon;
 }[] = [
-  {
-    before: "Papa forgot his BP tablet again",
-    after:
-      "He gets a reminder. If he misses it, you get an alert in 30 minutes.",
-    icon: Pill
-  },
-  {
-    before: "Late fee on the electricity bill",
-    after:
-      "Scan the bill, LifeWise reads amount + due date and reminds you.",
-    icon: Receipt
-  },
-  {
-    before: '"Did anyone call Mummy?" in the family group',
-    after: "Everyone sees who did what, in real time.",
-    icon: Users
-  }
-];
+    {
+      before: "Papa forgot his BP tablet again",
+      after:
+        "He gets a reminder. If he misses it, you get an alert in 30 minutes.",
+      icon: Pill
+    },
+    {
+      before: "Late fee on the electricity bill",
+      after:
+        "Scan the bill, LifeWise reads amount + due date and reminds you.",
+      icon: Receipt
+    },
+    {
+      before: '"Did anyone call Mummy?" in the family group',
+      after: "Everyone sees who did what, in real time.",
+      icon: Users
+    }
+  ];
 
 export function BeforeAfter() {
   return (
@@ -36,7 +36,7 @@ export function BeforeAfter() {
       id="problems"
       eyebrow="Before vs With LifeWise"
       title="The same day, without the WhatsApp guessing."
-      subtitle="Three problems Indian families hit every week — and what changes when LifeWise is on."
+      subtitle="Three problems Indian families hit every week  and what changes when LifeWise is on."
       className="py-5 sm:py-7"
     >
       <div className="space-y-3">

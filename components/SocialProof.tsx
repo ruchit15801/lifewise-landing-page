@@ -38,7 +38,7 @@ export function SocialProof() {
       id="social-proof"
       eyebrow="Loved by families"
       title="What early families are saying."
-      subtitle={`${DISPLAY_RATING.label} average — medicine alerts, bill reminders, and one Family Hub.`}
+      subtitle={`${DISPLAY_RATING.label} average  medicine alerts, bill reminders, and one Family Hub.`}
       className="py-5 sm:py-7"
     >
       <Reveal>

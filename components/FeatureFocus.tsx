@@ -40,7 +40,7 @@ const HERO_FEATURES: HeroFeature[] = [
     icon: Mic,
     title: "Voice reminder in Hindi / Gujarati",
     point:
-      "Home screen Voice Reminder — spoken alerts parents actually understand.",
+      "Home screen Voice Reminder  spoken alerts parents actually understand.",
     image: "/app-screens/feature-home.jpg",
     alt: "LifeWise home with Voice Reminder, Scan Bills and Wise AI"
   },
@@ -49,7 +49,7 @@ const HERO_FEATURES: HeroFeature[] = [
     icon: ScanLine,
     title: "Scan Bill & reminders",
     point:
-      "Bills and subscriptions in one list — amount, due date, overdue clear.",
+      "Bills and subscriptions in one list  amount, due date, overdue clear.",
     image: "/app-screens/feature-reminders.jpg",
     alt: "LifeWise Reminders screen with electricity bill and Netflix"
   },
@@ -58,7 +58,7 @@ const HERO_FEATURES: HeroFeature[] = [
     icon: Users,
     title: "Family Hub for Papa & everyone",
     point:
-      "Each member has their own card — medicines, health, bills managed together.",
+      "Each member has their own card  medicines, health, bills managed together.",
     image: "/app-screens/feature-family.jpg",
     alt: "LifeWise family members screen with Dad and family cards"
   }
@@ -74,7 +74,7 @@ export function FeatureFocus() {
         className="py-5 sm:py-7"
         eyebrow="What matters first"
         title="Three things that change the family day."
-        subtitle="Real LifeWise screens: voice reminder, bill reminders, and Family Hub — then open all modules if you want."
+        subtitle="Real LifeWise screens: voice reminder, bill reminders, and Family Hub  then open all modules if you want."
       >
         <div className="grid gap-4 sm:gap-5 md:grid-cols-3">
           {HERO_FEATURES.map((feature, i) => {

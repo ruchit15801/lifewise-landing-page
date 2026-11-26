@@ -134,7 +134,7 @@ export function DownloadCTA() {
 
             <p className="mb-8 max-w-xl text-base font-medium leading-relaxed text-indigo-100 sm:text-lg">
               Install {SITE_NAME} to manage medicines, bills, and daily routines
-              for your family — securely, in one place.
+              for your family  securely, in one place.
             </p>
 
             <div className="mb-8 flex w-full max-w-md flex-col items-center">

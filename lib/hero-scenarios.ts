@@ -41,8 +41,8 @@ export const HERO_SCENARIOS: HeroScenario[] = [
     },
     subline: {
       en: "LifeWise reminds Papa on time, and alerts you if he misses it. Medicines, bills and family in one app.",
-      gu: "LifeWise પપ્પાને સમયસર યાદ અપાવશે, અને ચૂકી જાય તો તમને તરત એલર્ટ કરશે. દવા, બિલ અને પરિવાર — એક એપમાં.",
-      hi: "LifeWise पापा को समय पर याद दिलाता है, और छूटने पर आपको तुरंत अलर्ट भेजता है। दवाई, बिल और परिवार — एक ऐप में।"
+      gu: "LifeWise પપ્પાને સમયસર યાદ અપાવશે, અને ચૂકી જાય તો તમને તરત એલર્ટ કરશે. દવા, બિલ અને પરિવાર  એક એપમાં.",
+      hi: "LifeWise पापा को समय पर याद दिलाता है, और छूटने पर आपको तुरंत अलर्ट भेजता है। दवाई, बिल और परिवार  एक ऐप में।"
     },
     problem: {
       en: "Papa forgot his BP tablet again",

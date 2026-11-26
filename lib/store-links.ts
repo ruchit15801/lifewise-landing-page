@@ -2,7 +2,7 @@ import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/stores";
 import type { StorePlatform } from "@/lib/analytics";
 import { SITE_URL } from "@/lib/seo";
 
-/** Canonical smart-install page — phone scan auto-detects iOS / Android. */
+/** Canonical smart-install page  phone scan auto-detects iOS / Android. */
 export const GET_APP_URL = `${SITE_URL.replace(/\/$/, "")}/get`;
 
 const UTM_KEYS = [
@@ -70,7 +70,7 @@ export function buildStoreUrl(
   return url.toString();
 }
 
-/** Absolute /get URL with UTMs — used by QR and desktop CTA. */
+/** Absolute /get URL with UTMs  used by QR and desktop CTA. */
 export function buildGetAppUrl(utm: Record<string, string> = {}): string {
   const url = new URL(GET_APP_URL);
   for (const [k, v] of Object.entries(utm)) url.searchParams.set(k, v);

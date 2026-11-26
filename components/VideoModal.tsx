@@ -89,7 +89,7 @@ export function VideoModal({
         el.playsInline = true;
         await el.play();
       } catch {
-        // Autoplay blocked — user can tap play
+        // Autoplay blocked  user can tap play
       }
     };
 
