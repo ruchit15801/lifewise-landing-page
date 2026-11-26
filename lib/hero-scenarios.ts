@@ -1,18 +1,14 @@
 import {
-  BellRing,
-  FileText,
   Pill,
   Receipt,
-  ShieldCheck,
-  Users,
-  Wallet
+  Users
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { HeroLang } from "./hero-locale";
 
 export type HeroScenario = {
   id: string;
-  key: "meds" | "bills" | "family" | "insurance" | "money";
+  key: "meds" | "bills" | "family";
   icon: LucideIcon;
   badge: Record<HeroLang, string>;
   question: Record<HeroLang, string>;
@@ -137,86 +133,6 @@ export const HERO_SCENARIOS: HeroScenario[] = [
       en: "Daily check-ins & routine updates shared live in one Family Hub",
       gu: "મમ્મીનું ડેઇલી ચેક-ઇન અને અપડેટ્સ એક જ ફેમિલી હબમાં સૌને લાઈવ દેખાય છે",
       hi: "डेली चेक-इन और जरूरी अपडेट्स एक ही फैमिली हब में सबको लाइव दिखते हैं"
-    },
-    fixLabel: {
-      en: "LifeWise Fix",
-      gu: "LifeWise ઉકેલ",
-      hi: "LifeWise समाधान"
-    }
-  },
-  {
-    id: "insurance",
-    key: "insurance",
-    icon: ShieldCheck,
-    badge: {
-      en: "Doc Vault",
-      gu: "ડોક્યુમેન્ટ વૉલ્ટ",
-      hi: "दस्तावेज वॉल्ट"
-    },
-    question: {
-      en: "Health insurance renewal missed?",
-      gu: "હેલ્થ ઇન્સ્યોરન્સ રિન્યુઅલ ભૂલાઈ ગયું?",
-      hi: "हेल्थ इन्श्योरेंस रीन्यूअल छूट गया?"
-    },
-    resolution: {
-      en: "Always stay protected.",
-      gu: "પરિવાર હંમેશા સુરક્ષિત રહેશે.",
-      hi: "परिवार हमेशा सुरक्षित रहेगा।"
-    },
-    subline: {
-      en: "Store policies, health cards & receipts safely. LifeWise warns you 30 days before expiry with details in 1 tap.",
-      gu: "હેલ્થ કાર્ડ, પોલિસી અને ગેરંટી રસીદ સુરક્ષિત રાખો. LifeWise એક્સપાયરીના 30 દિવસ પહેલાં જ સમયસર ચેતવે છે.",
-      hi: "पॉलिसी, मेडिकल कार्ड और जरूरी दस्तावेज सुरक्षित रखें। LifeWise एक्सपायरी से 30 दिन पहले ही सचेत कर देता है।"
-    },
-    problem: {
-      en: "Health insurance lapsed because renewal was forgotten",
-      gu: "તારીખ ભૂલાઈ જતાં હેલ્થ ઇન્સ્યોરન્સ રિન્યુઅલ ચૂકી ગયા",
-      hi: "तारीख याद न रहने से हेल्थ पॉलिसी रीन्यूअल मिस हो गई"
-    },
-    solution: {
-      en: "Smart renewal alerts 30 days ahead with policy cards in 1 tap",
-      gu: "30 દિવસ પહેલા સ્માર્ટ એલર્ટ, પોલિસી ડિટેલ્સ સીધી 1 ટેપમાં હાજર",
-      hi: "30 दिन पहले स्मार्ट रीन्यूअल अलर्ट, पॉलिसी नंबर सीधे स्क्रीन पर"
-    },
-    fixLabel: {
-      en: "LifeWise Fix",
-      gu: "LifeWise ઉકેલ",
-      hi: "LifeWise समाधान"
-    }
-  },
-  {
-    id: "money",
-    key: "money",
-    icon: Wallet,
-    badge: {
-      en: "Money Leak",
-      gu: "બિનજરૂરી ખર્ચ",
-      hi: "मनी लीक"
-    },
-    question: {
-      en: "Money leaking on autopay?",
-      gu: "ઓટો-પેથી છૂપા પૈસા કપાય છે?",
-      hi: "ऑटो-पे से चुपके-चुपકે पैसे कट रहे हैं?"
-    },
-    resolution: {
-      en: "Plug silent household drains.",
-      gu: "ઘરના બિનજરૂરી ખર્ચા તરત અટકાવો.",
-      hi: "फालतू खर्चों पर तुरंत रोक लगाएं।"
-    },
-    subline: {
-      en: "Track groceries, maid salaries, and joint expenses. Money Leak radar spots forgotten subscriptions before they charge.",
-      gu: "કરિયાણું, બિલ અને ઘરખર્ચનો પારદર્શક ફેમિલી હિસાબ. Money Leak રડાર નકામા ઓટો-પે તરત પકડી પાડે છે.",
-      hi: "किराना, बिल और घर के खर्चों का साफ फैमिली खाता। Money Leak रडार बेकार ऑटो-पे पैसे कटने से पहले पकड़ता है।"
-    },
-    problem: {
-      en: "Unused subscriptions quietly charging every month",
-      gu: "વણવપરાયેલા સબ્સ્ક્રિપ્શન્સ દર મહિને ખાતામાંથી પૈસા કાપી રહ્યા છે",
-      hi: "अनयूज्ड सब्सक्रिप्शन हर महीने चुपके से पैसे काट रहे हैं"
-    },
-    solution: {
-      en: "Money Leak radar flags unused autopays & duplicate spend",
-      gu: "Money Leak રડાર નકામા ઓટો-પે અને બિનજરૂરી ખર્ચ તરત પકડી પાડે છે",
-      hi: "Money Leak रडार बेकार ऑटो-पे और फालतू खर्च तुरंत पकड़ता है"
     },
     fixLabel: {
       en: "LifeWise Fix",
