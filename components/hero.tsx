@@ -102,7 +102,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-x-0 top-0 h-[70%] bg-gradient-to-b from-indigo-500/10 via-transparent to-transparent dark:from-indigo-400/20"
       />
 
-      <div className="relative mx-auto grid w-full max-w-[98rem] grid-cols-1 items-center gap-4 px-4 pb-4 pt-20 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:gap-6 lg:px-8 lg:pb-6 lg:pt-20 xl:px-12">
+      <div className="relative mx-auto grid w-full max-w-[98rem] grid-cols-1 items-center gap-6 px-4 pb-6 pt-24 sm:px-6 sm:pt-28 lg:grid-cols-[1fr_1.05fr] lg:gap-8 lg:px-8 lg:pb-8 lg:pt-28 xl:px-12">
         <div className="relative max-w-[38rem] xl:max-w-[44rem]">
           <div
             aria-hidden
@@ -158,7 +158,7 @@ export function Hero() {
 
           {/* Dynamic Headline: Grid-Stacked Layout (Zero Layout Shift) */}
           <Reveal eager delay={0.05} blur={false}>
-            <div className="relative mt-4 sm:mt-5 grid grid-cols-1 grid-rows-1 min-h-[5.8rem] sm:min-h-[6.6rem] lg:min-h-[7.4rem] items-start">
+            <div className="relative mt-4 sm:mt-5 grid grid-cols-1 grid-rows-1 min-h-[4.1rem] sm:min-h-[5.35rem] lg:min-h-[5.6rem] xl:min-h-[6.4rem] items-start">
               <AnimatePresence initial={false}>
                 <motion.div
                   key={`${activeScenario}-${lang}-heading`}
@@ -168,11 +168,11 @@ export function Hero() {
                   transition={{ duration: 0.28, ease: "easeOut" }}
                   className="col-start-1 row-start-1 flex flex-col justify-start"
                 >
-                  <h1 className="font-display text-[1.7rem] font-semibold leading-[1.22] tracking-tight text-slate-950 sm:text-4xl lg:text-[2.75rem] dark:text-white">
+                  <h1 className="font-display text-[1.7rem] font-semibold leading-[1.14] tracking-tight text-slate-950 sm:text-4xl lg:text-[2.35rem] xl:text-[2.75rem] dark:text-white">
                     <span className="block text-slate-900 dark:text-white">
                       {currentScenario.question[lang]}
                     </span>
-                    <span className="block mt-1 sm:mt-1.5 font-bold">
+                    <span className="block mt-1 font-bold">
                       <HeroTypewriter
                         key={`${activeScenario}-${lang}-typewriter`}
                         text={currentScenario.resolution[lang]}
@@ -187,7 +187,7 @@ export function Hero() {
 
           {/* Dynamic Subline: Grid-Stacked Layout (Zero Layout Shift) */}
           <Reveal eager delay={0.1} blur={false}>
-            <div className="relative mt-3.5 sm:mt-4 grid grid-cols-1 grid-rows-1 min-h-[3.6rem] sm:min-h-[3rem] items-start">
+            <div className="relative mt-2 sm:mt-2.5 grid grid-cols-1 grid-rows-1 min-h-[3.2rem] sm:min-h-[3.1rem] items-start">
               <AnimatePresence initial={false}>
                 <motion.p
                   key={`${activeScenario}-${lang}-subline`}
@@ -196,7 +196,7 @@ export function Hero() {
                   exit={{ opacity: 0, y: -4 }}
                   transition={{ duration: 0.24, ease: "easeOut" }}
                   id="lifewise-definition"
-                  className="col-start-1 row-start-1 text-base leading-relaxed text-slate-700 sm:text-[17px] dark:text-slate-200"
+                  className="col-start-1 row-start-1 text-base leading-[1.55] text-slate-700 sm:text-[17px] dark:text-slate-200"
                 >
                   {currentScenario.subline[lang]}
                 </motion.p>
@@ -207,7 +207,7 @@ export function Hero() {
           {/* Interactive Problem-Solution Showcase: Rock-Solid Fixed Height */}
           <Reveal eager delay={0.15} blur={false}>
             <div
-              className="mt-4 rounded-2xl border border-slate-200/80 bg-white/90 p-3 shadow-premium backdrop-blur dark:border-white/10 dark:bg-slate-900/80"
+              className="mt-3.5 sm:mt-4 rounded-2xl border border-slate-200/80 bg-white/90 p-3 shadow-premium backdrop-blur dark:border-white/10 dark:bg-slate-900/80"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
