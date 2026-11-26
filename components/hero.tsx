@@ -158,7 +158,7 @@ export function Hero() {
 
           {/* Dynamic Headline: Grid-Stacked Layout (Zero Layout Shift) */}
           <Reveal eager delay={0.05} blur={false}>
-            <div className="relative mt-4 sm:mt-5 grid grid-cols-1 grid-rows-1 min-h-[5.8rem] sm:min-h-[6.6rem] lg:min-h-[7.4rem] items-center">
+            <div className="relative mt-4 sm:mt-5 grid grid-cols-1 grid-rows-1 min-h-[5.8rem] sm:min-h-[6.6rem] lg:min-h-[7.4rem] items-start">
               <AnimatePresence initial={false}>
                 <motion.div
                   key={`${activeScenario}-${lang}-heading`}
@@ -166,17 +166,17 @@ export function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.28, ease: "easeOut" }}
-                  className="col-start-1 row-start-1 flex flex-col justify-center"
+                  className="col-start-1 row-start-1 flex flex-col justify-start"
                 >
-                  <h1 className="font-display text-[1.7rem] font-semibold leading-[1.2] tracking-tight text-slate-950 sm:text-4xl lg:text-[2.75rem] dark:text-white">
+                  <h1 className="font-display text-[1.7rem] font-semibold leading-[1.22] tracking-tight text-slate-950 sm:text-4xl lg:text-[2.75rem] dark:text-white">
                     <span className="block text-slate-900 dark:text-white">
                       {currentScenario.question[lang]}
                     </span>
-                    <span className="block mt-1 font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 bg-clip-text text-transparent dark:from-emerald-400 dark:via-teal-300 dark:to-indigo-300">
+                    <span className="block mt-1 sm:mt-1.5 font-bold">
                       <HeroTypewriter
                         key={`${activeScenario}-${lang}-typewriter`}
                         text={currentScenario.resolution[lang]}
-                        speed={26}
+                        speed={24}
                       />
                     </span>
                   </h1>
@@ -187,7 +187,7 @@ export function Hero() {
 
           {/* Dynamic Subline: Grid-Stacked Layout (Zero Layout Shift) */}
           <Reveal eager delay={0.1} blur={false}>
-            <div className="relative mt-3 grid grid-cols-1 grid-rows-1 min-h-[3.2rem] sm:min-h-[3rem] items-center">
+            <div className="relative mt-3.5 sm:mt-4 grid grid-cols-1 grid-rows-1 min-h-[3.6rem] sm:min-h-[3rem] items-start">
               <AnimatePresence initial={false}>
                 <motion.p
                   key={`${activeScenario}-${lang}-subline`}
@@ -400,7 +400,7 @@ export function Hero() {
         </div>
 
         {/* Right Column: Interactive Phone Mock */}
-        <div className="relative justify-self-center noise lg:justify-self-center">
+        <div className="relative flex flex-col items-center justify-self-center noise lg:justify-self-center">
           <div
             aria-hidden
             className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-indigo-300/30 blur-3xl dark:bg-indigo-400/25"
@@ -411,14 +411,18 @@ export function Hero() {
           />
           <div className="relative z-10 max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem]">
             <DeferredPhoneMock className="relative z-10 max-w-[min(92vw,24rem)] sm:max-w-[28rem] lg:max-w-[30rem]" />
+          </div>
+
+          {/* Cleanly spaced Watch Demo CTA below phone mockup */}
+          <div className="relative z-20 mt-4 sm:mt-5 flex justify-center">
             <button
               type="button"
               onClick={openVideo}
               aria-label="Watch LifeWise demo video"
-              className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full bg-white/95 px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-lg ring-1 ring-slate-200/80 backdrop-blur transition hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:bg-slate-900/90 dark:text-white dark:ring-white/10"
+              className="inline-flex items-center gap-2.5 rounded-full border border-slate-200/80 bg-white/95 px-5 py-2.5 text-sm font-semibold text-slate-800 shadow-premium ring-1 ring-slate-200/60 backdrop-blur transition hover:scale-[1.03] hover:border-indigo-300 hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-white/10 dark:bg-slate-900/90 dark:text-white dark:ring-white/10 dark:hover:border-indigo-400/40 dark:hover:text-indigo-300"
             >
-              <Play className="h-4 w-4 fill-current text-indigo-600 dark:text-indigo-300" />
-              Watch demo
+              <Play className="h-4 w-4 fill-current text-indigo-600 dark:text-indigo-400" />
+              Watch interactive demo
             </button>
           </div>
         </div>

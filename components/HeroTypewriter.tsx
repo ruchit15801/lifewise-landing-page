@@ -27,7 +27,7 @@ export function HeroTypewriter({
   text,
   className = "",
   cursorClassName = "",
-  speed = 28,
+  speed = 24,
   showCursor = true,
   onComplete
 }: HeroTypewriterProps) {
@@ -75,23 +75,18 @@ export function HeroTypewriter({
   const output = graphemes.current.slice(0, displayedCount).join("");
 
   return (
-    <span className={`relative inline-block ${className}`}>
-      {/* Invisible ghost text reserves the exact multi-line layout bounding box from frame 0 */}
-      <span className="invisible select-none" aria-hidden="true">
-        {text}
-      </span>
-      {/* Visible typed characters overlaid in the exact reserved box without layout shift */}
-      <span className="absolute inset-0 select-text">
+    <span className={`inline ${className}`}>
+      <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 bg-clip-text text-transparent dark:from-emerald-400 dark:via-teal-300 dark:to-indigo-300">
         {output}
-        {showCursor && (
-          <span
-            aria-hidden="true"
-            className={`inline-block ml-0.5 w-[2px] h-[0.9em] align-middle bg-emerald-500 dark:bg-emerald-400 ${
-              isTyping ? "opacity-100" : "animate-pulse"
-            } ${cursorClassName}`}
-          />
-        )}
       </span>
+      {showCursor && (
+        <span
+          aria-hidden="true"
+          className={`inline-block ml-1 w-[2.5px] h-[0.82em] align-baseline rounded-sm bg-emerald-500 dark:bg-emerald-400 ${
+            isTyping ? "opacity-100" : "animate-pulse"
+          } ${cursorClassName}`}
+        />
+      )}
     </span>
   );
 }
